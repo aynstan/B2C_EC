@@ -1,0 +1,9 @@
+E:\PFO\B2C_EC\B2C_EC.Website\bin\B2C_EC.Website.dll
+E:\PFO\B2C_EC\B2C_EC.Website\bin\B2C_EC.Website.pdb
+E:\PFO\B2C_EC\B2C_EC.Website\obj\Debug\B2C_EC.Website.csprojResolveAssemblyReference.cache
+E:\PFO\B2C_EC\B2C_EC.Website\obj\Debug\B2C_EC.Website.dll
+E:\PFO\B2C_EC\B2C_EC.Website\obj\Debug\B2C_EC.Website.pdb
+E:\PFO\B2C_EC\B2C_EC.Website\bin\B2C_EC.Model.dll
+E:\PFO\B2C_EC\B2C_EC.Website\bin\B2C_EC.Model.pdb
+E:\PFO\B2C_EC\B2C_EC.Website\bin\EntityFramework.dll
+E:\PFO\B2C_EC\B2C_EC.Website\bin\EntityFramework.xml
