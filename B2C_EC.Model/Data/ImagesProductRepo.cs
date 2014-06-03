@@ -13,5 +13,19 @@ namespace B2C_EC.Model.Data
         {
             return db.ImagesProducts.Where(i => i.Product_ID == ProductId && i.IsDefault == true).FirstOrDefault();
         }
+        public string GetImageURLDefaultByProductId(int ProductId)
+        {
+            ImagesProduct ImagesProduct =  new B2C_ECEntities().ImagesProducts.Where(p => p.Product_ID == ProductId && p.IsDefault == true).FirstOrDefault();
+            if (ImagesProduct != null)
+            {
+                return ImagesProduct.ImageURL;
+            }
+            ImagesProduct = new B2C_ECEntities().ImagesProducts.Where(p => p.Product_ID == ProductId).FirstOrDefault();
+            if (ImagesProduct != null)
+            {
+                return ImagesProduct.ImageURL;
+            }
+            return "";
+        }
     }
 }

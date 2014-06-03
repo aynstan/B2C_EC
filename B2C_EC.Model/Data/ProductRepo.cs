@@ -18,5 +18,9 @@ namespace B2C_EC.Model.Data
         {
             return db.Products.Where(p => p.ProductType_ID == ServiceID).ToList();
         }
+        public List<Product> GetProductBestSelling()
+        {
+            return new B2C_ECEntities().Products.Where(p => p.IsBestSeller == true).ToList();
+        }
     }
 }
