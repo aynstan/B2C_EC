@@ -207,6 +207,7 @@ body {
 .latest-product ul li img {
 	float:left;
 	margin-top:8px;
+    max-height:50px;
 }
 .p-info {
 	float:right;

@@ -11,7 +11,7 @@ namespace B2C_EC.Model.Data
     {
         public List<ProductType> GetAllProductType()
         {
-            return B2C_ECEntities.GetInstance().ProductTypes.ToList();
+            return new B2C_ECEntities().ProductTypes.ToList();
         }
         //public List<ProductType> GetAllProductType()
         //{

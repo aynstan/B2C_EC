@@ -139,7 +139,14 @@
                         <div class="latest-product">
                             <h2>Best Selling</h2>
                             <ul>
-                                <li>
+                                <asp:Repeater ID="rptProductBestSelling" runat="server" OnItemDataBound="rptProductBestSelling_ItemDataBound">
+                                    <ItemTemplate>
+                                        <asp:Image ID="imgProduct" runat="server" Width="30" />
+                                        <div class="p-info"><span>Latest <%# Eval("Name") %></span><small> &amp;<%# Eval("PriceNew") %></small></div>
+                                        <asp:HiddenField ID="HiddenFieldProductId" runat="server" Value='<%# Eval("ID") %>' />
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                                <%--<li>
                                     <img src="Resources/ImagesDesign/valky.jpg" alt="valky" title="prodcut" />
                                     <div class="p-info"><span>Latest Apple iPhone 3G</span><small> &amp;190 </small></div>
                                 </li>
@@ -150,9 +157,9 @@
                                 <li>
                                     <img src="Resources/ImagesDesign/cell-btn.jpg" alt="btn" title="product" class="c-btn" />
                                     <div class="p-info"><span>Latest Apple iPhone 3G</span><small>&amp;190</small></div>
-                                </li>
+                                </li>--%>
                             </ul>
-                            <a href="#">View More <span>&raquo; </span></a>
+                            <a href="#">View More  <span>&raquo; </span></a>
                         </div>
                         <div class="latest-product ">
                             <h2>Our Services</h2>

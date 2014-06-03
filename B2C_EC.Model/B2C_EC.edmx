@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="B2C_ECModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="B2C_ECModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="B2C_ECModelStoreContainer">
           <EntitySet Name="Address" EntityType="B2C_ECModel.Store.Address" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Contact" EntityType="B2C_ECModel.Store.Contact" store:Type="Tables" Schema="dbo" />
@@ -58,6 +58,10 @@
           <AssociationSet Name="FK_Products_ProductType" Association="B2C_ECModel.Store.FK_Products_ProductType">
             <End Role="ProductType" EntitySet="ProductType" />
             <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductType_ProductType" Association="B2C_ECModel.Store.FK_ProductType_ProductType">
+            <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="ProductType1" EntitySet="ProductType" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductTypeAttribute_ProductType" Association="B2C_ECModel.Store.FK_ProductTypeAttribute_ProductType">
             <End Role="ProductType" EntitySet="ProductType" />
@@ -182,6 +186,9 @@
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="ProductType_ID" Type="int" />
           <Property Name="Manufacuturer_ID" Type="int" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="IsBestSeller" Type="bit" />
+          <Property Name="IsNew" Type="bit" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
@@ -194,6 +201,7 @@
           <Property Name="SortId" Type="int" />
           <Property Name="DateCreated" Type="datetime" />
           <Property Name="DescriptionTemplate" Type="ntext" />
+          <Property Name="ParentId" Type="int" />
         </EntityType>
         <EntityType Name="ProductTypeAttribute">
           <Key>
@@ -370,6 +378,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductType_ProductType">
+          <End Role="ProductType" Type="B2C_ECModel.Store.ProductType" Multiplicity="0..1" />
+          <End Role="ProductType1" Type="B2C_ECModel.Store.ProductType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductType1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductTypeAttribute_ProductType">
           <End Role="ProductType" Type="B2C_ECModel.Store.ProductType" Multiplicity="1" />
           <End Role="ProductTypeAttribute" Type="B2C_ECModel.Store.ProductTypeAttribute" Multiplicity="*" />
@@ -418,8 +438,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="B2C_ECModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -492,6 +511,10 @@
           <AssociationSet Name="FK_ShippingCartDetail_ShippingCart" Association="B2C_ECModel.FK_ShippingCartDetail_ShippingCart">
             <End Role="ShoppingCart" EntitySet="ShoppingCarts" />
             <End Role="ShoppingCartDetail" EntitySet="ShoppingCartDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductType_ProductType" Association="B2C_ECModel.FK_ProductType_ProductType">
+            <End Role="ProductType" EntitySet="ProductTypes" />
+            <End Role="ProductType1" EntitySet="ProductTypes" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Address">
@@ -618,6 +641,9 @@
           <NavigationProperty Name="ImagesProducts" Relationship="B2C_ECModel.FK_ImagesProduct_Products" FromRole="Products" ToRole="ImagesProduct" />
           <NavigationProperty Name="Manufacturer" Relationship="B2C_ECModel.FK_Products_Manufacturer" FromRole="Products" ToRole="Manufacturer" />
           <NavigationProperty Name="ProductType" Relationship="B2C_ECModel.FK_Products_ProductType" FromRole="Products" ToRole="ProductType" />
+          <Property Type="DateTime" Name="DateCreated" Precision="3" />
+          <Property Type="Boolean" Name="IsBestSeller" />
+          <Property Type="Boolean" Name="IsNew" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
@@ -632,6 +658,9 @@
           <Property Name="DescriptionTemplate" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Products" Relationship="B2C_ECModel.FK_Products_ProductType" FromRole="ProductType" ToRole="Products" />
           <NavigationProperty Name="ProductTypeAttributes" Relationship="B2C_ECModel.FK_ProductTypeAttribute_ProductType" FromRole="ProductType" ToRole="ProductTypeAttribute" />
+          <Property Type="Int32" Name="ParentId" />
+          <NavigationProperty Name="ProductType1" Relationship="B2C_ECModel.FK_ProductType_ProductType" FromRole="ProductType" ToRole="ProductType1" />
+          <NavigationProperty Name="ProductType2" Relationship="B2C_ECModel.FK_ProductType_ProductType" FromRole="ProductType1" ToRole="ProductType" />
         </EntityType>
         <EntityType Name="ProductTypeAttribute">
           <Key>
@@ -862,6 +891,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductType_ProductType">
+          <End Type="B2C_ECModel.ProductType" Role="ProductType" Multiplicity="0..1" />
+          <End Type="B2C_ECModel.ProductType" Role="ProductType1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductType1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -973,6 +1014,9 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="B2C_ECModel.Product">
               <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+                <ScalarProperty Name="IsBestSeller" ColumnName="IsBestSeller" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="PriceOld" ColumnName="PriceOld" />
@@ -987,6 +1031,7 @@
           <EntitySetMapping Name="ProductTypes">
             <EntityTypeMapping TypeName="B2C_ECModel.ProductType">
               <MappingFragment StoreEntitySet="ProductType">
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Note" ColumnName="Note" />

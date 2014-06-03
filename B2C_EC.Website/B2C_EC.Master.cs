@@ -13,12 +13,36 @@ namespace B2C_EC.Website
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Customer"] != null)
+            if (!IsPostBack)
             {
-                LoadCustomer();
-            }
+                if (Session["Customer"] != null)
+                {
+                    LoadCustomer();
+                }
 
-            LoadServices();
+                LoadServices();
+                LoadProductBestSelling();
+            }
+        }
+
+        private void LoadProductBestSelling()
+        {
+            rptProductBestSelling.DataSource = new ProductRepo().GetProductBestSelling().Take(5);
+            rptProductBestSelling.DataBind();
+        }
+
+        protected void rptProductBestSelling_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            Image imgProduct = (Image) e.Item.FindControl("imgProduct");
+            if (imgProduct != null)
+            {
+                HiddenField HiddenFieldProductId = (HiddenField)e.Item.FindControl("HiddenFieldProductId");
+                if (HiddenFieldProductId != null)
+                {
+                    string imgURL = new ImagesProductRepo().GetImageURLDefaultByProductId(Convert.ToInt32(HiddenFieldProductId.Value));
+                    imgProduct.ImageUrl = "Resources/ImagesProduct/" + imgURL;
+                }
+            }
         }
 
         private void LoadServices()
@@ -53,5 +77,6 @@ namespace B2C_EC.Website
                 lblMember.Text = "Chào, Customer!";
             }
         }
+
     }
 }

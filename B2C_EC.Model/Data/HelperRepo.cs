@@ -15,7 +15,7 @@ namespace B2C_EC.Model.Data
     }
     public abstract class HelperRepo<T> : IHelperRepo<T> where T : DomainObject<T>
     {
-        protected static B2C_ECEntities db = B2C_ECEntities.GetInstance();
+        protected static B2C_ECEntities db = new B2C_ECEntities();
 
         // BAD: generic repository pattern; non-specialized CRUD methods can conflict with custom DDD logic needs
         // but they can be overridden as needed
