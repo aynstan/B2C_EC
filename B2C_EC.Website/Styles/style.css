@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 * {
 	margin:0;
@@ -48,7 +48,7 @@ body {
 	width:659px;
 	margin-top:23px;
 }
-.header-aside span {
+.header-aside .span {
 	float:left;
 	margin-top:5px;
 	padding-left:33px;

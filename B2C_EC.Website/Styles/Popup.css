@@ -1,0 +1,31 @@
+﻿.Popup {
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    border:1px groove gray;
+    background-color: White;
+    /*width: 700px;*/ 
+    border-width: 2px; 
+    border-color: Black; 
+    border-style: solid; 
+    padding: 5px;
+    left:250px;
+}
+
+.PopupTitle {
+    height:20px;
+    background-color:gray;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    text-align:center;
+}
+
+.PopupTable {
+    background-color:white;
+    color:gray;
+    /*font-weight:bold;*/
+    /*cursor:pointer;*/
+    /*text-align:center;*/
+}
+

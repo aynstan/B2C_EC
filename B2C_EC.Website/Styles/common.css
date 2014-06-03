@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /*==================================================
  Eric Meyer's Global CSS Reset
  ==================================================*/
@@ -40,7 +40,7 @@ ins {
 del {
 	text-decoration:line-through;
 }
-table {
+.table {
 	border-collapse:collapse;
 	border-spacing:0;
 }
@@ -118,7 +118,7 @@ z-index:55;
 }
 /*Global declaration*/	
 
-input {
+.input {
 	width: 218px;
 	background: url(../Resources/ImagesDesign/textbox.png) left top no-repeat;
 	height:26px;

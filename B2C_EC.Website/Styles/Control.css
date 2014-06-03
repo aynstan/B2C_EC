@@ -1,0 +1,56 @@
+﻿
+.TextBox
+{
+    height:20px;
+    padding:5px;
+    width:200px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    border:1px solid gray;
+}
+
+.AreaText
+{
+    min-height:150px;
+    padding:5px;
+    width:300px;
+    max-width:700px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    border:1px solid gray;
+}
+
+.Button
+{
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    border:1px solid gray;
+    background-color:Gray;
+    color:White;
+    height:30px;
+    padding:5px;
+    cursor:pointer;
+}
+
+.ButtonOrange
+{
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    border:1px solid #f15a22;
+    background-color:#f15a22;
+    color:White;
+    height:30px;
+    padding:5px;
+    cursor:pointer;
+}
+
+fieldset
+{
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+}
