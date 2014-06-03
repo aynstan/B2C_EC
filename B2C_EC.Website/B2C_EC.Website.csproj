@@ -38,6 +38,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>..\..\..\HocTap\CongNghePhanMem\DoAn\HoangQuanMobile\HoangQuanMobile.Website\bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\B2C_EC.Model\bin\Debug\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -57,14 +64,144 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FilterByService.aspx" />
+    <Content Include="Fonts\din-regular_0-webfont.svg" />
+    <Content Include="Fonts\ge703xbc-webfont.svg" />
+    <Content Include="Fonts\ge703xbi-webfont.svg" />
+    <Content Include="Fonts\geo703b-webfont.svg" />
+    <Content Include="Fonts\geo703bc-webfont.svg" />
+    <Content Include="Fonts\geo703bi-webfont.svg" />
+    <Content Include="Fonts\geo703l-webfont.svg" />
+    <Content Include="Fonts\geo703li-webfont.svg" />
+    <Content Include="Fonts\geo703m-webfont.svg" />
+    <Content Include="Fonts\geo703mc-webfont.svg" />
+    <Content Include="Fonts\geo703mi-webfont.svg" />
+    <Content Include="Fonts\geo703xb-webfont.svg" />
+    <Content Include="Index.aspx" />
+    <Content Include="Resources\ImagesDesign\alican.jpg" />
+    <Content Include="Resources\ImagesDesign\banner-rept.jpg" />
+    <Content Include="Resources\ImagesDesign\bara.jpg" />
+    <Content Include="Resources\ImagesDesign\bg.jpg" />
+    <Content Include="Resources\ImagesDesign\body-bg.jpg" />
+    <Content Include="Resources\ImagesDesign\cart-bg.png" />
+    <Content Include="Resources\ImagesDesign\cart-icon.png" />
+    <Content Include="Resources\ImagesDesign\cart.jpg" />
+    <Content Include="Resources\ImagesDesign\cell-btn.jpg" />
+    <Content Include="Resources\ImagesDesign\cell-icon.jpg" />
+    <Content Include="Resources\ImagesDesign\cell.jpg" />
+    <Content Include="Resources\ImagesDesign\chang.jpg" />
+    <Content Include="Resources\ImagesDesign\circle-h.png" />
+    <Content Include="Resources\ImagesDesign\circle.png" />
+    <Content Include="Resources\ImagesDesign\click-btn.png" />
+    <Content Include="Resources\ImagesDesign\click-right.png" />
+    <Content Include="Resources\ImagesDesign\dbl-ipad.jpg" />
+    <Content Include="Resources\ImagesDesign\dbl-phone.jpg" />
+    <Content Include="Resources\ImagesDesign\divider.jpg" />
+    <Content Include="Resources\ImagesDesign\f-platform.jpg" />
+    <Content Include="Resources\ImagesDesign\face-s.jpg" />
+    <Content Include="Resources\ImagesDesign\facebook-platform.jpg" />
+    <Content Include="Resources\ImagesDesign\favicon.ico" />
+    <Content Include="Resources\ImagesDesign\fcbk-like.jpg" />
+    <Content Include="Resources\ImagesDesign\fcbk.png" />
+    <Content Include="Resources\ImagesDesign\g-camera.jpg" />
+    <Content Include="Resources\ImagesDesign\glasses.jpg" />
+    <Content Include="Resources\ImagesDesign\home.png" />
+    <Content Include="Resources\ImagesDesign\iphone-g.jpg" />
+    <Content Include="Resources\ImagesDesign\ipod-tuch.jpg" />
+    <Content Include="Resources\ImagesDesign\lapy-t.jpg" />
+    <Content Include="Resources\ImagesDesign\lapy.jpg" />
+    <Content Include="Resources\ImagesDesign\login.jpg" />
+    <Content Include="Resources\ImagesDesign\logo.png" />
+    <Content Include="Resources\ImagesDesign\Logo1.png" />
+    <Content Include="Resources\ImagesDesign\m-icon.jpg" />
+    <Content Include="Resources\ImagesDesign\man.jpg" />
+    <Content Include="Resources\ImagesDesign\melisa.jpg" />
+    <Content Include="Resources\ImagesDesign\n-pic.jpg" />
+    <Content Include="Resources\ImagesDesign\new.png" />
+    <Content Include="Resources\ImagesDesign\nick.jpg" />
+    <Content Include="Resources\ImagesDesign\paul.jpg" />
+    <Content Include="Resources\ImagesDesign\phone.jpg" />
+    <Content Include="Resources\ImagesDesign\repeat.jpg" />
+    <Content Include="Resources\ImagesDesign\search.png" />
+    <Content Include="Resources\ImagesDesign\sms.png" />
+    <Content Include="Resources\ImagesDesign\sprite.png" />
+    <Content Include="Resources\ImagesDesign\textbox.png" />
+    <Content Include="Resources\ImagesDesign\user.jpg" />
+    <Content Include="Resources\ImagesDesign\valky.jpg" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\slides.min.jquery.js" />
+    <Content Include="Styles\all-ie.css" />
+    <Content Include="Styles\common.css" />
+    <Content Include="Styles\Control.css" />
+    <Content Include="Styles\ie8.css" />
+    <Content Include="Styles\Popup.css" />
+    <Content Include="Styles\style.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="B2C_EC.Master.cs">
+      <DependentUpon>B2C_EC.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="B2C_EC.Master.designer.cs">
+      <DependentUpon>B2C_EC.Master</DependentUpon>
+    </Compile>
+    <Compile Include="FilterByService.aspx.cs">
+      <DependentUpon>FilterByService.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FilterByService.aspx.designer.cs">
+      <DependentUpon>FilterByService.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="B2C_EC.Master" />
+    <Content Include="Fonts\din-regular_0-webfont.eot" />
+    <Content Include="Fonts\din-regular_0-webfont.ttf" />
+    <Content Include="Fonts\din-regular_0-webfont.woff" />
+    <Content Include="Fonts\ge703xbc-webfont.eot" />
+    <Content Include="Fonts\ge703xbc-webfont.ttf" />
+    <Content Include="Fonts\ge703xbc-webfont.woff" />
+    <Content Include="Fonts\ge703xbi-webfont.eot" />
+    <Content Include="Fonts\ge703xbi-webfont.ttf" />
+    <Content Include="Fonts\ge703xbi-webfont.woff" />
+    <Content Include="Fonts\geo703b-webfont.eot" />
+    <Content Include="Fonts\geo703b-webfont.ttf" />
+    <Content Include="Fonts\geo703b-webfont.woff" />
+    <Content Include="Fonts\geo703bc-webfont.eot" />
+    <Content Include="Fonts\geo703bc-webfont.ttf" />
+    <Content Include="Fonts\geo703bc-webfont.woff" />
+    <Content Include="Fonts\geo703bi-webfont.eot" />
+    <Content Include="Fonts\geo703bi-webfont.ttf" />
+    <Content Include="Fonts\geo703bi-webfont.woff" />
+    <Content Include="Fonts\geo703l-webfont.eot" />
+    <Content Include="Fonts\geo703l-webfont.ttf" />
+    <Content Include="Fonts\geo703li-webfont.eot" />
+    <Content Include="Fonts\geo703li-webfont.ttf" />
+    <Content Include="Fonts\geo703li-webfont.woff" />
+    <Content Include="Fonts\geo703m-webfont.eot" />
+    <Content Include="Fonts\geo703m-webfont.ttf" />
+    <Content Include="Fonts\geo703m-webfont.woff" />
+    <Content Include="Fonts\geo703mc-webfont.eot" />
+    <Content Include="Fonts\geo703mc-webfont.ttf" />
+    <Content Include="Fonts\geo703mc-webfont.woff" />
+    <Content Include="Fonts\geo703mi-webfont.eot" />
+    <Content Include="Fonts\geo703mi-webfont.ttf" />
+    <Content Include="Fonts\geo703mi-webfont.woff" />
+    <Content Include="Fonts\geo703xb-webfont.eot" />
+    <Content Include="Fonts\geo703xb-webfont.ttf" />
+    <Content Include="Fonts\geo703xb-webfont.woff" />
+    <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -78,6 +215,7 @@
       <Name>B2C_EC.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

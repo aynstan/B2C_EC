@@ -39,6 +39,9 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,13 +49,103 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Address.cs">
+      <DependentUpon>B2C_EC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="B2C_EC.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>B2C_EC.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="B2C_EC.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>B2C_EC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="B2C_EC.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>B2C_EC.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Base\ECDatabase.cs" />
+    <Compile Include="Contact.cs">
+      <DependentUpon>B2C_EC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Customer.cs">
+      <DependentUpon>B2C_EC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DomainObject.cs" />
+    <Compile Include="Data\HelperRepo.cs" />
+    <Compile Include="Data\ProductTypeRepo.cs" />
+    <Compile Include="DBClass.cs" />
+    <Compile Include="ImagesProduct.cs">
+      <DependentUpon>B2C_EC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Manufacturer.cs">
+      <DependentUpon>B2C_EC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Member.cs">
+      <DependentUpon>B2C_EC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Order.cs">
+      <DependentUpon>B2C_EC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderDetail.cs">
+      <DependentUpon>B2C_EC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs">
+      <DependentUpon>B2C_EC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductAtrributeDetail.cs">
+      <DependentUpon>B2C_EC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductType.cs">
+      <DependentUpon>B2C_EC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductTypeAttribute.cs">
+      <DependentUpon>B2C_EC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Promo.cs">
+      <DependentUpon>B2C_EC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShoppingCart.cs">
+      <DependentUpon>B2C_EC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShoppingCartDetail.cs">
+      <DependentUpon>B2C_EC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>B2C_EC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>B2C_EC.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="B2C_EC.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>B2C_EC.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="B2C_EC.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>B2C_EC.edmx</DependentUpon>
+      <LastGenOutput>B2C_EC.Context.cs</LastGenOutput>
+    </None>
+    <None Include="B2C_EC.edmx.diagram">
+      <DependentUpon>B2C_EC.edmx</DependentUpon>
+    </None>
+    <None Include="B2C_EC.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>B2C_EC.edmx</DependentUpon>
+      <LastGenOutput>B2C_EC.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

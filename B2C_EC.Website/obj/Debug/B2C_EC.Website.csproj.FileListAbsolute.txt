@@ -7,3 +7,15 @@ E:\PFO\B2C_EC\B2C_EC.Website\bin\B2C_EC.Model.dll
 E:\PFO\B2C_EC\B2C_EC.Website\bin\B2C_EC.Model.pdb
 E:\PFO\B2C_EC\B2C_EC.Website\bin\EntityFramework.dll
 E:\PFO\B2C_EC\B2C_EC.Website\bin\EntityFramework.xml
+E:\GithubProject\B2C_EC\B2C_EC.Website\bin\B2C_EC.Website.dll
+E:\GithubProject\B2C_EC\B2C_EC.Website\bin\B2C_EC.Website.pdb
+E:\GithubProject\B2C_EC\B2C_EC.Website\bin\B2C_EC.Model.dll
+E:\GithubProject\B2C_EC\B2C_EC.Website\bin\EntityFramework.dll
+E:\GithubProject\B2C_EC\B2C_EC.Website\bin\B2C_EC.Model.pdb
+E:\GithubProject\B2C_EC\B2C_EC.Website\bin\EntityFramework.xml
+E:\GithubProject\B2C_EC\B2C_EC.Website\obj\Debug\B2C_EC.Website.csprojResolveAssemblyReference.cache
+E:\GithubProject\B2C_EC\B2C_EC.Website\obj\Debug\B2C_EC.Website.dll
+E:\GithubProject\B2C_EC\B2C_EC.Website\obj\Debug\B2C_EC.Website.pdb
+E:\GithubProject\B2C_EC\B2C_EC.Website\bin\AjaxControlToolkit.dll
+E:\GithubProject\B2C_EC\B2C_EC.Website\bin\EntityFramework.SqlServer.dll
+E:\GithubProject\B2C_EC\B2C_EC.Website\bin\EntityFramework.SqlServer.xml

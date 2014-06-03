@@ -8,3 +8,12 @@ E:\PFO\B2C_EC\B2C_EC.Model\bin\Debug\EntityFramework.SqlServer.dll
 E:\PFO\B2C_EC\B2C_EC.Model\bin\Debug\EntityFramework.xml
 E:\PFO\B2C_EC\B2C_EC.Model\bin\Debug\EntityFramework.SqlServer.xml
 E:\PFO\B2C_EC\B2C_EC.Model\obj\Debug\B2C_EC.Model.csprojResolveAssemblyReference.cache
+E:\GithubProject\B2C_EC\B2C_EC.Model\bin\Debug\B2C_EC.Model.dll.config
+E:\GithubProject\B2C_EC\B2C_EC.Model\bin\Debug\B2C_EC.Model.dll
+E:\GithubProject\B2C_EC\B2C_EC.Model\bin\Debug\B2C_EC.Model.pdb
+E:\GithubProject\B2C_EC\B2C_EC.Model\bin\Debug\EntityFramework.dll
+E:\GithubProject\B2C_EC\B2C_EC.Model\bin\Debug\EntityFramework.SqlServer.dll
+E:\GithubProject\B2C_EC\B2C_EC.Model\bin\Debug\EntityFramework.xml
+E:\GithubProject\B2C_EC\B2C_EC.Model\bin\Debug\EntityFramework.SqlServer.xml
+E:\GithubProject\B2C_EC\B2C_EC.Model\obj\Debug\B2C_EC.Model.dll
+E:\GithubProject\B2C_EC\B2C_EC.Model\obj\Debug\B2C_EC.Model.pdb
