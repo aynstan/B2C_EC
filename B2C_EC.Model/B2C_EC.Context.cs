@@ -26,7 +26,6 @@ namespace B2C_EC.Model
         }
     
         public DbSet<Address> Addresses { get; set; }
-        public DbSet<Contact> Contacts { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<ImagesProduct> ImagesProducts { get; set; }
         public DbSet<Manufacturer> Manufacturers { get; set; }
@@ -42,5 +41,6 @@ namespace B2C_EC.Model
         public DbSet<ShoppingCartDetail> ShoppingCartDetails { get; set; }
         public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
     }
 }

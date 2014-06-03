@@ -6,7 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="e99054b4849f41659c09c54bb1a0842a" Name="Diagram1">
         <EntityTypeShape EntityType="B2C_ECModel.Address" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="B2C_ECModel.Contact" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="B2C_ECModel.Customer" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="B2C_ECModel.ImagesProduct" Width="1.5" PointX="7.5" PointY="12.125" IsExpanded="true" />
         <EntityTypeShape EntityType="B2C_ECModel.Manufacturer" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
@@ -36,6 +35,7 @@
         <AssociationConnector Association="B2C_ECModel.FK_ProductTypeAttribute_ProductType" ManuallyRouted="false" />
         <AssociationConnector Association="B2C_ECModel.FK_ShippingCartDetail_ShippingCart" ManuallyRouted="false" />
         <AssociationConnector Association="B2C_ECModel.FK_ProductType_ProductType" />
+        <EntityTypeShape EntityType="B2C_ECModel.Contact" Width="1.5" PointX="2" PointY="1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -92,13 +92,14 @@
         </EntityType>
         <EntityType Name="Contact">
           <Key>
-            <PropertyRef Name="ContactId" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ContactId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="DateCreated" Type="datetime" />
         </EntityType>
         <EntityType Name="Customers">
           <Key>
@@ -444,7 +445,6 @@
       <Schema Namespace="B2C_ECModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="B2C_ECEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="Addresses" EntityType="B2C_ECModel.Address" />
-          <EntitySet Name="Contacts" EntityType="B2C_ECModel.Contact" />
           <EntitySet Name="Customers" EntityType="B2C_ECModel.Customer" />
           <EntitySet Name="ImagesProducts" EntityType="B2C_ECModel.ImagesProduct" />
           <EntitySet Name="Manufacturers" EntityType="B2C_ECModel.Manufacturer" />
@@ -516,6 +516,7 @@
             <End Role="ProductType" EntitySet="ProductTypes" />
             <End Role="ProductType1" EntitySet="ProductTypes" />
           </AssociationSet>
+          <EntitySet Name="Contacts" EntityType="B2C_ECModel.Contact" />
         </EntityContainer>
         <EntityType Name="Address">
           <Key>
@@ -529,16 +530,6 @@
           <NavigationProperty Name="Customers" Relationship="B2C_ECModel.FK_Customers_Address" FromRole="Address" ToRole="Customers" />
           <NavigationProperty Name="Manufacturers" Relationship="B2C_ECModel.FK_Manufacturer_Address" FromRole="Address" ToRole="Manufacturer" />
           <NavigationProperty Name="Users" Relationship="B2C_ECModel.FK_Users_Address" FromRole="Address" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="Contact">
-          <Key>
-            <PropertyRef Name="ContactId" />
-          </Key>
-          <Property Name="ContactId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -903,6 +894,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Comments" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DateCreated" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -917,17 +919,6 @@
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="Country" ColumnName="Country" />
                 <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Contacts">
-            <EntityTypeMapping TypeName="B2C_ECModel.Contact">
-              <MappingFragment StoreEntitySet="Contact">
-                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1110,6 +1101,18 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Created" ColumnName="Created" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="B2C_ECModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

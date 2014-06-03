@@ -14,10 +14,15 @@ namespace B2C_EC.Model
     
     public partial class Contact
     {
-        public int ContactId { get; set; }
+        public Contact()
+        {
+            this.DateCreated = DateTime.Now;
+        }
+        public int ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Content { get; set; }
+        public string Comments { get; set; }
         public string Email { get; set; }
+        public Nullable<System.DateTime> DateCreated { get; set; }
     }
 }
