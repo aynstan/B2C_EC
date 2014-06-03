@@ -18,21 +18,11 @@ namespace B2C_EC.Model
         public B2C_ECEntities()
             : base("name=B2C_ECEntities")
         {
-            
-        }
-
-        private static B2C_ECEntities _instance;
-        public static B2C_ECEntities GetInstance()
-        {
-            if (_instance == null)
-                _instance = new B2C_ECEntities();
-            _instance.Database.CommandTimeout = 200000;
-            return _instance;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //throw new UnintentionalCodeFirstException();
+            throw new UnintentionalCodeFirstException();
         }
     
         public DbSet<Address> Addresses { get; set; }

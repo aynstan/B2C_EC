@@ -76,6 +76,8 @@
     </Compile>
     <Compile Include="Data\DomainObject.cs" />
     <Compile Include="Data\HelperRepo.cs" />
+    <Compile Include="Data\ImagesProductRepo.cs" />
+    <Compile Include="Data\ProductRepo.cs" />
     <Compile Include="Data\ProductTypeRepo.cs" />
     <Compile Include="DBClass.cs" />
     <Compile Include="ImagesProduct.cs">

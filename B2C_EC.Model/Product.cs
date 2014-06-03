@@ -27,6 +27,9 @@ namespace B2C_EC.Model
         public bool IsActive { get; set; }
         public Nullable<int> ProductType_ID { get; set; }
         public Nullable<int> Manufacuturer_ID { get; set; }
+        public Nullable<System.DateTime> DateCreated { get; set; }
+        public Nullable<bool> IsBestSeller { get; set; }
+        public Nullable<bool> IsNew { get; set; }
     
         public virtual ICollection<ImagesProduct> ImagesProducts { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }

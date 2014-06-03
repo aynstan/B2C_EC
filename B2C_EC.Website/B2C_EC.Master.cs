@@ -33,6 +33,7 @@ namespace B2C_EC.Website
             lnkRegister.Visible = false;
             lnkSignOut.Visible = true;
             lnkSignIn.Visible = false;
+            lblMember.Visible = true;
             lblMember.Text = "Chào, Customer!";
         }
 

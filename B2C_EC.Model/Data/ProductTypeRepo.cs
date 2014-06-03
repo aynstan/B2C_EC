@@ -9,9 +9,10 @@ namespace B2C_EC.Model.Data
 {
     public class ProductTypeRepo //: HelperRepo<ProductType>
     {
+        B2C_ECEntities db = new B2C_ECEntities();
         public List<ProductType> GetAllProductType()
         {
-            return B2C_ECEntities.GetInstance().ProductTypes.ToList();
+            return db.ProductTypes.ToList();
         }
         //public List<ProductType> GetAllProductType()
         //{

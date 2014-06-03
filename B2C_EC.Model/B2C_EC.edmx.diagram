@@ -35,6 +35,7 @@
         <AssociationConnector Association="B2C_ECModel.FK_Products_ProductType" ManuallyRouted="false" />
         <AssociationConnector Association="B2C_ECModel.FK_ProductTypeAttribute_ProductType" ManuallyRouted="false" />
         <AssociationConnector Association="B2C_ECModel.FK_ShippingCartDetail_ShippingCart" ManuallyRouted="false" />
+        <AssociationConnector Association="B2C_ECModel.FK_ProductType_ProductType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
