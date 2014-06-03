@@ -66,7 +66,7 @@
                         </asp:UpdatePanel>
                     </div>
                     <div>
-                        <asp:Panel ID="Panel1" CssClass="Popup" runat="server" Width="500">
+                        <asp:Panel ID="Panel1" CssClass="Popup" runat="server" Width="500" Style="display: none;">
                             <asp:Panel ID="Panel2" CssClass="PopupTitle" runat="server">Log In</asp:Panel>
                             <div class="PopupTable">
                                 <table width="100%" border="0" cellpadding="2" cellspacing="5">
