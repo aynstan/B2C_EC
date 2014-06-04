@@ -43,7 +43,7 @@
                 First Name:
                 </strong></td>
             <td width="280" align="left" valign="top"><asp:TextBox ID="txtFirstName" runat="server" CssClass="TextBox" />
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtFirstName" ErrorMessage="(*)" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtFirstName" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="contact"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -51,7 +51,7 @@
                 Last Name:
                 </strong></td>
             <td align="left" valign="top"><asp:TextBox ID="txtLastName" runat="server" CssClass="TextBox" />
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtLastName" ErrorMessage="(*)" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtLastName" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="contact"></asp:RequiredFieldValidator>
             </td>
             </tr>
             <tr>
@@ -59,8 +59,8 @@
                 Email:
                 </strong></td>
             <td align="left" valign="top"><asp:TextBox ID="txtEmail" runat="server" CssClass="TextBox" />
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtEmail" ErrorMessage="(*)" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail" Display="Dynamic" ErrorMessage="(*)" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtEmail" ErrorMessage="(*)" ForeColor="Red" Display="Dynamic" ValidationGroup="contact"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail" Display="Dynamic" ErrorMessage="(*)" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="contact"></asp:RegularExpressionValidator>
             </td>
             </tr>
             <tr>
@@ -68,12 +68,12 @@
                 Questions / Comments:
                 </strong></td>
             <td align="left" valign="top"><asp:TextBox ID="txtComments" runat="server" CssClass="AreaText" Rows="3" TextMode="MultiLine" />
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtComments" ErrorMessage="(*)" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtComments" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="contact"></asp:RequiredFieldValidator>
             </td>
             </tr>
             <tr>
             <td></td>
-            <td><asp:Button ID="btnContact" runat="server" class="button" Text="Send Now" OnClick="btnContact_Click" /></td>
+            <td><asp:Button ID="btnContact" runat="server" class="button" Text="Send Now" OnClick="btnContact_Click" ValidationGroup="contact" /></td>
             </tr>
             <tr>
                 <td></td>
