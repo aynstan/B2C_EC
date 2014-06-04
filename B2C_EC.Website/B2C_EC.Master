@@ -114,7 +114,7 @@
                     </div>
                     <div class="nav-section">
                         <ul class="navigation">
-                            <li class="home"><a href="index.html" class="home">Home </a></li>
+                            <li class="home"><a href="index.aspx" class="home">Home </a></li>
                             <li><a href="#">Service </a></li>
                             <li><a href="#">Shops </a></li>
                             <li><a href="#">Reviews</a></li>
@@ -166,7 +166,7 @@
                             <ul class="info">
                                 <asp:Repeater ID="rptServices" runat="server">
                                     <ItemTemplate>
-                                        <li><a href="#"><%# Eval("Name") %></a></li>
+                                        <li><a href='<%# "FilterByService.aspx?ServiceID="+Eval("ID") %>'><%# Eval("Name") %></a></li>
                                     </ItemTemplate>
                                 </asp:Repeater>
                                 <%--<li><a href="#">Mobile</a></li>

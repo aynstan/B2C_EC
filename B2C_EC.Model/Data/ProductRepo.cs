@@ -22,5 +22,10 @@ namespace B2C_EC.Model.Data
         {
             return new B2C_ECEntities().Products.Where(p => p.IsBestSeller == true).ToList();
         }
+
+        public List<Product> GetListProductByProductTypeID(int ProductTypeId)
+        {
+            return db.Products.Where(p => p.ProductType_ID == ProductTypeId).ToList();
+        }
     }
 }

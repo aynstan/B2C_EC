@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using B2C_EC.Model;
 using B2C_EC.Model.Data;
+using B2C_EC.Model.Global;
 
 namespace B2C_EC.Website
 {
@@ -22,7 +23,7 @@ namespace B2C_EC.Website
 
         private void LoadProductsByService()
         {
-            int ServiceID = Int32.Parse(Request.QueryString["ServiceID"].ToString());
+            int ServiceID = ToSQL.SQLToInt(Request.QueryString["ServiceID"].ToString());
             rptProducts.DataSource = (new ProductRepo()).GetListProductByService(ServiceID);
             rptProducts.DataBind();
         }

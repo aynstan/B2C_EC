@@ -455,7 +455,7 @@ body {
 .product-des {
 	display:inline-block;
 	width:100%;
-	margin:30px 8px 14px 0;
+	margin:10px 8px 14px 0;
 }
 .last-p {
 	margin-right:0px;
@@ -623,3 +623,25 @@ body {
 	background-position:-80px -45px;
 }
 /* Home page content ends here */
+
+/*Page Index*/
+
+.TableTitle {
+    font-size:19px;
+	color:#fff;
+	font-family: 'geoslab703_md_btmedium';
+    margin-top:5px;
+}
+
+    .TableTitle h2 {
+        border-radius: 5px 5px 0 0;
+        background: #4E4E4E;
+        text-align: center;
+        background: linear-gradient(#4E4E4E, #060606);
+        -pie-background: linear-gradient(#4E4E4E, #060606);
+        padding: 8px 0;
+    }
+
+.ListBorder {
+    border:1px solid #4E4E4E;
+}
