@@ -66,9 +66,9 @@
                             </Triggers>
                         </asp:UpdatePanel>
                     </div>
-                    <div>
-                        <asp:Panel ID="Panel1" CssClass="Popup" runat="server" Width="500" Style="display: none;">
-                            <asp:Panel ID="Panel2" CssClass="PopupTitle" runat="server">Log In</asp:Panel>
+                    <div id="Login">
+                        <asp:Panel ID="Panel1" CssClass="Popup" runat="server" Width="400" Style="display: none;">
+                            <asp:Panel ID="Panel2" CssClass="PopupTitle" runat="server">Login Form</asp:Panel>
                             <div class="PopupTable">
                                 <table width="100%" border="0" cellpadding="2" cellspacing="5">
                                     <tr>
@@ -76,17 +76,17 @@
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td style="text-align: right; width: 120px;">
-                                            <strong>User name :</strong>
+                                        <td style="text-align: right; width: 120px;" class="body">
+                                            <strong>Username :</strong>
                                         </td>
                                         <td>
-                                            <asp:TextBox ID="txtUsername" CssClass="TextBox" placeholder="Input username" runat="server"></asp:TextBox></td>
+                                            <asp:TextBox ID="txtUsername" CssClass="TextBox" placeholder="Enter username" runat="server"></asp:TextBox></td>
                                     </tr>
                                     <tr>
-                                        <td style="text-align: right"><strong>Password :</strong>
+                                        <td style="text-align: right" class="body"><strong>Password :</strong>
                                         </td>
                                         <td>
-                                            <asp:TextBox ID="txtPassword" CssClass="TextBox" placeholder="Input password" runat="server" TextMode="Password"></asp:TextBox>
+                                            <asp:TextBox ID="txtPassword" CssClass="TextBox" placeholder="Enter password" runat="server" TextMode="Password"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
@@ -105,7 +105,7 @@
                                     <tr>
                                         <td></td>
                                         <td>
-                                            <asp:Button ID="btnOk" runat="server" CssClass="Button" Text="Sign In" OnClick="Login" CausesValidation="False" />
+                                            <asp:Button ID="btnOk" runat="server" CssClass="Button" Text="Login" OnClick="Login" CausesValidation="False" />
                                             <asp:Button ID="btnClose" runat="server" CssClass="Button" Text="Cancel" />
                                         </td>
                                     </tr>
@@ -117,10 +117,10 @@
                         <ul class="navigation">
                             <li class="home"><a href="index.aspx" class="home">Home </a></li>
                             <li><a href="#">Service </a></li>
-                            <li><a href="#">Shops </a></li>
+                            <li><a href="Shops.aspx">Shops </a></li>
                             <li><a href="#">Reviews</a></li>
-                            <li><a href="#">New Products </a></li>
-                            <li><a href="#">Specials </a></li>
+                            <li><a href="NewProducts.aspx">New Products </a></li>
+                            <li><a href="Specials.aspx">Specials </a></li>
                             <li><a href="Contact.aspx">Contact </a></li>
                         </ul>
                         <ul class="search-box">
@@ -209,10 +209,10 @@
                             <ul>
                                 <li><a href="index.html">Home </a></li>
                                 <li><a href="#">Service </a></li>
-                                <li><a href="#">Shops </a></li>
+                                <li><a href="Shops.aspx">Shops </a></li>
                                 <li><a href="#">Reviews</a></li>
-                                <li><a href="#">New Products </a></li>
-                                <li><a href="#">Specials </a></li>
+                                <li><a href="NewProducts.aspx">New Products </a></li>
+                                <li><a href="Specials.aspx">Specials </a></li>
                                 <li><a href="Contact.aspx" class="last">Contact </a></li>
                             </ul>
                             <div class="signup">
