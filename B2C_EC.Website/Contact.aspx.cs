@@ -29,6 +29,7 @@ namespace B2C_EC.Website
             txtEmail.Text = "";
             txtComments.Text = "";
             lbMessage.Text = "Sent contact successfully!";
+            Response.Redirect("Contact.aspx");
         }
     }
 }
