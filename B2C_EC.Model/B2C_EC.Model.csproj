@@ -67,6 +67,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>B2C_EC.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Base\DomainDTO.cs" />
+    <Compile Include="Base\DomainObject.cs" />
     <Compile Include="Base\ECDatabase.cs" />
     <Compile Include="Contact.cs">
       <DependentUpon>B2C_EC.tt</DependentUpon>
@@ -74,12 +76,13 @@
     <Compile Include="Customer.cs">
       <DependentUpon>B2C_EC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\DomainObject.cs" />
+    <Compile Include="Data\ContactRepo.cs" />
     <Compile Include="Data\HelperRepo.cs" />
     <Compile Include="Data\ImagesProductRepo.cs" />
     <Compile Include="Data\ProductRepo.cs" />
     <Compile Include="Data\ProductTypeRepo.cs" />
-    <Compile Include="DBClass.cs" />
+    <Compile Include="Global\Const.cs" />
+    <Compile Include="Global\ToSQL.cs" />
     <Compile Include="ImagesProduct.cs">
       <DependentUpon>B2C_EC.tt</DependentUpon>
     </Compile>
@@ -90,6 +93,8 @@
       <DependentUpon>B2C_EC.tt</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Objects\Contact.cs" />
+    <Compile Include="Objects\ProductType.cs" />
     <Compile Include="Order.cs">
       <DependentUpon>B2C_EC.tt</DependentUpon>
     </Compile>

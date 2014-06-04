@@ -17,3 +17,4 @@ E:\GithubProject\B2C_EC\B2C_EC.Model\bin\Debug\EntityFramework.xml
 E:\GithubProject\B2C_EC\B2C_EC.Model\bin\Debug\EntityFramework.SqlServer.xml
 E:\GithubProject\B2C_EC\B2C_EC.Model\obj\Debug\B2C_EC.Model.dll
 E:\GithubProject\B2C_EC\B2C_EC.Model\obj\Debug\B2C_EC.Model.pdb
+E:\GithubProject\B2C_EC\B2C_EC.Model\obj\Debug\B2C_EC.Model.csprojResolveAssemblyReference.cache

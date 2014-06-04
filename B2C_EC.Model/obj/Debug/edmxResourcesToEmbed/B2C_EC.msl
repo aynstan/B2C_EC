@@ -12,17 +12,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Contacts">
-      <EntityTypeMapping TypeName="B2C_ECModel.Contact">
-        <MappingFragment StoreEntitySet="Contact">
-          <ScalarProperty Name="ContactId" ColumnName="ContactId" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="Content" ColumnName="Content" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Customers">
       <EntityTypeMapping TypeName="B2C_ECModel.Customer">
         <MappingFragment StoreEntitySet="Customers">
@@ -106,6 +95,9 @@
     <EntitySetMapping Name="Products">
       <EntityTypeMapping TypeName="B2C_ECModel.Product">
         <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+          <ScalarProperty Name="IsBestSeller" ColumnName="IsBestSeller" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="PriceOld" ColumnName="PriceOld" />
@@ -120,6 +112,7 @@
     <EntitySetMapping Name="ProductTypes">
       <EntityTypeMapping TypeName="B2C_ECModel.ProductType">
         <MappingFragment StoreEntitySet="ProductType">
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Note" ColumnName="Note" />
@@ -198,6 +191,18 @@
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Created" ColumnName="Created" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contacts">
+      <EntityTypeMapping TypeName="B2C_ECModel.Contact">
+        <MappingFragment StoreEntitySet="Contact">
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
