@@ -118,7 +118,7 @@
                             <li><a href="#">Service </a></li>
                             <li><a href="#">Shops </a></li>
                             <li><a href="#">Reviews</a></li>
-                            <li><a href="#">New Products </a></li>
+                            <li><a href="NewProducts.aspx">New Products </a></li>
                             <li><a href="#">Specials </a></li>
                             <li><a href="Contact.aspx">Contact </a></li>
                         </ul>

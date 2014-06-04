@@ -27,5 +27,10 @@ namespace B2C_EC.Model.Data
         {
             return db.Products.Where(p => p.ProductType_ID == ProductTypeId).ToList();
         }
+
+        public List<Product> GetProductNew()
+        {
+            return db.Products.Where(p => p.IsNew == true).ToList();
+        }
     }
 }
