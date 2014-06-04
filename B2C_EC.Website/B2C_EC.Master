@@ -70,6 +70,8 @@
                         <asp:Panel ID="Panel1" CssClass="Popup" runat="server" Width="400" Style="display: none;">
                             <asp:Panel ID="Panel2" CssClass="PopupTitle" runat="server">Login Form</asp:Panel>
                             <div class="PopupTable">
+                            <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                                <ContentTemplate>
                                 <table width="100%" border="0" cellpadding="2" cellspacing="5">
                                     <tr>
                                         <td></td>
@@ -92,14 +94,6 @@
                                     <tr>
                                         <td style="text-align: right">&nbsp;</td>
                                         <td>
-                                            <asp:UpdatePanel ID="UpdatePanel3" runat="server">
-                                                <ContentTemplate>
-                                                    <asp:Label ID="labMsg" runat="server" EnableViewState="false" ForeColor="Red" />
-                                                </ContentTemplate>
-                                                <Triggers>
-                                                    <asp:AsyncPostBackTrigger ControlID="btnOk" EventName="Click" />
-                                                </Triggers>
-                                            </asp:UpdatePanel>
                                         </td>
                                     </tr>
                                     <tr>
@@ -110,6 +104,11 @@
                                         </td>
                                     </tr>
                                 </table>
+                                </ContentTemplate>
+                                <Triggers>
+                                    <asp:AsyncPostBackTrigger ControlID="btnOk" EventName="Click" />
+                                </Triggers>
+                            </asp:UpdatePanel>
                             </div>
                         </asp:Panel>
                     </div>
