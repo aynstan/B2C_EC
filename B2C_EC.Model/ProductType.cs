@@ -11,8 +11,8 @@ namespace B2C_EC.Model
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class ProductType
+
+    public partial class ProductType : DomainObject<ProductType>
     {
         public ProductType()
         {

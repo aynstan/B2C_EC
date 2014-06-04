@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using B2C_EC.Model.Objects;
 
 namespace B2C_EC.Model.Data
 {
@@ -15,8 +16,14 @@ namespace B2C_EC.Model.Data
     }
     public abstract class HelperRepo<T> : IHelperRepo<T> where T : DomainObject<T>
     {
-        protected static B2C_ECEntities db = new B2C_ECEntities();
-
+        private static B2C_ECEntities _instance;
+        public static B2C_ECEntities GetInstance()
+        {
+            if (_instance == null)
+                _instance = new B2C_ECEntities();
+            return _instance;
+        }
+        protected static B2C_ECEntities db = GetInstance();
         // BAD: generic repository pattern; non-specialized CRUD methods can conflict with custom DDD logic needs
         // but they can be overridden as needed
 
@@ -29,12 +36,19 @@ namespace B2C_EC.Model.Data
 
         public virtual int Create(T obj)
         {
-            if (ValidateCreate(obj))
+            try
             {
-                this.GetRelatedDbSet().Add(obj);
-                return db.SaveChanges();
+                if (ValidateCreate(obj))
+                {
+                    this.DbSet.Add(obj);
+                    return db.SaveChanges();
+                }
+                return 0;
             }
-            return 0;
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         protected virtual bool ValidateCreate(T obj)
@@ -44,17 +58,31 @@ namespace B2C_EC.Model.Data
 
         public virtual int Update(int id)
         {
-            T obj = this.GetById(id);
-            return this.Update(obj);
+            try
+            {
+                T obj = this.GetById(id);
+                return this.Update(obj);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
         public virtual int Update(T obj)
         {
-            if (ValidateUpdate(obj))
+            try
             {
-                db.Entry(obj).State = System.Data.Entity.EntityState.Modified;
-                return db.SaveChanges();
+                if (ValidateUpdate(obj))
+                {
+                    db.Entry(obj).State = System.Data.Entity.EntityState.Modified;
+                    return db.SaveChanges();
+                }
+                return 0;
             }
-            return 0;
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         protected virtual bool ValidateUpdate(T obj)
@@ -64,18 +92,32 @@ namespace B2C_EC.Model.Data
 
         public virtual int Remove(int id)
         {
-            T obj = this.GetById(id);
-            return this.Remove(obj);
+            try
+            {
+                T obj = this.GetById(id);
+                return this.Remove(obj);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public virtual int Remove(T obj)
         {
-            if (ValidateRemove(obj))
+            try
             {
-                this.DbSet.Remove(obj);
-                return db.SaveChanges();
+                if (ValidateRemove(obj))
+                {
+                    this.DbSet.Remove(obj);
+                    return db.SaveChanges();
+                }
+                return 0;
             }
-            return 0;
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         protected virtual bool ValidateRemove(T obj)

@@ -1,22 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace B2C_EC.Model.Data
+namespace B2C_EC.Model
 {
     public interface IDomainObject
     {
-        //IDomain To();
-        //void From(IDomain record);
-
-        //IDomainDTO MapToDTO(Type dtoType);
-
 
     }
     public class DomainObject<T> : IDomainObject
     {
-
+        
     }
 }

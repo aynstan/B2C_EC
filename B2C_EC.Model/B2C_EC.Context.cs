@@ -12,7 +12,7 @@ namespace B2C_EC.Model
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class B2C_ECEntities : DbContext
     {
         public B2C_ECEntities()

@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 using B2C_EC.Model;
 
 namespace B2C_EC.Model.Data
 {
-    public class ProductTypeRepo //: HelperRepo<ProductType>
+    public class ProductTypeRepo : HelperRepo<ProductType>
     {
-        B2C_ECEntities db = new B2C_ECEntities();
+        public override DbSet<ProductType> GetRelatedDbSet()
+        {
+            return db.ProductTypes;
+        }
         public List<ProductType> GetAllProductType()
         {
-            return new B2C_ECEntities().ProductTypes.ToList();
+            return db.ProductTypes.ToList();
         }
         //public List<ProductType> GetAllProductType()
         //{

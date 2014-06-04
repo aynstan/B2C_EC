@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using B2C_EC.Model.Objects;
 
 namespace B2C_EC.Model.Data
 {
-    public class ContactRepo
+    public class ContactRepo : HelperRepo<Contact>
     {
-        private B2C_ECEntities db = new B2C_ECEntities();
+        public override DbSet<Contact> GetRelatedDbSet()
+        {
+            return db.Contacts;
+        }
         public int CreateContact(Contact C)
         {
-            db.Contacts.Add(C);
-            return db.SaveChanges();
+            return Create(C);
         }
     }
 }
