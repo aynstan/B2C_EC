@@ -12,19 +12,18 @@ namespace B2C_EC.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class User:DomainObject<User>
     {
-        public int UserId { get; set; }
+        public int ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string UserName { get; set; }
-        public byte[] Password { get; set; }
-        public int AddressId { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public Nullable<int> Address_ID { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public System.DateTime Created { get; set; }
-        public bool IsActive { get; set; }
-    
-        public virtual Address Address { get; set; }
+        public Nullable<System.DateTime> DateCreated { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        public string Keys { get; set; }
     }
 }

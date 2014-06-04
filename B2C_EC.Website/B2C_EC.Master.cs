@@ -15,11 +15,7 @@ namespace B2C_EC.Website
         {
             if (!IsPostBack)
             {
-                if (Session["Customer"] != null)
-                {
-                    LoadCustomer();
-                }
-
+                WelcomeCustomer();
                 LoadServices();
                 LoadProductBestSelling();
             }
@@ -51,14 +47,17 @@ namespace B2C_EC.Website
             rptServices.DataBind();
         }
 
-        private void LoadCustomer()
+        private void WelcomeCustomer()
         {
-            ModalPopupExtender1.Hide();
-            lnkRegister.Visible = false;
-            lnkSignOut.Visible = true;
-            lnkSignIn.Visible = false;
-            lblMember.Visible = true;
-            lblMember.Text = "Chào, Customer!";
+
+            if (Session["Customer"] != null)
+            {
+                lnkRegister.Visible = false;
+                lnkSignOut.Visible = true;
+                lnkSignIn.Visible = false;
+                lblMember.Visible = true;
+                lblMember.Text = "Chào, " + ((Customer)Session["Customer"]).FirstName + "!";
+            }
         }
 
         protected void lnkSignOut_Click(object sender, EventArgs e)
@@ -75,7 +74,7 @@ namespace B2C_EC.Website
                 lnkSignOut.Visible = true;
                 lnkSignIn.Visible = false;
                 lblMember.Visible = true;
-                lblMember.Text = "Chào, Customer!";
+                lblMember.Text = "Chào, " + ((Customer)Session["Customer"]).FirstName + "!";
             }
         }
 

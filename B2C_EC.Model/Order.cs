@@ -26,7 +26,6 @@ namespace B2C_EC.Model
         public Nullable<System.DateTime> ReceivedDate { get; set; }
         public bool IsShipped { get; set; }
     
-        public virtual Customer Customer { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

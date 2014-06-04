@@ -127,13 +127,13 @@ z-index:55;
 	display:block;
 	font: italic 12px/14px Arial, Helvetica, sans-serif;
 }
-label {
+/*label {
 	font-size:16px;
 	line-height:24px;
 	font-family: 'geoslab703_md_btmedium';
 	color:#cfcece;
 	text-transform:uppercase;
-}
+}*/
 textarea {
 	border:none;
 	outline:none;
@@ -144,7 +144,8 @@ address {
 	font-style:normal;
 }
 input:focus {
-	color:#30F;
+	color:#3a3939;
+    font-weight:bold;
 }
 a:hover {
 	text-decoration:underline;

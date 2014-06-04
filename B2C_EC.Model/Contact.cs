@@ -11,8 +11,8 @@ namespace B2C_EC.Model
 {
     using System;
     using System.Collections.Generic;
-
-    public partial class Contact : DomainObject<Contact>
+    
+    public partial class Contact:DomainObject<Contact>
     {
         public int ID { get; set; }
         public string FirstName { get; set; }

@@ -106,6 +106,17 @@ namespace B2C_EC.Model.Global
             { }
             return i;
         }
+        public static bool? SQLToBoolNull(object Obj)
+        {
+            bool? i = null;
+            try
+            {
+                i = Convert.ToBoolean(Obj);
+            }
+            catch
+            { }
+            return i;
+        }
         /**
          * convert object to date
          * @see SQLToDateTime()
@@ -121,6 +132,13 @@ namespace B2C_EC.Model.Global
                 //MessagesBox.ShowF5(x.Message);
             }
             return DateTime.MinValue;
+        }
+        public static DateTime? SQLToDateTimeNull(object Obj)
+        {
+            DateTime? i = null;
+            if (SQLToDateTime(Obj) != DateTime.MinValue)
+                i = SQLToDateTime(Obj);
+            return i;
         }
         /**
          * check object is numberic
