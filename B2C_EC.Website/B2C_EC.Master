@@ -141,9 +141,9 @@
                             <ul>
                                 <asp:Repeater ID="rptProductBestSelling" runat="server" OnItemDataBound="rptProductBestSelling_ItemDataBound">
                                     <ItemTemplate>
-                                        <asp:Image ID="imgProduct" runat="server" Width="30" />
-                                        <div class="p-info"><span>Latest <%# Eval("Name") %></span><small> &amp;<%# Eval("PriceNew") %></small></div>
-                                        <asp:HiddenField ID="HiddenFieldProductId" runat="server" Value='<%# Eval("ID") %>' />
+                                        <li><asp:Image ID="imgProduct" runat="server" Width="30" />
+                                        <div class="p-info"><span>Latest <%# Eval("Name") %></span><small><%# Eval("PriceNew", "$ {0:#,##0}") %></small></div>
+                                        <asp:HiddenField ID="HiddenFieldProductId" runat="server" Value='<%# Eval("ID") %>' /></li>
                                     </ItemTemplate>
                                 </asp:Repeater>
                                 <%--<li>
