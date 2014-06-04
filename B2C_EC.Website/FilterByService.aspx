@@ -23,7 +23,7 @@
                 </div>
             </ItemTemplate>
         </asp:Repeater>
-        <div class="product-info">
+        <%--<div class="product-info">
             <img src="Resources/ImagesDesign/ipod-tuch.jpg" alt="ipod-tuch" title="product" />
             <h2>Ipod Touch 3G</h2>
             <div class="add"><span>$2.156.00</span><a href="#">Add To Cart</a></div>
@@ -57,7 +57,7 @@
                     <li><a href="#">+ Add To Compare</a></li>
                 </ul>
             </div>
-        </div>
+        </div>--%>
     </div>
 <%--    <div class="product-des">
         <div class="product-info">
