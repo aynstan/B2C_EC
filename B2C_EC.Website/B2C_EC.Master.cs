@@ -49,32 +49,51 @@ namespace B2C_EC.Website
 
         private void WelcomeCustomer()
         {
-
             if (Session["Customer"] != null)
             {
                 lnkRegister.Visible = false;
                 lnkSignOut.Visible = true;
                 lnkSignIn.Visible = false;
                 lblMember.Visible = true;
-                lblMember.Text = "Chào, " + ((Customer)Session["Customer"]).FirstName + "!";
+                lblMember.Text = "Welcome, " + ((Customer)Session["Customer"]).FirstName + "!";
             }
         }
 
         protected void lnkSignOut_Click(object sender, EventArgs e)
         {
             Session["Customer"] = null;
+            Response.Redirect("Index.aspx");
         }
 
         protected void Login(object sender, EventArgs e)
         {
-            if (txtUsername.Text == "1" && txtPassword.Text == "1")
+            Customer customer = new CustomerRepo().GetCustomerByUsername(txtUsername.Text);
+            if (customer != null)
             {
-                Session["Customer"] = 1;
-                lnkRegister.Visible = false;
-                lnkSignOut.Visible = true;
-                lnkSignIn.Visible = false;
-                lblMember.Visible = true;
-                lblMember.Text = "Chào, " + ((Customer)Session["Customer"]).FirstName + "!";
+                string Password = Security.Encrypt(customer.Keys, txtPassword.Text);
+                if (customer.Password.Equals(Password))
+                {
+                    Session["Customer"] = customer;
+                    lnkRegister.Visible = false;
+                    lnkSignOut.Visible = true;
+                    lnkSignIn.Visible = false;
+                    lblMember.Visible = true;
+                    lblMember.Text = "Welcome, " + ((Customer)Session["Customer"]).FirstName + "!";
+                }
+                else
+                {
+                    lbLogin.Text = "Username/password provided is incorrect!";
+                    txtUsername.Attributes["value"] = "";
+                    txtPassword.Attributes["value"] = "";
+                    ModalPopupLogin.Show();
+                }
+            }
+            else
+            {
+                lbLogin.Text = "Username/password provided is incorrect!";
+                txtUsername.Attributes["value"] = "";
+                txtPassword.Attributes["value"] = "";
+                ModalPopupLogin.Show();
             }
         }
 

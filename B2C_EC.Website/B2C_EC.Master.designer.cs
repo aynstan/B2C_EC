@@ -85,13 +85,13 @@ namespace B2C_EC.Website {
         protected global::System.Web.UI.WebControls.LinkButton lnkRegister;
         
         /// <summary>
-        /// ModalPopupExtender1 control.
+        /// ModalPopupLogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender ModalPopupExtender1;
+        protected global::AjaxControlToolkit.ModalPopupExtender ModalPopupLogin;
         
         /// <summary>
         /// Panel1 control.
@@ -110,6 +110,15 @@ namespace B2C_EC.Website {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel Panel2;
+        
+        /// <summary>
+        /// lbLogin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbLogin;
         
         /// <summary>
         /// txtUsername control.

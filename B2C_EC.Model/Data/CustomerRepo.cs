@@ -13,6 +13,11 @@ namespace B2C_EC.Model.Data
         {
             return db.Customers;
         }
+        public Customer GetCustomerByUsername(string username)
+        {
+            Customer customer = db.Customers.Where(g => g.Username == username).FirstOrDefault();
+            return customer;
+        }
         public int CreateCustomer(Customer C)
         {
             return Create(C);
