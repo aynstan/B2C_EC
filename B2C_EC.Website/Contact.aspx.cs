@@ -6,7 +6,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using B2C_EC.Model;
 using B2C_EC.Model.Data;
-using B2C_EC.Model.Objects;
 
 namespace B2C_EC.Website
 {

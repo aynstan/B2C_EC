@@ -4,7 +4,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using B2C_EC.Model.Objects;
 
 namespace B2C_EC.Model.Data
 {
