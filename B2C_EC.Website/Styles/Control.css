@@ -21,14 +21,21 @@
     border-radius:5px;
     border:1px solid gray;
 }
-
+.RadioButton
+{
+    font:11px Arial, Helvetica, sans-serif;
+	color:#565656;
+	margin:0px;
+	padding:0px;
+    vertical-align:text-top;
+}
 .Button
 {
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
     border:1px solid gray;
-    background-color:Gray;
+    background-color:#414141;
     color:White;
     height:30px;
     padding:5px;

@@ -12,7 +12,7 @@ namespace B2C_EC.Model
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class B2C_ECEntities : DbContext
     {
         public B2C_ECEntities()
@@ -26,10 +26,8 @@ namespace B2C_EC.Model
         }
     
         public DbSet<Address> Addresses { get; set; }
-        public DbSet<Customer> Customers { get; set; }
         public DbSet<ImagesProduct> ImagesProducts { get; set; }
         public DbSet<Manufacturer> Manufacturers { get; set; }
-        public DbSet<Member> Members { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<ProductAtrributeDetail> ProductAtrributeDetails { get; set; }
@@ -40,7 +38,8 @@ namespace B2C_EC.Model
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public DbSet<ShoppingCartDetail> ShoppingCartDetails { get; set; }
         public DbSet<sysdiagram> sysdiagrams { get; set; }
-        public DbSet<User> Users { get; set; }
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

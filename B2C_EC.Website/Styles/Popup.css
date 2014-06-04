@@ -6,19 +6,21 @@
     background-color: White;
     /*width: 700px;*/ 
     border-width: 2px; 
-    border-color: Black; 
+    border-color: #81DACF; 
     border-style: solid; 
     padding: 5px;
     left:250px;
 }
 
-.PopupTitle {
-    height:20px;
-    background-color:gray;
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
-    text-align:center;
+.PopupTitle
+{
+    height: 20px;
+    background-color: #2792A7;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    padding: 5px;
 }
 
 .PopupTable {

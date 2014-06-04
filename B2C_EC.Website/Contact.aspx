@@ -42,7 +42,7 @@
             <td width="70" align="left" valign="top" class="body"><strong>
                 First Name:
                 </strong></td>
-            <td width="280" align="left" valign="top"><asp:TextBox ID="txtFirstName" runat="server" CssClass="TextBox" />
+            <td width="280" align="left" valign="top"><asp:TextBox ID="txtFirstName" runat="server" CssClass="TextBox" MaxLength="50" />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtFirstName" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="contact"></asp:RequiredFieldValidator>
                 </td>
             </tr>
@@ -50,7 +50,7 @@
             <td align="left" valign="top" class="body"><strong>
                 Last Name:
                 </strong></td>
-            <td align="left" valign="top"><asp:TextBox ID="txtLastName" runat="server" CssClass="TextBox" />
+            <td align="left" valign="top"><asp:TextBox ID="txtLastName" runat="server" CssClass="TextBox" MaxLength="50" />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtLastName" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="contact"></asp:RequiredFieldValidator>
             </td>
             </tr>
@@ -58,7 +58,7 @@
             <td align="left" valign="top" class="body"><strong>
                 Email:
                 </strong></td>
-            <td align="left" valign="top"><asp:TextBox ID="txtEmail" runat="server" CssClass="TextBox" />
+            <td align="left" valign="top"><asp:TextBox ID="txtEmail" runat="server" CssClass="TextBox" MaxLength="100" />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtEmail" ErrorMessage="(*)" ForeColor="Red" Display="Dynamic" ValidationGroup="contact"></asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail" Display="Dynamic" ErrorMessage="(*)" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="contact"></asp:RegularExpressionValidator>
             </td>

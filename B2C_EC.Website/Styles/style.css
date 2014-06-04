@@ -45,7 +45,7 @@ body {
 .header-aside {
 	float:right;
 	overflow:hidden;
-	width:659px;
+	width:750px;
 	margin-top:23px;
 }
 .header-aside .span {
@@ -644,4 +644,24 @@ body {
 
 .ListBorder {
     border:1px solid #4E4E4E;
+}
+#Login .body
+{
+    font:13px Arial, Helvetica, sans-serif;
+	color:#565656;
+	margin:0px;
+	padding:0px;
+    vertical-align:text-top;
+}
+#Login .Button 
+{
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    background-color: #2792A7;
+    color: white;
+    height: 30px;
+    padding: 5px;
+    cursor: pointer;
 }

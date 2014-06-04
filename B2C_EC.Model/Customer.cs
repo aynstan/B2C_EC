@@ -12,27 +12,21 @@ namespace B2C_EC.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Customer
+    public partial class Customer: DomainObject<Customer>
     {
-        public Customer()
-        {
-            this.Orders = new HashSet<Order>();
-            this.ShoppingCarts = new HashSet<ShoppingCart>();
-        }
-    
-        public int CustomerId { get; set; }
+        public int ID { get; set; }
         public string FirstName { get; set; }
-        public string MiddleName { get; set; }
         public string LastName { get; set; }
-        public bool Gender { get; set; }
-        public int AddressId { get; set; }
+        public Nullable<bool> Gender { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public System.DateTime Created { get; set; }
+        public Nullable<System.DateTime> DateOfBirth { get; set; }
+        public Nullable<System.DateTime> DateCreated { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public Nullable<int> Address_ID { get; set; }
+        public string Keys { get; set; }
     
         public virtual Address Address { get; set; }
-        public virtual Member Member { get; set; }
-        public virtual ICollection<Order> Orders { get; set; }
-        public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
     }
 }

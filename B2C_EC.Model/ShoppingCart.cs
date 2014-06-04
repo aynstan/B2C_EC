@@ -24,7 +24,6 @@ namespace B2C_EC.Model
         public System.DateTime Created { get; set; }
         public bool IsAccept { get; set; }
     
-        public virtual Customer Customer { get; set; }
         public virtual ICollection<ShoppingCartDetail> ShoppingCartDetails { get; set; }
     }
 }
