@@ -31,7 +31,6 @@ namespace B2C_EC.Model
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<ProductAtrributeDetail> ProductAtrributeDetails { get; set; }
-        public DbSet<Product> Products { get; set; }
         public DbSet<ProductType> ProductTypes { get; set; }
         public DbSet<ProductTypeAttribute> ProductTypeAttributes { get; set; }
         public DbSet<Promo> Promos { get; set; }
@@ -41,5 +40,7 @@ namespace B2C_EC.Model
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }

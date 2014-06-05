@@ -11,7 +11,6 @@
         <EntityTypeShape EntityType="B2C_ECModel.OrderDetail" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="B2C_ECModel.Order" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="B2C_ECModel.ProductAtrributeDetail" Width="1.5" PointX="7.5" PointY="19.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="B2C_ECModel.Product" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
         <EntityTypeShape EntityType="B2C_ECModel.ProductType" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
         <EntityTypeShape EntityType="B2C_ECModel.ProductTypeAttribute" Width="1.5" PointX="5.25" PointY="19" IsExpanded="true" />
         <EntityTypeShape EntityType="B2C_ECModel.Promo" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
@@ -19,11 +18,8 @@
         <EntityTypeShape EntityType="B2C_ECModel.ShoppingCartDetail" Width="1.5" PointX="7.5" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="B2C_ECModel.sysdiagram" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="B2C_ECModel.FK_Manufacturer_Address" ManuallyRouted="false" />
-        <AssociationConnector Association="B2C_ECModel.FK_ImagesProduct_Products" ManuallyRouted="false" />
-        <AssociationConnector Association="B2C_ECModel.FK_Products_Manufacturer" ManuallyRouted="false" />
         <AssociationConnector Association="B2C_ECModel.FK_OrderDetails_Orders" ManuallyRouted="false" />
         <AssociationConnector Association="B2C_ECModel.FK_ProductAtrributeDetail_ProductTypeAttribute" ManuallyRouted="false" />
-        <AssociationConnector Association="B2C_ECModel.FK_Products_ProductType" ManuallyRouted="false" />
         <AssociationConnector Association="B2C_ECModel.FK_ProductTypeAttribute_ProductType" ManuallyRouted="false" />
         <AssociationConnector Association="B2C_ECModel.FK_ShippingCartDetail_ShippingCart" ManuallyRouted="false" />
         <AssociationConnector Association="B2C_ECModel.FK_ProductType_ProductType" />
@@ -31,6 +27,12 @@
         <EntityTypeShape EntityType="B2C_ECModel.Customer" Width="1.5" PointX="2.3036685894726165" PointY="8.9099289369349961" />
         <EntityTypeShape EntityType="B2C_ECModel.User" Width="1.5" PointX="0.76619853114997893" PointY="4.4345758130934909" />
         <AssociationConnector Association="B2C_ECModel.FK_Customers_Address1" />
+        <EntityTypeShape EntityType="B2C_ECModel.Review" Width="1.5" PointX="9.7751407519798441" PointY="11.52787600994477" />
+        <EntityTypeShape EntityType="B2C_ECModel.Product" Width="1.5" PointX="5.0844311179055044" PointY="4.4006051143634153" />
+        <AssociationConnector Association="B2C_ECModel.FK_ImagesProduct_Products" />
+        <AssociationConnector Association="B2C_ECModel.FK_Products_Manufacturer" />
+        <AssociationConnector Association="B2C_ECModel.FK_Products_ProductType" />
+        <AssociationConnector Association="B2C_ECModel.FK_Review_Products" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
