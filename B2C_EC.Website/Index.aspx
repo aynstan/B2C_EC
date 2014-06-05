@@ -142,4 +142,14 @@
             </div>
         </div>
     </div>--%>
-    </asp:Content>
+    
+    <div class="TableTitle" style="clear:both;width:702px;">
+        <h2>Reviews</h2>
+    </div>
+    <div id="Reviews" style="clear:both;width:700px;border: 1px solid #d5d5d5;">
+        <div class="cdInlineAskBoxTitle">
+            Customer Questions &amp; Answers
+        </div>
+        <div class="fb-comments" data-href="https://www.facebook.com/laptrinhvienvietnam2013" data-width="700px" data-numposts="20" data-colorscheme="light"></div>
+    </div>
+</asp:Content>

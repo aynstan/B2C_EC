@@ -117,7 +117,7 @@
                             <li class="home"><a href="index.aspx" class="home">Home</a></li>
                             <li><a href="Services.aspx">Service </a></li>
                             <li><a href="Shops.aspx">Shops</a></li>
-                            <li><a href="#">Reviews</a></li>
+                            <li><a href="Index.aspx#Reviews" onclick="scrollto('Reviews');">Reviews</a></li>
                             <li><a href="NewProducts.aspx">New Products</a></li>
                             <li><a href="Specials.aspx">Specials</a></li>
                             <li><a href="Contact.aspx">Contact</a></li>
@@ -177,12 +177,9 @@
                             </ul>
                             <a href="#" class="auct">View More <span>&raquo;</span></a>
                         </div>
-                        <div class="latest-product f-des">
-                            <h2>Best Selling</h2>
-                            <div class="plugin">
-                                <div id="fb-root"></div>
-                                <div class="fb-like-box" data-href="https://www.facebook.com/design.technology.innovation" data-width="289" data-show-faces="true" data-stream="false" data-header="true"></div>
-                            </div>
+                        <div class="latest-product">
+                            <h2>Find us on Facebook</h2>
+                            <div class="fb-like-box" data-href="https://www.facebook.com/laptrinhvienvietnam2013" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
                         </div>
                     </div>
                     <div class="content-right">
@@ -209,7 +206,7 @@
                                 <li><a href="index.aspx">Home</a></li>
                                 <li><a href="Services.aspx">Service</a></li>
                                 <li><a href="Shops.aspx">Shops</a></li>
-                                <li><a href="#">Reviews</a></li>
+                                <li><a href="Index.aspx#Reviews" onclick="scrollto('Reviews');">Reviews</a></li>
                                 <li><a href="NewProducts.aspx">New Products</a></li>
                                 <li><a href="Specials.aspx">Specials</a></li>
                                 <li><a href="Contact.aspx" class="last">Contact</a></li>
