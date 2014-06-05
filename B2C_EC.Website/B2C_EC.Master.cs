@@ -93,5 +93,14 @@ namespace B2C_EC.Website
             }
         }
 
+        protected void lnksms_Click(object sender, EventArgs e)
+        {
+            if (txtNewsletter.Text.Length > 0)
+            {
+                //add code insert
+                Response.Redirect("Newsletter.aspx");
+            }
+        }
+
     }
 }
