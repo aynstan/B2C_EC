@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e99054b4849f41659c09c54bb1a0842a" Name="Diagram1" ZoomLevel="54">
+      <Diagram DiagramId="e99054b4849f41659c09c54bb1a0842a" Name="Diagram1" ZoomLevel="75">
         <EntityTypeShape EntityType="B2C_ECModel.Address" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="B2C_ECModel.ImagesProduct" Width="1.5" PointX="7.5" PointY="12.125" IsExpanded="true" />
         <EntityTypeShape EntityType="B2C_ECModel.Manufacturer" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
@@ -33,6 +33,7 @@
         <AssociationConnector Association="B2C_ECModel.FK_Products_Manufacturer" />
         <AssociationConnector Association="B2C_ECModel.FK_Products_ProductType" />
         <AssociationConnector Association="B2C_ECModel.FK_Review_Products" />
+        <EntityTypeShape EntityType="B2C_ECModel.NewsLetter" Width="1.5" PointX="9.75" PointY="18.875" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -42,5 +42,6 @@ namespace B2C_EC.Model
         public DbSet<User> Users { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<NewsLetter> NewsLetters { get; set; }
     }
 }

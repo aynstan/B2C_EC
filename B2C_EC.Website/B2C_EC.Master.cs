@@ -97,7 +97,15 @@ namespace B2C_EC.Website
         {
             if (txtNewsletter.Text.Length > 0)
             {
-                //add code insert
+                bool DoesEmailExist = new NewsletterRepo().DoesEmailExist(txtNewsletter.Text);
+                if (!DoesEmailExist)
+                {
+                    NewsLetter news = new NewsLetter();
+                    news.Email = txtNewsletter.Text;
+                    news.IsActive = true;
+                    news.DateCreated = DateTime.Now;
+                    new NewsletterRepo().CreateNewsLetter(news);
+                }
                 Response.Redirect("Newsletter.aspx");
             }
         }
