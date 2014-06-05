@@ -11,19 +11,12 @@ namespace B2C_EC.Model
 {
     using System;
     using System.Collections.Generic;
-
-    public partial class User : DomainObject<User>
+    
+    public partial class NewsLetter:DomainObject<NewsLetter>
     {
         public int ID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public Nullable<int> Address_ID { get; set; }
-        public string Phone { get; set; }
         public string Email { get; set; }
-        public Nullable<System.DateTime> DateCreated { get; set; }
-        public Nullable<bool> IsActive { get; set; }
-        public string Keys { get; set; }
+        public bool IsActive { get; set; }
+        public System.DateTime DateCreated { get; set; }
     }
 }

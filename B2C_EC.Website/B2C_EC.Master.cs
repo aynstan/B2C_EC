@@ -93,5 +93,22 @@ namespace B2C_EC.Website
             }
         }
 
+        protected void lnksms_Click(object sender, EventArgs e)
+        {
+            if (txtNewsletter.Text.Length > 0)
+            {
+                bool DoesEmailExist = new NewsletterRepo().DoesEmailExist(txtNewsletter.Text);
+                if (!DoesEmailExist)
+                {
+                    NewsLetter news = new NewsLetter();
+                    news.Email = txtNewsletter.Text;
+                    news.IsActive = true;
+                    news.DateCreated = DateTime.Now;
+                    new NewsletterRepo().CreateNewsLetter(news);
+                }
+                Response.Redirect("Newsletter.aspx");
+            }
+        }
+
     }
 }

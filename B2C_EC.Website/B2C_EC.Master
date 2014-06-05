@@ -216,13 +216,15 @@
                             </ul>
                             <div class="signup">
                                 <ul>
-                                    <li>
-                                        <label>Sign Up for Newsletter:</label>
+                                    <li style="color:white;padding-top:10px">
+                                        Sign Up for Newsletter:
                                     </li>
                                     <li>
-                                        <input type="text" value="" id="user_text" autocomplete="off" onkeypress="submitenter_search(event);" onblur="if (this.value=='')this.value='';" onfocus="if (this.value=='')this.value=''" />
+                                        <asp:TextBox ID="txtNewsletter" runat="server" placeholder="example@domain.com"/>
                                     </li>
-                                    <li class="sms-last"><a href="#" class="sms">sms</a></li>
+                                    <li class="sms-last"><%--<a href="#" class="sms">sms</a>--%>
+                                        <asp:LinkButton ID="lnksms" runat="server" CssClass="sms" OnClick="lnksms_Click"></asp:LinkButton>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

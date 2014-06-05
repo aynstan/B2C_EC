@@ -11,6 +11,7 @@
           <EntitySet Name="Customers" EntityType="B2C_ECModel.Store.Customers" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ImagesProduct" EntityType="B2C_ECModel.Store.ImagesProduct" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Manufacturer" EntityType="B2C_ECModel.Store.Manufacturer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NewsLetter" EntityType="B2C_ECModel.Store.NewsLetter" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OrderDetails" EntityType="B2C_ECModel.Store.OrderDetails" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Orders" EntityType="B2C_ECModel.Store.Orders" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductAtrributeDetail" EntityType="B2C_ECModel.Store.ProductAtrributeDetail" store:Type="Tables" Schema="dbo" />
@@ -127,6 +128,15 @@
           <Property Name="Note" Type="nvarchar" MaxLength="200" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
+        <EntityType Name="NewsLetter">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="OrderDetails">
           <Key>
             <PropertyRef Name="OrderDetailId" />
@@ -213,7 +223,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="FullName" Type="nvarchar" Nullable="false" MaxLength="150" />
           <Property Name="Comments" Type="nvarchar(max)" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
@@ -462,6 +472,7 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="Review" EntitySet="Reviews" />
           </AssociationSet>
+          <EntitySet Name="NewsLetters" EntityType="B2C_ECModel.NewsLetter" />
         </EntityContainer>
         <EntityType Name="Address">
           <Key>
@@ -813,6 +824,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="NewsLetter">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1027,6 +1047,16 @@
                 <ScalarProperty Name="PriceNew" ColumnName="PriceNew" />
                 <ScalarProperty Name="PriceOld" ColumnName="PriceOld" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsLetters">
+            <EntityTypeMapping TypeName="B2C_ECModel.NewsLetter">
+              <MappingFragment StoreEntitySet="NewsLetter">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
