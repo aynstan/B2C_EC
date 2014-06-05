@@ -74,11 +74,7 @@ namespace B2C_EC.Website
                 if (customer.Password.Equals(Password))
                 {
                     Session["Customer"] = customer;
-                    lnkRegister.Visible = false;
-                    lnkSignOut.Visible = true;
-                    lnkSignIn.Visible = false;
-                    lblMember.Visible = true;
-                    lblMember.Text = "Welcome, " + ((Customer)Session["Customer"]).FirstName + "!";
+                    WelcomeCustomer();
                 }
                 else
                 {

@@ -20,7 +20,7 @@ namespace B2C_EC.Model.Data
         }
         public List<Product> GetProductBestSelling()
         {
-            return new B2C_ECEntities().Products.Where(p => p.IsBestSeller == true).ToList();
+            return new B2C_ECEntities().Products.Where(p => p.IsBestSelling == true).ToList();
         }
 
         public List<Product> GetListProductByProductTypeID(int ProductTypeId)
@@ -35,7 +35,7 @@ namespace B2C_EC.Model.Data
 
         public List<Product> GetProductSpecial()
         {
-            return db.Products.Where(p => p.IsBestSeller == true).ToList();
+            return db.Products.Where(p => p.IsBestSelling == true).ToList();
         }
     }
 }

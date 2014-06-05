@@ -131,6 +131,12 @@
     <Content Include="Resources\ImagesDesign\textbox.png" />
     <Content Include="Resources\ImagesDesign\user.jpg" />
     <Content Include="Resources\ImagesDesign\valky.jpg" />
+    <Content Include="Resources\ImagesProduct\1.jpg" />
+    <Content Include="Resources\ImagesProduct\10.jpg" />
+    <Content Include="Resources\ImagesProduct\6.jpg" />
+    <Content Include="Resources\ImagesProduct\7.jpg" />
+    <Content Include="Resources\ImagesProduct\8.jpg" />
+    <Content Include="Resources\ImagesProduct\9.jpg" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\slides.min.jquery.js" />
     <Content Include="Shops.aspx" />

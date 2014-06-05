@@ -45,10 +45,6 @@
       <End Role="ProductType" EntitySet="ProductType" />
       <End Role="Products" EntitySet="Products" />
     </AssociationSet>
-    <AssociationSet Name="FK_ProductType_ProductType" Association="B2C_ECModel.Store.FK_ProductType_ProductType">
-      <End Role="ProductType" EntitySet="ProductType" />
-      <End Role="ProductType1" EntitySet="ProductType" />
-    </AssociationSet>
     <AssociationSet Name="FK_ProductTypeAttribute_ProductType" Association="B2C_ECModel.Store.FK_ProductTypeAttribute_ProductType">
       <End Role="ProductType" EntitySet="ProductType" />
       <End Role="ProductTypeAttribute" EntitySet="ProductTypeAttribute" />
@@ -70,14 +66,13 @@
   </EntityType>
   <EntityType Name="Contact">
     <Key>
-      <PropertyRef Name="ID" />
+      <PropertyRef Name="ContactId" />
     </Key>
-    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ContactId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Comments" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="200" />
-    <Property Name="DateCreated" Type="datetime" />
   </EntityType>
   <EntityType Name="Customers">
     <Key>
@@ -159,9 +154,6 @@
     <Property Name="IsActive" Type="bit" Nullable="false" />
     <Property Name="ProductType_ID" Type="int" />
     <Property Name="Manufacuturer_ID" Type="int" />
-    <Property Name="DateCreated" Type="datetime" />
-    <Property Name="IsBestSeller" Type="bit" />
-    <Property Name="IsNew" Type="bit" />
   </EntityType>
   <EntityType Name="ProductType">
     <Key>
@@ -174,7 +166,6 @@
     <Property Name="SortId" Type="int" />
     <Property Name="DateCreated" Type="datetime" />
     <Property Name="DescriptionTemplate" Type="ntext" />
-    <Property Name="ParentId" Type="int" />
   </EntityType>
   <EntityType Name="ProductTypeAttribute">
     <Key>
@@ -323,18 +314,6 @@
       </Principal>
       <Dependent Role="Products">
         <PropertyRef Name="ProductType_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ProductType_ProductType">
-    <End Role="ProductType" Type="B2C_ECModel.Store.ProductType" Multiplicity="0..1" />
-    <End Role="ProductType1" Type="B2C_ECModel.Store.ProductType" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ProductType">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="ProductType1">
-        <PropertyRef Name="ParentId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

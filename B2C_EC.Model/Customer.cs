@@ -12,7 +12,7 @@ namespace B2C_EC.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Customer: DomainObject<Customer>
+    public partial class Customer:DomainObject<Customer>
     {
         public int ID { get; set; }
         public string FirstName { get; set; }

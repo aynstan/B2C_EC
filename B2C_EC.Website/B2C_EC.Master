@@ -65,14 +65,16 @@
                             </Triggers>
                         </asp:UpdatePanel>
                     </div>
-                    <div>
+                    <div id="Login">
                         <asp:Panel ID="Panel1" CssClass="Popup" runat="server" Width="500" Style="display: none;">
-                            <asp:Panel ID="Panel2" CssClass="PopupTitle" runat="server">Log In</asp:Panel>
-                            <div class="PopupTable">
+                            <asp:Panel ID="Panel2" CssClass="PopupTitle" runat="server">Login Form</asp:Panel>
+                            <div class="PopupTable">                                
+                            <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                                <ContentTemplate>
                                 <table width="100%" border="0" cellpadding="2" cellspacing="5">
                                     <tr>
                                         <td>&nbsp;</td>
-                                        <td></td>
+                                        <td><asp:Label ID="lbLogin" runat="server" EnableViewState="false" ForeColor="Red" /></td>
                                     </tr>
                                     <tr>
                                         <td style="text-align: right; width: 120px;">
@@ -90,15 +92,8 @@
                                     </tr>
                                     <tr>
                                         <td style="text-align: right">&nbsp;</td>
-                                        <td>
-                                            <asp:UpdatePanel ID="UpdatePanel3" runat="server">
-                                                <ContentTemplate>
-                                                    <asp:Label ID="lbLogin" runat="server" EnableViewState="false" ForeColor="Red" />
-                                                </ContentTemplate>
-                                                <Triggers>
-                                                    <asp:AsyncPostBackTrigger ControlID="btnOk" EventName="Click" />
-                                                </Triggers>
-                                            </asp:UpdatePanel>
+                                        <td>                                                
+                                                
                                         </td>
                                     </tr>
                                     <tr>
@@ -109,18 +104,23 @@
                                         </td>
                                     </tr>
                                 </table>
+                                </ContentTemplate>
+                                <Triggers>
+                                    <asp:AsyncPostBackTrigger ControlID="btnOk" EventName="Click" />
+                                </Triggers>
+                            </asp:UpdatePanel>
                             </div>
                         </asp:Panel>
                     </div>
                     <div class="nav-section">
                         <ul class="navigation">
-                            <li class="home"><a href="index.aspx" class="home">Home </a></li>
+                            <li class="home"><a href="index.aspx" class="home">Home</a></li>
                             <li><a href="#">Service </a></li>
-                            <li><a href="#">Shops </a></li>
+                            <li><a href="Shops.aspx">Shops</a></li>
                             <li><a href="#">Reviews</a></li>
-                            <li><a href="NewProducts.aspx">New Products </a></li>
-                            <li><a href="#">Specials </a></li>
-                            <li><a href="Contact.aspx">Contact </a></li>
+                            <li><a href="NewProducts.aspx">New Products</a></li>
+                            <li><a href="Specials.aspx">Specials</a></li>
+                            <li><a href="Contact.aspx">Contact</a></li>
                         </ul>
                         <ul class="search-box">
                             <li>
@@ -206,13 +206,13 @@
                     <div class="page">
                         <div class="f-nav-section">
                             <ul>
-                                <li><a href="Index.aspx">Home </a></li>
-                                <li><a href="#">Service </a></li>
-                                <li><a href="Shops.aspx">Shops </a></li>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="#">Service</a></li>
+                                <li><a href="Shops.aspx">Shops</a></li>
                                 <li><a href="#">Reviews</a></li>
-                                <li><a href="NewProducts.aspx">New Products </a></li>
-                                <li><a href="Specials.aspx">Specials </a></li>
-                                <li><a href="Contact.aspx" class="last">Contact </a></li>
+                                <li><a href="NewProducts.aspx">New Products</a></li>
+                                <li><a href="Specials.aspx">Specials</a></li>
+                                <li><a href="Contact.aspx" class="last">Contact</a></li>
                             </ul>
                             <div class="signup">
                                 <ul>

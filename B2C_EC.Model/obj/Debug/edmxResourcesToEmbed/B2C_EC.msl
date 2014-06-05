@@ -12,6 +12,35 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+<<<<<<< HEAD
+=======
+    <EntitySetMapping Name="Contacts">
+      <EntityTypeMapping TypeName="B2C_ECModel.Contact">
+        <MappingFragment StoreEntitySet="Contact">
+          <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="B2C_ECModel.Customer">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+>>>>>>> c2e5fff5b48f0fc8ebbb82866f9dac19bd87d3e8
     <EntitySetMapping Name="ImagesProducts">
       <EntityTypeMapping TypeName="B2C_ECModel.ImagesProduct">
         <MappingFragment StoreEntitySet="ImagesProduct">
@@ -70,9 +99,6 @@
     <EntitySetMapping Name="Products">
       <EntityTypeMapping TypeName="B2C_ECModel.Product">
         <MappingFragment StoreEntitySet="Products">
-          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
-          <ScalarProperty Name="IsBestSeller" ColumnName="IsBestSeller" />
-          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="PriceOld" ColumnName="PriceOld" />
@@ -87,7 +113,6 @@
     <EntitySetMapping Name="ProductTypes">
       <EntityTypeMapping TypeName="B2C_ECModel.ProductType">
         <MappingFragment StoreEntitySet="ProductType">
-          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Note" ColumnName="Note" />
@@ -183,6 +208,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+<<<<<<< HEAD
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="B2C_ECModel.User">
         <MappingFragment StoreEntitySet="Users">
@@ -200,5 +226,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+=======
+>>>>>>> c2e5fff5b48f0fc8ebbb82866f9dac19bd87d3e8
   </EntityContainerMapping>
 </Mapping>
