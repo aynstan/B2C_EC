@@ -115,7 +115,7 @@
                     <div class="nav-section">
                         <ul class="navigation">
                             <li class="home"><a href="index.aspx" class="home">Home</a></li>
-                            <li><a href="#">Service </a></li>
+                            <li><a href="Services.aspx">Service </a></li>
                             <li><a href="Shops.aspx">Shops</a></li>
                             <li><a href="#">Reviews</a></li>
                             <li><a href="NewProducts.aspx">New Products</a></li>
@@ -206,8 +206,8 @@
                     <div class="page">
                         <div class="f-nav-section">
                             <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="#">Service</a></li>
+                                <li><a href="index.aspx">Home</a></li>
+                                <li><a href="Services.aspx">Service</a></li>
                                 <li><a href="Shops.aspx">Shops</a></li>
                                 <li><a href="#">Reviews</a></li>
                                 <li><a href="NewProducts.aspx">New Products</a></li>

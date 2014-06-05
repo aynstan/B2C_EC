@@ -35,7 +35,12 @@ namespace B2C_EC.Model.Data
 
         public List<Product> GetProductSpecial()
         {
-            return db.Products.Where(p => p.IsBestSelling == true).ToList();
+            return db.Products.Where(p => p.IsSpecial == true).ToList();
+        }
+
+        public List<Product> GetListProductPageIndex()
+        {
+            return db.Products.OrderBy(p => p.DateCreated).ToList();
         }
     }
 }

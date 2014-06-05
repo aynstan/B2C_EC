@@ -10,23 +10,34 @@ using System.Web.UI.WebControls;
 
 namespace B2C_EC.Website
 {
-    public partial class Index : System.Web.UI.Page
+    public partial class Services : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                LoadProductsByService();
+                LoadProductForProductType();
             }
         }
 
-        private void LoadProductsByService()
+        private void LoadProductForProductType()
         {
-            rptProducts.DataSource = (new ProductRepo()).GetListProductPageIndex().Take(15);
-            rptProducts.DataBind();
+            rptProductType.DataSource = (new ProductTypeRepo()).GetAllProductType();
+            rptProductType.DataBind();
         }
 
-        protected void rptProducts_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        protected void rptProductType_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            Repeater rptListProduct = (Repeater)e.Item.FindControl("rptListProduct");
+            HiddenField hdf = (HiddenField)e.Item.FindControl("hdfProductTypeId");
+            if (rptListProduct != null && hdf != null)
+            {
+                rptListProduct.DataSource = (new ProductRepo()).GetListProductByProductTypeID(ToSQL.SQLToInt(hdf.Value)).Take(3);
+                rptListProduct.DataBind();
+            }
+        }
+
+        protected void rptListProduct_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             Image img = (Image)e.Item.FindControl("imgProduct");
             HiddenField hdf = (HiddenField)e.Item.FindControl("hdfProductId");

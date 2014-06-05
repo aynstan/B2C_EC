@@ -50,30 +50,18 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <div>
-        <asp:Repeater ID="rptProductType" runat="server" OnItemDataBound="rptProductType_ItemDataBound">
+        <asp:Repeater ID="rptProducts" runat="server" OnItemDataBound="rptProducts_ItemDataBound">
             <ItemTemplate>
-                <div class="TableTitle">
+                <div class="product-info last-p">
+                    <asp:HiddenField ID="hdfProductId" Value='<%# Eval("ID") %>' runat="server" />
+                    <asp:Image ID="imgProduct" runat="server" ImageUrl="~/Resources/ImagesDesign/ipod-tuch.jpg" alt="ipod-tuch" title='<%# Eval("Name") %>' />
                     <h2><%# Eval("Name") %></h2>
-                    <asp:HiddenField ID="hdfProductTypeID" Value='<%# Eval("ID") %>' runat="server" />
-                </div>
-                <div class="ListBorder">
-                    <div class="product-des">
-                        <asp:Repeater ID="rptListProduct" runat="server" OnItemDataBound="rptListProduct_ItemDataBound">
-                            <ItemTemplate>
-                                <div class="product-info last-p">
-                                    <asp:HiddenField ID="hdfProductId" Value='<%# Eval("ID") %>' runat="server" />
-                                    <asp:Image ID="imgProduct" runat="server" ImageUrl="~/Resources/ImagesDesign/ipod-tuch.jpg" alt="ipod-tuch" title='<%# Eval("Name") %>' />
-                                    <h2><%# Eval("Name") %></h2>
-                                    <div class="add"><span><%# Eval("PriceNew","$ {0:#,##0}") %></span><a href="#">Add To Cart</a></div>
-                                    <div class="add-to-list">
-                                        <ul>
-                                            <li><a href="#">Add To Wish List</a></li>
-                                            <li><a href="#">+ Add To Compare</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </ItemTemplate>
-                        </asp:Repeater>
+                    <div class="add"><span><%# Eval("PriceNew","$ {0:#,##0}") %></span><a href="#">Add To Cart</a></div>
+                    <div class="add-to-list">
+                        <ul>
+                            <li><a href="#">Add To Wish List</a></li>
+                            <li><a href="#">+ Add To Compare</a></li>
+                        </ul>
                     </div>
                 </div>
             </ItemTemplate>

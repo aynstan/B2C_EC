@@ -10,15 +10,15 @@
 namespace B2C_EC.Website {
     
     
-    public partial class Index {
+    public partial class Services {
         
         /// <summary>
-        /// rptProducts control.
+        /// rptProductType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProducts;
+        protected global::System.Web.UI.WebControls.Repeater rptProductType;
     }
 }
