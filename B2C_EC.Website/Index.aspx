@@ -60,7 +60,7 @@
                     <div class="product-des">
                         <asp:Repeater ID="rptListProduct" runat="server" OnItemDataBound="rptListProduct_ItemDataBound">
                             <ItemTemplate>
-                                <div class="product-info">
+                                <div class="product-info last-p">
                                     <asp:HiddenField ID="hdfProductId" Value='<%# Eval("ID") %>' runat="server" />
                                     <asp:Image ID="imgProduct" runat="server" ImageUrl="~/Resources/ImagesDesign/ipod-tuch.jpg" alt="ipod-tuch" title='<%# Eval("Name") %>' />
                                     <h2><%# Eval("Name") %></h2>

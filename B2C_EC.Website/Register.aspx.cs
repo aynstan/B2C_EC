@@ -19,7 +19,7 @@ namespace B2C_EC.Website
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            CustomerRepo customerrepo =new CustomerRepo();
+            CustomerRepo customerrepo = new CustomerRepo();
             lbMessage.Text = "";
             if (customerrepo.DoesUsernameExist(txtUsername.Text))
             {
