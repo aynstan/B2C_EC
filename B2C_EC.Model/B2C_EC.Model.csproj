@@ -77,19 +77,18 @@
       <DependentUpon>B2C_EC.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\ContactRepo.cs" />
+    <Compile Include="Data\CustomerRepo.cs" />
     <Compile Include="Data\HelperRepo.cs" />
     <Compile Include="Data\ImagesProductRepo.cs" />
     <Compile Include="Data\ProductRepo.cs" />
     <Compile Include="Data\ProductTypeRepo.cs" />
+    <Compile Include="Data\UserRepo.cs" />
     <Compile Include="Global\Const.cs" />
     <Compile Include="Global\ToSQL.cs" />
     <Compile Include="ImagesProduct.cs">
       <DependentUpon>B2C_EC.tt</DependentUpon>
     </Compile>
     <Compile Include="Manufacturer.cs">
-      <DependentUpon>B2C_EC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Member.cs">
       <DependentUpon>B2C_EC.tt</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
