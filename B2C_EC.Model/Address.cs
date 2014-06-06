@@ -16,17 +16,21 @@ namespace B2C_EC.Model
     {
         public Address()
         {
-            this.Manufacturers = new HashSet<Manufacturer>();
             this.Customers = new HashSet<Customer>();
+            this.Manufacturers = new HashSet<Manufacturer>();
+            this.ShippingAddresses = new HashSet<ShippingAddress>();
         }
     
         public int ID { get; set; }
-        public string Street { get; set; }
+        public string Street1 { get; set; }
+        public string Street2 { get; set; }
         public string City { get; set; }
+        public string State { get; set; }
         public string Country { get; set; }
         public string ZipCode { get; set; }
     
-        public virtual ICollection<Manufacturer> Manufacturers { get; set; }
         public virtual ICollection<Customer> Customers { get; set; }
+        public virtual ICollection<Manufacturer> Manufacturers { get; set; }
+        public virtual ICollection<ShippingAddress> ShippingAddresses { get; set; }
     }
 }

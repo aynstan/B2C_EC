@@ -12,18 +12,20 @@ namespace B2C_EC.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ShoppingCart
+    public partial class ShippingAddress
     {
-        public ShoppingCart()
+        public ShippingAddress()
         {
-            this.ShoppingCartDetails = new HashSet<ShoppingCartDetail>();
+            this.Orders = new HashSet<Order>();
         }
     
-        public int CartId { get; set; }
-        public int CustomerId { get; set; }
-        public System.DateTime Created { get; set; }
-        public bool IsAccept { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public Nullable<int> Address_ID { get; set; }
     
-        public virtual ICollection<ShoppingCartDetail> ShoppingCartDetails { get; set; }
+        public virtual Address Address { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

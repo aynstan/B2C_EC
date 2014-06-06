@@ -11,9 +11,14 @@ namespace B2C_EC.Model
 {
     using System;
     using System.Collections.Generic;
-
-    public partial class Customer : DomainObject<Customer>
+    
+    public partial class Customer:DomainObject<Customer>
     {
+        public Customer()
+        {
+            this.Orders = new HashSet<Order>();
+        }
+    
         public int ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -28,5 +33,6 @@ namespace B2C_EC.Model
         public string Keys { get; set; }
     
         public virtual Address Address { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

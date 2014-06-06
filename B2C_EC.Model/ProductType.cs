@@ -11,14 +11,14 @@ namespace B2C_EC.Model
 {
     using System;
     using System.Collections.Generic;
-
-    public partial class ProductType : DomainObject<ProductType>
+    
+    public partial class ProductType:DomainObject<ProductType>
     {
         public ProductType()
         {
-            this.ProductTypeAttributes = new HashSet<ProductTypeAttribute>();
-            this.ProductType1 = new HashSet<ProductType>();
             this.Products = new HashSet<Product>();
+            this.ProductType1 = new HashSet<ProductType>();
+            this.ProductTypeAttributes = new HashSet<ProductTypeAttribute>();
         }
     
         public int ID { get; set; }
@@ -30,9 +30,9 @@ namespace B2C_EC.Model
         public string DescriptionTemplate { get; set; }
         public Nullable<int> ParentId { get; set; }
     
-        public virtual ICollection<ProductTypeAttribute> ProductTypeAttributes { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
         public virtual ICollection<ProductType> ProductType1 { get; set; }
         public virtual ProductType ProductType2 { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<ProductTypeAttribute> ProductTypeAttributes { get; set; }
     }
 }

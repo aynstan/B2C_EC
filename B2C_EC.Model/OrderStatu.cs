@@ -12,14 +12,16 @@ namespace B2C_EC.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ShoppingCartDetail
+    public partial class OrderStatu
     {
-        public int CartDetailId { get; set; }
-        public int CartId { get; set; }
-        public int ProductId { get; set; }
-        public int Quantity { get; set; }
-        public decimal TotalMoney { get; set; }
+        public OrderStatu()
+        {
+            this.Orders = new HashSet<Order>();
+        }
     
-        public virtual ShoppingCart ShoppingCart { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+    
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

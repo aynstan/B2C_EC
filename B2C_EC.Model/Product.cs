@@ -17,6 +17,7 @@ namespace B2C_EC.Model
         public Product()
         {
             this.ImagesProducts = new HashSet<ImagesProduct>();
+            this.OrderDetails = new HashSet<OrderDetail>();
             this.Reviews = new HashSet<Review>();
         }
     
@@ -36,6 +37,7 @@ namespace B2C_EC.Model
     
         public virtual ICollection<ImagesProduct> ImagesProducts { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual ProductType ProductType { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
     }

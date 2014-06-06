@@ -19,13 +19,17 @@ namespace B2C_EC.Model
             this.OrderDetails = new HashSet<OrderDetail>();
         }
     
-        public int OrderId { get; set; }
-        public int CustomerId { get; set; }
-        public System.DateTime Created { get; set; }
-        public Nullable<System.DateTime> ShipDate { get; set; }
-        public Nullable<System.DateTime> ReceivedDate { get; set; }
-        public bool IsShipped { get; set; }
+        public int ID { get; set; }
+        public System.DateTime DateCreated { get; set; }
+        public string Note { get; set; }
+        public int OrderStatus_ID { get; set; }
+        public int Customer_ID { get; set; }
+        public int ShippingAddress_ID { get; set; }
+        public Nullable<int> OrderType_ID { get; set; }
     
+        public virtual Customer Customer { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual OrderStatu OrderStatu { get; set; }
+        public virtual ShippingAddress ShippingAddress { get; set; }
     }
 }
