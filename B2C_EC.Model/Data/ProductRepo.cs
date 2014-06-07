@@ -13,7 +13,10 @@ namespace B2C_EC.Model.Data
         {
             return db.Products.ToList();
         }
-
+        public Product GetById(int id)
+        {
+            return db.Products.Find(id);
+        }
         public List<Product> GetListProductByService(int ServiceID)
         {
             return db.Products.Where(p => p.ProductType_ID == ServiceID).ToList();

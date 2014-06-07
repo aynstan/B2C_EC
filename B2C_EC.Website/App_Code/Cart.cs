@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using B2C_EC.Model;
 using B2C_EC.Model.Global;
 
 namespace B2C_EC.Website
@@ -64,10 +65,17 @@ namespace B2C_EC.Website
             return Carts;
         }
         public List<Cart> Update(int ProductID, int Quantity)
-        {
+        {            
             var obj = Carts.FirstOrDefault(x => x.ProductID == ProductID);
-            if (obj != null) obj.Quantity = ToSQL.SQLToInt(Quantity);
+            if (obj != null) obj.Quantity = Quantity;
             return Carts;
+        }
+        public Cart ConverProductToCart(Product product)
+        {
+            this.ProductID = product.ID;
+            this.ProductName = product.Name;
+            this.Price = product.PriceNew;
+            return this;
         }
     }
 }

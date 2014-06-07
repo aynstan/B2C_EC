@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using B2C_EC.Model.Global;
 namespace B2C_EC.Website
 {
     public partial class Specials : System.Web.UI.Page
@@ -35,6 +35,23 @@ namespace B2C_EC.Website
                 if (imageProduct != null)
                 {
                     img.ImageUrl = "~/Resources/ImagesProduct/" + imageProduct.ImageURL;
+                }
+            }
+        }
+        protected void rptProducts_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "Add")
+            {
+                HiddenField hdf = (HiddenField)e.Item.FindControl("hdfProductId");
+                Product product = new ProductRepo().GetById(ToSQL.SQLToInt(hdf.Value));
+                if (product != null)
+                {
+                    List<Cart> carts = (List<Cart>)Session["Carts"];
+                    Cart cart = new Cart(carts);
+                    cart = cart.ConverProductToCart(product);
+                    carts = cart.Add(cart);
+                    Session["Carts"] = carts;
+                    Response.Redirect("ViewCart.aspx");
                 }
             }
         }

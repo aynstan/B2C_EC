@@ -39,5 +39,23 @@ namespace B2C_EC.Website
                 }
             }
         }
+
+        protected void rptProducts_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "Add")
+            {
+                HiddenField hdf = (HiddenField)e.Item.FindControl("hdfProductId");
+                Product product = new ProductRepo().GetById(ToSQL.SQLToInt(hdf.Value));
+                if (product != null)
+                {
+                    List<Cart> carts = (List<Cart>)Session["Carts"];
+                    Cart cart = new Cart(carts);
+                    cart = cart.ConverProductToCart(product);
+                    carts = cart.Add(cart);
+                    Session["Carts"] = carts;
+                    Response.Redirect("ViewCart.aspx");
+                }
+            }
+        }
     }
 }

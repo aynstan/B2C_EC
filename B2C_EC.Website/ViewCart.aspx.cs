@@ -14,7 +14,6 @@ namespace B2C_EC.Website
         {
             if (!IsPostBack)
             {
-                Init();
                 LoadCart();
             }
         }
@@ -73,7 +72,8 @@ namespace B2C_EC.Website
             List<Cart> carts = (List<Cart>)Session["Carts"];
             int ProductID = ToSQL.SQLToInt(grvViewCart.DataKeys[e.RowIndex]["ProductID"]);
             Cart cart = new Cart(carts);
-            carts = cart.Update(ProductID, ToSQL.SQLToInt(txtQuantity.Text));
+            if (ToSQL.SQLToInt(txtQuantity.Text) > 0)
+                carts = cart.Update(ProductID, ToSQL.SQLToInt(txtQuantity.Text));
             Session["Carts"] = carts;
             
             grvViewCart.EditIndex = -1;
