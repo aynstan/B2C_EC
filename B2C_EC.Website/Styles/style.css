@@ -665,3 +665,67 @@ body {
     padding: 5px;
     cursor: pointer;
 }
+.cdInlineAskBoxTitle
+{
+    color: #c60!important;
+    font-size: 16px!important;
+    font-family: verdana,arial,helvetica,sans-serif!important;
+    font-weight:bold;
+    margin-bottom: 10px;
+    margin-top:10px;
+    padding-left:10px;
+}
+#viewcart
+{
+    margin-right:10px
+}
+#viewcart h2
+{
+    color: #333;
+    font-weight: bold;
+    font-size: 21px;
+    line-height: 1.3;
+    font-family: Arial,sans-serif;
+    text-rendering: optimizeLegibility;
+    margin:0px 5px 15px 0;
+}
+#viewcart .button 
+{
+	color:#ffffff;
+	background:#414141;
+	font:bold 11px Arial, Helvetica, sans-serif;
+	text-decoration:none;
+	margin:0px 5px 5px 0;
+	border:1px solid #000000;
+    cursor:pointer;
+}
+#viewcart .grvHeader 
+{
+	color: #888!important;
+	font:bold 11px Arial, Helvetica, sans-serif;
+    border-radius: 5px 5px 0 0;
+    padding: 8px;
+}
+#viewcart a:hover {
+text-decoration: underline;
+cursor: pointer;
+color: #e47911;
+}
+#viewcart a, a:visited, a:active, a:link {
+text-decoration: none;
+color: #0066c0;
+}
+#viewcart .name:hover {
+text-decoration: underline;
+cursor: pointer;
+color: #e47911;
+}
+#viewcart .name{
+    font-weight:bold;
+text-decoration: none;
+color: #0066c0;
+}
+    #viewcart .textbox
+    {
+        text-align:center;
+    }

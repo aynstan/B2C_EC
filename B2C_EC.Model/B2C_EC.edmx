@@ -14,14 +14,14 @@
           <EntitySet Name="NewsLetter" EntityType="B2C_ECModel.Store.NewsLetter" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OrderDetails" EntityType="B2C_ECModel.Store.OrderDetails" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Orders" EntityType="B2C_ECModel.Store.Orders" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrderStatus" EntityType="B2C_ECModel.Store.OrderStatus" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductAtrributeDetail" EntityType="B2C_ECModel.Store.ProductAtrributeDetail" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Products" EntityType="B2C_ECModel.Store.Products" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductType" EntityType="B2C_ECModel.Store.ProductType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductTypeAttribute" EntityType="B2C_ECModel.Store.ProductTypeAttribute" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Promos" EntityType="B2C_ECModel.Store.Promos" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Review" EntityType="B2C_ECModel.Store.Review" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ShoppingCart" EntityType="B2C_ECModel.Store.ShoppingCart" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ShoppingCartDetail" EntityType="B2C_ECModel.Store.ShoppingCartDetail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ShippingAddress" EntityType="B2C_ECModel.Store.ShippingAddress" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="sysdiagrams" EntityType="B2C_ECModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Users" EntityType="B2C_ECModel.Store.Users" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Customers_Address1" Association="B2C_ECModel.Store.FK_Customers_Address1">
@@ -39,6 +39,22 @@
           <AssociationSet Name="FK_OrderDetails_Orders" Association="B2C_ECModel.Store.FK_OrderDetails_Orders">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Products" Association="B2C_ECModel.Store.FK_OrderDetails_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Customers" Association="B2C_ECModel.Store.FK_Orders_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_OrderStatus" Association="B2C_ECModel.Store.FK_Orders_OrderStatus">
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_ShippingAddress" Association="B2C_ECModel.Store.FK_Orders_ShippingAddress">
+            <End Role="ShippingAddress" EntitySet="ShippingAddress" />
+            <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductAtrributeDetail_ProductTypeAttribute" Association="B2C_ECModel.Store.FK_ProductAtrributeDetail_ProductTypeAttribute">
             <End Role="ProductTypeAttribute" EntitySet="ProductTypeAttribute" />
@@ -64,9 +80,9 @@
             <End Role="Products" EntitySet="Products" />
             <End Role="Review" EntitySet="Review" />
           </AssociationSet>
-          <AssociationSet Name="FK_ShippingCartDetail_ShippingCart" Association="B2C_ECModel.Store.FK_ShippingCartDetail_ShippingCart">
-            <End Role="ShoppingCart" EntitySet="ShoppingCart" />
-            <End Role="ShoppingCartDetail" EntitySet="ShoppingCartDetail" />
+          <AssociationSet Name="FK_ShippingAddress_Address" Association="B2C_ECModel.Store.FK_ShippingAddress_Address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="ShippingAddress" EntitySet="ShippingAddress" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Address">
@@ -74,10 +90,12 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Street" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="100" />
-          <Property Name="Country" Type="nvarchar" Nullable="false" MaxLength="100" />
-          <Property Name="ZipCode" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Street1" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Street2" Type="nvarchar" MaxLength="200" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" />
+          <Property Name="State" Type="nvarchar" MaxLength="100" />
+          <Property Name="Country" Type="nvarchar" MaxLength="100" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
@@ -139,24 +157,32 @@
         </EntityType>
         <EntityType Name="OrderDetails">
           <Key>
-            <PropertyRef Name="OrderDetailId" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="OrderDetailId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="OrderId" Type="int" Nullable="false" />
-          <Property Name="ProductId" Type="int" Nullable="false" />
-          <Property Name="Count" Type="int" Nullable="false" />
-          <Property Name="TotalMoney" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Order_ID" Type="int" Nullable="false" />
+          <Property Name="Product_ID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Nullable="false" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
-            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="OrderId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="CustomerId" Type="int" Nullable="false" />
-          <Property Name="Created" Type="datetime" Nullable="false" />
-          <Property Name="ShipDate" Type="datetime" />
-          <Property Name="ReceivedDate" Type="datetime" />
-          <Property Name="IsShipped" Type="bit" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="350" />
+          <Property Name="OrderStatus_ID" Type="int" Nullable="false" />
+          <Property Name="Customer_ID" Type="int" Nullable="false" />
+          <Property Name="ShippingAddress_ID" Type="int" Nullable="false" />
+          <Property Name="OrderType_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="OrderStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="150" />
         </EntityType>
         <EntityType Name="ProductAtrributeDetail">
           <Key>
@@ -229,24 +255,15 @@
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="Product_ID" Type="int" />
         </EntityType>
-        <EntityType Name="ShoppingCart">
+        <EntityType Name="ShippingAddress">
           <Key>
-            <PropertyRef Name="CartId" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="CartId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="CustomerId" Type="int" Nullable="false" />
-          <Property Name="Created" Type="datetime" Nullable="false" />
-          <Property Name="IsAccept" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ShoppingCartDetail">
-          <Key>
-            <PropertyRef Name="CartDetailId" />
-          </Key>
-          <Property Name="CartDetailId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="CartId" Type="int" Nullable="false" />
-          <Property Name="ProductId" Type="int" Nullable="false" />
-          <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="TotalMoney" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address_ID" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -315,10 +332,58 @@
           <End Role="OrderDetails" Type="B2C_ECModel.Store.OrderDetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Orders">
-              <PropertyRef Name="OrderId" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="OrderDetails">
-              <PropertyRef Name="OrderId" />
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Products">
+          <End Role="Products" Type="B2C_ECModel.Store.Products" Multiplicity="1" />
+          <End Role="OrderDetails" Type="B2C_ECModel.Store.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Customers">
+          <End Role="Customers" Type="B2C_ECModel.Store.Customers" Multiplicity="1" />
+          <End Role="Orders" Type="B2C_ECModel.Store.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_OrderStatus">
+          <End Role="OrderStatus" Type="B2C_ECModel.Store.OrderStatus" Multiplicity="1" />
+          <End Role="Orders" Type="B2C_ECModel.Store.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="OrderStatus_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_ShippingAddress">
+          <End Role="ShippingAddress" Type="B2C_ECModel.Store.ShippingAddress" Multiplicity="1" />
+          <End Role="Orders" Type="B2C_ECModel.Store.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShippingAddress">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ShippingAddress_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -394,15 +459,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ShippingCartDetail_ShippingCart">
-          <End Role="ShoppingCart" Type="B2C_ECModel.Store.ShoppingCart" Multiplicity="1" />
-          <End Role="ShoppingCartDetail" Type="B2C_ECModel.Store.ShoppingCartDetail" Multiplicity="*" />
+        <Association Name="FK_ShippingAddress_Address">
+          <End Role="Address" Type="B2C_ECModel.Store.Address" Multiplicity="0..1" />
+          <End Role="ShippingAddress" Type="B2C_ECModel.Store.ShippingAddress" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ShoppingCart">
-              <PropertyRef Name="CartId" />
+            <Principal Role="Address">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="ShoppingCartDetail">
-              <PropertyRef Name="CartId" />
+            <Dependent Role="ShippingAddress">
+              <PropertyRef Name="Address_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -412,50 +477,39 @@
       <Schema Namespace="B2C_ECModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="B2C_ECEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="Addresses" EntityType="B2C_ECModel.Address" />
+          <EntitySet Name="Contacts" EntityType="B2C_ECModel.Contact" />
+          <EntitySet Name="Customers" EntityType="B2C_ECModel.Customer" />
           <EntitySet Name="ImagesProducts" EntityType="B2C_ECModel.ImagesProduct" />
           <EntitySet Name="Manufacturers" EntityType="B2C_ECModel.Manufacturer" />
+          <EntitySet Name="NewsLetters" EntityType="B2C_ECModel.NewsLetter" />
           <EntitySet Name="OrderDetails" EntityType="B2C_ECModel.OrderDetail" />
           <EntitySet Name="Orders" EntityType="B2C_ECModel.Order" />
+          <EntitySet Name="OrderStatus" EntityType="B2C_ECModel.OrderStatu" />
           <EntitySet Name="ProductAtrributeDetails" EntityType="B2C_ECModel.ProductAtrributeDetail" />
+          <EntitySet Name="Products" EntityType="B2C_ECModel.Product" />
           <EntitySet Name="ProductTypes" EntityType="B2C_ECModel.ProductType" />
           <EntitySet Name="ProductTypeAttributes" EntityType="B2C_ECModel.ProductTypeAttribute" />
           <EntitySet Name="Promos" EntityType="B2C_ECModel.Promo" />
-          <EntitySet Name="ShoppingCarts" EntityType="B2C_ECModel.ShoppingCart" />
-          <EntitySet Name="ShoppingCartDetails" EntityType="B2C_ECModel.ShoppingCartDetail" />
+          <EntitySet Name="Reviews" EntityType="B2C_ECModel.Review" />
+          <EntitySet Name="ShippingAddresses" EntityType="B2C_ECModel.ShippingAddress" />
           <EntitySet Name="sysdiagrams" EntityType="B2C_ECModel.sysdiagram" />
-          <AssociationSet Name="FK_Manufacturer_Address" Association="B2C_ECModel.FK_Manufacturer_Address">
-            <End Role="Address" EntitySet="Addresses" />
-            <End Role="Manufacturer" EntitySet="Manufacturers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderDetails_Orders" Association="B2C_ECModel.FK_OrderDetails_Orders">
-            <End Role="Orders" EntitySet="Orders" />
-            <End Role="OrderDetails" EntitySet="OrderDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductAtrributeDetail_ProductTypeAttribute" Association="B2C_ECModel.FK_ProductAtrributeDetail_ProductTypeAttribute">
-            <End Role="ProductTypeAttribute" EntitySet="ProductTypeAttributes" />
-            <End Role="ProductAtrributeDetail" EntitySet="ProductAtrributeDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductTypeAttribute_ProductType" Association="B2C_ECModel.FK_ProductTypeAttribute_ProductType">
-            <End Role="ProductType" EntitySet="ProductTypes" />
-            <End Role="ProductTypeAttribute" EntitySet="ProductTypeAttributes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ShippingCartDetail_ShippingCart" Association="B2C_ECModel.FK_ShippingCartDetail_ShippingCart">
-            <End Role="ShoppingCart" EntitySet="ShoppingCarts" />
-            <End Role="ShoppingCartDetail" EntitySet="ShoppingCartDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductType_ProductType" Association="B2C_ECModel.FK_ProductType_ProductType">
-            <End Role="ProductType" EntitySet="ProductTypes" />
-            <End Role="ProductType1" EntitySet="ProductTypes" />
-          </AssociationSet>
-          <EntitySet Name="Contacts" EntityType="B2C_ECModel.Contact" />
-          <EntitySet Name="Customers" EntityType="B2C_ECModel.Customer" />
           <EntitySet Name="Users" EntityType="B2C_ECModel.User" />
           <AssociationSet Name="FK_Customers_Address1" Association="B2C_ECModel.FK_Customers_Address1">
             <End Role="Address" EntitySet="Addresses" />
             <End Role="Customer" EntitySet="Customers" />
           </AssociationSet>
-          <EntitySet Name="Reviews" EntityType="B2C_ECModel.Review" />
-          <EntitySet Name="Products" EntityType="B2C_ECModel.Product" />
+          <AssociationSet Name="FK_Manufacturer_Address" Association="B2C_ECModel.FK_Manufacturer_Address">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="Manufacturer" EntitySet="Manufacturers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShippingAddress_Address" Association="B2C_ECModel.FK_ShippingAddress_Address">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="ShippingAddress" EntitySet="ShippingAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Customers" Association="B2C_ECModel.FK_Orders_Customers">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
           <AssociationSet Name="FK_ImagesProduct_Products" Association="B2C_ECModel.FK_ImagesProduct_Products">
             <End Role="Product" EntitySet="Products" />
             <End Role="ImagesProduct" EntitySet="ImagesProducts" />
@@ -463,6 +517,26 @@
           <AssociationSet Name="FK_Products_Manufacturer" Association="B2C_ECModel.FK_Products_Manufacturer">
             <End Role="Manufacturer" EntitySet="Manufacturers" />
             <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Orders" Association="B2C_ECModel.FK_OrderDetails_Orders">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Products" Association="B2C_ECModel.FK_OrderDetails_Products">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_OrderStatus" Association="B2C_ECModel.FK_Orders_OrderStatus">
+            <End Role="OrderStatu" EntitySet="OrderStatus" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_ShippingAddress" Association="B2C_ECModel.FK_Orders_ShippingAddress">
+            <End Role="ShippingAddress" EntitySet="ShippingAddresses" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductAtrributeDetail_ProductTypeAttribute" Association="B2C_ECModel.FK_ProductAtrributeDetail_ProductTypeAttribute">
+            <End Role="ProductTypeAttribute" EntitySet="ProductTypeAttributes" />
+            <End Role="ProductAtrributeDetail" EntitySet="ProductAtrributeDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_Products_ProductType" Association="B2C_ECModel.FK_Products_ProductType">
             <End Role="ProductType" EntitySet="ProductTypes" />
@@ -472,220 +546,30 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="Review" EntitySet="Reviews" />
           </AssociationSet>
-          <EntitySet Name="NewsLetters" EntityType="B2C_ECModel.NewsLetter" />
+          <AssociationSet Name="FK_ProductType_ProductType" Association="B2C_ECModel.FK_ProductType_ProductType">
+            <End Role="ProductType" EntitySet="ProductTypes" />
+            <End Role="ProductType1" EntitySet="ProductTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTypeAttribute_ProductType" Association="B2C_ECModel.FK_ProductTypeAttribute_ProductType">
+            <End Role="ProductType" EntitySet="ProductTypes" />
+            <End Role="ProductTypeAttribute" EntitySet="ProductTypeAttributes" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Street" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="City" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="Country" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="Manufacturers" Relationship="B2C_ECModel.FK_Manufacturer_Address" FromRole="Address" ToRole="Manufacturer" />
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Street1" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Street2" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="City" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="State" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Country" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ZipCode" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Customers" Relationship="B2C_ECModel.FK_Customers_Address1" FromRole="Address" ToRole="Customer" />
+          <NavigationProperty Name="Manufacturers" Relationship="B2C_ECModel.FK_Manufacturer_Address" FromRole="Address" ToRole="Manufacturer" />
+          <NavigationProperty Name="ShippingAddresses" Relationship="B2C_ECModel.FK_ShippingAddress_Address" FromRole="Address" ToRole="ShippingAddress" />
         </EntityType>
-        <EntityType Name="ImagesProduct">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Product_ID" Type="Int32" Nullable="false" />
-          <Property Name="ImageURL" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="IsDefault" Type="Boolean" />
-          <NavigationProperty Name="Product" Relationship="B2C_ECModel.FK_ImagesProduct_Products" FromRole="ImagesProduct" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="Manufacturer">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Address_ID" Type="Int32" />
-          <Property Name="Phone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Website" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Note" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="Address" Relationship="B2C_ECModel.FK_Manufacturer_Address" FromRole="Manufacturer" ToRole="Address" />
-          <NavigationProperty Name="Products" Relationship="B2C_ECModel.FK_Products_Manufacturer" FromRole="Manufacturer" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="OrderDetail">
-          <Key>
-            <PropertyRef Name="OrderDetailId" />
-          </Key>
-          <Property Name="OrderDetailId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="OrderId" Type="Int32" Nullable="false" />
-          <Property Name="ProductId" Type="Int32" Nullable="false" />
-          <Property Name="Count" Type="Int32" Nullable="false" />
-          <Property Name="TotalMoney" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <NavigationProperty Name="Order" Relationship="B2C_ECModel.FK_OrderDetails_Orders" FromRole="OrderDetails" ToRole="Orders" />
-        </EntityType>
-        <EntityType Name="Order">
-          <Key>
-            <PropertyRef Name="OrderId" />
-          </Key>
-          <Property Name="OrderId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="CustomerId" Type="Int32" Nullable="false" />
-          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ShipDate" Type="DateTime" Precision="3" />
-          <Property Name="ReceivedDate" Type="DateTime" Precision="3" />
-          <Property Name="IsShipped" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="OrderDetails" Relationship="B2C_ECModel.FK_OrderDetails_Orders" FromRole="Orders" ToRole="OrderDetails" />
-        </EntityType>
-        <EntityType Name="ProductAtrributeDetail">
-          <Key>
-            <PropertyRef Name="ProductId" />
-            <PropertyRef Name="AttributeId" />
-          </Key>
-          <Property Name="ProductId" Type="Int32" Nullable="false" />
-          <Property Name="AttributeId" Type="Int32" Nullable="false" />
-          <Property Name="Value" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="ProductTypeAttribute" Relationship="B2C_ECModel.FK_ProductAtrributeDetail_ProductTypeAttribute" FromRole="ProductAtrributeDetail" ToRole="ProductTypeAttribute" />
-        </EntityType>
-        <EntityType Name="ProductType">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Note" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="SortId" Type="Int32" />
-          <Property Name="DateCreated" Type="DateTime" Precision="3" />
-          <Property Name="DescriptionTemplate" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="ProductTypeAttributes" Relationship="B2C_ECModel.FK_ProductTypeAttribute_ProductType" FromRole="ProductType" ToRole="ProductTypeAttribute" />
-          <Property Type="Int32" Name="ParentId" />
-          <NavigationProperty Name="ProductType1" Relationship="B2C_ECModel.FK_ProductType_ProductType" FromRole="ProductType" ToRole="ProductType1" />
-          <NavigationProperty Name="ProductType2" Relationship="B2C_ECModel.FK_ProductType_ProductType" FromRole="ProductType1" ToRole="ProductType" />
-          <NavigationProperty Name="Products" Relationship="B2C_ECModel.FK_Products_ProductType" FromRole="ProductType" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="ProductTypeAttribute">
-          <Key>
-            <PropertyRef Name="AttributeId" />
-          </Key>
-          <Property Name="AttributeId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="AttributeName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="ProductTypeId" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="ProductAtrributeDetails" Relationship="B2C_ECModel.FK_ProductAtrributeDetail_ProductTypeAttribute" FromRole="ProductTypeAttribute" ToRole="ProductAtrributeDetail" />
-          <NavigationProperty Name="ProductType" Relationship="B2C_ECModel.FK_ProductTypeAttribute_ProductType" FromRole="ProductTypeAttribute" ToRole="ProductType" />
-        </EntityType>
-        <EntityType Name="Promo">
-          <Key>
-            <PropertyRef Name="PromoId" />
-          </Key>
-          <Property Name="PromoId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductId" Type="Int32" Nullable="false" />
-          <Property Name="ImagePromo" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <EntityType Name="ShoppingCart">
-          <Key>
-            <PropertyRef Name="CartId" />
-          </Key>
-          <Property Name="CartId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="CustomerId" Type="Int32" Nullable="false" />
-          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="IsAccept" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ShoppingCartDetails" Relationship="B2C_ECModel.FK_ShippingCartDetail_ShippingCart" FromRole="ShoppingCart" ToRole="ShoppingCartDetail" />
-        </EntityType>
-        <EntityType Name="ShoppingCartDetail">
-          <Key>
-            <PropertyRef Name="CartDetailId" />
-          </Key>
-          <Property Name="CartDetailId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="CartId" Type="Int32" Nullable="false" />
-          <Property Name="ProductId" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="TotalMoney" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <NavigationProperty Name="ShoppingCart" Relationship="B2C_ECModel.FK_ShippingCartDetail_ShippingCart" FromRole="ShoppingCartDetail" ToRole="ShoppingCart" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <Association Name="FK_Manufacturer_Address">
-          <End Role="Address" Type="B2C_ECModel.Address" Multiplicity="0..1" />
-          <End Role="Manufacturer" Type="B2C_ECModel.Manufacturer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Address">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Manufacturer">
-              <PropertyRef Name="Address_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_OrderDetails_Orders">
-          <End Role="Orders" Type="B2C_ECModel.Order" Multiplicity="1" />
-          <End Role="OrderDetails" Type="B2C_ECModel.OrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Orders">
-              <PropertyRef Name="OrderId" />
-            </Principal>
-            <Dependent Role="OrderDetails">
-              <PropertyRef Name="OrderId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductAtrributeDetail_ProductTypeAttribute">
-          <End Role="ProductTypeAttribute" Type="B2C_ECModel.ProductTypeAttribute" Multiplicity="1" />
-          <End Role="ProductAtrributeDetail" Type="B2C_ECModel.ProductAtrributeDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductTypeAttribute">
-              <PropertyRef Name="AttributeId" />
-            </Principal>
-            <Dependent Role="ProductAtrributeDetail">
-              <PropertyRef Name="AttributeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductTypeAttribute_ProductType">
-          <End Role="ProductType" Type="B2C_ECModel.ProductType" Multiplicity="1" />
-          <End Role="ProductTypeAttribute" Type="B2C_ECModel.ProductTypeAttribute" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductType">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ProductTypeAttribute">
-              <PropertyRef Name="ProductTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ShippingCartDetail_ShippingCart">
-          <End Role="ShoppingCart" Type="B2C_ECModel.ShoppingCart" Multiplicity="1" />
-          <End Role="ShoppingCartDetail" Type="B2C_ECModel.ShoppingCartDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ShoppingCart">
-              <PropertyRef Name="CartId" />
-            </Principal>
-            <Dependent Role="ShoppingCartDetail">
-              <PropertyRef Name="CartId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductType_ProductType">
-          <End Type="B2C_ECModel.ProductType" Role="ProductType" Multiplicity="0..1" />
-          <End Type="B2C_ECModel.ProductType" Role="ProductType1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductType">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ProductType1">
-              <PropertyRef Name="ParentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Contact">
           <Key>
             <PropertyRef Name="ID" />
@@ -714,6 +598,182 @@
           <Property Type="Int32" Name="Address_ID" />
           <Property Type="String" Name="Keys" MaxLength="150" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Address" Relationship="B2C_ECModel.FK_Customers_Address1" FromRole="Customer" ToRole="Address" />
+          <NavigationProperty Name="Orders" Relationship="B2C_ECModel.FK_Orders_Customers" FromRole="Customer" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="ImagesProduct">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Product_ID" Nullable="false" />
+          <Property Type="String" Name="ImageURL" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsDefault" />
+          <NavigationProperty Name="Product" Relationship="B2C_ECModel.FK_ImagesProduct_Products" FromRole="ImagesProduct" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Manufacturer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Address_ID" />
+          <Property Type="String" Name="Phone" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Website" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Note" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsActive" />
+          <NavigationProperty Name="Address" Relationship="B2C_ECModel.FK_Manufacturer_Address" FromRole="Manufacturer" ToRole="Address" />
+          <NavigationProperty Name="Products" Relationship="B2C_ECModel.FK_Products_Manufacturer" FromRole="Manufacturer" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="NewsLetter">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Order_ID" Nullable="false" />
+          <Property Type="Int32" Name="Product_ID" Nullable="false" />
+          <Property Type="Int32" Name="Quantity" Nullable="false" />
+          <Property Type="Decimal" Name="Price" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="Order" Relationship="B2C_ECModel.FK_OrderDetails_Orders" FromRole="OrderDetail" ToRole="Order" />
+          <NavigationProperty Name="Product" Relationship="B2C_ECModel.FK_OrderDetails_Products" FromRole="OrderDetail" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
+          <Property Type="String" Name="Note" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="OrderStatus_ID" Nullable="false" />
+          <Property Type="Int32" Name="Customer_ID" Nullable="false" />
+          <Property Type="Int32" Name="ShippingAddress_ID" Nullable="false" />
+          <Property Type="Int32" Name="OrderType_ID" />
+          <NavigationProperty Name="Customer" Relationship="B2C_ECModel.FK_Orders_Customers" FromRole="Order" ToRole="Customer" />
+          <NavigationProperty Name="OrderDetails" Relationship="B2C_ECModel.FK_OrderDetails_Orders" FromRole="Order" ToRole="OrderDetail" />
+          <NavigationProperty Name="OrderStatu" Relationship="B2C_ECModel.FK_Orders_OrderStatus" FromRole="Order" ToRole="OrderStatu" />
+          <NavigationProperty Name="ShippingAddress" Relationship="B2C_ECModel.FK_Orders_ShippingAddress" FromRole="Order" ToRole="ShippingAddress" />
+        </EntityType>
+        <EntityType Name="OrderStatu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="B2C_ECModel.FK_Orders_OrderStatus" FromRole="OrderStatu" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="ProductAtrributeDetail">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="AttributeId" />
+          </Key>
+          <Property Type="Int32" Name="ProductId" Nullable="false" />
+          <Property Type="Int32" Name="AttributeId" Nullable="false" />
+          <Property Type="String" Name="Value" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductTypeAttribute" Relationship="B2C_ECModel.FK_ProductAtrributeDetail_ProductTypeAttribute" FromRole="ProductAtrributeDetail" ToRole="ProductTypeAttribute" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="PriceOld" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="PriceNew" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DateCreated" Precision="3" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="Boolean" Name="IsBestSelling" />
+          <Property Type="Boolean" Name="IsNew" />
+          <Property Type="Boolean" Name="IsSpecial" />
+          <Property Type="Boolean" Name="IsPromo" />
+          <Property Type="Int32" Name="ProductType_ID" />
+          <Property Type="Int32" Name="Manufacuturer_ID" />
+          <NavigationProperty Name="ImagesProducts" Relationship="B2C_ECModel.FK_ImagesProduct_Products" FromRole="Product" ToRole="ImagesProduct" />
+          <NavigationProperty Name="Manufacturer" Relationship="B2C_ECModel.FK_Products_Manufacturer" FromRole="Product" ToRole="Manufacturer" />
+          <NavigationProperty Name="OrderDetails" Relationship="B2C_ECModel.FK_OrderDetails_Products" FromRole="Product" ToRole="OrderDetail" />
+          <NavigationProperty Name="ProductType" Relationship="B2C_ECModel.FK_Products_ProductType" FromRole="Product" ToRole="ProductType" />
+          <NavigationProperty Name="Reviews" Relationship="B2C_ECModel.FK_Review_Products" FromRole="Product" ToRole="Review" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Note" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsActive" />
+          <Property Type="Int32" Name="SortId" />
+          <Property Type="DateTime" Name="DateCreated" Precision="3" />
+          <Property Type="String" Name="DescriptionTemplate" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ParentId" />
+          <NavigationProperty Name="Products" Relationship="B2C_ECModel.FK_Products_ProductType" FromRole="ProductType" ToRole="Product" />
+          <NavigationProperty Name="ProductType1" Relationship="B2C_ECModel.FK_ProductType_ProductType" FromRole="ProductType" ToRole="ProductType1" />
+          <NavigationProperty Name="ProductType2" Relationship="B2C_ECModel.FK_ProductType_ProductType" FromRole="ProductType1" ToRole="ProductType" />
+          <NavigationProperty Name="ProductTypeAttributes" Relationship="B2C_ECModel.FK_ProductTypeAttribute_ProductType" FromRole="ProductType" ToRole="ProductTypeAttribute" />
+        </EntityType>
+        <EntityType Name="ProductTypeAttribute">
+          <Key>
+            <PropertyRef Name="AttributeId" />
+          </Key>
+          <Property Type="Int32" Name="AttributeId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="AttributeName" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ProductTypeId" Nullable="false" />
+          <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsActive" />
+          <NavigationProperty Name="ProductAtrributeDetails" Relationship="B2C_ECModel.FK_ProductAtrributeDetail_ProductTypeAttribute" FromRole="ProductTypeAttribute" ToRole="ProductAtrributeDetail" />
+          <NavigationProperty Name="ProductType" Relationship="B2C_ECModel.FK_ProductTypeAttribute_ProductType" FromRole="ProductTypeAttribute" ToRole="ProductType" />
+        </EntityType>
+        <EntityType Name="Promo">
+          <Key>
+            <PropertyRef Name="PromoId" />
+          </Key>
+          <Property Type="Int32" Name="PromoId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ProductId" Nullable="false" />
+          <Property Type="String" Name="ImagePromo" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="EndDate" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FullName" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Comments" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="Product_ID" />
+          <NavigationProperty Name="Product" Relationship="B2C_ECModel.FK_Review_Products" FromRole="Review" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ShippingAddress">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Phone" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Address_ID" />
+          <NavigationProperty Name="Address" Relationship="B2C_ECModel.FK_ShippingAddress_Address" FromRole="ShippingAddress" ToRole="Address" />
+          <NavigationProperty Name="Orders" Relationship="B2C_ECModel.FK_Orders_ShippingAddress" FromRole="ShippingAddress" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="principal_id" Nullable="false" />
+          <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="version" />
+          <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -743,39 +803,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Review">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="FullName" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Comments" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
-          <Property Type="Int32" Name="Product_ID" />
-          <NavigationProperty Name="Product" Relationship="B2C_ECModel.FK_Review_Products" FromRole="Review" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="PriceOld" Precision="18" Scale="0" />
-          <Property Type="Decimal" Name="PriceNew" Nullable="false" Precision="18" Scale="0" />
-          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="DateCreated" Precision="3" />
-          <Property Type="Boolean" Name="IsActive" Nullable="false" />
-          <Property Type="Boolean" Name="IsBestSelling" />
-          <Property Type="Boolean" Name="IsNew" />
-          <Property Type="Boolean" Name="IsSpecial" />
-          <Property Type="Boolean" Name="IsPromo" />
-          <Property Type="Int32" Name="ProductType_ID" />
-          <Property Type="Int32" Name="Manufacuturer_ID" />
-          <NavigationProperty Name="ImagesProducts" Relationship="B2C_ECModel.FK_ImagesProduct_Products" FromRole="Product" ToRole="ImagesProduct" />
-          <NavigationProperty Name="Manufacturer" Relationship="B2C_ECModel.FK_Products_Manufacturer" FromRole="Product" ToRole="Manufacturer" />
-          <NavigationProperty Name="ProductType" Relationship="B2C_ECModel.FK_Products_ProductType" FromRole="Product" ToRole="ProductType" />
-          <NavigationProperty Name="Reviews" Relationship="B2C_ECModel.FK_Review_Products" FromRole="Product" ToRole="Review" />
-        </EntityType>
+        <Association Name="FK_Manufacturer_Address">
+          <End Type="B2C_ECModel.Address" Role="Address" Multiplicity="0..1" />
+          <End Type="B2C_ECModel.Manufacturer" Role="Manufacturer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Manufacturer">
+              <PropertyRef Name="Address_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShippingAddress_Address">
+          <End Type="B2C_ECModel.Address" Role="Address" Multiplicity="0..1" />
+          <End Type="B2C_ECModel.ShippingAddress" Role="ShippingAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ShippingAddress">
+              <PropertyRef Name="Address_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Customers">
+          <End Type="B2C_ECModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="B2C_ECModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ImagesProduct_Products">
           <End Type="B2C_ECModel.Product" Role="Product" Multiplicity="1" />
           <End Type="B2C_ECModel.ImagesProduct" Role="ImagesProduct" Multiplicity="*" />
@@ -797,6 +860,66 @@
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="Manufacuturer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Orders">
+          <End Type="B2C_ECModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="B2C_ECModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Products">
+          <End Type="B2C_ECModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="B2C_ECModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_OrderStatus">
+          <End Type="B2C_ECModel.OrderStatu" Role="OrderStatu" Multiplicity="1" />
+          <End Type="B2C_ECModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStatu">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="OrderStatus_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_ShippingAddress">
+          <End Type="B2C_ECModel.ShippingAddress" Role="ShippingAddress" Multiplicity="1" />
+          <End Type="B2C_ECModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShippingAddress">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ShippingAddress_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductAtrributeDetail_ProductTypeAttribute">
+          <End Type="B2C_ECModel.ProductTypeAttribute" Role="ProductTypeAttribute" Multiplicity="1" />
+          <End Type="B2C_ECModel.ProductAtrributeDetail" Role="ProductAtrributeDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTypeAttribute">
+              <PropertyRef Name="AttributeId" />
+            </Principal>
+            <Dependent Role="ProductAtrributeDetail">
+              <PropertyRef Name="AttributeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -824,16 +947,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="NewsLetter">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Email" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="IsActive" Nullable="false" />
-          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
-        </EntityType>
-      </Schema>
+        <Association Name="FK_ProductType_ProductType">
+          <End Type="B2C_ECModel.ProductType" Role="ProductType" Multiplicity="0..1" />
+          <End Type="B2C_ECModel.ProductType" Role="ProductType1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductType1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTypeAttribute_ProductType">
+          <End Type="B2C_ECModel.ProductType" Role="ProductType" Multiplicity="1" />
+          <End Type="B2C_ECModel.ProductTypeAttribute" Role="ProductTypeAttribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductTypeAttribute">
+              <PropertyRef Name="ProductTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -842,135 +980,13 @@
           <EntitySetMapping Name="Addresses">
             <EntityTypeMapping TypeName="B2C_ECModel.Address">
               <MappingFragment StoreEntitySet="Address">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Street" ColumnName="Street" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
                 <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ImagesProducts">
-            <EntityTypeMapping TypeName="B2C_ECModel.ImagesProduct">
-              <MappingFragment StoreEntitySet="ImagesProduct">
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Street2" ColumnName="Street2" />
+                <ScalarProperty Name="Street1" ColumnName="Street1" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
-                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
-                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Manufacturers">
-            <EntityTypeMapping TypeName="B2C_ECModel.Manufacturer">
-              <MappingFragment StoreEntitySet="Manufacturer">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Address_ID" ColumnName="Address_ID" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Website" ColumnName="Website" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OrderDetails">
-            <EntityTypeMapping TypeName="B2C_ECModel.OrderDetail">
-              <MappingFragment StoreEntitySet="OrderDetails">
-                <ScalarProperty Name="OrderDetailId" ColumnName="OrderDetailId" />
-                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
-                <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="B2C_ECModel.Order">
-              <MappingFragment StoreEntitySet="Orders">
-                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="Created" ColumnName="Created" />
-                <ScalarProperty Name="ShipDate" ColumnName="ShipDate" />
-                <ScalarProperty Name="ReceivedDate" ColumnName="ReceivedDate" />
-                <ScalarProperty Name="IsShipped" ColumnName="IsShipped" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProductAtrributeDetails">
-            <EntityTypeMapping TypeName="B2C_ECModel.ProductAtrributeDetail">
-              <MappingFragment StoreEntitySet="ProductAtrributeDetail">
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="AttributeId" ColumnName="AttributeId" />
-                <ScalarProperty Name="Value" ColumnName="Value" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProductTypes">
-            <EntityTypeMapping TypeName="B2C_ECModel.ProductType">
-              <MappingFragment StoreEntitySet="ProductType">
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="SortId" ColumnName="SortId" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="DescriptionTemplate" ColumnName="DescriptionTemplate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProductTypeAttributes">
-            <EntityTypeMapping TypeName="B2C_ECModel.ProductTypeAttribute">
-              <MappingFragment StoreEntitySet="ProductTypeAttribute">
-                <ScalarProperty Name="AttributeId" ColumnName="AttributeId" />
-                <ScalarProperty Name="AttributeName" ColumnName="AttributeName" />
-                <ScalarProperty Name="ProductTypeId" ColumnName="ProductTypeId" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Promos">
-            <EntityTypeMapping TypeName="B2C_ECModel.Promo">
-              <MappingFragment StoreEntitySet="Promos">
-                <ScalarProperty Name="PromoId" ColumnName="PromoId" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="ImagePromo" ColumnName="ImagePromo" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ShoppingCarts">
-            <EntityTypeMapping TypeName="B2C_ECModel.ShoppingCart">
-              <MappingFragment StoreEntitySet="ShoppingCart">
-                <ScalarProperty Name="CartId" ColumnName="CartId" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="Created" ColumnName="Created" />
-                <ScalarProperty Name="IsAccept" ColumnName="IsAccept" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ShoppingCartDetails">
-            <EntityTypeMapping TypeName="B2C_ECModel.ShoppingCartDetail">
-              <MappingFragment StoreEntitySet="ShoppingCartDetail">
-                <ScalarProperty Name="CartDetailId" ColumnName="CartDetailId" />
-                <ScalarProperty Name="CartId" ColumnName="CartId" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="B2C_ECModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1004,31 +1020,77 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="B2C_ECModel.User">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="Keys" ColumnName="Keys" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Address_ID" ColumnName="Address_ID" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <EntitySetMapping Name="ImagesProducts">
+            <EntityTypeMapping TypeName="B2C_ECModel.ImagesProduct">
+              <MappingFragment StoreEntitySet="ImagesProduct">
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Reviews">
-            <EntityTypeMapping TypeName="B2C_ECModel.Review">
-              <MappingFragment StoreEntitySet="Review">
-                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="Comments" ColumnName="Comments" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <EntitySetMapping Name="Manufacturers">
+            <EntityTypeMapping TypeName="B2C_ECModel.Manufacturer">
+              <MappingFragment StoreEntitySet="Manufacturer">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address_ID" ColumnName="Address_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsLetters">
+            <EntityTypeMapping TypeName="B2C_ECModel.NewsLetter">
+              <MappingFragment StoreEntitySet="NewsLetter">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="B2C_ECModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="B2C_ECModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="OrderType_ID" ColumnName="OrderType_ID" />
+                <ScalarProperty Name="ShippingAddress_ID" ColumnName="ShippingAddress_ID" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+                <ScalarProperty Name="OrderStatus_ID" ColumnName="OrderStatus_ID" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderStatus">
+            <EntityTypeMapping TypeName="B2C_ECModel.OrderStatu">
+              <MappingFragment StoreEntitySet="OrderStatus">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductAtrributeDetails">
+            <EntityTypeMapping TypeName="B2C_ECModel.ProductAtrributeDetail">
+              <MappingFragment StoreEntitySet="ProductAtrributeDetail">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="AttributeId" ColumnName="AttributeId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1051,12 +1113,89 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="NewsLetters">
-            <EntityTypeMapping TypeName="B2C_ECModel.NewsLetter">
-              <MappingFragment StoreEntitySet="NewsLetter">
+          <EntitySetMapping Name="ProductTypes">
+            <EntityTypeMapping TypeName="B2C_ECModel.ProductType">
+              <MappingFragment StoreEntitySet="ProductType">
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="DescriptionTemplate" ColumnName="DescriptionTemplate" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="SortId" ColumnName="SortId" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTypeAttributes">
+            <EntityTypeMapping TypeName="B2C_ECModel.ProductTypeAttribute">
+              <MappingFragment StoreEntitySet="ProductTypeAttribute">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProductTypeId" ColumnName="ProductTypeId" />
+                <ScalarProperty Name="AttributeName" ColumnName="AttributeName" />
+                <ScalarProperty Name="AttributeId" ColumnName="AttributeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Promos">
+            <EntityTypeMapping TypeName="B2C_ECModel.Promo">
+              <MappingFragment StoreEntitySet="Promos">
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ImagePromo" ColumnName="ImagePromo" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="PromoId" ColumnName="PromoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reviews">
+            <EntityTypeMapping TypeName="B2C_ECModel.Review">
+              <MappingFragment StoreEntitySet="Review">
+                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShippingAddresses">
+            <EntityTypeMapping TypeName="B2C_ECModel.ShippingAddress">
+              <MappingFragment StoreEntitySet="ShippingAddress">
+                <ScalarProperty Name="Address_ID" ColumnName="Address_ID" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="B2C_ECModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="B2C_ECModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Keys" ColumnName="Keys" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address_ID" ColumnName="Address_ID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

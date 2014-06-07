@@ -26,22 +26,22 @@ namespace B2C_EC.Model
         }
     
         public DbSet<Address> Addresses { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<ImagesProduct> ImagesProducts { get; set; }
         public DbSet<Manufacturer> Manufacturers { get; set; }
+        public DbSet<NewsLetter> NewsLetters { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderStatu> OrderStatus { get; set; }
         public DbSet<ProductAtrributeDetail> ProductAtrributeDetails { get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<ProductType> ProductTypes { get; set; }
         public DbSet<ProductTypeAttribute> ProductTypeAttributes { get; set; }
         public DbSet<Promo> Promos { get; set; }
-        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
-        public DbSet<ShoppingCartDetail> ShoppingCartDetails { get; set; }
-        public DbSet<sysdiagram> sysdiagrams { get; set; }
-        public DbSet<Contact> Contacts { get; set; }
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<User> Users { get; set; }
         public DbSet<Review> Reviews { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<NewsLetter> NewsLetters { get; set; }
+        public DbSet<ShippingAddress> ShippingAddresses { get; set; }
+        public DbSet<sysdiagram> sysdiagrams { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
