@@ -45,5 +45,10 @@ namespace B2C_EC.Model.Data
         {
             return db.Products.OrderBy(p => p.DateCreated).ToList();
         }
+
+        public Product GetByProductID(int ProductId)
+        {
+            return db.Products.Where(p => p.ID == ProductId).FirstOrDefault();
+        }
     }
 }

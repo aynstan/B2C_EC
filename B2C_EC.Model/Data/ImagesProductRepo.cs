@@ -27,5 +27,10 @@ namespace B2C_EC.Model.Data
             }
             return "";
         }
+
+        public List<ImagesProduct> GetListImagesByProductId(int ProductId)
+        {
+            return db.ImagesProducts.Where(i => i.Product_ID == ProductId).ToList();
+        }
     }
 }
