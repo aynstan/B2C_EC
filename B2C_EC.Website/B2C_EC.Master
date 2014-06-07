@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="Styles/common.css" media="screen" />
     <link href="Styles/Popup.css" rel="stylesheet" />
     <link href="Styles/Control.css" rel="stylesheet" />
+    <link href="Styles/calendar.css" rel="stylesheet" />
     <script src="Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
     <script src="Scripts/slides.min.jquery.js" type="text/javascript"></script>
     <script type="text/javascript">
