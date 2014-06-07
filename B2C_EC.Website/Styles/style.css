@@ -706,7 +706,7 @@ body {
     border-radius: 5px 5px 0 0;
     padding: 8px;
 }
-#viewcart a:hover {
+/*#viewcart a:hover {
 text-decoration: underline;
 cursor: pointer;
 color: #e47911;
@@ -714,7 +714,7 @@ color: #e47911;
 #viewcart a, a:visited, a:active, a:link {
 text-decoration: none;
 color: #0066c0;
-}
+}*/
 #viewcart .name:hover {
 text-decoration: underline;
 cursor: pointer;
@@ -725,7 +725,7 @@ color: #e47911;
 text-decoration: none;
 color: #0066c0;
 }
-    #viewcart .textbox
-    {
-        text-align:center;
-    }
+#viewcart .textbox input[type='text']
+{
+    text-align:center;
+}
