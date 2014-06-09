@@ -14,6 +14,7 @@ namespace B2C_EC.Website
         {
             if (!IsPostBack)
             {
+                Session["ReferPage"] = Request.UrlReferrer;
                 LoadCart();
             }
         }
@@ -98,6 +99,17 @@ namespace B2C_EC.Website
                 Session["Carts"] = carts;
                 LoadCart();
             }
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            string url = (string.IsNullOrEmpty(ToSQL.EmptyNull(Session["ReferPage"]))) ? "index.aspx" : ToSQL.EmptyNull(Session["ReferPage"]);
+            Response.Redirect(url);
+        }
+
+        protected void btnOrder_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

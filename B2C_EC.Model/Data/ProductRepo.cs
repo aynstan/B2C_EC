@@ -8,7 +8,8 @@ namespace B2C_EC.Model.Data
 {
     public class ProductRepo
     {
-        B2C_ECEntities db = new B2C_ECEntities();
+        private B2C_ECEntities db = new B2C_ECEntities();
+
         public List<Product> GetAllProduct()
         {
             return db.Products.ToList();

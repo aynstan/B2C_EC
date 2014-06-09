@@ -7,12 +7,10 @@ using System.Data.Entity;
 
 namespace B2C_EC.Model.Data
 {
-    public class CustomerRepo : HelperRepo<Customer>
+    public class CustomerRepo
     {
-        public override DbSet<Customer> GetRelatedDbSet()
-        {
-            return db.Customers;
-        }
+        private B2C_ECEntities db = new B2C_ECEntities();
+
         public Customer GetCustomerByUsername(string username)
         {
             Customer customer = db.Customers.Where(g => g.Username == username).FirstOrDefault();
@@ -20,7 +18,15 @@ namespace B2C_EC.Model.Data
         }
         public int CreateCustomer(Customer C)
         {
-            return Create(C);
+            try
+            {
+                this.db.Customers.Add(C);
+                return db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
         public bool DoesEmailExist(string email)
         {

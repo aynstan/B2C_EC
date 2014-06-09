@@ -7,15 +7,21 @@ using System.Data.Entity;
 
 namespace B2C_EC.Model.Data
 {
-    public class NewsletterRepo : HelperRepo<NewsLetter>
+    public class NewsletterRepo
     {
-        public override DbSet<NewsLetter> GetRelatedDbSet()
-        {
-            return db.NewsLetters;
-        }
+        private B2C_ECEntities db = new B2C_ECEntities();
+
         public int CreateNewsLetter(NewsLetter C)
         {
-            return Create(C);
+            try
+            {
+                this.db.NewsLetters.Add(C);
+                return db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
         public bool DoesEmailExist(string email)
         {

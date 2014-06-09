@@ -7,15 +7,21 @@ using System.Data.Entity;
 
 namespace B2C_EC.Model.Data
 {
-    public class UserRepo : HelperRepo<User>
+    public class UserRepo
     {
-        public override DbSet<User> GetRelatedDbSet()
-        {
-            return db.Users;
-        }
+        private B2C_ECEntities db = new B2C_ECEntities();
+
         public int CreateUser(User C)
         {
-            return Create(C);
+            try
+            {
+                this.db.Users.Add(C);
+                return db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
         public bool DoesEmailExist(string email)
         {

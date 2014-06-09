@@ -7,15 +7,21 @@ using System.Threading.Tasks;
 
 namespace B2C_EC.Model.Data
 {
-    public class ContactRepo : HelperRepo<Contact>
+    public class ContactRepo
     {
-        public override DbSet<Contact> GetRelatedDbSet()
-        {
-            return db.Contacts;
-        }
+        private B2C_ECEntities db = new B2C_ECEntities();
+
         public int CreateContact(Contact C)
         {
-            return Create(C);
+            try
+            {
+                this.db.Contacts.Add(C);
+                return db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
     }
 }
