@@ -7,14 +7,14 @@ using System.Web.UI.WebControls;
 
 namespace B2C_EC.Website.Admincp
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Default1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 if (User.Identity.IsAuthenticated == false)
-                    Response.Redirect("~/admincp/Login.aspx");
+                    Response.Redirect("~/Account/Login.aspx");
                 int PositionID = 1;
                 try
                 {

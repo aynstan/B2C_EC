@@ -249,11 +249,10 @@
                 <div class="rain">
 			        <div class="border start">
 				        <div class="login">
-
                             <asp:Label ID="lbUser" Text="Username" runat="server" /> 
-                            <asp:TextBox ID="txtUser" Text="" runat="server" placeholder="Tên Đăng Nhập" />
+                            <asp:TextBox ID="txtUser" Text="" runat="server" placeholder="<input username>" />
                             <asp:Label ID="lbPass" Text="Password" runat="server" />
-                            <asp:TextBox ID="txtPass" name="pass" TextMode="Password" Text="" runat="server" placeholder="Mật Khẩu" />
+                            <asp:TextBox ID="txtPass" name="pass" TextMode="Password" Text="" runat="server" placeholder="<input password>" />
                             <asp:CheckBox ID="cbRemember" Text="" runat="server" /><asp:Label ID="lbRemember" Text="Remember" runat="server" />
 				        </div>
 			        </div>

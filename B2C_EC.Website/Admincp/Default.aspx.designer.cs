@@ -10,7 +10,7 @@
 namespace B2C_EC.Website.Admincp {
     
     
-    public partial class Default {
+    public partial class Default1 {
         
         /// <summary>
         /// Head1 control.

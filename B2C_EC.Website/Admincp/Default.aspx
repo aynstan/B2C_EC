@@ -1,5 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="B2C_EC.Website.Admincp.Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="B2C_EC.Website.Admincp.Default1" %>
+
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <meta charset="utf-8" />
@@ -20,8 +22,8 @@
 <body>
     <form id="form1" class="metro-layout horizontal" runat="server">
 		<div class="header">
-			<h1>TRUNG TÂM ĐIỀU HÀNH WEBSITE <asp:LoginName ID="lnTenDN" runat="server" FormatString="Chào, {0}" />
-            <asp:LoginStatus ID="lsDangXuat" CssClass="lsDangXuat" runat="server" LoginText="Đăng Nhập" LogoutText="Đăng Xuất" ForeColor="White" Font-Underline="False" /></h1>
+			<h1>ADMINISTRATOR WEBSITE CENTER <asp:LoginName ID="lnTenDN" runat="server" FormatString="Welcome, {0}!" />
+            <asp:LoginStatus ID="lsDangXuat" CssClass="lsDangXuat" runat="server" LoginText="Login" LogoutText="Logout" ForeColor="White" Font-Underline="False" /></h1>
 			<div class="controls">
 				<span class="down" title="Scroll down"></span>
 				<span class="up" title="Scroll up"></span>
@@ -37,19 +39,19 @@
 					<img class="icon" src="../resources/Admin/phieuxuat-nhap.png" alt="" />
 				</asp:HyperLink>--%>
 				<asp:HyperLink ID="hlQuanLyCL" runat="server" class="box" style="background: #4c5e51;" NavigateUrl="~/Admincp/Manage-ProductType.aspx">
-					<span>Quản lý chủng Loại</span>
+					<span>Management Product Types</span>
 					<img class="icon big" src="../resources/Admin/chungloai.png" alt="" />
 				</asp:HyperLink>
 				<asp:HyperLink ID="hlQuanLyNCC" runat="server" NavigateUrl="~/Admincp/Management-Manufacturer.aspx" class="box" style="background: #43b51f;">
-					<span>Quản lý nhà sản xuất</span>
+					<span>Management Manufacturers</span>
 					<img class="icon" src="../resources/Admin/nhacungcap.png" alt="" />
 				</asp:HyperLink>
 				<asp:HyperLink ID="hlHome" runat="server" class="box width2 height2" href="../../Default.aspx">
-					<span>Trang Chủ</span>
+					<span>Home</span>
 					<img class="cover" src="../resources/Admin/gallery.jpg" alt="" />
 				</asp:HyperLink>
 				<asp:HyperLink ID="hlQuanLyDDH" runat="server" NavigateUrl="~/Admincp/Management-ShoppingCart.aspx" class="box" style="background: #00aeef;">
-					<span>Quản lý đơn đặt hàng</span>
+					<span>Manage Cart Orders</span>
 					<img class="icon" src="../resources/Admin/dondathang-chitiet.png" alt="" />
 				</asp:HyperLink>
                 <%--<asp:HyperLink ID="hlQuanLyXX" runat="server" class="box" style="background: #f874a4;">
@@ -65,19 +67,19 @@
 					<img class="icon" src="../resources/Admin/tuvan.png" alt="" />
 				</asp:HyperLink>--%>
 				<asp:HyperLink ID="hlQuanLyKH" runat="server" NavigateUrl="~/Admincp/Management-Customer.aspx" class="box height2" style="background: #d32c2c;">
-					<span>Quản lý khách hàng</span>
+					<span>Management Customers</span>
 					<img class="icon big" src="../resources/Admin/nhanvien-khachhang.png" alt="" />
 				</asp:HyperLink>
 				<asp:HyperLink ID="hlQuanLySP" runat="server" NavigateUrl="~/Admincp/Management-Product.aspx" class="box" style="background: #3c5b9b;">
-					<span>Quản lý sản phẩm</span>
+					<span>Management Products</span>
 					<img class="icon" src="../resources/Admin/sanpham.png" alt="" />
 				</asp:HyperLink>
 				<asp:HyperLink ID="hlQuanLyHD" runat="server" class="box" style="background: #ffc808;" NavigateUrl="~/Admincp/Management-Order.aspx">
-					<span>Quản lý hóa đơn</span>
+					<span>Management Orders</span>
 					<img class="icon" src="../resources/Admin/vitri.png" alt="" />
 				</asp:HyperLink>
 				<asp:HyperLink ID="hlQuanLyUser" runat="server" NavigateUrl="~/Admincp/Management-User.aspx" class="box" href="#" style="background: #6b6b6b;">
-					<span>Quản lý quản trị viên</span>
+					<span>Management Users</span>
 					<img class="icon" src="../resources/Admin/settings.png" alt="" />
 				</asp:HyperLink>
 				
@@ -86,4 +88,3 @@
     </form>
 </body>
 </html>
-
