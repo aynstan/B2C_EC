@@ -10,7 +10,6 @@ namespace B2C_EC.Model.Data
     public class UserRepo
     {
         private B2C_ECEntities db = new B2C_ECEntities();
-
         public int CreateUser(User C)
         {
             try
@@ -32,6 +31,11 @@ namespace B2C_EC.Model.Data
         {
             User user = db.Users.Where(c => c.Username == username).FirstOrDefault();
             return (user != null);
+        }
+
+        public User GetUserByLogin(string UserName)
+        {
+            return (new B2C_ECEntities()).Users.Where(u => u.Username == UserName/* && u.Password == Password*/).FirstOrDefault();
         }
     }
 }

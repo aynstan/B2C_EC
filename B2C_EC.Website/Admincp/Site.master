@@ -1,0 +1,106 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" Inherits="admincp_Site" Codebehind="Site.master.cs" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+        
+    </asp:ContentPlaceHolder>
+    <style>
+        body {
+            margin:auto;
+            background:#0d0d0d;
+        }
+        .layout {
+            margin: 30px auto;
+            width:1005px;
+            color:#fff;
+            top:50px;
+            position: relative;
+        }
+        #hlHome {
+            clear:both;
+            margin-left:10px;
+        }
+        .back {
+            font-size:2.5em;
+            color:#fff;
+        }
+        .clear {
+            clear:both;
+            height:20px;
+        }
+        @media screen and (-webkit-min-device-pixel-ratio:0) {
+	        .layout { overflow: auto; }
+	        ::-webkit-scrollbar { width: 10px; height: 10px; }
+	        ::-webkit-scrollbar-track:enabled { background-color: #0d0d0d; }
+	        ::-webkit-scrollbar-thumb:vertical { background-color: #fff; }
+	        ::-webkit-scrollbar-thumb:horizontal { background-color: #fff; }
+        }
+
+        ::selection { background: #158ca0; color: #fff; }
+        ::-moz-selection { background: #158ca0; color: #fff; }
+        .button {
+            background:none;
+	        font:inherit;
+	        color:inherit;
+	        cursor:pointer;
+        }
+        span.button-met{
+	        padding:2px 10px;
+	        font-weight:bold;
+	        font-size:12px;
+	        transition:background-color 0.5s, color 0.5s;
+	        -moz-transition:background-color 0.5s, color 0.5s;
+	        -webkit-transition:background-color 0.5s, color 0.5s;
+	        -o-transition:background-color 0.5s, color 0.5s;
+	        text-decoration:none;
+	        display:inline-block;
+        }
+        span.button-met:hover{
+	        text-decoration:none;
+        }
+        span.dark{
+	        background:#000;
+	        color:#fff;
+	        border:3px solid #fff;
+        }
+        span.dark:hover{
+	        background:#fff;
+	        color:#000;
+        }
+        /* mobile support */
+        /*@media handheld, only screen and (max-width: 1024px){
+	        .layout h2 { font-size: 2.2em; margin-top: -0.5em; }
+        }*/
+        /* mobile support */
+        /*@media handheld, only screen and (max-width: 480px){
+	        .layout { position: relative; text-align: center; }
+	        .layout h2 { left: 5px; font-size: 1.5em; margin-top: -0.5em; }
+	        .metro-layout .header .controls { position: static; width: 100%; height: auto; margin-top: 0; }
+	        .metro-layout .header .controls span { display: none !important; }
+	        .metro-layout .content .items { padding: 0 5px; }
+	        .vertical .content .items { padding-bottom: 0; }
+        }*/
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
+    <div class="layout">
+        <table>
+            <tr>
+                <td><asp:HyperLink ID="hlHome" class="Back" ImageUrl="~/resources/Admin/back.png" Text="#" NavigateUrl="~/admincp/Default.aspx" runat="server" /></td>
+                <td><span class="back">Trở Về Trang Chủ</span> </td>
+            </tr>
+        </table>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+        <div class="clear"></div>
+        <footer>Administrator management page</footer>
+    </div>
+    
+    </form>
+</body>
+</html>
