@@ -45,7 +45,7 @@ namespace HoangQuanMobile.Website.Account
             bool status = false;//Status là cột trạng thái của nhân viên(còn làm hay hết làm)
             try
             {
-                User acc = (new UserRepo()).GetUserByLogin(txtUser.Text);
+                User acc = (new UserRepo()).GetUserByLogin(txtUserName.Text);
                 if (acc != null)
                 {
                     string Pass = Security.Encrypt(acc.Keys, txtPass.Text);
@@ -54,20 +54,20 @@ namespace HoangQuanMobile.Website.Account
             }
             catch
             {
-                Response.Write("<script>alert('Tên đăng nhập hoặc mật khẩu không đúng')</script>");
+                Response.Write("<script>alert('Username or password is not correct')</script>");
             }
             return status;
         }
         #endregion
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
+        protected void btnLogin_Click(object sender, EventArgs e)
         {
-            bool status = CheckAccount(txtUser.Text, txtPass.Text);
+            bool status = CheckAccount(txtUserName.Text, txtPass.Text);
             byte[] data = Encoding.ASCII.GetBytes(txtPass.Text);
             SHA512 sha5 = new SHA512Managed();
             byte[] result = sha5.ComputeHash(data);
             string chuoiMaHoa = Encoding.ASCII.GetString(result);
-            User acc = (new UserRepo()).GetUserByLogin(txtUser.Text);
+            User acc = (new UserRepo()).GetUserByLogin(txtUserName.Text);
             string positionid;
             try
             {
@@ -83,7 +83,7 @@ namespace HoangQuanMobile.Website.Account
             }
             else if (status == true)
             {
-                FormsAuthentication.SetAuthCookie(txtUser.Text, cbRemember.Checked);
+                FormsAuthentication.SetAuthCookie(txtUserName.Text, cbRemember.Checked);
                 //Response.RedirectToRoute("Trang-Chu", new { ViTri = acc.positionid });
                 Response.Redirect("~/Admincp/Default.aspx");
             }
