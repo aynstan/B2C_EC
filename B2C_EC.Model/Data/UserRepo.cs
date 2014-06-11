@@ -37,5 +37,10 @@ namespace B2C_EC.Model.Data
         {
             return (new B2C_ECEntities()).Users.Where(u => u.Username == UserName/* && u.Password == Password*/).FirstOrDefault();
         }
+
+        public List<User> GetAllUsers()
+        {
+            return (new B2C_ECEntities()).Users.ToList();
+        }
     }
 }
