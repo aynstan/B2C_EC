@@ -15,10 +15,7 @@ using System.Web.UI.WebControls;
 namespace HoangQuanMobile.Website.Account
 {
     public partial class Login : System.Web.UI.Page
-    {
-        B2C_ECEntities db = new B2C_ECEntities();
-        //SalesPhoneOnlineEntitiesDatabase db2 = new SalesPhoneOnlineEntitiesDatabase();
-        
+    {        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

@@ -4,15 +4,14 @@
         #ContactForm h6
         {
             font:20px Keble Condensed, Arial, Helvetica, sans-serif;
-	        color:#575757;
-	        font-weight:100;
+	        color:#333;
 	        padding:0px 0px 5px 0px;
 	        margin:0px 0px 10px 0px;
         }
         #ContactForm .body
         {
             font:11px Arial, Helvetica, sans-serif;
-	        color:#565656;
+	        color:#333;
 	        margin:0px;
 	        padding:0px;
             vertical-align:text-top;
@@ -39,34 +38,30 @@
         <h6>Contact Form:</h6>
         <table width="97%">
             <tr>
-            <td width="70" align="left" valign="top" class="body"><strong>
-                First Name:
-                </strong></td>
+            <td width="70" align="left" valign="top" class="body">
+                First Name:</td>
             <td width="280" align="left" valign="top"><asp:TextBox ID="txtFirstName" runat="server" CssClass="TextBox" MaxLength="50" />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtFirstName" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="contact"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
-            <td align="left" valign="top" class="body"><strong>
-                Last Name:
-                </strong></td>
+            <td align="left" valign="top" class="body">
+                Last Name:</td>
             <td align="left" valign="top"><asp:TextBox ID="txtLastName" runat="server" CssClass="TextBox" MaxLength="50" />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtLastName" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="contact"></asp:RequiredFieldValidator>
             </td>
             </tr>
             <tr>
-            <td align="left" valign="top" class="body"><strong>
-                Email:
-                </strong></td>
+            <td align="left" valign="top" class="body">
+                Email:</td>
             <td align="left" valign="top"><asp:TextBox ID="txtEmail" runat="server" CssClass="TextBox" MaxLength="100" />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtEmail" ErrorMessage="(*)" ForeColor="Red" Display="Dynamic" ValidationGroup="contact"></asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail" Display="Dynamic" ErrorMessage="(*)" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="contact"></asp:RegularExpressionValidator>
             </td>
             </tr>
             <tr>
-            <td align="left" valign="top" class="body"><strong>
-                Questions / Comments:
-                </strong></td>
+            <td align="left" valign="top" class="body">
+                Questions / Comments:</td>
             <td align="left" valign="top"><asp:TextBox ID="txtComments" runat="server" CssClass="AreaText" Rows="3" TextMode="MultiLine" />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtComments" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="contact"></asp:RequiredFieldValidator>
             </td>

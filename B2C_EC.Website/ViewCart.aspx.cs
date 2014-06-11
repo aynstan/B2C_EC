@@ -14,6 +14,10 @@ namespace B2C_EC.Website
         {
             if (!IsPostBack)
             {
+                if (Session["Carts"] == null)
+                {
+                    Response.Redirect("Index.aspx");
+                }
                 Session["ReferPage"] = Request.UrlReferrer;
                 LoadCart();
             }
@@ -107,9 +111,5 @@ namespace B2C_EC.Website
             Response.Redirect(url);
         }
 
-        protected void btnOrder_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

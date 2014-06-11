@@ -75,6 +75,7 @@ namespace B2C_EC.Website
                 {
                     Session["Customer"] = customer;
                     WelcomeCustomer();
+                    Response.Redirect(Request.Url.PathAndQuery);
                 }
                 else
                 {

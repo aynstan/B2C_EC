@@ -677,7 +677,8 @@ body {
 }
 #viewcart
 {
-    margin-right:10px
+    margin-right:10px;
+    color:#333;
 }
 #viewcart h2
 {
@@ -701,7 +702,7 @@ body {
 }
 #viewcart .grvHeader 
 {
-	color: #888!important;
+	color: #333!important;
 	font:bold 11px Arial, Helvetica, sans-serif;
     border-radius: 5px 5px 0 0;
     padding: 8px;
@@ -728,4 +729,12 @@ color: #0066c0;
 #viewcart .textbox input[type='text']
 {
     text-align:center;
+}
+#viewcart .checkoutTitle {
+font-weight: bold;
+font-size: 14px;
+text-align: center;
+color: #056BCD;
+margin: 10px 0;
+text-transform: uppercase;
 }

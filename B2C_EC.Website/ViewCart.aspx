@@ -73,17 +73,15 @@
                 </td>
             </tr>
             <tr>
-                <td align="right" style="height: 43px;color:#333;font-weight:bold" valign="top">
+                <td align="right" colspan="2" style="height: 43px;color:#333;font-weight:bold" valign="top">
                     Subtotal (<asp:Label ID="lbTotalQuantity" runat="server" Text="5"></asp:Label> &nbsp;items): <asp:Label ID="lbTotalPrice" runat="server" Text="$2,162.63" ForeColor="#B12704"></asp:Label>
-                </td>
-                <td align="left" style="width: 100px; height: 43px;">
                 </td>
             </tr>
             <tr>
                 <td align="left">
                     <asp:Button ID="btnBack" runat="server" Text="Back" CssClass="Button" OnClick="btnBack_Click"/></td>
                 <td align="right">
-                    <asp:Button ID="btnOrder" runat="server" Text="Order Now" CssClass="Button" OnClick="btnOrder_Click" />
+                    <asp:Button ID="btnOrder" runat="server" Text="Order Now" CssClass="Button" PostBackUrl="~/Payment.aspx" />
                 </td>
             </tr>
         </table>    
