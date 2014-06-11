@@ -84,6 +84,10 @@
             <End Role="Address" EntitySet="Address" />
             <End Role="ShippingAddress" EntitySet="ShippingAddress" />
           </AssociationSet>
+          <AssociationSet Name="FK_Users_Address" Association="B2C_ECModel.Store.FK_Users_Address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Address">
           <Key>
@@ -471,6 +475,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Users_Address">
+          <End Role="Address" Type="B2C_ECModel.Store.Address" Multiplicity="0..1" />
+          <End Role="Users" Type="B2C_ECModel.Store.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="Address_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -554,6 +570,10 @@
             <End Role="ProductType" EntitySet="ProductTypes" />
             <End Role="ProductTypeAttribute" EntitySet="ProductTypeAttributes" />
           </AssociationSet>
+          <AssociationSet Name="FK_Users_Address" Association="B2C_ECModel.FK_Users_Address">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Address">
           <Key>
@@ -569,6 +589,7 @@
           <NavigationProperty Name="Customers" Relationship="B2C_ECModel.FK_Customers_Address1" FromRole="Address" ToRole="Customer" />
           <NavigationProperty Name="Manufacturers" Relationship="B2C_ECModel.FK_Manufacturer_Address" FromRole="Address" ToRole="Manufacturer" />
           <NavigationProperty Name="ShippingAddresses" Relationship="B2C_ECModel.FK_ShippingAddress_Address" FromRole="Address" ToRole="ShippingAddress" />
+          <NavigationProperty Name="Users" Relationship="B2C_ECModel.FK_Users_Address" FromRole="Address" ToRole="User" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
@@ -790,6 +811,7 @@
           <Property Type="DateTime" Name="DateCreated" Precision="3" />
           <Property Type="Boolean" Name="IsActive" />
           <Property Type="String" Name="Keys" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Address" Relationship="B2C_ECModel.FK_Users_Address" FromRole="User" ToRole="Address" />
         </EntityType>
         <Association Name="FK_Customers_Address1">
           <End Type="B2C_ECModel.Address" Role="Address" Multiplicity="0..1" />
@@ -968,6 +990,18 @@
             </Principal>
             <Dependent Role="ProductTypeAttribute">
               <PropertyRef Name="ProductTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Address">
+          <End Type="B2C_ECModel.Address" Role="Address" Multiplicity="0..1" />
+          <End Type="B2C_ECModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Address_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

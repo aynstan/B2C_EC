@@ -19,6 +19,7 @@ namespace B2C_EC.Model
             this.Customers = new HashSet<Customer>();
             this.Manufacturers = new HashSet<Manufacturer>();
             this.ShippingAddresses = new HashSet<ShippingAddress>();
+            this.Users = new HashSet<User>();
         }
     
         public int ID { get; set; }
@@ -32,5 +33,6 @@ namespace B2C_EC.Model
         public virtual ICollection<Customer> Customers { get; set; }
         public virtual ICollection<Manufacturer> Manufacturers { get; set; }
         public virtual ICollection<ShippingAddress> ShippingAddresses { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }
