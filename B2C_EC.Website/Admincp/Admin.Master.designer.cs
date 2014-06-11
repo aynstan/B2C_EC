@@ -22,6 +22,24 @@ namespace B2C_EC.Website.Admincp {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// lnTenDN control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LoginName lnTenDN;
+        
+        /// <summary>
+        /// lsDangXuat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LoginStatus lsDangXuat;
+        
+        /// <summary>
         /// ToolkitScriptManager1 control.
         /// </summary>
         /// <remarks>

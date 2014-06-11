@@ -85,7 +85,7 @@ namespace HoangQuanMobile.Website.Account
             {
                 FormsAuthentication.SetAuthCookie(txtUserName.Text, cbRemember.Checked);
                 //Response.RedirectToRoute("Trang-Chu", new { ViTri = acc.positionid });
-                Response.Redirect("~/Admincp/Default.aspx");
+                Response.Redirect("~/Admincp/Index.aspx");
             }
         }
     }

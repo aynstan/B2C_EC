@@ -299,6 +299,7 @@ table td{
 	border-top: 1px solid #ffffff; 
 	color: #565656;
 	padding: 8px; 
+    font-size:small;
 }
 table tr:hover td{ 
 	background: #fff8cf;
