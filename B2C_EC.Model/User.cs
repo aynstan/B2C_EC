@@ -12,7 +12,7 @@ namespace B2C_EC.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class User:DomainObject<User>
+    public partial class User
     {
         public int ID { get; set; }
         public string FirstName { get; set; }
@@ -25,5 +25,7 @@ namespace B2C_EC.Model
         public Nullable<System.DateTime> DateCreated { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public string Keys { get; set; }
+    
+        public virtual Address Address { get; set; }
     }
 }

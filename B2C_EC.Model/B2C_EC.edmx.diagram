@@ -38,6 +38,7 @@
         <AssociationConnector Association="B2C_ECModel.FK_Review_Products" />
         <AssociationConnector Association="B2C_ECModel.FK_ProductType_ProductType" />
         <AssociationConnector Association="B2C_ECModel.FK_ProductTypeAttribute_ProductType" />
+        <AssociationConnector Association="B2C_ECModel.FK_Users_Address" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
