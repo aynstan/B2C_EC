@@ -60,9 +60,9 @@
             </td>
             </tr>
             <tr>
-            <td align="left" valign="top" class="body">
+            <td align="left" valign="top" class="body" style="vertical-align:top;padding-top:5px">
                 Questions / Comments:</td>
-            <td align="left" valign="top"><asp:TextBox ID="txtComments" runat="server" CssClass="AreaText" Rows="3" TextMode="MultiLine" />
+            <td align="left" valign="top" style="vertical-align:top"><asp:TextBox ID="txtComments" runat="server" CssClass="AreaText" Rows="3" TextMode="MultiLine" />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtComments" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="contact"></asp:RequiredFieldValidator>
             </td>
             </tr>

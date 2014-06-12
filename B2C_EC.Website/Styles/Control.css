@@ -9,10 +9,18 @@
     border-radius:5px;
     border:1px solid gray;
 }
-
+.Dropdown
+{
+    height:30px;
+    padding:5px;
+    width:210px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    border:1px solid gray;
+}
 .AreaText
 {
-    min-height:150px;
     padding:5px;
     width:300px;
     max-width:700px;
