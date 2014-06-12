@@ -2,7 +2,7 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-        <script type="text/javascript" language="javascript">
+    <script type="text/javascript" language="javascript">
         function DdlCustomValidator_ClientValidate(source, args) {
             if (document.getElementById("<%= ddlMonth.ClientID %>").value == "0" || document.getElementById("<%= drdYear.ClientID %>").value == "0") {
                 args.IsValid = false;
@@ -12,6 +12,22 @@
             }
         }
 
+        function Validate() {
+            var tabContainer = $find("Content_tabContainer");
+            var tab = tabContainer.get_activeTab();
+            var tabIndex = tab.get_tabIndex();
+            alert(tabIndex);
+            var isValid = false;
+            if (tabIndex = "0") {
+                isValid = Page_ClientValidate('payment');
+                if(isValid)
+                    isValid = Page_ClientValidate('recipient');
+            }
+            else {
+                isValid = Page_ClientValidate('recipient');
+            }
+            return isValid;
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Promotion" runat="server">
@@ -26,13 +42,15 @@
                     <p class="checkoutTitle">RECIPIENT INFORMATION</p>
                     <table style="width:100%">
                         <tr>
-                            <td>Full Name</td>
+                            <td>Full Name<asp:RequiredFieldValidator ID="RequiredFieldValidator1" Display="Dynamic" ControlToValidate="txtFullName"
+                                                runat="server" ForeColor="Red" Text="*" ErrorMessage="*" ValidationGroup="recipient"></asp:RequiredFieldValidator></td>
                         </tr>
                         <tr>
                             <td><asp:TextBox ID="txtFullName" runat="server" CssClass="TextBox" MaxLength="250"></asp:TextBox></td>
                         </tr>
                         <tr>
-                            <td>Phone</td>
+                            <td>Phone<asp:RequiredFieldValidator ID="RequiredFieldValidator2" Display="Dynamic" ControlToValidate="txtPhone"
+                                                runat="server" ForeColor="Red" Text="*" ErrorMessage="*" ValidationGroup="recipient"></asp:RequiredFieldValidator></td>
                         </tr>
                         <tr>
                             <td><asp:TextBox ID="txtPhone" runat="server" CssClass="TextBox" MaxLength="50"></asp:TextBox></td>
@@ -83,10 +101,9 @@
                 </td>
                 <td>                    
                     <p class="checkoutTitle">PAYMENT INFORMATION</p>
-                    <asp:TabContainer ID="TabContainerPayment" runat="server" ActiveTabIndex="0" Width="96%">
+                    <asp:TabContainer ID="tabContainer" runat="server" ActiveTabIndex="1" Width="96%">
                         <asp:TabPanel runat="server" HeaderText="Online Payment" ID="TabPaneOnlinePayment">
-                            <ContentTemplate>
-                                
+                            <ContentTemplate>                                
                                 <table style="width:100%">
                                     <tr>
                                         <td valign="top" colspan="2">
@@ -111,7 +128,7 @@
                                         </td>
                                         <td align="left">
                                             <asp:RequiredFieldValidator ID="rfvdrdTypeCard" Display="Dynamic" ControlToValidate="ddlTypeCard"
-                                                runat="server" ForeColor="Red" Text="Please select your card" ErrorMessage="Please select your card" Font-Size="Smaller"></asp:RequiredFieldValidator>
+                                                runat="server" ForeColor="Red" Text="Please select your card" ErrorMessage="Please select your card" Font-Size="Smaller" ValidationGroup="payment"></asp:RequiredFieldValidator>
                                         </td>
                                     </tr>
                                     <tr>
@@ -122,7 +139,7 @@
                                             <asp:TextBox ID="txtCardNum" runat="server" Text="4111111111111111" CssClass="TextBox"></asp:TextBox>
                                             <br />
                                              <asp:RequiredFieldValidator ID="rfvtxtCardNum" Display="Dynamic" ControlToValidate="txtCardNum"
-                                                runat="server" ForeColor="Red" Text="Please enter your credit card number" ErrorMessage="*" Font-Size="Smaller"></asp:RequiredFieldValidator>
+                                                runat="server" ForeColor="Red" Text="Please enter your credit card number" ErrorMessage="*" Font-Size="Smaller" ValidationGroup="payment"></asp:RequiredFieldValidator>
                                         </td>
                                     </tr>                                    
                                     <tr>
@@ -133,7 +150,7 @@
                                             <asp:TextBox ID="txtCVCCode" runat="server" Text="123" Width="60px" CssClass="TextBox"></asp:TextBox>
                                             <br />
                                             <asp:RequiredFieldValidator ID="rfvtxtCVCCode" Display="Dynamic" ControlToValidate="txtCVCCode"
-                                                runat="server" ForeColor="Red" Text="Please enter your 3-digit CVC code" ErrorMessage="*" Font-Size="Smaller"></asp:RequiredFieldValidator>
+                                                runat="server" ForeColor="Red" Text="Please enter your 3-digit CVC code" ErrorMessage="*" ValidationGroup="payment" Font-Size="Smaller"></asp:RequiredFieldValidator>
                                         </td>
                                     </tr>
                                     <tr>
@@ -169,7 +186,7 @@
                                                 <asp:ListItem Value="2021">2021</asp:ListItem>
                                             </asp:DropDownList>
                                            <br />
-                                             <asp:CustomValidator ID="DdlCustomValidator" runat="server" ForeColor="Red" ErrorMessage="Please select your expiration date" Display="Dynamic" ClientValidationFunction="DdlCustomValidator_ClientValidate" Font-Size="Smaller" />
+                                             <asp:CustomValidator ID="DdlCustomValidator" runat="server" ForeColor="Red" ErrorMessage="Please select your expiration date" Display="Dynamic" ClientValidationFunction="DdlCustomValidator_ClientValidate" Font-Size="Smaller" ValidationGroup="payment" />
                                         </td>
                                     </tr>
                                 </table> 
@@ -178,8 +195,8 @@
                         <asp:TabPanel runat="server" HeaderText="Delivery" ID="TabPanelDelivery">
                             <ContentTemplate>
                                 <br />
-                                <p>We will delivery your door and collect the money !</p>  
-                                <p>Please add delivery charges 10,000 VND to 30,000 VND HCM City and other areas outside of HCMC .</p>
+                                <p>We will delivery your door and collect the money!</p>  
+                                <p>Please add delivery charges 10,000 VND to 30,000 VND HCM City and other areas outside of HCMC.</p>
                                 <br />
                             </ContentTemplate>
                         </asp:TabPanel>
@@ -198,7 +215,7 @@
                             </ContentTemplate>
                         </asp:TabPanel>
                     </asp:TabContainer>
-                    <div style="text-align:center;margin-top:15px"><asp:Button ID="btnOrder" runat="server" Text="Order Now" CssClass="Button" /></div>
+                    <div style="text-align:center;margin-top:15px"><asp:Button ID="btnOrder" runat="server" Text="Order Now" CssClass="Button" OnClientClick="return Validate();" OnClick="btnOrder_Click" /></div>
                 </td>
             </tr>
             <tr>

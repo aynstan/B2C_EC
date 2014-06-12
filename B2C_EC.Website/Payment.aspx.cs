@@ -35,5 +35,11 @@ namespace B2C_EC.Website
             lbTotalQuantity.Text = ToSQL.EmptyNull(cart.TotalQuantity);
             lbTotalPrice.Text = ToSQL.EmptyNull(cart.TotalPrice.ToString("$#,###.##"));
         }
+
+        protected void btnOrder_Click(object sender, EventArgs e)
+        {
+            string ss = "";
+            ss = "dâdadad";
+        }
     }
 }

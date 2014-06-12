@@ -13,6 +13,15 @@ namespace B2C_EC.Website {
     public partial class Payment {
         
         /// <summary>
+        /// RequiredFieldValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        
+        /// <summary>
         /// txtFullName control.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,15 @@ namespace B2C_EC.Website {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFullName;
+        
+        /// <summary>
+        /// RequiredFieldValidator2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
         
         /// <summary>
         /// txtPhone control.
@@ -94,13 +112,13 @@ namespace B2C_EC.Website {
         protected global::System.Web.UI.WebControls.TextBox txtNotes;
         
         /// <summary>
-        /// TabContainerPayment control.
+        /// tabContainer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.TabContainer TabContainerPayment;
+        protected global::AjaxControlToolkit.TabContainer tabContainer;
         
         /// <summary>
         /// TabPaneOnlinePayment control.
