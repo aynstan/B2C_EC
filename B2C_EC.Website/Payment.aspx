@@ -2,7 +2,7 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script type="text/javascript" language="javascript">
+    <script type="text/javascript" lang="javascript">
         function DdlCustomValidator_ClientValidate(source, args) {
             if (document.getElementById("<%= ddlMonth.ClientID %>").value == "0" || document.getElementById("<%= drdYear.ClientID %>").value == "0") {
                 args.IsValid = false;
@@ -12,19 +12,37 @@
             }
         }
 
+        function ToggleValidators(GroupName, value) {
+            $.each(Page_Validators, function (index, validator) {
+                if (validator.validationGroup == GroupName) {
+
+                    ValidatorEnable(validator, value);
+
+                } else {
+                    ValidatorEnable(validator, !value);
+                }
+            });
+        }
+
         function Validate() {
             var tabContainer = $find("Content_tabContainer");
             var tab = tabContainer.get_activeTab();
-            var tabIndex = tab.get_tabIndex();
-            alert(tabIndex);
-            var isValid = false;
-            if (tabIndex = "0") {
-                isValid = Page_ClientValidate('payment');
-                if(isValid)
-                    isValid = Page_ClientValidate('recipient');
+            var tabIndex = tab.get_tabIndex();            
+            var isValid = true;
+            if (tabIndex == 0) {
+                //isValid = Page_ClientValidate('payment');
+                //if(isValid)
+                //    isValid = Page_ClientValidate('recipient');
+                ToggleValidators("payment", true);
+                ToggleValidators("recipient", true);
+                isValid = false;
+                //alert(tabIndex);
             }
             else {
-                isValid = Page_ClientValidate('recipient');
+                //isValid = Page_ClientValidate('recipient');
+                ToggleValidators("payment", false);
+                ToggleValidators("recipient", true);
+                isValid = false;
             }
             return isValid;
         }
