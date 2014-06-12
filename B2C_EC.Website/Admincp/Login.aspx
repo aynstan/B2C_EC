@@ -6,7 +6,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="author" content="Paweł 'kilab' Balicki - kilab.pl" />
 <title>SimpleAdmin</title>
-    <link href="../Styles/login.css" rel="stylesheet" />
+    <link href="../Styles/admin_login.css" rel="stylesheet" />
 </head>
 <body>
 <div class="wrap">

@@ -14,6 +14,11 @@ namespace B2C_EC.Model.Data
         {
             try
             {
+                if (C.Address != null)
+                {
+                    (new AddressRepo()).CreateAddress(C.Address);
+                    C.Address_ID = C.Address.ID;
+                }
                 this.db.Users.Add(C);
                 return db.SaveChanges();
             }
@@ -41,6 +46,39 @@ namespace B2C_EC.Model.Data
         public List<User> GetAllUsers()
         {
             return (new B2C_ECEntities()).Users.ToList();
+        }
+
+        public int UpdateUser(User uOld, User uNew)
+        {
+            //uOld.Address = uNew.Address;
+            (new AddressRepo()).UpdateAddress(uOld.Address, uNew.Address);
+            uOld.Email = uNew.Email;
+            uOld.FirstName = uNew.FirstName;
+            uOld.LastName = uNew.LastName;
+            uOld.Password = uNew.Password;
+            uOld.Phone = uNew.Phone;
+            try
+            {
+                db.Entry(uOld).State = EntityState.Modified;
+                return db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            
+        }
+
+        public int DeleteUser(int Id)
+        {
+            User user = db.Users.Where(u => u.ID == Id).FirstOrDefault();
+            db.Entry(user).State = EntityState.Deleted;
+            return db.SaveChanges();
+        }
+
+        public User GetUserInfo(int id)
+        {
+            return db.Users.Where(u => u.ID == id).FirstOrDefault();
         }
     }
 }
