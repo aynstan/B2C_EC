@@ -1,25 +1,22 @@
-﻿using System;
+﻿using B2C_EC.Model;
+using B2C_EC.Model.Data;
+using B2C_EC.Model.Global;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using B2C_EC.Model;
-using B2C_EC.Model.Data;
-using System.Configuration;
-using B2C_EC.Model.Global;
 
 namespace B2C_EC.Website.Admincp
 {
-    public partial class UserDetails : System.Web.UI.Page
+    public partial class EditUser : System.Web.UI.Page
     {
-        private UserRepo userRepo = new UserRepo();
+        UserRepo userRepo = new UserRepo();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                LoadUser();
-            }
+
         }
 
         private void LoadUser()
@@ -37,7 +34,7 @@ namespace B2C_EC.Website.Admincp
                     txtLastName.Text = u.LastName;
                     txtUserName.Text = u.Username;
                     txtUserName.Enabled = false;
-                    string pass="";
+                    string pass = "";
                     txtPassword.Attributes["value"] = Security.Decrypt(u.Keys, pass);
                     txtConfirm.Attributes["value"] = Security.Decrypt(u.Keys, pass);
                     if (u.Address != null)
@@ -50,7 +47,7 @@ namespace B2C_EC.Website.Admincp
                         txtZipCode.Text = u.Address.ZipCode;
                     }
                     txtEmail.Text = u.Email;
-                    txtPhone.Text = u.Phone;                    
+                    txtPhone.Text = u.Phone;
                     brtnActive.Checked = ToSQL.SQLToBool(u.IsActive);
                 }
             }
@@ -103,17 +100,12 @@ namespace B2C_EC.Website.Admincp
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            if (ViewState["UserEdit"] == null && !ValidationUser())
+            if (ViewState["UserEdit"] == null || !CheckEmail())
             {
                 ltrError.Visible = true;
                 return;
             }
-            if (ViewState["UserEdit"] != null && !CheckEmail())
-            {
-                ltrError.Visible = true;
-                return;
-            }
-            User user = new User();
+            User user = (User)ViewState["UserEdit"];
             user.FirstName = txtFirstName.Text;
             user.LastName = txtLastName.Text;
             user.Username = txtUserName.Text;
@@ -130,15 +122,7 @@ namespace B2C_EC.Website.Admincp
             user.Phone = txtPhone.Text;
             user.Email = txtEmail.Text;
             user.IsActive = brtnActive.Checked ? true : false;
-            if (ViewState["UserEdit"] != null)
-            {
-                User userold = (User)ViewState["UserEdit"];
-                (new UserRepo()).UpdateUser(user);
-            }
-            else
-            {
-                (new UserRepo()).CreateUser(user);
-            }
+            userRepo.UpdateUser(user);
         }
     }
 }

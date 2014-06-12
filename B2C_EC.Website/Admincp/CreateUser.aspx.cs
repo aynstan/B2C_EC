@@ -1,59 +1,20 @@
-﻿using System;
+﻿using B2C_EC.Model;
+using B2C_EC.Model.Data;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using B2C_EC.Model;
-using B2C_EC.Model.Data;
-using System.Configuration;
-using B2C_EC.Model.Global;
 
 namespace B2C_EC.Website.Admincp
 {
-    public partial class UserDetails : System.Web.UI.Page
+    public partial class CreateUser : System.Web.UI.Page
     {
-        private UserRepo userRepo = new UserRepo();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                LoadUser();
-            }
-        }
 
-        private void LoadUser()
-        {
-            if (Request.QueryString["ID"] != null)
-            {
-                int id = 0;
-                Int32.TryParse(Request.QueryString["ID"].ToString(), out id);
-                User u = userRepo.GetUserInfo(id);
-                if (u != null)
-                {
-                    ViewState["UserEdit"] = u;
-                    txtID.Text = u.ID.ToString();
-                    txtFirstName.Text = u.FirstName;
-                    txtLastName.Text = u.LastName;
-                    txtUserName.Text = u.Username;
-                    txtUserName.Enabled = false;
-                    string pass="";
-                    txtPassword.Attributes["value"] = Security.Decrypt(u.Keys, pass);
-                    txtConfirm.Attributes["value"] = Security.Decrypt(u.Keys, pass);
-                    if (u.Address != null)
-                    {
-                        txtStreet1.Text = u.Address.Street1;
-                        txtStreet2.Text = u.Address.Street2;
-                        txtCity.Text = u.Address.City;
-                        txtState.Text = u.Address.State;
-                        txtCountry.Text = u.Address.Country;
-                        txtZipCode.Text = u.Address.ZipCode;
-                    }
-                    txtEmail.Text = u.Email;
-                    txtPhone.Text = u.Phone;                    
-                    brtnActive.Checked = ToSQL.SQLToBool(u.IsActive);
-                }
-            }
         }
 
         private bool CheckUser()
@@ -130,14 +91,9 @@ namespace B2C_EC.Website.Admincp
             user.Phone = txtPhone.Text;
             user.Email = txtEmail.Text;
             user.IsActive = brtnActive.Checked ? true : false;
-            if (ViewState["UserEdit"] != null)
+            if ((new UserRepo()).CreateUser(user) > 0)
             {
-                User userold = (User)ViewState["UserEdit"];
-                (new UserRepo()).UpdateUser(user);
-            }
-            else
-            {
-                (new UserRepo()).CreateUser(user);
+                Response.Redirect("~/Admincp/Management-User.aspx");
             }
         }
     }

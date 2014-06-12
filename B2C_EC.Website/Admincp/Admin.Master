@@ -99,19 +99,24 @@
                     </div>
 
                     <div class="box">
-                        <div class="h_title">&#8250; Manage content</div>
+                        <div class="h_title">&#8250; Manage Product Type</div>
                         <ul>
-                            <li class="b1"><a class="icon page" href="">Show all pages</a></li>
-                            <li class="b2"><a class="icon add_page" href="">Add new page</a></li>
-                            <li class="b1"><a class="icon photo" href="">Add new gallery</a></li>
-                            <li class="b2"><a class="icon category" href="">Categories</a></li>
+                            <li class="b1"><a class="icon page" href="Management-ProductType.aspx">Show all product type</a></li>
+                            <li class="b2"><a class="icon add_page" href="AddProductType.aspx">Add new product type</a></li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <div class="h_title">&#8250; Manage Product</div>
+                        <ul>
+                            <li class="b1"><a class="icon page" href="Management-Products.aspx">Show all products</a></li>
+                            <li class="b2"><a class="icon add_page" href="AddProduct.aspx">Add new product</a></li>
                         </ul>
                     </div>
                     <div class="box">
                         <div class="h_title">&#8250; Users</div>
                         <ul>
                             <li class="b1"><a class="icon users" href="Management-User.aspx">Show all users</a></li>
-                            <li class="b2"><a class="icon add_user" href="UserDetails.aspx?Action=ADD">Add new user</a></li>
+                            <li class="b2"><a class="icon add_user" href="CreateUser.aspx?Action=ADD">Add new user</a></li>
                             <li class="b1"><a class="icon block_users" href="">Lock users</a></li>
                         </ul>
                     </div>
