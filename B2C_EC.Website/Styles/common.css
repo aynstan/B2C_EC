@@ -135,20 +135,20 @@ margin-bottom:5px;
 	font-family: 'geoslab703_md_btmedium';
 	color:#cfcece;
 	text-transform:uppercase;
-}*/
+}
 textarea {
 	border:none;
 	outline:none;
 	width:301px;
 	height:123px;
-}
+}*/
 address {
 	font-style:normal;
 }
-input:focus {
+/*input:focus {
 	color:#3a3939;
     font-weight:bold;
-}
+}*/
 a:hover {
 	text-decoration:underline;
 }
