@@ -16,14 +16,12 @@
 				<form id="frmLogin" runat="server" method="post">
 					<label for="login">Username:</label>
                     <asp:TextBox ID="txtUserName" runat="server" CssClass="text"></asp:TextBox>
-					&nbsp;<label for="pass">Password:</label>
+					<label for="pass">Password:</label>
                     <asp:TextBox ID="txtPass" runat="server" TextMode="Password" CssClass="text"></asp:TextBox>
-                        <div><asp:CheckBox ID="cbRemember" Text="Remember me?" runat="server" /></div>
-					<div class="sep">
-                        <asp:Label ID="lbLoiUser" Text="" runat="server" />
-					</div>
+                    <div><asp:CheckBox ID="cbRemember" Text="Remember me?" runat="server" /></div>
+					<div class="sep"><asp:Label ID="lbErrorUser" Text="" runat="server" /></div>
                     <asp:Button ID="btnLogin" CssClass="button ok" runat="server" Text="Login" OnClick="btnLogin_Click" />
-                    <asp:Button ID="btnForgot" CssClass="button " runat="server" Text="Forgotten password?" />
+                    <%--<asp:Button ID="btnForgot" CssClass="button " runat="server" Text="Forgotten password?" />--%>
 				</form>
 
 			</div>

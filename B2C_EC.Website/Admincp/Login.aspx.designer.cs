@@ -49,13 +49,13 @@ namespace HoangQuanMobile.Website.Account {
         protected global::System.Web.UI.WebControls.CheckBox cbRemember;
         
         /// <summary>
-        /// lbLoiUser control.
+        /// lbErrorUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbLoiUser;
+        protected global::System.Web.UI.WebControls.Label lbErrorUser;
         
         /// <summary>
         /// btnLogin control.
@@ -65,14 +65,5 @@ namespace HoangQuanMobile.Website.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnLogin;
-        
-        /// <summary>
-        /// btnForgot control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnForgot;
     }
 }
