@@ -76,7 +76,7 @@ namespace HoangQuanMobile.Website.Account
             }
             if (status == false)
             {
-                lbLoiUser.Text = "<script>alert('Tên đăng nhập hoặc Mật khẩu không đúng')</script>";
+                lbErrorUser.Text = "<script>alert('Tên đăng nhập hoặc Mật khẩu không đúng')</script>";
             }
             else if (status == true)
             {
