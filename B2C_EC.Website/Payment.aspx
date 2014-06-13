@@ -11,38 +11,11 @@
                 args.IsValid = true;
             }
         }
-
-        function ToggleValidators(GroupName, value) {
-            $.each(Page_Validators, function (index, validator) {
-                if (validator.validationGroup == GroupName) {
-
-                    ValidatorEnable(validator, value);
-
-                } else {
-                    ValidatorEnable(validator, !value);
-                }
-            });
-        }
-
-        function Validate() {
-            var tabContainer = $find("Content_tabContainer");
-            var tab = tabContainer.get_activeTab();
-            var tabIndex = tab.get_tabIndex();            
-            var isValid = true;
-            if (tabIndex == 0) {
-                //isValid = Page_ClientValidate('payment');
-                //if(isValid)
-                //    isValid = Page_ClientValidate('recipient');
-                ToggleValidators("payment", true);
-                ToggleValidators("recipient", true);
-                isValid = false;
-                //alert(tabIndex);
-            }
-            else {
-                //isValid = Page_ClientValidate('recipient');
-                ToggleValidators("payment", false);
-                ToggleValidators("recipient", true);
-                isValid = false;
+        function Validate() {           
+            var isValid = false;
+                isValid = Page_ClientValidate('payment');
+                if(isValid){
+                    isValid = Page_ClientValidate('recipient');
             }
             return isValid;
         }
@@ -74,37 +47,46 @@
                             <td><asp:TextBox ID="txtPhone" runat="server" CssClass="TextBox" MaxLength="50"></asp:TextBox></td>
                         </tr>
                         <tr>
-                            <td>Email</td>
+                            <td>Email<asp:RequiredFieldValidator ID="RequiredFieldValidator3" Display="Dynamic" ControlToValidate="txtEmail"
+                                                runat="server" ForeColor="Red" Text="*" ErrorMessage="*" ValidationGroup="recipient"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" Display="Dynamic" ControlToValidate="txtEmail"
+                                                runat="server" ForeColor="Red" Text="*" ErrorMessage="*" ValidationGroup="recipient" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                            </td>
                         </tr>
                         <tr>
                             <td><asp:TextBox ID="txtEmail" runat="server" CssClass="TextBox" MaxLength="250"></asp:TextBox></td>
                         </tr>
                         <tr>
-                            <td>Street</td>
+                            <td>Street<asp:RequiredFieldValidator ID="RequiredFieldValidator4" Display="Dynamic" ControlToValidate="txtStreet"
+                                                runat="server" ForeColor="Red" Text="*" ErrorMessage="*" ValidationGroup="recipient"></asp:RequiredFieldValidator></td>
                         </tr>
                         <tr>
                             <td><asp:TextBox ID="txtStreet" runat="server" CssClass="TextBox" MaxLength="200"></asp:TextBox></td>
                         </tr>
                         <tr>
-                            <td>City</td>
+                            <td>City<asp:RequiredFieldValidator ID="RequiredFieldValidator5" Display="Dynamic" ControlToValidate="txtCity"
+                                                runat="server" ForeColor="Red" Text="*" ErrorMessage="*" ValidationGroup="recipient"></asp:RequiredFieldValidator></td>
                         </tr>
                         <tr>
                             <td><asp:TextBox ID="txtCity" runat="server" CssClass="TextBox" MaxLength="100"></asp:TextBox></td>
                         </tr>
                         <tr>
-                            <td>State</td>
+                            <td>State<asp:RequiredFieldValidator ID="RequiredFieldValidator6" Display="Dynamic" ControlToValidate="txtState"
+                                                runat="server" ForeColor="Red" Text="*" ErrorMessage="*" ValidationGroup="recipient"></asp:RequiredFieldValidator></td>
                         </tr>
                         <tr>
                             <td><asp:TextBox ID="txtState" runat="server" CssClass="TextBox" MaxLength="100"></asp:TextBox></td>
                         </tr>
                         <tr>
-                            <td>Country</td>
+                            <td>Country<asp:RequiredFieldValidator ID="RequiredFieldValidator7" Display="Dynamic" ControlToValidate="txtCountry"
+                                                runat="server" ForeColor="Red" Text="*" ErrorMessage="*" ValidationGroup="recipient"></asp:RequiredFieldValidator></td>
                         </tr>
                         <tr>
                             <td><asp:TextBox ID="txtCountry" runat="server" CssClass="TextBox" MaxLength="100"></asp:TextBox></td>
                         </tr>
                         <tr>
-                            <td>ZipCode</td>
+                            <td>ZipCode<asp:RequiredFieldValidator ID="RequiredFieldValidator8" Display="Dynamic" ControlToValidate="txtZipCode"
+                                                runat="server" ForeColor="Red" Text="*" ErrorMessage="*" ValidationGroup="recipient"></asp:RequiredFieldValidator></td>
                         </tr>
                         <tr>
                             <td><asp:TextBox ID="txtZipCode" runat="server" CssClass="TextBox" MaxLength="50"></asp:TextBox></td>
@@ -119,7 +101,7 @@
                 </td>
                 <td>                    
                     <p class="checkoutTitle">PAYMENT INFORMATION</p>
-                    <asp:TabContainer ID="tabContainer" runat="server" ActiveTabIndex="1" Width="96%">
+                    <asp:TabContainer ID="tabContainer" runat="server" ActiveTabIndex="2" Width="96%">
                         <asp:TabPanel runat="server" HeaderText="Online Payment" ID="TabPaneOnlinePayment">
                             <ContentTemplate>                                
                                 <table style="width:100%">
@@ -208,6 +190,7 @@
                                         </td>
                                     </tr>
                                 </table> 
+                                <div style="text-align:center;margin-top:15px"><asp:Button ID="btnOrderPaymentOnline" runat="server" Text="Order Now" CssClass="Button" OnClick="btnOrder_Click" OnClientClick="return Validate();" /></div>
                             </ContentTemplate>
                         </asp:TabPanel>
                         <asp:TabPanel runat="server" HeaderText="Delivery" ID="TabPanelDelivery">
@@ -216,6 +199,7 @@
                                 <p>We will delivery your door and collect the money!</p>  
                                 <p>Please add delivery charges 10,000 VND to 30,000 VND HCM City and other areas outside of HCMC.</p>
                                 <br />
+                                <div style="text-align:center;margin-top:15px"><asp:Button ID="btnOrderDelivery" runat="server" Text="Order Now" CssClass="Button" OnClick="btnOrder_Click" ValidationGroup="recipient"/></div>
                             </ContentTemplate>
                         </asp:TabPanel>
                         <asp:TabPanel runat="server" HeaderText="Office" ID="TabPanelOffice">
@@ -230,10 +214,10 @@
                                 <p>Telephone: 	(84-8) 3715 8999</p> 
                                 <p>Fax: 	(84-8) 3715 5985</p> 
                                 <br />
+                                <div style="text-align:center;margin-top:15px"><asp:Button ID="btnOrderOffice" runat="server" Text="Order Now" CssClass="Button" OnClick="btnOrder_Click" ValidationGroup="recipient" /></div>
                             </ContentTemplate>
                         </asp:TabPanel>
-                    </asp:TabContainer>
-                    <div style="text-align:center;margin-top:15px"><asp:Button ID="btnOrder" runat="server" Text="Order Now" CssClass="Button" OnClientClick="return Validate();" OnClick="btnOrder_Click" /></div>
+                    </asp:TabContainer>                    
                 </td>
             </tr>
             <tr>

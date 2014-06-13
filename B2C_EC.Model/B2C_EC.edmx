@@ -15,6 +15,7 @@
           <EntitySet Name="OrderDetails" EntityType="B2C_ECModel.Store.OrderDetails" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Orders" EntityType="B2C_ECModel.Store.Orders" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OrderStatus" EntityType="B2C_ECModel.Store.OrderStatus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Payment" EntityType="B2C_ECModel.Store.Payment" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductAtrributeDetail" EntityType="B2C_ECModel.Store.ProductAtrributeDetail" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Products" EntityType="B2C_ECModel.Store.Products" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductType" EntityType="B2C_ECModel.Store.ProductType" store:Type="Tables" Schema="dbo" />
@@ -50,6 +51,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Orders_OrderStatus" Association="B2C_ECModel.Store.FK_Orders_OrderStatus">
             <End Role="OrderStatus" EntitySet="OrderStatus" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Payment" Association="B2C_ECModel.Store.FK_Orders_Payment">
+            <End Role="Payment" EntitySet="Payment" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_Orders_ShippingAddress" Association="B2C_ECModel.Store.FK_Orders_ShippingAddress">
@@ -177,8 +182,9 @@
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="Note" Type="nvarchar" MaxLength="350" />
           <Property Name="OrderStatus_ID" Type="int" Nullable="false" />
-          <Property Name="Customer_ID" Type="int" Nullable="false" />
+          <Property Name="Customer_ID" Type="int" />
           <Property Name="ShippingAddress_ID" Type="int" Nullable="false" />
+          <Property Name="Payment_ID" Type="int" Nullable="false" />
           <Property Name="OrderType_ID" Type="int" />
         </EntityType>
         <EntityType Name="OrderStatus">
@@ -187,6 +193,14 @@
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Note" Type="nvarchar" MaxLength="350" />
         </EntityType>
         <EntityType Name="ProductAtrributeDetail">
           <Key>
@@ -356,7 +370,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Orders_Customers">
-          <End Role="Customers" Type="B2C_ECModel.Store.Customers" Multiplicity="1" />
+          <End Role="Customers" Type="B2C_ECModel.Store.Customers" Multiplicity="0..1" />
           <End Role="Orders" Type="B2C_ECModel.Store.Orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customers">
@@ -376,6 +390,18 @@
             </Principal>
             <Dependent Role="Orders">
               <PropertyRef Name="OrderStatus_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Payment">
+          <End Role="Payment" Type="B2C_ECModel.Store.Payment" Multiplicity="1" />
+          <End Role="Orders" Type="B2C_ECModel.Store.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Payment_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -501,6 +527,7 @@
           <EntitySet Name="OrderDetails" EntityType="B2C_ECModel.OrderDetail" />
           <EntitySet Name="Orders" EntityType="B2C_ECModel.Order" />
           <EntitySet Name="OrderStatus" EntityType="B2C_ECModel.OrderStatu" />
+          <EntitySet Name="Payments" EntityType="B2C_ECModel.Payment" />
           <EntitySet Name="ProductAtrributeDetails" EntityType="B2C_ECModel.ProductAtrributeDetail" />
           <EntitySet Name="Products" EntityType="B2C_ECModel.Product" />
           <EntitySet Name="ProductTypes" EntityType="B2C_ECModel.ProductType" />
@@ -521,6 +548,10 @@
           <AssociationSet Name="FK_ShippingAddress_Address" Association="B2C_ECModel.FK_ShippingAddress_Address">
             <End Role="Address" EntitySet="Addresses" />
             <End Role="ShippingAddress" EntitySet="ShippingAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Address" Association="B2C_ECModel.FK_Users_Address">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_Orders_Customers" Association="B2C_ECModel.FK_Orders_Customers">
             <End Role="Customer" EntitySet="Customers" />
@@ -546,6 +577,10 @@
             <End Role="OrderStatu" EntitySet="OrderStatus" />
             <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
+          <AssociationSet Name="FK_Orders_Payment" Association="B2C_ECModel.FK_Orders_Payment">
+            <End Role="Payment" EntitySet="Payments" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
           <AssociationSet Name="FK_Orders_ShippingAddress" Association="B2C_ECModel.FK_Orders_ShippingAddress">
             <End Role="ShippingAddress" EntitySet="ShippingAddresses" />
             <End Role="Order" EntitySet="Orders" />
@@ -569,10 +604,6 @@
           <AssociationSet Name="FK_ProductTypeAttribute_ProductType" Association="B2C_ECModel.FK_ProductTypeAttribute_ProductType">
             <End Role="ProductType" EntitySet="ProductTypes" />
             <End Role="ProductTypeAttribute" EntitySet="ProductTypeAttributes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Users_Address" Association="B2C_ECModel.FK_Users_Address">
-            <End Role="Address" EntitySet="Addresses" />
-            <End Role="User" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Address">
@@ -674,12 +705,14 @@
           <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
           <Property Type="String" Name="Note" MaxLength="350" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="OrderStatus_ID" Nullable="false" />
-          <Property Type="Int32" Name="Customer_ID" Nullable="false" />
+          <Property Type="Int32" Name="Customer_ID" />
           <Property Type="Int32" Name="ShippingAddress_ID" Nullable="false" />
+          <Property Type="Int32" Name="Payment_ID" Nullable="false" />
           <Property Type="Int32" Name="OrderType_ID" />
           <NavigationProperty Name="Customer" Relationship="B2C_ECModel.FK_Orders_Customers" FromRole="Order" ToRole="Customer" />
           <NavigationProperty Name="OrderDetails" Relationship="B2C_ECModel.FK_OrderDetails_Orders" FromRole="Order" ToRole="OrderDetail" />
           <NavigationProperty Name="OrderStatu" Relationship="B2C_ECModel.FK_Orders_OrderStatus" FromRole="Order" ToRole="OrderStatu" />
+          <NavigationProperty Name="Payment" Relationship="B2C_ECModel.FK_Orders_Payment" FromRole="Order" ToRole="Payment" />
           <NavigationProperty Name="ShippingAddress" Relationship="B2C_ECModel.FK_Orders_ShippingAddress" FromRole="Order" ToRole="ShippingAddress" />
         </EntityType>
         <EntityType Name="OrderStatu">
@@ -689,6 +722,15 @@
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Orders" Relationship="B2C_ECModel.FK_Orders_OrderStatus" FromRole="OrderStatu" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Note" MaxLength="350" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="B2C_ECModel.FK_Orders_Payment" FromRole="Payment" ToRole="Order" />
         </EntityType>
         <EntityType Name="ProductAtrributeDetail">
           <Key>
@@ -849,8 +891,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Users_Address">
+          <End Type="B2C_ECModel.Address" Role="Address" Multiplicity="0..1" />
+          <End Type="B2C_ECModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Address_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Orders_Customers">
-          <End Type="B2C_ECModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="B2C_ECModel.Customer" Role="Customer" Multiplicity="0..1" />
           <End Type="B2C_ECModel.Order" Role="Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
@@ -918,6 +972,18 @@
             </Principal>
             <Dependent Role="Order">
               <PropertyRef Name="OrderStatus_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Payment">
+          <End Type="B2C_ECModel.Payment" Role="Payment" Multiplicity="1" />
+          <End Type="B2C_ECModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Payment_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -990,18 +1056,6 @@
             </Principal>
             <Dependent Role="ProductTypeAttribute">
               <PropertyRef Name="ProductTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Users_Address">
-          <End Type="B2C_ECModel.Address" Role="Address" Multiplicity="0..1" />
-          <End Type="B2C_ECModel.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Address">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="Address_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1102,6 +1156,7 @@
             <EntityTypeMapping TypeName="B2C_ECModel.Order">
               <MappingFragment StoreEntitySet="Orders">
                 <ScalarProperty Name="OrderType_ID" ColumnName="OrderType_ID" />
+                <ScalarProperty Name="Payment_ID" ColumnName="Payment_ID" />
                 <ScalarProperty Name="ShippingAddress_ID" ColumnName="ShippingAddress_ID" />
                 <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
                 <ScalarProperty Name="OrderStatus_ID" ColumnName="OrderStatus_ID" />
@@ -1114,6 +1169,15 @@
           <EntitySetMapping Name="OrderStatus">
             <EntityTypeMapping TypeName="B2C_ECModel.OrderStatu">
               <MappingFragment StoreEntitySet="OrderStatus">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="B2C_ECModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
