@@ -88,7 +88,7 @@ namespace B2C_EC.Website.Admincp
             List<Product> users = productRepo.GetAllProduct();
             _PageDataSource.DataSource = users;
             _PageDataSource.AllowPaging = true;
-            _PageDataSource.PageSize = 2;
+            _PageDataSource.PageSize = 10;
             _PageDataSource.CurrentPageIndex = CurrentPage;
             ViewState["TotalPages"] = _PageDataSource.PageCount;
 

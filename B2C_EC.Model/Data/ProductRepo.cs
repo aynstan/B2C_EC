@@ -51,5 +51,18 @@ namespace B2C_EC.Model.Data
         {
             return db.Products.Where(p => p.ID == ProductId).FirstOrDefault();
         }
+
+        public int CreateProduct(Product p) //Chi.Bui
+        {
+            try
+            {
+                db.Products.Add(p);
+                return db.SaveChanges();
+            }
+            catch (Exception e)
+            {                
+                throw new Exception(e.Message);
+            }
+        }
     }
 }
