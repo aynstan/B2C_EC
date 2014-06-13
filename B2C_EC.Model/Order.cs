@@ -23,13 +23,15 @@ namespace B2C_EC.Model
         public System.DateTime DateCreated { get; set; }
         public string Note { get; set; }
         public int OrderStatus_ID { get; set; }
-        public int Customer_ID { get; set; }
+        public Nullable<int> Customer_ID { get; set; }
         public int ShippingAddress_ID { get; set; }
+        public int Payment_ID { get; set; }
         public Nullable<int> OrderType_ID { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual OrderStatu OrderStatu { get; set; }
+        public virtual Payment Payment { get; set; }
         public virtual ShippingAddress ShippingAddress { get; set; }
     }
 }

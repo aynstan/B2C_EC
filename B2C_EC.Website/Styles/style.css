@@ -738,3 +738,11 @@ color: #056BCD;
 margin: 10px 0;
 text-transform: uppercase;
 }
+#viewcart table {
+    border-collapse: collapse;
+}
+
+#viewcart .border{
+    border: 1px solid #056BCD;
+    padding-left:3px;
+}

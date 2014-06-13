@@ -4,41 +4,43 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e99054b4849f41659c09c54bb1a0842a" Name="Diagram1" ZoomLevel="33">
-        <EntityTypeShape EntityType="B2C_ECModel.Address" Width="1.5" PointX="13" PointY="0.5" />
-        <EntityTypeShape EntityType="B2C_ECModel.Contact" Width="1.5" PointX="16" PointY="2" />
-        <EntityTypeShape EntityType="B2C_ECModel.Customer" Width="1.5" PointX="19" PointY="3.5" />
-        <EntityTypeShape EntityType="B2C_ECModel.ImagesProduct" Width="1.5" PointX="1.5" PointY="5" />
-        <EntityTypeShape EntityType="B2C_ECModel.Manufacturer" Width="1.5" PointX="4" PointY="6.5" />
-        <EntityTypeShape EntityType="B2C_ECModel.NewsLetter" Width="1.5" PointX="7" PointY="8" />
-        <EntityTypeShape EntityType="B2C_ECModel.OrderDetail" Width="1.5" PointX="10" PointY="9.5" />
-        <EntityTypeShape EntityType="B2C_ECModel.Order" Width="1.5" PointX="13" PointY="11" />
-        <EntityTypeShape EntityType="B2C_ECModel.OrderStatu" Width="1.5" PointX="16" PointY="12.5" />
-        <EntityTypeShape EntityType="B2C_ECModel.ProductAtrributeDetail" Width="1.5" PointX="19" PointY="14" />
-        <EntityTypeShape EntityType="B2C_ECModel.Product" Width="1.5" PointX="1.5" PointY="15.5" />
-        <EntityTypeShape EntityType="B2C_ECModel.ProductType" Width="1.5" PointX="4" PointY="17" />
-        <EntityTypeShape EntityType="B2C_ECModel.ProductTypeAttribute" Width="1.5" PointX="7" PointY="18.5" />
-        <EntityTypeShape EntityType="B2C_ECModel.Promo" Width="1.5" PointX="10" PointY="20" />
-        <EntityTypeShape EntityType="B2C_ECModel.Review" Width="1.5" PointX="13" PointY="21.5" />
-        <EntityTypeShape EntityType="B2C_ECModel.ShippingAddress" Width="1.5" PointX="16" PointY="23" />
-        <EntityTypeShape EntityType="B2C_ECModel.sysdiagram" Width="1.5" PointX="20.25" PointY="17.375" />
-        <EntityTypeShape EntityType="B2C_ECModel.User" Width="1.5" PointX="18.125" PointY="17.125" />
+      <Diagram DiagramId="e99054b4849f41659c09c54bb1a0842a" Name="Diagram1" ZoomLevel="25">
+        <EntityTypeShape EntityType="B2C_ECModel.Address" Width="1.5" PointX="6.0510613331808987" PointY="1.2720910316668874" />
+        <EntityTypeShape EntityType="B2C_ECModel.Contact" Width="1.5" PointX="9.96401428895258" PointY="14.085446587803515" />
+        <EntityTypeShape EntityType="B2C_ECModel.Customer" Width="1.5" PointX="8.7528315152753287" PointY="4.3573348989511533" />
+        <EntityTypeShape EntityType="B2C_ECModel.ImagesProduct" Width="1.5" PointX="3.1975620850909325" PointY="20.131775090532273" />
+        <EntityTypeShape EntityType="B2C_ECModel.Manufacturer" Width="1.5" PointX="0.53632765288293727" PointY="27.604307649472872" />
+        <EntityTypeShape EntityType="B2C_ECModel.NewsLetter" Width="1.5" PointX="4.3750808389741369" PointY="14.781092397301036" />
+        <EntityTypeShape EntityType="B2C_ECModel.OrderDetail" Width="1.5" PointX="7.2186164908197785" PointY="6.63777402352438" />
+        <EntityTypeShape EntityType="B2C_ECModel.Order" Width="1.5" PointX="1.0032796566389872" PointY="0.858860865635267" />
+        <EntityTypeShape EntityType="B2C_ECModel.OrderStatu" Width="1.5" PointX="11.12577111419559" PointY="2.7568070305310224" />
+        <EntityTypeShape EntityType="B2C_ECModel.Payment" Width="1.5" PointX="11.413729849929796" PointY="8.3433901855458465" />
+        <EntityTypeShape EntityType="B2C_ECModel.ProductAtrributeDetail" Width="1.5" PointX="3.9081744830627807" PointY="2.1362553844862875" />
+        <EntityTypeShape EntityType="B2C_ECModel.Product" Width="1.5" PointX="11.070851275264682" PointY="20.23982022155068" />
+        <EntityTypeShape EntityType="B2C_ECModel.ProductType" Width="1.5" PointX="9.1557274782824" PointY="9.5232715502024021" />
+        <EntityTypeShape EntityType="B2C_ECModel.ProductTypeAttribute" Width="1.5" PointX="6.0475998139230533" PointY="28.517043395208681" />
+        <EntityTypeShape EntityType="B2C_ECModel.Promo" Width="1.5" PointX="8.0719603170044536" PointY="17.048417173814222" />
+        <EntityTypeShape EntityType="B2C_ECModel.Review" Width="1.5" PointX="0.41510353442984793" PointY="11.405728181547358" />
+        <EntityTypeShape EntityType="B2C_ECModel.ShippingAddress" Width="1.5" PointX="8.2124758605903363" PointY="19.939233640180543" />
+        <EntityTypeShape EntityType="B2C_ECModel.sysdiagram" Width="1.5" PointX="4.2501620223047967" PointY="9.6659406468579263" />
+        <EntityTypeShape EntityType="B2C_ECModel.User" Width="1.5" PointX="1.5339560571750421" PointY="31.803157612589725" />
         <AssociationConnector Association="B2C_ECModel.FK_Customers_Address1" />
         <AssociationConnector Association="B2C_ECModel.FK_Manufacturer_Address" />
         <AssociationConnector Association="B2C_ECModel.FK_ShippingAddress_Address" />
+        <AssociationConnector Association="B2C_ECModel.FK_Users_Address" />
         <AssociationConnector Association="B2C_ECModel.FK_Orders_Customers" />
         <AssociationConnector Association="B2C_ECModel.FK_ImagesProduct_Products" />
         <AssociationConnector Association="B2C_ECModel.FK_Products_Manufacturer" />
         <AssociationConnector Association="B2C_ECModel.FK_OrderDetails_Orders" />
         <AssociationConnector Association="B2C_ECModel.FK_OrderDetails_Products" />
         <AssociationConnector Association="B2C_ECModel.FK_Orders_OrderStatus" />
+        <AssociationConnector Association="B2C_ECModel.FK_Orders_Payment" />
         <AssociationConnector Association="B2C_ECModel.FK_Orders_ShippingAddress" />
         <AssociationConnector Association="B2C_ECModel.FK_ProductAtrributeDetail_ProductTypeAttribute" />
         <AssociationConnector Association="B2C_ECModel.FK_Products_ProductType" />
         <AssociationConnector Association="B2C_ECModel.FK_Review_Products" />
         <AssociationConnector Association="B2C_ECModel.FK_ProductType_ProductType" />
         <AssociationConnector Association="B2C_ECModel.FK_ProductTypeAttribute_ProductType" />
-        <AssociationConnector Association="B2C_ECModel.FK_Users_Address" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
