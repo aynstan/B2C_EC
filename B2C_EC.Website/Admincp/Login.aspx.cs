@@ -63,6 +63,7 @@ namespace HoangQuanMobile.Website.Account
             if (status == false)
             {
                 Response.Write("<script>alert('Username or password is not correct')</script>");
+                //lbErrorUser.Text = "<script>alert('Tên đăng nhập hoặc Mật khẩu không đúng')</script>";
             }
             else if (status == true)
             {
