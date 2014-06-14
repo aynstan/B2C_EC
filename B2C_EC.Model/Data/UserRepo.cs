@@ -10,11 +10,20 @@ namespace B2C_EC.Model.Data
     public class UserRepo
     {
         private B2C_ECEntities db = new B2C_ECEntities();
-        public int CreateUser(User C)
+        
+        public User GetById(int Id)
+        {
+            return db.Users.Find(Id);
+        }
+        public List<User> GetAllUser()
+        {
+            return db.Users.ToList();
+        }
+        public int CreateUser(User U)
         {
             try
             {
-                this.db.Users.Add(C);
+                this.db.Users.Add(U);
                 return db.SaveChanges();
             }
             catch (Exception e)
@@ -26,15 +35,25 @@ namespace B2C_EC.Model.Data
         public int DeleteUser(int Id)
         {
             User user = db.Users.Where(u => u.ID == Id).FirstOrDefault();
-            db.Entry(user).State = EntityState.Deleted;
-            return db.SaveChanges();
+            return DeleteUser(user);
         }
-
-        public int UpdateUser(User u)
+        public int DeleteUser(User U)
         {
             try
             {
-                db.Entry(u).State = EntityState.Modified;
+                db.Entry(U).State = EntityState.Deleted;
+                return db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public int UpdateUser(User U)
+        {
+            try
+            {
+                db.Entry(U).State = EntityState.Modified;
                 return db.SaveChanges();
             }
             catch (Exception e)
@@ -43,25 +62,9 @@ namespace B2C_EC.Model.Data
             }
 
         }
-        public User GetUserByLogin(string UserName)
+        public User GetUserByUsername(string username)
         {
-            return (new B2C_ECEntities()).Users.Where(u => u.Username == UserName/* && u.Password == Password*/).FirstOrDefault();
-        }
-
-        public int DeleteUser(User u)
-        {
-            db.Entry(u).State = EntityState.Deleted;
-            return db.SaveChanges();
-        }
-
-        public User GetUserInfo(int id)
-        {
-            return db.Users.Where(u => u.ID == id).FirstOrDefault();
-        }
-
-        public List<User> GetAllUsers()
-        {
-            return (new B2C_ECEntities()).Users.ToList();
+            return (new B2C_ECEntities()).Users.Where(u => u.Username == username).FirstOrDefault();
         }
         public bool DoesEmailExist(string email)
         {

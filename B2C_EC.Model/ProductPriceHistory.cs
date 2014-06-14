@@ -12,12 +12,13 @@ namespace B2C_EC.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductAtrributeDetail
+    public partial class ProductPriceHistory
     {
-        public int ProductId { get; set; }
-        public int AttributeId { get; set; }
-        public string Value { get; set; }
+        public int ID { get; set; }
+        public int Product_ID { get; set; }
+        public decimal Price { get; set; }
+        public System.DateTime DateCreated { get; set; }
     
-        public virtual ProductTypeAttribute ProductTypeAttribute { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

@@ -30,7 +30,7 @@ namespace B2C_EC.Model
         public string Username { get; set; }
         public string Password { get; set; }
         public Nullable<int> Address_ID { get; set; }
-        public string Keys { get; set; }
+        public string Key { get; set; }
     
         public virtual Address Address { get; set; }
         public virtual ICollection<Order> Orders { get; set; }

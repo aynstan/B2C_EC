@@ -22,7 +22,7 @@ namespace B2C_EC.Website
             contact.FirstName = txtFirstName.Text;
             contact.LastName = txtLastName.Text;
             contact.Email = txtEmail.Text;
-            contact.Comments = txtComments.Text;
+            contact.Comment = txtComments.Text;
             contact.DateCreated = DateTime.Now;
             int i = new ContactRepo().CreateContact(contact);
             txtFirstName.Text = "";

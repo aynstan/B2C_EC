@@ -90,7 +90,7 @@ namespace B2C_EC.Website.Admincp
 
         private void BindItemsList()
         {
-            List<Manufacturer> users = manufactureRepo.GetAllManufacturers();
+            List<Manufacturer> users = manufactureRepo.GetAllManufacturer();
             _PageDataSource.DataSource = users;
             _PageDataSource.AllowPaging = true;
             _PageDataSource.PageSize = 2;

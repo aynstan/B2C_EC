@@ -42,10 +42,10 @@ namespace HoangQuanMobile.Website.Account
             bool status = false;//Status là cột trạng thái của nhân viên(còn làm hay hết làm)
             try
             {
-                User acc = (new UserRepo()).GetUserByLogin(txtUserName.Text);
+                User acc = (new UserRepo()).GetUserByUsername(txtUserName.Text);
                 if (acc != null)
                 {
-                    string Pass = Security.Encrypt(acc.Keys, txtPass.Text);
+                    string Pass = Security.Encrypt(acc.Key, txtPass.Text);
                     return acc.Password.Equals(Pass) ? true : false;
                 }
             }
@@ -64,7 +64,7 @@ namespace HoangQuanMobile.Website.Account
             SHA512 sha5 = new SHA512Managed();
             byte[] result = sha5.ComputeHash(data);
             string chuoiMaHoa = Encoding.ASCII.GetString(result);
-            User acc = (new UserRepo()).GetUserByLogin(txtUserName.Text);
+            User acc = (new UserRepo()).GetUserByUsername(txtUserName.Text);
             string positionid;
             try
             {

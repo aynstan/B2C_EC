@@ -9,7 +9,7 @@ namespace B2C_EC.Model.Data
     public class ManufacturerRepo
     {
         B2C_ECEntities db = new B2C_ECEntities();
-        public List<Manufacturer> GetAllManufacturers()
+        public List<Manufacturer> GetAllManufacturer()
         {
             return db.Manufacturers.ToList();
         }

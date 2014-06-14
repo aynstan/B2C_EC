@@ -23,7 +23,7 @@ namespace B2C_EC.Website.Admincp
 
         private void LoadManufacturerAndProductType()
         {
-            ddlManufacturer.DataSource = (new ManufacturerRepo()).GetAllManufacturers();
+            ddlManufacturer.DataSource = (new ManufacturerRepo()).GetAllManufacturer();
             ddlManufacturer.DataBind();
             ddlProductType.DataSource = (new ProductTypeRepo()).GetAllProductType();
             ddlProductType.DataBind();
@@ -33,8 +33,7 @@ namespace B2C_EC.Website.Admincp
         {
             Product p = new Product();
             p.Name = txtName.Text;
-            p.PriceOld = ToSQL.SQLToDecimal(txtPriceOld.Text);
-            p.PriceNew = ToSQL.SQLToDecimal(txtPriceNew.Text);
+            p.Price = ToSQL.SQLToDecimal(txtPriceNew.Text);
             p.ProductType_ID = ToSQL.SQLToInt(ddlProductType.SelectedValue);
             p.Manufacuturer_ID = ToSQL.SQLToInt(ddlManufacturer.SelectedValue);
             p.Description = CKEditorControlDescription.Text;

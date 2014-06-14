@@ -90,7 +90,7 @@ namespace B2C_EC.Website.Admincp
 
         private void BindItemsList()
         {
-            List<User> users = userRepo.GetAllUsers();
+            List<User> users = userRepo.GetAllUser();
             _PageDataSource.DataSource = users;
             _PageDataSource.AllowPaging = true;
             _PageDataSource.PageSize = 2;

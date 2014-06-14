@@ -14,9 +14,9 @@ namespace B2C_EC.Model
     
     public partial class Promo
     {
-        public int PromoId { get; set; }
-        public int ProductId { get; set; }
-        public string ImagePromo { get; set; }
+        public int ID { get; set; }
+        public int Product_ID { get; set; }
+        public string Image { get; set; }
         public string Description { get; set; }
         public System.DateTime StartDate { get; set; }
         public System.DateTime EndDate { get; set; }

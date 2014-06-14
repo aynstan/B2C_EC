@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using B2C_EC.Model;
 using B2C_EC.Model.Data;
+using B2C_EC.Model.Global;
 
 namespace B2C_EC.Website
 {
@@ -35,7 +36,7 @@ namespace B2C_EC.Website
                 HiddenField HiddenFieldProductId = (HiddenField)e.Item.FindControl("HiddenFieldProductId");
                 if (HiddenFieldProductId != null)
                 {
-                    string imgURL = new ImagesProductRepo().GetImageURLDefaultByProductId(Convert.ToInt32(HiddenFieldProductId.Value));
+                    string imgURL = new ProductImageRepo().GetImageDefaultAllByProductId(ToSQL.SQLToInt(HiddenFieldProductId.Value));
                     imgProduct.ImageUrl = "Resources/ImagesProduct/" + imgURL;
                 }
             }
@@ -70,7 +71,7 @@ namespace B2C_EC.Website
             Customer customer = new CustomerRepo().GetCustomerByUsername(txtUsername.Text);
             if (customer != null)
             {
-                string Password = Security.Encrypt(customer.Keys, txtPassword.Text);
+                string Password = Security.Encrypt(customer.Key, txtPassword.Text);
                 if (customer.Password.Equals(Password))
                 {
                     Session["Customer"] = customer;

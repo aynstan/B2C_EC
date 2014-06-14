@@ -52,7 +52,7 @@ namespace B2C_EC.Model.Data
             return db.Products.Where(p => p.ID == ProductId).FirstOrDefault();
         }
 
-        public int CreateProduct(Product p) //Chi.Bui
+        public int CreateProduct(Product p)
         {
             try
             {

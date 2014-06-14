@@ -26,9 +26,8 @@ namespace B2C_EC.Website.Admincp
         {
             if (Request.QueryString["ID"] != null)
             {
-                int id = 0;
-                Int32.TryParse(Request.QueryString["ID"].ToString(), out id);
-                User u = userRepo.GetUserInfo(id);
+                int id = ToSQL.SQLToInt(Request.QueryString["ID"]);
+                User u = userRepo.GetById(id);
                 if (u != null)
                 {
                     ViewState["UserEdit"] = u;
@@ -38,8 +37,8 @@ namespace B2C_EC.Website.Admincp
                     txtUserName.Text = u.Username;
                     txtUserName.Enabled = false;
                     string pass="";
-                    txtPassword.Attributes["value"] = Security.Decrypt(u.Keys, pass);
-                    txtConfirm.Attributes["value"] = Security.Decrypt(u.Keys, pass);
+                    txtPassword.Attributes["value"] = Security.Decrypt(u.Key, pass);
+                    txtConfirm.Attributes["value"] = Security.Decrypt(u.Key, pass);
                     if (u.Address != null)
                     {
                         txtStreet1.Text = u.Address.Street1;
@@ -117,8 +116,8 @@ namespace B2C_EC.Website.Admincp
             user.FirstName = txtFirstName.Text;
             user.LastName = txtLastName.Text;
             user.Username = txtUserName.Text;
-            user.Keys = ConfigurationManager.AppSettings["KeyUser"];
-            user.Password = Security.Encrypt(user.Keys, txtPassword.Text);
+            user.Key = ConfigurationManager.AppSettings["KeyUser"];
+            user.Password = Security.Encrypt(user.Key, txtPassword.Text);
             if (user.Address == null)
                 user.Address = new Address();
             user.Address.Street1 = txtStreet1.Text;
