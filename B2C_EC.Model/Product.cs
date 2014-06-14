@@ -16,15 +16,15 @@ namespace B2C_EC.Model
     {
         public Product()
         {
-            this.ImagesProducts = new HashSet<ImagesProduct>();
             this.OrderDetails = new HashSet<OrderDetail>();
+            this.ProductImages = new HashSet<ProductImage>();
+            this.ProductPriceHistories = new HashSet<ProductPriceHistory>();
             this.Reviews = new HashSet<Review>();
         }
     
         public int ID { get; set; }
         public string Name { get; set; }
-        public Nullable<decimal> PriceOld { get; set; }
-        public decimal PriceNew { get; set; }
+        public decimal Price { get; set; }
         public string Description { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
         public bool IsActive { get; set; }
@@ -35,9 +35,10 @@ namespace B2C_EC.Model
         public Nullable<int> ProductType_ID { get; set; }
         public Nullable<int> Manufacuturer_ID { get; set; }
     
-        public virtual ICollection<ImagesProduct> ImagesProducts { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<ProductImage> ProductImages { get; set; }
+        public virtual ICollection<ProductPriceHistory> ProductPriceHistories { get; set; }
         public virtual ProductType ProductType { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
     }

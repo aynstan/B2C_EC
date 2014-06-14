@@ -40,7 +40,7 @@ namespace B2C_EC.Website
             customer.LastName = txtLastName.Text;
             customer.Username = txtUsername.Text;            
             customer.Password = Security.Encrypt(ConfigurationManager.AppSettings["KeyCustomer"], txtPassword.Text);
-            customer.Keys = ConfigurationManager.AppSettings["KeyCustomer"];
+            customer.Key = ConfigurationManager.AppSettings["KeyCustomer"];
             customer.Email = txtEmail.Text;
             customer.Phone = txtPhone.Text;
             customer.DateOfBirth = ToSQL.SQLToDateTimeNull(txtDateOfBirth.Text);

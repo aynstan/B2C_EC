@@ -74,7 +74,7 @@ namespace B2C_EC.Website
         {
             this.ProductID = product.ID;
             this.ProductName = product.Name;
-            this.Price = product.PriceNew;
+            this.Price = product.Price;
             return this;
         }
     }

@@ -23,9 +23,9 @@ namespace B2C_EC.Website
         private void LoadProductDetails()
         {
             int ProductId = ToSQL.SQLToInt(Request.QueryString["ProductId"]);
-            rptListImages.DataSource = (new ImagesProductRepo()).GetListImagesByProductId(ProductId);
+            rptListImages.DataSource = (new ProductImageRepo()).GetAllImagesByProductId(ProductId);
             rptListImages.DataBind();
-            Product p = (new ProductRepo()).GetByProductID(ProductId);
+            Product p = (new ProductRepo()).GetById(ProductId);
             ltrDetails.Text = p.Description;
         }
     }

@@ -12,11 +12,11 @@ namespace B2C_EC.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ImagesProduct
+    public partial class ProductImage
     {
         public int ID { get; set; }
         public int Product_ID { get; set; }
-        public string ImageURL { get; set; }
+        public string Image { get; set; }
         public Nullable<bool> IsDefault { get; set; }
     
         public virtual Product Product { get; set; }

@@ -24,7 +24,7 @@ namespace B2C_EC.Model.Data
             }
         }
 
-        public int UpdateAddress(Order A)
+        public int UpdateOrder(Order A)
         {
             try
             {

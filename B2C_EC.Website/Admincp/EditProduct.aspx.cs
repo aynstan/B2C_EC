@@ -26,13 +26,12 @@ namespace B2C_EC.Website.Admincp
         {
             if (Request.QueryString["ID"] != null)
             {
-                Product p = productRepo.GetByProductID(ToSQL.SQLToInt(Request.QueryString["ID"]));
+                Product p = productRepo.GetById(ToSQL.SQLToInt(Request.QueryString["ID"]));
                 if (p != null)
                 {
                     txtID.Text = p.ID.ToString();
                     txtName.Text = p.Name;
-                    txtPriceOld.Text = p.PriceOld.ToString();
-                    txtPriceNew.Text = p.PriceNew.ToString();
+                    txtPriceNew.Text = p.Price.ToString();
                     ddlManufacturer.SelectedValue = p.Manufacuturer_ID.ToString();
                     ddlProductType.SelectedValue = p.ProductType_ID.ToString();
                     CKEditorControlDescription.Text = p.Description;
@@ -46,7 +45,7 @@ namespace B2C_EC.Website.Admincp
 
         private void LoadManufacturerAndProductType()
         {
-            ddlManufacturer.DataSource = (new ManufacturerRepo()).GetAllManufacturers();
+            ddlManufacturer.DataSource = (new ManufacturerRepo()).GetAllManufacturer();
             ddlManufacturer.DataBind();
             ddlProductType.DataSource = (new ProductTypeRepo()).GetAllProductType();
             ddlProductType.DataBind();

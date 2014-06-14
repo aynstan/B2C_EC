@@ -78,8 +78,8 @@ namespace B2C_EC.Website.Admincp
             user.FirstName = txtFirstName.Text;
             user.LastName = txtLastName.Text;
             user.Username = txtUserName.Text;
-            user.Keys = ConfigurationManager.AppSettings["KeyUser"];
-            user.Password = Security.Encrypt(user.Keys, txtPassword.Text);
+            user.Key = ConfigurationManager.AppSettings["KeyUser"];
+            user.Password = Security.Encrypt(user.Key, txtPassword.Text);
             if (user.Address == null)
                 user.Address = new Address();
             user.Address.Street1 = txtStreet1.Text;

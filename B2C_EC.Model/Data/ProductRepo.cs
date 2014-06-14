@@ -3,20 +3,62 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace B2C_EC.Model.Data
 {
     public class ProductRepo
     {
         private B2C_ECEntities db = new B2C_ECEntities();
-
+        
+        public Product GetById(int id)
+        {
+            return db.Products.Find(id);
+        }
         public List<Product> GetAllProduct()
         {
             return db.Products.ToList();
         }
-        public Product GetById(int id)
+        public int CreateProduct(Product P)
         {
-            return db.Products.Find(id);
+            try
+            {
+                db.Products.Add(P);
+                return db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public int DeleteProduct(int Id)
+        {
+            Product product = db.Products.Where(u => u.ID == Id).FirstOrDefault();
+            return DeleteProduct(product);
+        }
+        public int DeleteProduct(Product P)
+        {
+            try
+            {
+                db.Entry(P).State = EntityState.Deleted;
+                return db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public int UpdateProduct(Product P)
+        {
+            try
+            {
+                db.Entry(P).State = EntityState.Modified;
+                return db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
         public List<Product> GetListProductByService(int ServiceID)
         {
@@ -24,7 +66,7 @@ namespace B2C_EC.Model.Data
         }
         public List<Product> GetProductBestSelling()
         {
-            return new B2C_ECEntities().Products.Where(p => p.IsBestSelling == true).ToList();
+            return db.Products.Where(p => p.IsBestSelling == true).ToList();
         }
 
         public List<Product> GetListProductByProductTypeID(int ProductTypeId)
@@ -45,24 +87,6 @@ namespace B2C_EC.Model.Data
         public List<Product> GetListProductPageIndex()
         {
             return db.Products.OrderBy(p => p.DateCreated).ToList();
-        }
-
-        public Product GetByProductID(int ProductId)
-        {
-            return db.Products.Where(p => p.ID == ProductId).FirstOrDefault();
-        }
-
-        public int CreateProduct(Product p) //Chi.Bui
-        {
-            try
-            {
-                db.Products.Add(p);
-                return db.SaveChanges();
-            }
-            catch (Exception e)
-            {                
-                throw new Exception(e.Message);
-            }
         }
     }
 }

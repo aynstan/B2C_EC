@@ -16,7 +16,7 @@ namespace B2C_EC.Model
     {
         public int ID { get; set; }
         public string FullName { get; set; }
-        public string Comments { get; set; }
+        public string Comment { get; set; }
         public System.DateTime DateCreated { get; set; }
         public Nullable<int> Product_ID { get; set; }
     

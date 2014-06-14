@@ -43,10 +43,10 @@ namespace B2C_EC.Website
             HiddenField hdf = (HiddenField)e.Item.FindControl("hdfProductId");
             if (img != null && hdf != null)
             {
-                ImagesProduct imageProduct = (new ImagesProductRepo()).GetImageDefaultByProductId(Int32.Parse(hdf.Value));
+                ProductImage imageProduct = (new ProductImageRepo()).GetImageDefaultByProductId(Int32.Parse(hdf.Value));
                 if (imageProduct != null)
                 {
-                    img.ImageUrl = "~/Resources/ImagesProduct/" + imageProduct.ImageURL;
+                    img.ImageUrl = "~/Resources/ImagesProduct/" + imageProduct.Image;
                 }
             }
         }
