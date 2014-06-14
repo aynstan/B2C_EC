@@ -8,122 +8,235 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="Filter" runat="server">
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="Content" runat="server">
+    <div id="customer">
     <p class="checkoutTitle">Customer INFORMATION</p>
-    <asp:TabContainer ID="tabContainer" runat="server" ActiveTabIndex="1" Width="96%">
+    <asp:TabContainer ID="tabContainer" runat="server" ActiveTabIndex="0" Width="96%">
         <asp:TabPanel runat="server" HeaderText="Login Information" ID="TabPaneLogin">
             <ContentTemplate>                                
                 <table style="width:100%">
                     <tr>
-                        <td valign="top" colspan="2">
+                        <td valign="top" colspan="3">
                             <b style="font-size: 13px">Login Information</b>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 150px;" align="right">
-                            Type Of Card:<span style="color:Red">*</span>
+                            Username:
                         </td>
-                        <td style="text-align: left">
-                            <asp:DropDownList ID="ddlTypeCard" runat="server" CssClass="Dropdown">
-                                <asp:ListItem  ></asp:ListItem>
-                                <asp:ListItem Value="1">American Express</asp:ListItem>
-                                <asp:ListItem Value="2" Selected="True">Visa</asp:ListItem>
-                                <asp:ListItem Value="3">Master Card</asp:ListItem>
-                            </asp:DropDownList>
+                        <td style="text-align: left;width: 200px;">
+                            <asp:Label ID="lbUsername" runat="server"></asp:Label>
                         </td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td style="width: 150px;" align="right">
+                            Password: 
                         </td>
                         <td align="left">
-                            <asp:RequiredFieldValidator ID="rfvdrdTypeCard" Display="Dynamic" ControlToValidate="ddlTypeCard"
-                                runat="server" ForeColor="Red" Text="Please select your card" ErrorMessage="Please select your card" Font-Size="Smaller" ValidationGroup="payment"></asp:RequiredFieldValidator>
+                            <asp:Label ID="lbPassword" runat="server" Text="********"></asp:Label>
                         </td>
+                        <td><a id="spanChangePassword" runat="server" href="javascript:void(0)">Change Password</a> </td>
                     </tr>
-                    <tr>
-                        <td style="width: 150px;" align="right">
-                            Credit Card Number:<span style="color:Red">*</span>
-                        </td>
-                        <td align="left">
-                            <asp:TextBox ID="txtCardNum" runat="server" Text="4111111111111111" CssClass="TextBox"></asp:TextBox>
-                            <br />
-                                <asp:RequiredFieldValidator ID="rfvtxtCardNum" Display="Dynamic" ControlToValidate="txtCardNum"
-                                runat="server" ForeColor="Red" Text="Please enter your credit card number" ErrorMessage="*" Font-Size="Smaller" ValidationGroup="payment"></asp:RequiredFieldValidator>
-                        </td>
-                    </tr>                                    
-                    <tr>
-                        <td style="width: 150px;" align="right">
-                            CVC Code:<span style="color:Red">*</span>
-                        </td>
-                        <td align="left">
-                            <asp:TextBox ID="txtCVCCode" runat="server" Text="123" Width="60px" CssClass="TextBox"></asp:TextBox>
-                            <br />
-                            <asp:RequiredFieldValidator ID="rfvtxtCVCCode" Display="Dynamic" ControlToValidate="txtCVCCode"
-                                runat="server" ForeColor="Red" Text="Please enter your 3-digit CVC code" ErrorMessage="*" ValidationGroup="payment" Font-Size="Smaller"></asp:RequiredFieldValidator>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="width: 150px;" align="right">
-                            Expiration Date:<span style="color:Red">*</span>
-                        </td>
-                        <td style="text-align: left">
-                            <asp:DropDownList ID="ddlMonth" runat="server" Width="70px" CssClass="Dropdown">
-                                <asp:ListItem Value="0">-</asp:ListItem>
-                                <asp:ListItem Value="01" Selected="True">Jan</asp:ListItem>
-                                <asp:ListItem Value="02">Feb</asp:ListItem>
-                                <asp:ListItem Value="03">Mar</asp:ListItem>
-                                <asp:ListItem Value="04">Apr</asp:ListItem>
-                                <asp:ListItem Value="05">May</asp:ListItem>
-                                <asp:ListItem Value="06">Jun</asp:ListItem>
-                                <asp:ListItem Value="07">Jul</asp:ListItem>
-                                <asp:ListItem Value="08">Aug</asp:ListItem>
-                                <asp:ListItem Value="09">Sep</asp:ListItem>
-                                <asp:ListItem Value="10">Oct</asp:ListItem>
-                                <asp:ListItem Value="11">Nov</asp:ListItem>
-                                <asp:ListItem Value="12">Dec</asp:ListItem>
-                            </asp:DropDownList>
-                            &nbsp;
-                            <asp:DropDownList ID="drdYear" runat="server" Width="70px" CssClass="Dropdown">
-                                <asp:ListItem Value="0">-</asp:ListItem>
-                                <asp:ListItem Value="2014">2014</asp:ListItem>
-                                <asp:ListItem Value="2015">2015</asp:ListItem>
-                                <asp:ListItem Value="2016" Selected="True">2016</asp:ListItem>
-                                <asp:ListItem Value="2017">2017</asp:ListItem>
-                                <asp:ListItem Value="2018">2018</asp:ListItem>
-                                <asp:ListItem Value="2019">2019</asp:ListItem>
-                                <asp:ListItem Value="2020">2020</asp:ListItem>
-                                <asp:ListItem Value="2021">2021</asp:ListItem>
-                            </asp:DropDownList>
-                            <br />
-                                <asp:CustomValidator ID="DdlCustomValidator" runat="server" ForeColor="Red" ErrorMessage="Please select your expiration date" Display="Dynamic" ClientValidationFunction="DdlCustomValidator_ClientValidate" Font-Size="Smaller" ValidationGroup="payment" />
-                        </td>
-                    </tr>
-                </table> 
-                <div style="text-align:center;margin-top:15px"><asp:Button ID="btnLogin" runat="server" Text="Update" CssClass="Button" /></div>
+                </table>
+                <asp:ModalPopupExtender ID="ModalPopupChangePassword" runat="server" X="250"
+                    CancelControlID="btnCloseChangePassword" PopupDragHandleControlID="pnChangePasswordDrag"
+                    PopupControlID="pnChangePassword"
+                    TargetControlID="spanChangePassword" DynamicServicePath="" Enabled="True">
+                </asp:ModalPopupExtender>
             </ContentTemplate>
         </asp:TabPanel>
         <asp:TabPanel runat="server" HeaderText="General Information" ID="TabPanelGeneral">
             <ContentTemplate>
-                <br />
-                <p>We will delivery your door and collect the money!</p>  
-                <p>Please add delivery charges 10,000 VND to 30,000 VND HCM City and other areas outside of HCMC.</p>
-                <br />
-                <div style="text-align:center;margin-top:15px"><asp:Button ID="btnGenaral" runat="server" Text="Update" CssClass="Button"/></div>
+                <table width="100%">
+                    <tr>
+                        <td valign="top" colspan="2">
+                            <b style="font-size: 13px">General Information</b>
+                        </td>
+                    </tr>
+                    <tr>
+                    <td style="width: 150px;" align="right" valign="top" class="body">
+                        First Name:</td>
+                    <td align="left" valign="top"><asp:TextBox ID="txtFirstName" runat="server" CssClass="TextBox" MaxLength="50" />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtFirstName" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="General"></asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr>
+                    <td align="right" valign="top" class="body" >
+                        Last Name:</td>
+                    <td align="left" valign="top"><asp:TextBox ID="txtLastName" runat="server" CssClass="TextBox" MaxLength="50" />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtLastName" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="General"></asp:RequiredFieldValidator>
+                    </td>
+                    </tr>
+                    <tr>
+                    <td align="right" valign="top" class="body">
+                        Email:</td>
+                    <td align="left" valign="top"><asp:TextBox ID="txtEmail" runat="server" CssClass="TextBox" />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtEmail" ErrorMessage="(*)" ForeColor="Red" Display="Dynamic" ValidationGroup="General"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail" Display="Dynamic" ErrorMessage="(*)" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="General"></asp:RegularExpressionValidator>
+                    </td>
+                    </tr>                        
+                    <tr>
+                    <td align="right" valign="top" class="body">
+                        Phone:</td>
+                    <td align="left" valign="top"><asp:TextBox ID="txtPhone" runat="server" CssClass="TextBox" MaxLength="20" />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtPhone" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="General"></asp:RequiredFieldValidator>
+                    </td>
+                    </tr>                       
+                    <tr>
+                    <td align="right" valign="top" class="body">
+                        Date Of Birth:</td>
+                    <td align="left" valign="top"><asp:TextBox ID="txtDateOfBirth" runat="server" CssClass="TextBox" placeholder="mm/dd/yyyy" />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtDateOfBirth" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="General"></asp:RequiredFieldValidator>
+                        <asp:CalendarExtender ID="txtDateOfBirth_CalendarExtender" runat="server" CssClass="orange" Enabled="True" Format="MM/dd/yyyy" TargetControlID="txtDateOfBirth">
+                        </asp:CalendarExtender>                
+                    </td>
+                    </tr>
+                    <tr>
+                    <td align="right" valign="top" class="body">
+                        Gender:</td>
+                    <td align="left" valign="top">
+                        <asp:RadioButtonList ID="rdbtnGender" runat="server" RepeatDirection="Horizontal" CellPadding="10" CellSpacing="10" CssClass="RadioButton">
+                            <asp:ListItem Selected="True" Text="Male" Value="true"></asp:ListItem>
+                            <asp:ListItem Text="FeMale" Value="fasle"></asp:ListItem>
+                        </asp:RadioButtonList>
+                    </td>
+                    </tr>
+                    </tr>
+                    <td align="right" class="body" valign="top">Date Created:</td>
+                    <td align="left" valign="top">
+                        <asp:Label ID="lbDateCreated" runat="server"></asp:Label>
+                    </td>
+                    <tr>
+                    <td></td>
+                    <td><asp:Button ID="btnGenaral" runat="server" class="Button" Text="Update" ValidationGroup="General" OnClick="btnGenaral_Click" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <asp:Label ID="lbMessageGenaral" runat="server" Font-Bold="True" ForeColor="#0000CC"></asp:Label></td>
+                    </tr>
+                </table>
             </ContentTemplate>
         </asp:TabPanel>
         <asp:TabPanel runat="server" HeaderText="Address information" ID="TabPanelAddress">
             <ContentTemplate>
-                <br />
-                <p>You go to the following address to pay us:</p>
-                <br />
-                <p>Head office: 97 - 101 Nguyen Cong Tru Street, Nguyen Thai Binh Ward, District 1, Ho Chi Minh City, Vietnam</p> 
-                <p>Office: Hall 3, Quang Trung Software City, Tan Chanh Hiep Ward, District 12, Ho Chi Minh City, Vietnam</p> 
-                <br />
-                <p>E-mail: 	htphongqn@htp.com.vn</p> 
-                <p>Telephone: 	(84-8) 3715 8999</p> 
-                <p>Fax: 	(84-8) 3715 5985</p> 
-                <br />
-                <div style="text-align:center;margin-top:15px"><asp:Button ID="btnAddress" runat="server" Text="Update" CssClass="Button" /></div>
+                <table width="100%">
+                    <tr>
+                        <td valign="top" colspan="2">
+                            <b style="font-size: 13px">Address Information</b>
+                        </td>
+                    </tr>
+                    <tr>
+                    <td style="width: 150px;" align="right" valign="top" class="body">
+                        Street1:</td>
+                    <td align="left" valign="top"><asp:TextBox ID="txtStreet1" runat="server" CssClass="TextBox" MaxLength="50" />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtStreet1" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="Address"></asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr>
+                    <td align="right" valign="top" class="body" >
+                        Street2:</td>
+                    <td align="left" valign="top"><asp:TextBox ID="txtStreet2" runat="server" CssClass="TextBox" MaxLength="50" />
+                    </td>
+                    </tr>
+                    <tr>
+                    <td align="right" valign="top" class="body">
+                        City:</td>
+                    <td align="left" valign="top"><asp:TextBox ID="txtCity" runat="server" CssClass="TextBox" />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtCity" ErrorMessage="(*)" ForeColor="Red" Display="Dynamic" ValidationGroup="Address"></asp:RequiredFieldValidator>
+                    </td>
+                    </tr>                        
+                    <tr>
+                    <td align="right" valign="top" class="body">
+                        State:</td>
+                    <td align="left" valign="top"><asp:TextBox ID="txtState" runat="server" CssClass="TextBox" MaxLength="20" />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtState" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="Address"></asp:RequiredFieldValidator>
+                    </td>
+                    </tr>                       
+                    <tr>
+                    <td align="right" valign="top" class="body">
+                        Country:</td>
+                    <td align="left" valign="top"><asp:TextBox ID="txtCountry" runat="server" CssClass="TextBox" />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtCountry" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="Address"></asp:RequiredFieldValidator>                
+                    </td>
+                    </tr>
+                    <tr>
+                    <td align="right" valign="top" class="body">
+                        Zip Code:</td>
+                    <td align="left" valign="top">
+                        <asp:TextBox ID="txtZipCode" runat="server" CssClass="TextBox" />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtZipCode" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="Address"></asp:RequiredFieldValidator>                
+                    </td>
+                    </td>
+                    </tr>
+                    <tr>
+                    <td></td>
+                    <td><asp:Button ID="btnAddress" runat="server" class="Button" Text="Update" ValidationGroup="Address" OnClick="btnAddress_Click" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <asp:Label ID="lbMessageAddress" runat="server" Font-Bold="True" ForeColor="#0000CC"></asp:Label></td>
+                    </tr>
+                </table>                
             </ContentTemplate>
         </asp:TabPanel>
     </asp:TabContainer>
+    </div>
+   
+    <asp:Panel ID="pnChangePassword" CssClass="Popup" runat="server" Width="500px" Style="display: none;">
+        <asp:Panel ID="pnChangePasswordDrag" CssClass="PopupTitle" runat="server">Change Password Form</asp:Panel>
+        <div class="PopupTable">                                
+        <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+            <ContentTemplate>
+            <table width="100%" border="0" cellpadding="2" cellspacing="5">
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><asp:Label ID="lbChangePassword" runat="server" EnableViewState="false" ForeColor="Red" /></td>
+                </tr>
+                <tr>
+                    <td style="text-align:right;width:170px"><strong>Current Password:</strong>
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtCurrentPassword" CssClass="TextBox" placeholder="Input current password" runat="server" TextMode="Password"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtCurrentPassword" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="change"></asp:RequiredFieldValidator>
+                    </td>
+                </tr>                            
+                <tr>
+                    <td style="text-align: right"><strong>New Password:</strong>
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtNewPassword" CssClass="TextBox" placeholder="Input new password" runat="server" TextMode="Password"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="txtNewPassword" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="change"></asp:RequiredFieldValidator>
+                    </td>
+                </tr>                            
+                <tr>
+                    <td style="text-align: right"><strong>Confirm Password:</strong>
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtConfirmPassword" CssClass="TextBox" placeholder="Input confirm password" runat="server" TextMode="Password"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="txtConfirmPassword" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="change"></asp:RequiredFieldValidator>
+                        <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtNewPassword" ControlToValidate="txtConfirmPassword" Display="Dynamic" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="change"></asp:CompareValidator>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right">&nbsp;</td>
+                    <td>      
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <asp:Button ID="btnOkChangePassword" runat="server" CssClass="Button" Text="Ok" ValidationGroup="change" OnClick="UpdatePassword"/>
+                        <asp:Button ID="btnCloseChangePassword" runat="server" CssClass="Button" Text="Cancel" OnClick="CloseChangePasswordForm" />
+                    </td>
+                </tr>
+            </table>
+            </ContentTemplate>
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="btnOkChangePassword" EventName="Click" />
+            </Triggers>
+        </asp:UpdatePanel>
+        </div>
+    </asp:Panel>
 </asp:Content>

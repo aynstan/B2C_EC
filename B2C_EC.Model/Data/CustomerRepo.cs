@@ -52,7 +52,9 @@ namespace B2C_EC.Model.Data
         {
             try
             {
-                db.Entry(C).State = EntityState.Modified;
+                var v = GetById(C.ID);
+                db.Entry(v).CurrentValues.SetValues(C);
+                //db.Entry(C).State = EntityState.Modified;
                 return db.SaveChanges();
             }
             catch (Exception e)

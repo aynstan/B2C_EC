@@ -94,7 +94,10 @@ namespace B2C_EC.Website
                 ModalPopupLogin.Show();
             }
         }
-
+        protected void CloseLoginForm(object sender, EventArgs e)
+        {
+            ModalPopupLogin.Hide();
+        }
         protected void lnksms_Click(object sender, EventArgs e)
         {
             if (txtNewsletter.Text.Length > 0)

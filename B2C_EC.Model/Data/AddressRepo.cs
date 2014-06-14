@@ -11,6 +11,11 @@ namespace B2C_EC.Model.Data
     public class AddressRepo
     {
         private B2C_ECEntities db = new B2C_ECEntities();
+
+        public Address GetById(int Id)
+        {
+            return db.Addresses.Find(Id);
+        }
         public int CreateAddress(Address A)
         {
             try
@@ -28,7 +33,9 @@ namespace B2C_EC.Model.Data
         {
             try
             {
-                db.Entry(A).State = EntityState.Modified;
+                var v = GetById(A.ID);
+                db.Entry(v).CurrentValues.SetValues(A);
+                //db.Entry(A).State = EntityState.Modified;
                 return db.SaveChanges();
             }
             catch (Exception e)
