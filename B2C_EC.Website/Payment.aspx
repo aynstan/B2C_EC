@@ -101,7 +101,7 @@
                 </td>
                 <td>                    
                     <p class="checkoutTitle">PAYMENT INFORMATION</p>
-                    <asp:TabContainer ID="tabContainer" runat="server" ActiveTabIndex="2" Width="96%">
+                    <asp:TabContainer ID="tabContainer" runat="server" ActiveTabIndex="0" Width="96%">
                         <asp:TabPanel runat="server" HeaderText="Online Payment" ID="TabPaneOnlinePayment">
                             <ContentTemplate>                                
                                 <table style="width:100%">
