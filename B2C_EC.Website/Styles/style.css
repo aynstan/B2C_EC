@@ -45,7 +45,7 @@ body {
 .header-aside {
 	float:right;
 	overflow:hidden;
-	width:750px;
+	width:780px;
 	margin-top:23px;
 }
 .header-aside .span {
@@ -729,6 +729,14 @@ color: #0066c0;
 #viewcart .textbox input[type='text']
 {
     text-align:center;
+}
+.checkoutTitle {
+font-weight: bold;
+font-size: 14px;
+text-align:left;
+color: #056BCD;
+margin: 10px 0;
+text-transform: uppercase;
 }
 #viewcart .checkoutTitle {
 font-weight: bold;

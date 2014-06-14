@@ -47,8 +47,8 @@
                                             <asp:Label ID="lblMember" runat="server" Visible="false" Text=""></asp:Label>
                                             <asp:LinkButton ID="lnkSignIn" CssClass="log" runat="server" Visible="true" Text="LogIn"></asp:LinkButton>
                                         </li>
-                                        <li>
-                                            <asp:LinkButton ID="lnkSignOut" CssClass="user" runat="server" Visible="false" Text="Log Out" OnClick="lnkSignOut_Click"></asp:LinkButton>
+                                        <li>   
+                                            <asp:LinkButton ID="lnkSignOut" CssClass="user" runat="server" Visible="false" Text="Log Out" OnClick="lnkSignOut_Click"></asp:LinkButton>                                         
                                             <asp:LinkButton ID="lnkRegister" CssClass="user" runat="server" PostBackUrl="~/Register.aspx">register</asp:LinkButton>
                                         </li>
                                         <!-- Login Pop Ajax Control Tool Kit -->
