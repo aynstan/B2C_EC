@@ -45,7 +45,7 @@ namespace B2C_EC.Model.Data
         }
         public User GetUserByLogin(string UserName)
         {
-            return (new B2C_ECEntities()).Users.Where(u => u.Username == UserName/* && u.Password == Password*/).FirstOrDefault();
+            return (new B2C_ECEntities()).Users.Where(u => u.Username == UserName && u.IsActive == true).FirstOrDefault();
         }
 
         public int DeleteUser(User u)

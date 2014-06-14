@@ -59,24 +59,10 @@ namespace HoangQuanMobile.Website.Account
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            bool status = CheckAccount(txtUserName.Text, txtPass.Text);
-            byte[] data = Encoding.ASCII.GetBytes(txtPass.Text);
-            SHA512 sha5 = new SHA512Managed();
-            byte[] result = sha5.ComputeHash(data);
-            string chuoiMaHoa = Encoding.ASCII.GetString(result);
-            User acc = (new UserRepo()).GetUserByLogin(txtUserName.Text);
-            string positionid;
-            try
-            {
-                //positionid = acc.positionid.ToString();
-            }
-            catch
-            {
-                Response.Redirect("~/Error.html");
-            }
+            bool status = CheckAccount(txtUserName.Text, txtPass.Text);            
             if (status == false)
             {
-                lbLoiUser.Text = "<script>alert('Tên đăng nhập hoặc Mật khẩu không đúng')</script>";
+                Response.Write("<script>alert('Username or password is not correct')</script>");
             }
             else if (status == true)
             {
