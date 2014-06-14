@@ -26,7 +26,7 @@ namespace B2C_EC.Website.Admincp
         {
             if (Request.QueryString["ID"] != null)
             {
-                Product p = productRepo.GetByProductID(ToSQL.SQLToInt(Request.QueryString["ID"]));
+                Product p = productRepo.GetById(ToSQL.SQLToInt(Request.QueryString["ID"]));
                 if (p != null)
                 {
                     txtID.Text = p.ID.ToString();

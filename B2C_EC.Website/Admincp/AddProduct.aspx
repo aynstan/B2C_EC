@@ -115,7 +115,8 @@
                     <td>
                         Image Default</td>
                     <td>
-                        &nbsp;</td>
+                        <asp:FileUpload ID="fulImageDefault" runat="server" />
+                    </td>
                 </tr>
                 <tr>
                     <td>

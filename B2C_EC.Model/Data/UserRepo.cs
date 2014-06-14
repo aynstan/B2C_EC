@@ -60,11 +60,10 @@ namespace B2C_EC.Model.Data
             {
                 throw new Exception(e.Message);
             }
-
         }
         public User GetUserByUsername(string username)
         {
-            return (new B2C_ECEntities()).Users.Where(u => u.Username == username).FirstOrDefault();
+            return db.Users.Where(u => u.Username == username).FirstOrDefault();
         }
         public bool DoesEmailExist(string email)
         {

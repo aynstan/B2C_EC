@@ -65,7 +65,6 @@ namespace HoangQuanMobile.Website.Account
             byte[] result = sha5.ComputeHash(data);
             string chuoiMaHoa = Encoding.ASCII.GetString(result);
             User acc = (new UserRepo()).GetUserByUsername(txtUserName.Text);
-            string positionid;
             try
             {
                 //positionid = acc.positionid.ToString();
@@ -73,10 +72,12 @@ namespace HoangQuanMobile.Website.Account
             catch
             {
                 Response.Redirect("~/Error.html");
-            }
+            }          
+
             if (status == false)
             {
-                lbErrorUser.Text = "<script>alert('Tên đăng nhập hoặc Mật khẩu không đúng')</script>";
+                Response.Write("<script>alert('Username or password is not correct')</script>");
+                //lbErrorUser.Text = "<script>alert('Tên đăng nhập hoặc Mật khẩu không đúng')</script>";
             }
             else if (status == true)
             {

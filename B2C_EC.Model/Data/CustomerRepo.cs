@@ -59,7 +59,6 @@ namespace B2C_EC.Model.Data
             {
                 throw new Exception(e.Message);
             }
-
         }
         public Customer GetCustomerByUsername(string username)
         {
