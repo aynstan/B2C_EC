@@ -378,3 +378,8 @@ table .chb{
 .align-left{ text-align: left; }
 .align-right{ text-align: right; }
 .align-center{ text-align: center; }
+
+.MultiFile-remove {
+    height:10px;
+    background: #F3F3F3 url(../Resources/Admin/i_delete.png) no-repeat 4px center;	padding-left: 25px;
+}

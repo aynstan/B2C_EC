@@ -29,6 +29,19 @@ namespace B2C_EC.Website.Admincp
             ddlProductType.DataBind();
         }
 
+        private string UploadImage(HttpPostedFile PostedFile)
+        {
+            try
+            {
+                PostedFile.SaveAs(Server.MapPath("~/Resources/ImagesProduct/" + PostedFile.FileName));
+                return PostedFile.FileName;
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
         protected void btnSave_Click(object sender, EventArgs e)
         {
             Product p = new Product();
@@ -41,6 +54,17 @@ namespace B2C_EC.Website.Admincp
             p.IsBestSelling = chkBestSelling.Checked;
             p.IsNew = chkNew.Checked;
             p.IsSpecial = chkSpecial.Checked;
+            if (fulImageDefault.HasFile)
+            {
+                ImagesProduct image = new ImagesProduct();
+                string url = UploadImage(fulImageDefault.PostedFile);
+                if (url != "")
+                {
+                    image.ImageURL = url;
+                    image.IsDefault = true;
+                    p.ImagesProducts.Add(image);
+                }
+            }
             if (productRepo.CreateProduct(p) > 0)
             {
                 Response.Redirect("~/Admincp/Management-Products.aspx");
