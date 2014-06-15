@@ -73,7 +73,8 @@ namespace B2C_EC.Website
         }
         protected void grvViewCart_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            TextBox txtQuantity = (TextBox)grvViewCart.Rows[e.RowIndex].Cells[1].Controls[0];
+            //TextBox txtQuantity = (TextBox)grvViewCart.Rows[e.RowIndex].Cells[1].Controls[0];
+            TextBox txtQuantity = (TextBox)grvViewCart.Rows[e.RowIndex].Cells[1].FindControl("txtQuantity");
             List<Cart> carts = (List<Cart>)Session["Carts"];
             int ProductID = ToSQL.SQLToInt(grvViewCart.DataKeys[e.RowIndex]["ProductID"]);
             Cart cart = new Cart(carts);

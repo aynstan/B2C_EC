@@ -1,4 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/B2C_EC.Master" AutoEventWireup="true" CodeBehind="ViewCart.aspx.cs" Inherits="B2C_EC.Website.ViewCart" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script language="javascript" type="text/javascript">
         function selectAll(this_select) {
@@ -38,9 +40,18 @@
                                 <HeaderStyle HorizontalAlign="Left" />
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:TemplateField>
-                            <asp:BoundField DataField="Quantity" HeaderText="Quantity" >
-                            <ItemStyle HorizontalAlign="Center" Width="100px" CssClass="textbox" />
-                            </asp:BoundField>
+                            <asp:TemplateField HeaderText="Quantity">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtQuantity" runat="server" Text='<%# Bind("Quantity") %>' MaxLength="2"></asp:TextBox>
+                                    <asp:NumericUpDownExtender ID="NumericUpDownExtender2" runat="server"  
+                                        TargetControlID="txtQuantity" Width="50" RefValues="" ServiceDownMethod=""  
+                                        ServiceUpMethod="" TargetButtonDownID="" TargetButtonUpID="" Minimum = "1"  Maximum = "10" />
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("Quantity") %>'></asp:Label>
+                                </ItemTemplate>
+                                <ItemStyle CssClass="textbox" HorizontalAlign="Center" Width="100px" />
+                            </asp:TemplateField>
                             <asp:BoundField DataField="Price" DataFormatString="${0:#,###.##}" HeaderText="Price"
                                 HtmlEncode="False" ReadOnly="True" >
                             <ItemStyle HorizontalAlign="Center" Width="150px" ForeColor="#B12704" />
