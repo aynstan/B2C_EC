@@ -17,7 +17,10 @@ namespace B2C_EC.Website.Admincp
         UserRepo userRepo = new UserRepo();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                LoadUser();
+            }
         }
 
         private void LoadUser()

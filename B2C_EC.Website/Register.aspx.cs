@@ -48,7 +48,7 @@ namespace B2C_EC.Website
             customer.DateCreated = DateTime.Now;
             int i = customerrepo.CreateCustomer(customer);
             Session["Customer"] = customer;
-            Response.Redirect("Index.aspx");
+            Response.Redirect("CustomerInfo.aspx");
         }
     }
 }

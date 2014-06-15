@@ -13,8 +13,8 @@
                         <Columns>
                             <asp:BoundField HeaderText="ID" DataField="ID" />
                             <asp:BoundField HeaderText="Name" DataField="Name" />
-                            <asp:BoundField HeaderText="PriceOld" DataField="PriceOld" DataFormatString="{0:#,##0}" />
-                            <asp:BoundField HeaderText="PriceNew" DataField="PriceNew" DataFormatString="{0:#,##0}" />
+                            <%--<asp:BoundField HeaderText="PriceOld" DataField="PriceOld" DataFormatString="{0:#,##0}" />--%>
+                            <asp:BoundField HeaderText="Price" DataField="Price" DataFormatString="{0:#,###.##}" />
                             <asp:CheckBoxField HeaderText="IsActive" DataField="IsActive" />
                             <asp:TemplateField>
                                 <ItemTemplate>

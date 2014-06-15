@@ -101,7 +101,7 @@
                                         <td></td>
                                         <td>
                                             <asp:Button ID="btnOk" runat="server" CssClass="Button" Text="Login" OnClick="Login" CausesValidation="False" />
-                                            <asp:Button ID="btnClose" runat="server" CssClass="Button" Text="Cancel" />
+                                            <asp:Button ID="btnClose" runat="server" CssClass="Button" Text="Cancel" OnClick="CloseLoginForm" />
                                         </td>
                                     </tr>
                                 </table>
