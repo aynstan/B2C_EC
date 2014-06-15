@@ -53,9 +53,16 @@ namespace B2C_EC.Model.Data
             try
             {
                 var v = GetById(C.ID);
-                db.Entry(v).CurrentValues.SetValues(C);
-                //db.Entry(C).State = EntityState.Modified;
-                return db.SaveChanges();
+                if (v == null)
+                {
+                    return CreateCustomer(C);
+                }
+                else
+                {
+                    db.Entry(v).CurrentValues.SetValues(C);
+                    //db.Entry(C).State = EntityState.Modified;
+                    return db.SaveChanges();
+                }
             }
             catch (Exception e)
             {

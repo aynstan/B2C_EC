@@ -88,9 +88,7 @@ namespace B2C_EC.Website
             //{
             //    context.Customers.Find(customer.ID).LastName = "Phong 1989";
             //    context.SaveChanges();
-            //}
-
-            
+            //}            
         }
 
         protected void btnAddress_Click(object sender, EventArgs e)
@@ -104,17 +102,21 @@ namespace B2C_EC.Website
             customer.Address.State = ToSQL.EmptyNull(txtState.Text);
             customer.Address.Country = ToSQL.EmptyNull(txtCountry.Text);
             customer.Address.ZipCode = ToSQL.EmptyNull(txtZipCode.Text);
-            
-            if (ToSQL.SQLToInt(customer.Address_ID) > 0)
-            {
-                int a = new AddressRepo().UpdateAddress(customer.Address);
-            }
-            else
-            {
-                int j = new AddressRepo().CreateAddress(customer.Address);
-                customer.Address_ID = customer.Address.ID;
-                int i = new CustomerRepo().UpdateCustomer(customer);
-            }
+
+            int i = new AddressRepo().UpdateAddress(customer.Address);
+            customer.Address_ID = customer.Address.ID;
+            i = new CustomerRepo().UpdateCustomer(customer);
+
+            //if (ToSQL.SQLToInt(customer.Address_ID) > 0)
+            //{
+            //    int a = new AddressRepo().UpdateAddress(customer.Address);
+            //}
+            //else
+            //{
+            //    int j = new AddressRepo().CreateAddress(customer.Address);
+            //    customer.Address_ID = customer.Address.ID;
+            //    int i = new CustomerRepo().UpdateCustomer(customer);
+            //}
 
             Session["Customer"] = new CustomerRepo().GetById(customer.ID);
         }
