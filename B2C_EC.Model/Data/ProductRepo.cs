@@ -88,5 +88,31 @@ namespace B2C_EC.Model.Data
         {
             return db.Products.OrderBy(p => p.DateCreated).ToList();
         }
+
+        public List<Product> GetProductManagement(string Name, decimal price, decimal priceto, int status)
+        {
+            List<Product> list = new List<Product>();
+            switch (status)
+            {
+                case 0:
+                    list = db.Products.Where(p => p.Name.Contains(Name) && (price == 0 || p.Price >= price) && p.Price <= priceto).ToList();
+                    break;
+                case 1:
+                    list = db.Products.Where(p => p.Name.Contains(Name) && p.Price >= price).ToList();
+                    break;
+                case 2:
+                    list = db.Products.Where(p => p.Name.Contains(Name) && p.Price >= price).ToList();
+                    break;
+                case 3:
+                    list = db.Products.Where(p => p.Name.Contains(Name) && p.Price >= price).ToList();
+                    break;
+                case 4:
+                    list = db.Products.Where(p => p.Name.Contains(Name) && p.Price >= price).ToList();
+                    break;
+                default:
+                    break;
+            }
+            return list;
+        }
     }
 }

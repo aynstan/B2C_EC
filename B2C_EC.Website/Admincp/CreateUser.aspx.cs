@@ -90,7 +90,7 @@ namespace B2C_EC.Website.Admincp
             user.Address.ZipCode = txtZipCode.Text;
             user.Phone = txtPhone.Text;
             user.Email = txtEmail.Text;
-            user.IsActive = brtnActive.Checked ? true : false;
+            user.IsActive = chkIsActive.Checked;
             if ((new UserRepo()).CreateUser(user) > 0)
             {
                 Response.Redirect("~/Admincp/Management-User.aspx");

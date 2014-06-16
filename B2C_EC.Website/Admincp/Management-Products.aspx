@@ -7,6 +7,43 @@
         <h2>Management Product Page</h2>
         <p>Here, All product of website will display.</p>
         <div>
+            <fieldset style="width:98%; margin:5px;">
+                <legend><h3>Filter user by:</h3></legend>
+                <div>
+                    <table style="width:95%;">
+                        <tr>
+                            <td>Name:</td>
+                            <td><asp:TextBox ID="txtName" runat="server"></asp:TextBox></td>
+                            <td>Price from:</td>
+                            <td><asp:TextBox ID="txtPriceFrom" runat="server"></asp:TextBox></td>
+                        </tr>
+                        <tr>
+                            <td>Price to:</td>
+                            <td><asp:TextBox ID="txtPriceTo" runat="server"></asp:TextBox>
+                                <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtPriceTo" ControlToValidate="txtPriceFrom" ErrorMessage="(*)" ForeColor="Red" Operator="LessThanEqual" Type="Integer"></asp:CompareValidator>
+                                <br /></td>
+                            <td>Status:</td>
+                            <td><asp:DropDownList ID="ddlStatus" runat="server">
+                                <asp:ListItem Value="0">--All--</asp:ListItem>
+                                <asp:ListItem Value="1">Active</asp:ListItem>
+                                <asp:ListItem Value="2">Best Selling</asp:ListItem>
+                                <asp:ListItem Value="3">Special</asp:ListItem>
+                                <asp:ListItem Value="4">New</asp:ListItem>
+                                </asp:DropDownList></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>
+                                <asp:Button ID="btnFilter" runat="server" CssClass="button" OnClick="btnFilter_Click" Text="Filter" />
+                            </td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </table>
+                </div>
+            </fieldset>
+        </div>
+        <div>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
                     <asp:GridView ID="gvProducts" runat="server" AutoGenerateColumns="False">
@@ -15,7 +52,11 @@
                             <asp:BoundField HeaderText="Name" DataField="Name" />
                             <%--<asp:BoundField HeaderText="PriceOld" DataField="PriceOld" DataFormatString="{0:#,##0}" />--%>
                             <asp:BoundField HeaderText="Price" DataField="Price" DataFormatString="{0:#,###.##}" />
-                            <asp:CheckBoxField HeaderText="IsActive" DataField="IsActive" />
+                            <asp:BoundField DataField="DateCreated" DataFormatString="{0:MM/dd/yyyy}" HeaderText="Date Created" />
+                            <asp:CheckBoxField HeaderText="Best Selling" DataField="IsBestSelling" />
+                            <asp:CheckBoxField DataField="IsNew" HeaderText="New" />
+                            <asp:CheckBoxField DataField="IsSpecial" HeaderText="Special" />
+                            <asp:CheckBoxField DataField="IsActive" HeaderText="IsActive" />
                             <asp:TemplateField>
                                 <ItemTemplate>
                                     <a href='<%# "EditProduct.aspx?ID="+Eval("ID") %>' class="table-icon edit" title="Edit"></a>
@@ -48,6 +89,9 @@
                         &nbsp;
                     </div>
                 </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="btnFilter" EventName="Click" />
+                </Triggers>
             </asp:UpdatePanel>
             
         </div>

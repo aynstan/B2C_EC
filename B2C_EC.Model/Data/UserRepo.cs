@@ -76,9 +76,9 @@ namespace B2C_EC.Model.Data
             return (user != null);
         }
 
-        public List<User> GetManagementUsers(string FName, string LName, string Email, bool IsActive)
+        public List<User> GetManagementUsers(string FName, string LName, string Email, string UserName, bool IsActive)
         {
-            return db.Users.Where(u => u.FirstName.Contains(FName) && u.LastName.Contains(LName) && u.Email.Contains(Email) && u.IsActive == IsActive).ToList();
+            return db.Users.Where(u => u.FirstName.Contains(FName) && u.LastName.Contains(LName) && u.Email.Contains(Email) && u.Username.Contains(UserName) && u.IsActive == IsActive).ToList();
         }
     }
 }

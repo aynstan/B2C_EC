@@ -211,22 +211,22 @@ namespace B2C_EC.Website.Admincp {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
         
         /// <summary>
-        /// brtnActive control.
+        /// chkActive control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton brtnActive;
+        protected global::System.Web.UI.WebControls.CheckBox chkActive;
         
         /// <summary>
-        /// rbtnNotActive control.
+        /// lblError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbtnNotActive;
+        protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
         /// btnSave control.
