@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="full_w">        
+    <div id="customer">        
         <h2>Management Customer Page</h2>
         <p>Here, All customer of website will display.</p>
         <div>
