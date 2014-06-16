@@ -6,15 +6,49 @@
         <h2>Management Users Page</h2>
         <p>Here, All users of website will display.</p>
         <div>
+            <fieldset style="width:98%; margin:5px;">
+                <legend><h3>Filter user by:</h3></legend>
+                <div>
+                    <table style="width:95%;">
+                        <tr>
+                            <td>First Name:</td>
+                            <td><asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox></td>
+                            <td>Last Name:</td>
+                            <td><asp:TextBox ID="txtLastName" runat="server"></asp:TextBox></td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td><asp:TextBox ID="txtEmail" runat="server"></asp:TextBox><br /></td>
+                            <td>Status:</td>
+                            <td><asp:DropDownList ID="ddlStatus" runat="server">
+                                <asp:ListItem Value="0">Active</asp:ListItem>
+                                <asp:ListItem Value="1">Not Active</asp:ListItem>
+                                </asp:DropDownList></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>
+                                <asp:Button ID="btnFilter" runat="server" CssClass="button" OnClick="btnFilter_Click" Text="Filter" />
+                            </td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </table>
+                </div>
+            </fieldset>
+        </div>
+        <div>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <asp:GridView ID="gvUsers" runat="server" AutoGenerateColumns="False">
+                    <asp:GridView ID="gvUsers" runat="server" AutoGenerateColumns="False" EmptyDataText="Not found users for filter">
                         <Columns>
                             <asp:BoundField HeaderText="ID" DataField="ID" />
                             <asp:BoundField HeaderText="First Name" DataField="FirstName" />
                             <asp:BoundField HeaderText="Last Name" DataField="LastName" />
+                            <asp:BoundField DataField="Username" HeaderText="User Name" />
                             <asp:BoundField HeaderText="Phone" DataField="Phone" />
                             <asp:BoundField HeaderText="Email" DataField="Email" />
+                            <asp:BoundField DataField="DateCreated" DataFormatString="{0:dd/MM/yyyy}" HeaderText="Date Created" />
                             <asp:CheckBoxField HeaderText="IsActive" DataField="IsActive" />
                             <asp:TemplateField>
                                 <ItemTemplate>
@@ -49,7 +83,8 @@
                     </div>
                 </ContentTemplate>
                 <Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="rptPaging" />
+                    <asp:AsyncPostBackTrigger ControlID="rptPaging" EventName="ItemCommand" />
+                    <asp:AsyncPostBackTrigger ControlID="btnFilter" EventName="Click" />
                 </Triggers>
             </asp:UpdatePanel>
             

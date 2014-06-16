@@ -90,7 +90,7 @@ namespace B2C_EC.Website.Admincp
 
         private void BindItemsList()
         {
-            List<User> users = userRepo.GetAllUser();
+            List<User> users = userRepo.GetManagementUsers(txtFirstName.Text, txtLastName.Text, txtEmail.Text, ddlStatus.SelectedIndex == 0 ? true : false);
             _PageDataSource.DataSource = users;
             _PageDataSource.AllowPaging = true;
             _PageDataSource.PageSize = 2;
@@ -185,7 +185,10 @@ namespace B2C_EC.Website.Admincp
                 lnkbtnPage.ForeColor = System.Drawing.ColorTranslator.FromHtml("#000");
             }
         }
-
-        #endregion
+        protected void btnFilter_Click(object sender, EventArgs e)
+        {
+            BindItemsList();
+        }
+        #endregion       
     }
 }
