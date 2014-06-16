@@ -55,7 +55,6 @@ namespace B2C_EC.Website.Admincp
             p.IsBestSelling = chkBestSelling.Checked;
             p.IsNew = chkNew.Checked;
             p.IsSpecial = chkSpecial.Checked;
-            int fileCount = 0;
             if (fulImageDefault.HasFile)
             {
                 ProductImage image = new ProductImage();
@@ -64,15 +63,13 @@ namespace B2C_EC.Website.Admincp
                 {
                     image.Image = url;
                     image.IsDefault = true;
-                    fileCount = 1;
                     p.ProductImages.Add(image);
                 }
             }
             HttpFileCollection uploads = Request.Files;
             //for (int fileCount = 0; fileCount < uploads.Count; fileCount++)
-            for (int i = fileCount; i < uploads.Count; i++)
+            foreach (HttpPostedFile uploadedFile in FileUploadJquery.PostedFiles)
             {
-                HttpPostedFile uploadedFile = uploads[i];
                 ProductImage image = new ProductImage();
                 string url = UploadImage(fulImageDefault.PostedFile);
                 if (url != "")

@@ -56,7 +56,7 @@ namespace B2C_EC.Website
                 lnkSignOut.Visible = true;
                 lnkSignIn.Visible = false;
                 lblMember.Visible = true;
-                lblMember.Text = "Welcome,<a href='CustomerInfo.aspx'>" + ((Customer)Session["Customer"]).FirstName + "!</a>";
+                lblMember.Text = "Welcome, " + "<a href='CustomerInfo.aspx'>" + ((Customer)Session["Customer"]).FirstName + "!</a>";
             }
         }
 
