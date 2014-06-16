@@ -21,6 +21,7 @@
                             <asp:BoundField DataField="Phone" HeaderText="Phone" />
                             <asp:BoundField DataField="Email" HeaderText="Email" />
                             <asp:BoundField DataField="DateOfBirth" HeaderText="Date Of Birth" DataFormatString="{0:dd/MM/yyyy}" />
+                            <asp:BoundField DataField="DateCreated" HeaderText="Date Created" />
                             <asp:TemplateField>
                                 <ItemTemplate>
                                     <a href='<%# "EditProduct.aspx?ID="+Eval("ID") %>' class="table-icon edit" title="Edit"></a>

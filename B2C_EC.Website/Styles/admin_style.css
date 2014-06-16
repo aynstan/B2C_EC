@@ -46,7 +46,7 @@ button:hover, .button:hover{
 
 .wrap{
 	margin: 0 auto;
-	min-width: 900px;
+	width: 100%;
 }
 
 #header #top{
