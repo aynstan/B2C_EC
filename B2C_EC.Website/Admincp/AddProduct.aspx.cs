@@ -3,6 +3,7 @@ using B2C_EC.Model.Data;
 using B2C_EC.Model.Global;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -54,15 +55,31 @@ namespace B2C_EC.Website.Admincp
             p.IsBestSelling = chkBestSelling.Checked;
             p.IsNew = chkNew.Checked;
             p.IsSpecial = chkSpecial.Checked;
+            int fileCount = 0;
             if (fulImageDefault.HasFile)
             {
-                ImagesProduct image = new ImagesProduct();
+                ProductImage image = new ProductImage();
                 string url = UploadImage(fulImageDefault.PostedFile);
                 if (url != "")
                 {
-                    image.ImageURL = url;
+                    image.Image = url;
                     image.IsDefault = true;
-                    p.ImagesProducts.Add(image);
+                    fileCount = 1;
+                    p.ProductImages.Add(image);
+                }
+            }
+            HttpFileCollection uploads = Request.Files;
+            //for (int fileCount = 0; fileCount < uploads.Count; fileCount++)
+            for (int i = fileCount; i < uploads.Count; i++)
+            {
+                HttpPostedFile uploadedFile = uploads[i];
+                ProductImage image = new ProductImage();
+                string url = UploadImage(fulImageDefault.PostedFile);
+                if (url != "")
+                {
+                    image.Image = url;
+                    image.IsDefault = false;
+                    p.ProductImages.Add(image);
                 }
             }
             if (productRepo.CreateProduct(p) > 0)
