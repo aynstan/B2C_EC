@@ -129,7 +129,6 @@ button:hover, .button:hover{
 #content #main{
 	float: left;
 	margin: 0 0 12px 0;
-	min-width: 680px;
 }
 
 #content #main ul, #content #main ol{
