@@ -46,7 +46,7 @@ button:hover, .button:hover{
 
 .wrap{
 	margin: 0 auto;
-	min-width: 900px;
+	width: 100%;
 }
 
 #header #top{
@@ -129,7 +129,6 @@ button:hover, .button:hover{
 #content #main{
 	float: left;
 	margin: 0 0 12px 0;
-	min-width: 680px;
 }
 
 #content #main ul, #content #main ol{
