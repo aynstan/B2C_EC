@@ -52,20 +52,20 @@
                                 <li>&#8250; <a href="">Categories</a></li>
                             </ul>
                         </li>--%>
-                        <li class="upp"><a href="#">Manage Users</a>
+                        <li class="upp"><a href="#">Manage User</a>
                             <ul>
                                 <li>&#8250; <a href="Management-User.aspx">Show all users</a></li>
                                 <li>&#8250; <a href="CreateUser.aspx">Add new user</a></li>
                                 <li>&#8250; <a href="#">Lock users</a></li>
                             </ul>
                         </li>
-                        <li class="upp"><a href="#">Manage Orders</a>
+                        <li class="upp"><a href="#">Manage Order</a>
                             <ul>
                                 <li>&#8250; <a href="Management-Order.aspx">Show all orders</a></li>
                                 <li>&#8250; <a href="">Status orders</a></li>
                             </ul>
                         </li>
-                        <li class="upp"><a href="#">Manage Products</a>
+                        <li class="upp"><a href="#">Manage Product</a>
                             <ul>
                                 <li>&#8250; <a href="Management-Products.aspx">Show all products</a></li>
                                 <li>&#8250; <a href="AddProduct.aspx">Add new product</a></li>
@@ -93,7 +93,7 @@
                         </ul>
                     </div>--%>                    
                     <div class="box">
-                        <div class="h_title">› Manage Users</div>
+                        <div class="h_title">› Manage User</div>
                         <ul>
                             <li class="b1"><a class="icon users" href="Management-User.aspx">Show all users</a></li>
                             <li class="b2"><a class="icon add_user" href="CreateUser.aspx">Add new user</a></li>
@@ -101,28 +101,28 @@
                         </ul>
                     </div>
                     <div class="box">
-                        <div class="h_title">› Manage Orders</div>
+                        <div class="h_title">› Manage Order</div>
                         <ul>
                             <li class="b1"><a class="icon page" href="Management-Order.aspx">Show all orders</a></li>
                             <li class="b2"><a class="icon photo" href="">Status orders</a></li>
                         </ul>
                     </div>
                     <div class="box">
-                        <div class="h_title">&#8250; Manage Products</div>
+                        <div class="h_title">› Manage Product</div>
                         <ul>
                             <li class="b1"><a class="icon page" href="Management-Products.aspx">Show all products</a></li>
                             <li class="b2"><a class="icon add_page" href="AddProduct.aspx">Add new product</a></li>
                         </ul>
                     </div>
                     <div class="box">
-                        <div class="h_title">&#8250; Manage Product Types</div>
+                        <div class="h_title">› Manage Product Type</div>
                         <ul>
                             <li class="b1"><a class="icon page" href="Management-ProductType.aspx">Show all product types</a></li>
                             <li class="b2"><a class="icon add_page" href="AddProductType.aspx">Add new product type</a></li>
                         </ul>
                     </div>
                     <div class="box">
-                        <div class="h_title">&#8250; Manage Manufacturers</div>
+                        <div class="h_title">› Manage Manufacturer</div>
                         <ul>
                             <li class="b1"><a class="icon page" href="Management-Manafacturer.aspx">Show all manufacturers</a></li>
                             <li class="b2"><a class="icon add_page" href="ManufacturerDetails.aspx?Action=ADD">Add new manufacturer</a></li>

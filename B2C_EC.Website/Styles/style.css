@@ -69,9 +69,9 @@ body {
 }
 .header-aside ul li a {
 	font:12px/26px Arial, Helvetica, sans-serif;
-	display:block;
+	/*display:block;*/
 	color:#454;
-	text-transform:uppercase;
+	/*text-transform:uppercase*/
 }
 .border {
 	background:url(../Resources/ImagesDesign/divider.jpg) right center no-repeat;
@@ -97,6 +97,7 @@ body {
 .user {
 	background:url(../Resources/ImagesDesign/user.jpg) left 7px no-repeat;
 	padding:7px 0 0 17px;
+    display: block;
 }
 .cart {
 	background:url(../Resources/ImagesDesign/cart-icon.png) left top no-repeat;

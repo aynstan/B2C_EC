@@ -56,13 +56,13 @@ namespace B2C_EC.Website.Admincp
             p.IsSpecial = chkSpecial.Checked;
             if (fulImageDefault.HasFile)
             {
-                ImagesProduct image = new ImagesProduct();
+                ProductImage image = new ProductImage();
                 string url = UploadImage(fulImageDefault.PostedFile);
                 if (url != "")
                 {
-                    image.ImageURL = url;
+                    image.Image = url;
                     image.IsDefault = true;
-                    p.ImagesProducts.Add(image);
+                    p.ProductImages.Add(image);
                 }
             }
             if (productRepo.CreateProduct(p) > 0)
