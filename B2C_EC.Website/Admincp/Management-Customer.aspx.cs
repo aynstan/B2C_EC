@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using B2C_EC.Model.Data;
 using B2C_EC.Model;
+using B2C_EC.Model.Global;
 
 namespace B2C_EC.Website.Admincp
 {
@@ -19,6 +20,10 @@ namespace B2C_EC.Website.Admincp
             {
                 BindItemsList();
             }
+        }
+        protected void btnFilter_Click(object sender, EventArgs e)
+        {
+            BindItemsList();
         }
 
         #region Paging
@@ -85,7 +90,8 @@ namespace B2C_EC.Website.Admincp
 
         private void BindItemsList()
         {
-            List<Customer> users = customerRepo.GetAllCustomer();
+            List<Customer> users = customerRepo.GetManagementCustomers(ToSQL.SQLToInt(txtCustomerID.Text), ToSQL.EmptyNull(txtUsername.Text), ToSQL.EmptyNull(txtFirstName.Text),
+                                                                       ToSQL.EmptyNull(txtLastName.Text), ToSQL.EmptyNull(txtEmail.Text), ToSQL.EmptyNull(txtPhone.Text));
             _PageDataSource.DataSource = users;
             _PageDataSource.AllowPaging = true;
             _PageDataSource.PageSize = 10;
@@ -101,8 +107,8 @@ namespace B2C_EC.Website.Admincp
 
             this.gvProducts.DataSource = _PageDataSource;
             this.gvProducts.DataBind();
-            this.gvProducts.UseAccessibleHeader = true;
-            this.gvProducts.HeaderRow.TableSection = TableRowSection.TableHeader;
+            //this.gvProducts.UseAccessibleHeader = true;
+            //this.gvProducts.HeaderRow.TableSection = TableRowSection.TableHeader;
             this.doPaging();
         }
         private void doPaging()
@@ -182,5 +188,6 @@ namespace B2C_EC.Website.Admincp
         }
 
         #endregion
+
     }
 }

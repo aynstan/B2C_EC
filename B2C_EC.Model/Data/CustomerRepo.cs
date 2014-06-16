@@ -69,6 +69,16 @@ namespace B2C_EC.Model.Data
                 throw new Exception(e.Message);
             }
         }
+        public List<Customer> GetManagementCustomers(int customerID, string username, string firstName, string lastName, string email, string phone)
+        {
+            return db.Customers.Where(u => (customerID.Equals(0) || customerID.Equals(null) || u.ID.Equals(customerID))
+                                        && (username.Equals("") || username.Equals(null) || u.Username.Contains(username))
+                                        && (firstName.Equals("") || firstName.Equals(null) || u.FirstName.Contains(firstName))
+                                        && (lastName.Equals("") || lastName.Equals(null) || u.LastName.Contains(lastName))
+                                        && (email.Equals("") || email.Equals(null) || u.Email.Contains(email))
+                                        && (phone.Equals("") || phone.Equals(null) || u.Phone.Contains(phone))
+                                      ).ToList();
+        }
         public Customer GetCustomerByUsername(string username)
         {
             Customer customer = db.Customers.Where(g => g.Username == username).FirstOrDefault();

@@ -6,7 +6,7 @@
         <h2>Management Customer Page</h2>
         <p>Here, All customer of website will display.</p>
         <div>
-            <table align="center">
+            <table align="center" style="margin:15px">
                 <tr>
                     <td>Customer ID</td>
                     <td>Username</td>
@@ -24,7 +24,7 @@
                     <td><asp:TextBox ID="txtPhone" runat="server"></asp:TextBox></td>
                 </tr>
                 <tr>
-                    <td colspan="6" align="center"><asp:Button ID="btnFilter" runat="server" CssClass="button" Text="Filter" /></td>
+                    <td colspan="6" align="center"><asp:Button ID="btnFilter" runat="server" CssClass="button" Text="Filter" OnClick="btnFilter_Click" /></td>
                 </tr>
             </table>
         </div>
