@@ -25,7 +25,23 @@ namespace B2C_EC.Website.Admincp
         {
             BindItemsList();
         }
+        protected void btnRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LinkButton lnk = (LinkButton)sender;
+                int Id = ToSQL.SQLToInt(lnk.CommandArgument);
+                if (Id > 0)
+                {
+                    int i = new CustomerRepo().DeleteCustomer(Id);
+                    BindItemsList();
+                }
+            }
+            catch
+            {
 
+            }
+        }
         #region Paging
         #region Private Properties
         private int CurrentPage

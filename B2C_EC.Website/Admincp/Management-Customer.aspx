@@ -51,7 +51,7 @@
                                 <ItemTemplate>
                                     <a href='<%# "EditCustomer.aspx?Id="+Eval("ID") %>' class="table-icon edit" title="Edit"></a>
                                     <%--<a href="#" class="table-icon archive" title="Archive"></a>--%>
-                                    <a href="#" class="table-icon delete" title="Delete"></a>
+                                    <asp:LinkButton ID="lnkRemove" runat="server" CssClass="table-icon delete" ToolTip="Remove" CommandArgument='<%# Eval("ID") %>' CausesValidation="false" OnClick="btnRemove_Click" OnClientClick="return confirm('Do you really want to remove this customer?');"></asp:LinkButton>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" Width="50px" />
                             </asp:TemplateField>
