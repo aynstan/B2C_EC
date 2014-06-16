@@ -365,7 +365,10 @@ button:hover, .button:hover{
 /* HELPERS START */
 
 .entry{ color: #444; margin: 5px 0; padding: 5px 15px; text-shadow: 0px 1px #ffffff; }
-.add{ background: #F3F3F3 url(../Resources/Admin/i_add.png) no-repeat 4px center;	padding-left: 25px;}
+.add{ background: #F3F3F3 url(../Resources/Admin/i_add.png) no-repeat 4px center;	padding-left: 25px;
+    top: 0px;
+    left: 0px;
+}
 .cancel{ background: #F3F3F3 url(../Resources/Admin/i_delete.png) no-repeat 4px center;	padding-left: 25px;}
 .sep{ border-bottom: 1px dashed #DDDDDD; margin: 10px 0;}
 

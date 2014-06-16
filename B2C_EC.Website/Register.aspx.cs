@@ -32,7 +32,7 @@ namespace B2C_EC.Website
             {
                 lbMessage.Text = "Email already exists!";
                 lbMessage.ForeColor = System.Drawing.Color.Red;
-                txtUsername.Text = "";
+                txtEmail.Text = "";
                 return;
             }
             Model.Customer customer = new Model.Customer();

@@ -8,6 +8,7 @@
     <meta name="author" content="Paweł 'kilab' Balicki - kilab.pl" />
     <title>SimpleAdmin</title>
     <link rel="stylesheet" type="text/css" href="../Styles/admin_style.css" media="screen" />
+    <link href="../Styles/calendar.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="../Styles/admin_navi.css" media="screen" />
     <script type="text/javascript" src="../Scripts/jquery-1.7.2.min.js"></script>
     <script type="text/javascript">

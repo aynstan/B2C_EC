@@ -50,7 +50,7 @@
                             <asp:TemplateField>
                                 <ItemTemplate>
                                     <a href='<%# "EditProduct.aspx?ID="+Eval("ID") %>' class="table-icon edit" title="Edit"></a>
-                                    <a href="#" class="table-icon archive" title="Archive"></a>
+                                    <%--<a href="#" class="table-icon archive" title="Archive"></a>--%>
                                     <a href="#" class="table-icon delete" title="Delete"></a>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Center" Width="50px" />
