@@ -45,8 +45,10 @@
                             <asp:BoundField HeaderText="ID" DataField="ID" />
                             <asp:BoundField HeaderText="First Name" DataField="FirstName" />
                             <asp:BoundField HeaderText="Last Name" DataField="LastName" />
+                            <asp:BoundField DataField="Username" HeaderText="User Name" />
                             <asp:BoundField HeaderText="Phone" DataField="Phone" />
                             <asp:BoundField HeaderText="Email" DataField="Email" />
+                            <asp:BoundField DataField="DateCreated" DataFormatString="{0:dd/MM/yyyy}" HeaderText="Date Created" />
                             <asp:CheckBoxField HeaderText="IsActive" DataField="IsActive" />
                             <asp:TemplateField>
                                 <ItemTemplate>
@@ -81,7 +83,7 @@
                     </div>
                 </ContentTemplate>
                 <Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="rptPaging" />
+                    <asp:AsyncPostBackTrigger ControlID="rptPaging" EventName="ItemCommand" />
                     <asp:AsyncPostBackTrigger ControlID="btnFilter" EventName="Click" />
                 </Triggers>
             </asp:UpdatePanel>
