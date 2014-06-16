@@ -7,6 +7,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using B2C_EC.Model;
+using B2C_EC.Model.Global;
+using B2C_EC.Model.Data;
 
 namespace B2C_EC.Website.Admincp
 {
@@ -17,13 +20,31 @@ namespace B2C_EC.Website.Admincp
         {
             if (!IsPostBack)
             {
-                LoadAllManufacturers();
+                BindItemsList();
             }
         }
 
-        private void LoadAllManufacturers()
+        protected void btnFilter_Click(object sender, EventArgs e)
         {
             BindItemsList();
+        }
+
+        protected void btnRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LinkButton lnk = (LinkButton)sender;
+                int Id = ToSQL.SQLToInt(lnk.CommandArgument);
+                if (Id > 0)
+                {
+                    int i = new ManufacturerRepo().DeleteManufacturer(Id);
+                    BindItemsList();
+                }
+            }
+            catch
+            {
+
+            }
         }
 
         #region Paging
@@ -90,7 +111,8 @@ namespace B2C_EC.Website.Admincp
 
         private void BindItemsList()
         {
-            List<Manufacturer> users = manufactureRepo.GetAllManufacturer();
+            List<Model.Manufacturer> users = manufactureRepo.GetManagementManufacturers(ToSQL.SQLToInt(txtManufacturerID.Text), ToSQL.EmptyNull(txtName.Text), 
+                                                                                        ToSQL.EmptyNull(txtPhone.Text),ToSQL.EmptyNull(txtWebsite.Text));
             _PageDataSource.DataSource = users;
             _PageDataSource.AllowPaging = true;
             _PageDataSource.PageSize = 2;
@@ -106,8 +128,8 @@ namespace B2C_EC.Website.Admincp
 
             this.gvManufacturers.DataSource = _PageDataSource;
             this.gvManufacturers.DataBind();
-            this.gvManufacturers.UseAccessibleHeader = true;
-            this.gvManufacturers.HeaderRow.TableSection = TableRowSection.TableHeader;
+            //this.gvManufacturers.UseAccessibleHeader = true;
+            //this.gvManufacturers.HeaderRow.TableSection = TableRowSection.TableHeader;
             this.doPaging();
         }
         private void doPaging()
@@ -187,5 +209,6 @@ namespace B2C_EC.Website.Admincp
         }
 
         #endregion
+
     }
 }
