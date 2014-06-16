@@ -2,17 +2,42 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div id="customer">        
+    <div id="customer">
         <h2>Management Customer Page</h2>
         <p>Here, All customer of website will display.</p>
         <div>
+            <table align="center">
+                <tr>
+                    <td>Customer ID</td>
+                    <td>Username</td>
+                    <td>First Name</td>
+                    <td>Last Name</td>
+                    <td>Email</td>
+                    <td>Phone</td>
+                </tr>
+                <tr>
+                    <td><asp:TextBox ID="txtCustomerID" runat="server"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtUsername" runat="server"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtLastName" runat="server"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtEmail" runat="server"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtPhone" runat="server"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td colspan="6" align="center"><asp:Button ID="btnFilter" runat="server" CssClass="button" Text="Filter" /></td>
+                </tr>
+            </table>
+        </div>
+        <div>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <asp:GridView ID="gvProducts" runat="server" AutoGenerateColumns="False">
+                    <asp:GridView ID="gvProducts" runat="server" CssClass="table" AutoGenerateColumns="False">
                         <Columns>
                             <asp:BoundField HeaderText="ID" DataField="ID" >
                             <ItemStyle Width="30px" HorizontalAlign="Center" />
                             </asp:BoundField>
+                            <asp:BoundField DataField="Username" HeaderText="Username" />
+                            <asp:BoundField DataField="" HeaderText="Password" />
                             <asp:BoundField HeaderText="First Name" DataField="FirstName" />                            
                             <asp:BoundField HeaderText="Last Name" DataField="LastName" />
                             <asp:CheckBoxField HeaderText="Gender" DataField="Gender" >

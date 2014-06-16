@@ -4,7 +4,7 @@
 }
 body{
 	background: #f3f3f3 url(../Resources/Admin/bg_top.jpg) repeat-x;
-	color: #bebebe;
+	color: #333333;
 	font-family: Tahoma, Arial, Helvetica, sans-serif;
 	font-size: 11px;
 	margin: 0;
@@ -52,6 +52,7 @@ button:hover, .button:hover{
 #header #top{
 	height: 34px;
 	padding: 14px 20px 0 20px;
+    color:#ffffff;
 }
 #header #top p{
 	text-shadow: #000 0px 1px 1px;
@@ -71,10 +72,10 @@ button:hover, .button:hover{
 }
 
 #content tr:nth-child(even){
-	background: #ffffff;
+	/*background: #ffffff;*/
 }
 #content tr:nth-child(odd){
-	background: #f7f7f7;
+	/*background: #f7f7f7;*/
 }
 
 /* CONTENT SIDEBAR START */
@@ -136,11 +137,12 @@ button:hover, .button:hover{
 	margin: 0 0 0 35px;
 }
 
-#main .full_w{
-	background: #ffffff;
-	border: 1px solid #DCDDE1;
-	color: #848484;
-	margin: 0 0 20px 0;
+#main .full_w
+{
+    background: #ffffff;
+    border: 1px solid #DCDDE1;
+    /*color: #333333;*/
+    margin: 0 0 20px 0;
 }
 #main .full_w .h_title, #main .half_w .h_title{
 	background: url(../Resources/Admin/bg_box_head.jpg) repeat-x;
@@ -274,11 +276,11 @@ button:hover, .button:hover{
 
 /* MAIN TABLE */
 
-table{ 
+.table{ 
 	border-collapse: collapse; 
 	margin: 15px; 
 }
-table th{ 
+.table th{ 
 	background: url(../Resources/Admin/bg_box_head.jpg) repeat-x;
 	color: #DACDCD;
 	border-left: 1px solid #ffffff;
@@ -288,22 +290,22 @@ table th{
 	padding: 7px; 
 	text-shadow: 0px 1px #242424; 
 }
-table tr{ 
+.table tr{ 
 	border-left: 1px solid #ffffff;
 	border-right: 1px solid #ffffff;
 }
-table td{ 
+.table td{ 
 	border-bottom: 1px solid #ffffff; 
 	border-top: 1px solid #ffffff; 
 	color: #565656;
 	padding: 8px; 
     font-size:small;
 }
-table tr:hover td{ 
+.table tr:hover td{ 
 	background: #fff8cf;
 	color: #000000; 
 }
-table .chb{ 
+.table .chb{ 
 	width: 20px; 
 }
 
