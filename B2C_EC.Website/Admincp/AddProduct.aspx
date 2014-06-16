@@ -3,6 +3,7 @@
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
+    <script src="../Scripts/jquery.MultiFile.js"></script>
     <script src="../Scripts/jquery-1.4.1.min.js"></script>
     <script type="text/javascript">
         $(function () {
@@ -122,7 +123,9 @@
                     <td>
                         More Images</td>
                     <td>
-                        &nbsp;</td>
+                        <asp:FileUpload ID="FileUploadJquery" runat="server"
+                            class="multi" accept="jpg|png" />
+                    </td>
                 </tr>
                 <tr>
                     <td>

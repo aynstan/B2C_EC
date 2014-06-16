@@ -34,5 +34,33 @@ namespace B2C_EC.Model.Data
         {
             return db.ProductImages.Where(i => i.Product_ID == ProductId).ToList();
         }
+
+        public int DeleteProductImage(int Id)
+        {
+            try
+            {
+                ProductImage pi = db.ProductImages.Where(p => p.ID == Id).FirstOrDefault();
+                db.ProductImages.Remove(pi);
+                return db.SaveChanges();
+            }
+            catch( Exception e)
+            { 
+                throw new Exception(e.Message);
+            }
+        }
+
+        public int DeleteProductImage(ProductImage pi)
+        {
+            try
+            {
+                db.ProductImages.Remove(pi);
+                return db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            
+        }
     }
 }

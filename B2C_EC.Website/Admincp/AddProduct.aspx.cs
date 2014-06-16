@@ -3,6 +3,7 @@ using B2C_EC.Model.Data;
 using B2C_EC.Model.Global;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -62,6 +63,19 @@ namespace B2C_EC.Website.Admincp
                 {
                     image.Image = url;
                     image.IsDefault = true;
+                    p.ProductImages.Add(image);
+                }
+            }
+            HttpFileCollection uploads = Request.Files;
+            //for (int fileCount = 0; fileCount < uploads.Count; fileCount++)
+            foreach (HttpPostedFile uploadedFile in FileUploadJquery.PostedFiles)
+            {
+                ProductImage image = new ProductImage();
+                string url = UploadImage(fulImageDefault.PostedFile);
+                if (url != "")
+                {
+                    image.Image = url;
+                    image.IsDefault = false;
                     p.ProductImages.Add(image);
                 }
             }
