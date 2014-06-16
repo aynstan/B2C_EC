@@ -71,6 +71,12 @@
                                 <li>&#8250; <a href="AddProduct.aspx">Add new product</a></li>
                             </ul>
                         </li>
+                        <li class="upp"><a href="#">Manage Customer</a>
+                            <ul>
+                                <li>&#8250; <a href="#">Show all customers</a></li>
+                                <li>&#8250; <a href="#">Add new customer</a></li>
+                            </ul>
+                        </li>
                         <li class="upp"><a href="#">Settings</a>
                             <ul>
                                 <li>&#8250; <a href="">Site configuration</a></li>
@@ -126,6 +132,13 @@
                         <ul>
                             <li class="b1"><a class="icon page" href="Management-Manafacturer.aspx">Show all manufacturers</a></li>
                             <li class="b2"><a class="icon add_page" href="ManufacturerDetails.aspx?Action=ADD">Add new manufacturer</a></li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <div class="h_title">› Manage Customer</div>
+                        <ul>
+                            <li class="b1"><a class="icon users" href="#">Show all customers</a></li>
+                            <li class="b2"><a class="icon add_user" href="#">Add new customer</a></li>
                         </ul>
                     </div>
                     <div class="box">
