@@ -29,6 +29,23 @@ namespace B2C_EC.Website.Admincp
             BindItemsList();
         }
 
+        protected void gvManufacturers_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            Manufacturer manufacturer = (Manufacturer)e.Row.DataItem;
+            if (manufacturer != null)
+            {
+                if (manufacturer.Address != null)
+                {
+                    Label lbAddress = (Label)e.Row.FindControl("lbAddress");
+                    if (lbAddress != null)
+                    {
+                        string address = new AddressRepo().GetToString(manufacturer.Address);
+                        lbAddress.Text = address;
+                    }
+                }
+            }
+        }
+
         protected void btnRemove_Click(object sender, EventArgs e)
         {
             try
@@ -115,7 +132,7 @@ namespace B2C_EC.Website.Admincp
                                                                                         ToSQL.EmptyNull(txtPhone.Text),ToSQL.EmptyNull(txtWebsite.Text));
             _PageDataSource.DataSource = users;
             _PageDataSource.AllowPaging = true;
-            _PageDataSource.PageSize = 2;
+            _PageDataSource.PageSize = 10;
             _PageDataSource.CurrentPageIndex = CurrentPage;
             ViewState["TotalPages"] = _PageDataSource.PageCount;
 

@@ -29,7 +29,7 @@
         <div>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <asp:GridView ID="gvManufacturers" runat="server" CssClass="table" AutoGenerateColumns="False">
+                    <asp:GridView ID="gvManufacturers" runat="server" CssClass="table" AutoGenerateColumns="False" OnRowDataBound="gvManufacturers_RowDataBound">
                         <Columns>
                             <asp:BoundField HeaderText="ID" DataField="ID" >
                             <ItemStyle HorizontalAlign="Center" Width="30px" />
@@ -38,11 +38,8 @@
                             <asp:BoundField HeaderText="Phone" DataField="Phone" />
                             <asp:BoundField HeaderText="Website" DataField="Website" />
                             <asp:TemplateField HeaderText="Address">
-                                <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-                                </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="Label1" runat="server"></asp:Label>
+                                    <asp:Label ID="lbAddress" runat="server"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:CheckBoxField HeaderText="IsActive" DataField="IsActive" >
