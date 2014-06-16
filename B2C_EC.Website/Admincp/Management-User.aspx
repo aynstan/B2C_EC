@@ -26,6 +26,14 @@
                                 </asp:DropDownList></td>
                         </tr>
                         <tr>
+                            <td>Username:&nbsp;</td>
+                            <td>
+                                <asp:TextBox ID="txtUserName" runat="server"></asp:TextBox>
+                            </td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
                             <td>&nbsp;</td>
                             <td>
                                 <asp:Button ID="btnFilter" runat="server" CssClass="button" OnClick="btnFilter_Click" Text="Filter" />
@@ -48,7 +56,7 @@
                             <asp:BoundField DataField="Username" HeaderText="User Name" />
                             <asp:BoundField HeaderText="Phone" DataField="Phone" />
                             <asp:BoundField HeaderText="Email" DataField="Email" />
-                            <asp:BoundField DataField="DateCreated" DataFormatString="{0:dd/MM/yyyy}" HeaderText="Date Created" />
+                            <asp:BoundField DataField="DateCreated" DataFormatString="{0:MM/dd/yyyy}" HeaderText="Date Created" />
                             <asp:CheckBoxField HeaderText="IsActive" DataField="IsActive" />
                             <asp:TemplateField>
                                 <ItemTemplate>

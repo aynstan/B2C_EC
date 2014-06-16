@@ -8,7 +8,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using B2C_EC.Model.Global;
 
 namespace B2C_EC.Website.Admincp
 {
@@ -28,18 +27,18 @@ namespace B2C_EC.Website.Admincp
             if (Request.QueryString["ID"] != null)
             {
                 int id = ToSQL.SQLToInt(Request.QueryString["ID"]);
-                User u = userRepo.GetById(id);
+                Model.User u = userRepo.GetById(id);
                 if (u != null)
                 {
-                    ViewState["UserEdit"] = u;
+                    //ViewState["UserEdit"] = u;
                     txtID.Text = u.ID.ToString();
                     txtFirstName.Text = u.FirstName;
                     txtLastName.Text = u.LastName;
                     txtUserName.Text = u.Username;
                     txtUserName.Enabled = false;
-                    string pass = "";
-                    txtPassword.Attributes["value"] = Security.Decrypt(u.Key, pass);
-                    txtConfirm.Attributes["value"] = Security.Decrypt(u.Key, pass);
+                    //string pass = "";
+                    txtPassword.Attributes["value"] = Security.Decrypt(u.Key, u.Password);
+                    txtConfirm.Attributes["value"] = Security.Decrypt(u.Key, u.Password);
                     if (u.Address != null)
                     {
                         txtStreet1.Text = u.Address.Street1;
@@ -51,7 +50,7 @@ namespace B2C_EC.Website.Admincp
                     }
                     txtEmail.Text = u.Email;
                     txtPhone.Text = u.Phone;
-                    brtnActive.Checked = ToSQL.SQLToBool(u.IsActive);
+                    chkActive.Checked = ToSQL.SQLToBool(u.IsActive);
                 }
             }
         }
@@ -108,7 +107,7 @@ namespace B2C_EC.Website.Admincp
                 ltrError.Visible = true;
                 return;
             }
-            User user = (User)ViewState["UserEdit"];
+            Model.User user = (Model.User)ViewState["UserEdit"];
             user.FirstName = txtFirstName.Text;
             user.LastName = txtLastName.Text;
             user.Username = txtUserName.Text;
@@ -124,8 +123,11 @@ namespace B2C_EC.Website.Admincp
             user.Address.ZipCode = txtZipCode.Text;
             user.Phone = txtPhone.Text;
             user.Email = txtEmail.Text;
-            user.IsActive = brtnActive.Checked ? true : false;
-            userRepo.UpdateUser(user);
+            user.IsActive = chkActive.Checked;
+            if (userRepo.UpdateUser(user) > 0)
+                Response.Redirect("~/Admincp/Management-User.aspx");
+            else
+                lblError.Text = "Please check input data! Try again!";
         }
     }
 }

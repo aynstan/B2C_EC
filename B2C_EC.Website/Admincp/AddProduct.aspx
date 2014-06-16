@@ -35,16 +35,6 @@
         <div class="clear">
             <table>
                 <tr>
-                    <td style="width:20%;">
-                        <label for="name">
-                            ID
-                        </label>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtID" CssClass="text err" runat="server" Enabled="False"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
                     <td>
                         <label for="name">
                             Name

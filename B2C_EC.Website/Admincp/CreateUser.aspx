@@ -87,16 +87,6 @@
             <asp:Literal ID="ltrError" Visible="false" runat="server"></asp:Literal>
             <table>
                 <tr>
-                    <td style="width:20%;">
-                        <label for="name">
-                            ID
-                        </label>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtID" CssClass="text err" runat="server" Enabled="False"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
                     <td>
                         <label for="name">
                             First Name
@@ -236,9 +226,7 @@
                         </label>
                     </td>
                     <td>
-                        <asp:RadioButton ID="brtnActive" runat="server" GroupName="Active" Text="Active" Checked="True" />
-&nbsp;&nbsp;
-                        <asp:RadioButton ID="rbtnNotActive" runat="server" GroupName="Active" Text="Not Active" />
+                        <asp:CheckBox ID="chkIsActive" runat="server" Text="Acitve" />
                     </td>
                 </tr>
                 </table>

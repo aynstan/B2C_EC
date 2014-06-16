@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admincp/Admin.Master" AutoEventWireup="true" CodeBehind="EditUser.aspx.cs" Inherits="B2C_EC.Website.Admincp.EditUser" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admincp/Admin.Master" ViewStateMode="Enabled" AutoEventWireup="true" CodeBehind="EditUser.aspx.cs" Inherits="B2C_EC.Website.Admincp.EditUser" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <script src="../Scripts/jquery-1.4.1.min.js"></script>
     <script type="text/javascript">
@@ -236,12 +236,15 @@
                         </label>
                     </td>
                     <td>
-                        <asp:RadioButton ID="brtnActive" runat="server" GroupName="Active" Text="Active" Checked="True" />
-&nbsp;&nbsp;
-                        <asp:RadioButton ID="rbtnNotActive" runat="server" GroupName="Active" Text="Not Active" />
+                        <asp:CheckBox ID="chkActive" runat="server" Text="Active" />
                     </td>
                 </tr>
                 </table>
+            <div class="entry">
+
+                <asp:Label ID="lblError" runat="server" Font-Size="Small" ForeColor="Red"></asp:Label>
+
+            </div>
             <div class="entry">
                 <asp:Button ID="btnSave" CssClass="button add" runat="server" Text="Save" OnClick="btnSave_Click" />
                 <asp:Button ID="btnCancel" CssClass="button cancel" runat="server" Text="Cancel" CausesValidation="False" PostBackUrl="~/Admincp/Management-User.aspx" />

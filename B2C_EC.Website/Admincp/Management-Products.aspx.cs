@@ -182,5 +182,10 @@ namespace B2C_EC.Website.Admincp
         }
 
         #endregion
+
+        protected void btnFilter_Click(object sender, EventArgs e)
+        {
+            BindItemsList();
+        }
     }
 }

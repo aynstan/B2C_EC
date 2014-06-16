@@ -29,7 +29,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="full_w">
+    <div class="entry">
         <div class="h_title">Details Product</div>
         <div class="clear">
             <table>
@@ -108,7 +108,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <CKEditor:CKEditorControl ID="CKEditorControlDescription" runat="server"></CKEditor:CKEditorControl>
+                        <CKEditor:CKEditorControl ID="CKEditorControlDescription" runat="server" Width="700px"></CKEditor:CKEditorControl>
                     </td>
                 </tr>
                 <tr>

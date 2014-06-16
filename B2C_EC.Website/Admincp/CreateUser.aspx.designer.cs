@@ -22,15 +22,6 @@ namespace B2C_EC.Website.Admincp {
         protected global::System.Web.UI.WebControls.Literal ltrError;
         
         /// <summary>
-        /// txtID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtID;
-        
-        /// <summary>
         /// txtFirstName control.
         /// </summary>
         /// <remarks>
@@ -211,22 +202,13 @@ namespace B2C_EC.Website.Admincp {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
         
         /// <summary>
-        /// brtnActive control.
+        /// chkIsActive control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton brtnActive;
-        
-        /// <summary>
-        /// rbtnNotActive control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbtnNotActive;
+        protected global::System.Web.UI.WebControls.CheckBox chkIsActive;
         
         /// <summary>
         /// btnSave control.
