@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admincp/Admin.Master" AutoEventWireup="true" CodeBehind="CreateCustomer.aspx.cs" Inherits="B2C_EC.Website.Admincp.CreateCustomer" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admincp/Admin.Master" AutoEventWireup="true" CodeBehind="EditCustomer.aspx.cs" Inherits="B2C_EC.Website.Admincp.EditCustomer" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div id="createcustomer">
-        <h2>Add New Customer Page</h2>
+    <div id="editcustomer">
+        <h2>Update Customer Page</h2>
         <div class="clear" style="padding:15px">
             <asp:Label ID="lbMessage" runat="server"></asp:Label>
             <table>
@@ -37,9 +37,7 @@
                         </label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtUserName" CssClass="text err" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="(*)" ForeColor="Red" ControlToValidate="txtUserName" ValidationGroup="createcustomer"></asp:RequiredFieldValidator>
-                        <label id="checkReturn"></label>
+                        <asp:Label ID="lbUsername" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -49,20 +47,9 @@
                         </label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtPassword" CssClass="text err" runat="server" TextMode="Password"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="(*)" ForeColor="Red" ControlToValidate="txtPassword" ValidationGroup="createcustomer"></asp:RequiredFieldValidator>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="name">
-                            Confirm Password
-                        </label>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtConfirm" CssClass="text err" runat="server" TextMode="Password"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtConfirm" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="createcustomer" Display="Dynamic"></asp:RequiredFieldValidator>
-                        <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtPassword" ControlToValidate="txtConfirm" Display="Dynamic" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="createcustomer"></asp:CompareValidator>
+                        <asp:Label ID="lbPassword" runat="server" Text="********"></asp:Label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a id="spanChangePassword" runat="server" href="javascript:void(0)">Reset Password</a>
                     </td>
                 </tr>                
                 <tr>
@@ -106,9 +93,15 @@
                         </asp:CalendarExtender>
                     </td>
                 </tr>
+                <tr>
+                    <td>Date Created</td>
+                    <td>
+                        <asp:Label ID="lbDateCreated" runat="server"></asp:Label>
+                    </td>
+                </tr>
                 </table>
             <div class="entry">
-                <asp:Button ID="btnSave" CssClass="button add" runat="server" Text="Save" OnClick="btnSave_Click" ValidationGroup="createcustomer" />
+                <asp:Button ID="btnSave" CssClass="button add" runat="server" Text="Update" OnClick="btnSave_Click" ValidationGroup="createcustomer" />
                 <asp:Button ID="btnCancel" CssClass="button cancel" runat="server" Text="Cancel" CausesValidation="False" PostBackUrl="~/Admincp/Management-Customer.aspx" />
             </div>
         </div>

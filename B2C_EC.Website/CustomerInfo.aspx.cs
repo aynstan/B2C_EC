@@ -37,7 +37,7 @@ namespace B2C_EC.Website
                 txtPhone.Text = ToSQL.EmptyNull(customer.Phone);
                 txtDateOfBirth.Text = ToSQL.SQLToDateTime(customer.DateOfBirth).ToShortDateString();
                 rdbtnGender.SelectedIndex = ToSQL.SQLToBool(customer.Gender) ? 0 : 1;
-                lbDateCreated.Text = ToSQL.SQLToDateTime(customer.DateCreated).ToShortDateString();
+                lbDateCreated.Text = ToSQL.EmptyNull(customer.DateCreated);
                 if (customer.Address != null)
                 {
                     txtStreet1.Text = ToSQL.EmptyNull(customer.Address.Street1);

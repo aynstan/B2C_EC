@@ -10,7 +10,7 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="Content" runat="server">
     <div id="customer">
     <p class="checkoutTitle">Customer INFORMATION</p>
-    <asp:TabContainer ID="tabContainer" runat="server" ActiveTabIndex="0" Width="96%">
+    <asp:TabContainer ID="tabContainer" runat="server" ActiveTabIndex="1" Width="96%">
         <asp:TabPanel runat="server" HeaderText="Login Information" ID="TabPaneLogin">
             <ContentTemplate>                                
                 <table style="width:100%">
