@@ -111,20 +111,21 @@
                                         </asp:Panel>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                            <asp:BoundField HeaderText="ID" DataField="ID" />
+                            <asp:BoundField HeaderText="ID" DataField="ID" ItemStyle-HorizontalAlign="Center" />
                             <asp:BoundField HeaderText="Name" DataField="Name" />
                             <%--<asp:BoundField HeaderText="PriceOld" DataField="PriceOld" DataFormatString="{0:#,##0}" />--%>
                             <asp:BoundField HeaderText="Price" DataField="Price" DataFormatString="{0:#,###.##}" />
                             <asp:BoundField DataField="DateCreated" DataFormatString="{0:MM/dd/yyyy}" HeaderText="Date Created" />
-                            <asp:CheckBoxField HeaderText="Best Selling" DataField="IsBestSelling" />
-                            <asp:CheckBoxField DataField="IsNew" HeaderText="New" />
-                            <asp:CheckBoxField DataField="IsSpecial" HeaderText="Special" />
-                            <asp:CheckBoxField DataField="IsActive" HeaderText="IsActive" />
-                            <asp:TemplateField>
+                            <asp:CheckBoxField HeaderText="Best Selling" DataField="IsBestSelling" ItemStyle-HorizontalAlign="Center" />
+                            <asp:CheckBoxField DataField="IsNew" HeaderText="New" ItemStyle-HorizontalAlign="Center" />
+                            <asp:CheckBoxField DataField="IsSpecial" HeaderText="Special" ItemStyle-HorizontalAlign="Center" />
+                            <asp:CheckBoxField DataField="IsActive" HeaderText="IsActive" ItemStyle-HorizontalAlign="Center" />
+                            <asp:TemplateField ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
                                     <a href='<%# "EditProduct.aspx?ID="+Eval("ID") %>' class="table-icon edit" title="Edit"></a>
                                     <%--<a href="#" class="table-icon archive" title="Archive"></a>--%>
-                                    <a href="#" class="table-icon delete" title="Delete"></a>
+                                    <%--<a href="#" class="table-icon delete" title="Delete"></a>--%>
+                                    <asp:LinkButton ID="lnkRemove" runat="server" CssClass="table-icon delete" ToolTip="Remove" CommandArgument='<%# Eval("ID") %>' CausesValidation="false" OnClick="lnkRemove_Click" OnClientClick="return confirm('Do you really want to remove this product?');"></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

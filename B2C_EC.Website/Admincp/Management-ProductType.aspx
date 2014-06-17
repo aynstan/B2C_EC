@@ -35,16 +35,16 @@
                 <ContentTemplate>
                     <asp:GridView ID="gvProductType" CssClass="table" runat="server" AutoGenerateColumns="False">
                         <Columns>
-                            <asp:BoundField HeaderText="ID" DataField="ID" />
+                            <asp:BoundField HeaderText="ID" DataField="ID" ItemStyle-HorizontalAlign="Center" />
                             <asp:BoundField HeaderText="Name" DataField="Name" />
                             <asp:BoundField HeaderText="Sort ID" DataField="SortId" />
                             <asp:BoundField HeaderText="Note" DataField="Note" />
-                            <asp:CheckBoxField HeaderText="IsActive" DataField="IsActive" />
+                            <asp:CheckBoxField HeaderText="IsActive" DataField="IsActive" ItemStyle-HorizontalAlign="Center" />
                             <asp:TemplateField>
                                 <ItemTemplate>
                                     <a href='<%# "EditProductType.aspx?ID="+Eval("ID") %>' class="table-icon edit" title="Edit"></a>
-                                    <a href="#" class="table-icon archive" title="Archive"></a>
-                                    <a href="#" class="table-icon delete" title="Delete"></a>
+                                    <%--<a href="#" class="table-icon archive" title="Archive"></a>--%>
+                                    <asp:LinkButton ID="lnkRemove" runat="server" CssClass="table-icon delete" ToolTip="Remove" CommandArgument='<%# Eval("ID") %>' CausesValidation="false" OnClick="lnkRemove_Click" OnClientClick="return confirm('Do you really want to remove this product?');"></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

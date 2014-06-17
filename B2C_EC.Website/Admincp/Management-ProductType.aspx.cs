@@ -1,5 +1,6 @@
 ﻿using B2C_EC.Model;
 using B2C_EC.Model.Data;
+using B2C_EC.Model.Global;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -185,7 +186,25 @@ namespace B2C_EC.Website.Admincp
 
         protected void btnFilter_Click(object sender, EventArgs e)
         {
+            BindItemsList();
+        }
 
+        protected void lnkRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LinkButton lnk = (LinkButton)sender;
+                int Id = ToSQL.SQLToInt(lnk.CommandArgument);
+                if (Id > 0)
+                {
+                    int i = new ProductTypeRepo().DeleteProductType(Id);
+                    BindItemsList();
+                }
+            }
+            catch
+            {
+
+            }
         }
     }
 }

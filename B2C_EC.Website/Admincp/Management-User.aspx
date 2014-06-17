@@ -50,7 +50,7 @@
                 <ContentTemplate>
                     <asp:GridView ID="gvUsers" CssClass="table" runat="server" AutoGenerateColumns="False" EmptyDataText="Not found users for filter" OnRowDataBound="gvUsers_RowDataBound">
                         <Columns>
-                            <asp:BoundField HeaderText="ID" DataField="ID" />
+                            <asp:BoundField HeaderText="ID" DataField="ID" ItemStyle-HorizontalAlign="Center" />
                             <asp:BoundField HeaderText="First Name" DataField="FirstName" />
                             <asp:BoundField HeaderText="Last Name" DataField="LastName" />
                             <asp:BoundField DataField="Username" HeaderText="User Name" />
@@ -62,12 +62,13 @@
                             <asp:BoundField HeaderText="Phone" DataField="Phone" />
                             <asp:BoundField HeaderText="Email" DataField="Email" />
                             <asp:BoundField DataField="DateCreated" DataFormatString="{0:MM/dd/yyyy}" HeaderText="Date Created" />
-                            <asp:CheckBoxField HeaderText="IsActive" DataField="IsActive" />
+                            <asp:CheckBoxField HeaderText="IsActive" DataField="IsActive" ItemStyle-HorizontalAlign="Center" />
                             <asp:TemplateField>
                                 <ItemTemplate>
                                     <a href='<%# "EditUser.aspx?ID="+Eval("ID") %>' class="table-icon edit" title="Edit"></a>
-                                    <a href="#" class="table-icon archive" title="Archive"></a>
-                                    <a href="#" class="table-icon delete" title="Delete"></a>
+                                    <%--<a href="#" class="table-icon archive" title="Archive"></a>--%>
+                                    <%--<a href="#" class="table-icon delete" title="Delete"></a>--%>
+                                    <asp:LinkButton ID="lnkRemove" runat="server" CssClass="table-icon delete" ToolTip="Remove" CommandArgument='<%# Eval("ID") %>' CausesValidation="false" OnClick="lnkRemove_Click" OnClientClick="return confirm('Do you really want to remove this user?');"></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
