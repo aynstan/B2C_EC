@@ -47,20 +47,12 @@
         <p>Here, All product of website will display.</p>
         <div>
             <fieldset style="width:98%; margin:5px;">
-                <legend><h3>Filter user by:</h3></legend>
+                <legend><h3>Filter product by:</h3></legend>
                 <div>
                     <table class="table" style="width:95%;">
                         <tr>
                             <td>Name:</td>
                             <td><asp:TextBox ID="txtName" runat="server"></asp:TextBox></td>
-                            <td>Price from:</td>
-                            <td><asp:TextBox ID="txtPriceFrom" runat="server"></asp:TextBox></td>
-                        </tr>
-                        <tr>
-                            <td>Price to:</td>
-                            <td><asp:TextBox ID="txtPriceTo" runat="server"></asp:TextBox>
-                                <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtPriceTo" ControlToValidate="txtPriceFrom" ErrorMessage="(*)" ForeColor="Red" Operator="LessThanEqual" Type="Integer"></asp:CompareValidator>
-                                <br /></td>
                             <td>Status:</td>
                             <td><asp:DropDownList ID="ddlStatus" runat="server">
                                 <asp:ListItem Value="0">--All--</asp:ListItem>
@@ -69,6 +61,15 @@
                                 <asp:ListItem Value="3">Special</asp:ListItem>
                                 <asp:ListItem Value="4">New</asp:ListItem>
                                 </asp:DropDownList></td>
+                        </tr>
+                        <tr>
+                            <td>Price from:</td>
+                            <td><asp:TextBox ID="txtPriceFrom" CssClass="text" runat="server"></asp:TextBox>
+                                <br /></td>
+                            <td>Price to</td>
+                            <td><asp:TextBox ID="txtPriceTo" runat="server"></asp:TextBox>
+                                <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtPriceTo" ControlToValidate="txtPriceFrom" ErrorMessage="(*)" ForeColor="Red" Operator="LessThanEqual" Type="Integer"></asp:CompareValidator>
+                                </td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -91,26 +92,22 @@
                                     <ItemTemplate>
                                         <img alt = "" style="cursor: pointer; height:20px;" src="../resources/admin/plus.png" />
                                         <asp:Panel ID="pnlShippingCartDetail" runat="server" Style="text-align:center; display: none">
-                                            <asp:GridView ID="gvImagesProduct" runat="server" AutoGenerateColumns="false" CssClass="ChildGrid">
-                                                <Columns>
-                                                    <asp:BoundField ItemStyle-Width="150px" DataField="Id" HeaderText="Image ID" />
-                                                    <asp:BoundField ItemStyle-Width="150px" DataField="Image" HeaderText="Image" />
-                                                    <asp:CheckBoxField ItemStyle-Width="150px" DataField="IsDefault" HeaderText="Default Image" />
-                                                    <asp:TemplateField>
-                                                        <ItemTemplate>
-                                                            <asp:Image ID="imgProduct" runat="server" ImageUrl='<%# "~/resources/ImagesProduct/"+Eval("Image") %>' Height="100px" />
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Action">
-                                                        <ItemTemplate>
-                                                            <%--<a href='<%# "EditProduct.aspx?ID="+Eval("ID") %>' class="table-icon edit" title="Edit"></a>--%>
-                                                            <%--<a href="#" class="table-icon archive" title="Archive"></a>--%>
-                                                            <%--<a href="#" class="table-icon delete" title="Delete"></a>--%>
-                                                            <asp:Button ID="btnDeleteImage" CssClass="button table-icon delete" runat="server" ToolTip="Delete" Text="" />
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                </Columns>
-                                            </asp:GridView>
+                                            <asp:DataList ID="dtlImagesProduct" runat="server" RepeatColumns="4" OnItemCommand="dtlImagesProduct_ItemCommand">
+                                                <ItemTemplate>
+                                                    <table class="clear">
+                                                        <tr>
+                                                            <td>
+                                                                <asp:Image ID="imgProduct" runat="server" Height="100px" ImageUrl='<%# "~/Resources/ImagesProduct/"+Eval("Image") %>' />
+                                                            </td>                                                            
+                                                        </tr
+                                                        <tr>
+                                                            <td>
+                                                                <asp:Button ID="btnDeleteImage" CommandName="Delete" CommandArgument='<%# Eval("ID") %>' runat="server" OnClientClick="return confirm('Are you sure delete this image?');" CssClass="button" Text="Delete" />
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </ItemTemplate>
+                                            </asp:DataList>
                                         </asp:Panel>
                                     </ItemTemplate>
                                 </asp:TemplateField>

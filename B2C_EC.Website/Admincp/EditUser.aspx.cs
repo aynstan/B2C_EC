@@ -34,11 +34,11 @@ namespace B2C_EC.Website.Admincp
                     txtID.Text = u.ID.ToString();
                     txtFirstName.Text = u.FirstName;
                     txtLastName.Text = u.LastName;
-                    txtUserName.Text = u.Username;
-                    txtUserName.Enabled = false;
+                    lblUserName.Text = u.Username;
+                    //txtUserName.Enabled = false;
                     //string pass = "";
-                    txtPassword.Attributes["value"] = Security.Decrypt(u.Key, u.Password);
-                    txtConfirm.Attributes["value"] = Security.Decrypt(u.Key, u.Password);
+                    //txtPassword.Attributes["value"] = Security.Decrypt(u.Key, u.Password);
+                    //txtConfirm.Attributes["value"] = Security.Decrypt(u.Key, u.Password);
                     if (u.Address != null)
                     {
                         txtStreet1.Text = u.Address.Street1;
@@ -53,38 +53,10 @@ namespace B2C_EC.Website.Admincp
                     chkActive.Checked = ToSQL.SQLToBool(u.IsActive);
                 }
             }
-        }
-
-        private bool CheckUser()
-        {
-            bool result = true;
-            if ((new UserRepo().DoesUsernameExist(txtUserName.Text)))
+            else
             {
-                ltrError.Text += "<li>Username is already exists</li>";
-                result = false;
+                Response.Redirect("~/Admincp/Management-User.aspx");
             }
-            return result;
-        }
-
-        private bool CheckEmail()
-        {
-            bool result = true;
-            if ((new UserRepo().DoesEmailExist(txtEmail.Text)))
-            {
-                ltrError.Text += "<li>Email is already exists</li>";
-                result = false;
-            }
-            return result;
-        }
-
-        private bool ValidationUser()
-        {
-            bool result = true;
-            ltrError.Text = "<ul style='color:red; font-size:13pt;'>";
-            if (!CheckUser() || !CheckEmail())
-                result = false;
-            ltrError.Text += "</ul>";
-            return result;
         }
 
         [System.Web.Services.WebMethod]
@@ -102,17 +74,26 @@ namespace B2C_EC.Website.Admincp
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            if (ViewState["UserEdit"] == null || !CheckEmail())
+            //if (ViewState["UserEdit"] == null)
+            //{
+            //    Response.Redirect("~/Admincp/Management-User.aspx");
+            //}
+            Model.User user = userRepo.GetById(ToSQL.SQLToInt(Request.QueryString["ID"]));
+            if (user != null)
             {
-                ltrError.Visible = true;
-                return;
+                lblError.Text = "";
+                if (userRepo.DoesEmailExist(txtEmail.Text) && !user.Email.ToLower().Equals(txtEmail.Text.ToLower()) && ToSQL.EmptyNull(txtEmail.Text) != "")
+                {
+                    lblError.Text = "<ul><li>Email already exists!<l></ul>";
+                    lblError.Visible = true;
+                    return;
+                }
             }
-            Model.User user = (Model.User)ViewState["UserEdit"];
             user.FirstName = txtFirstName.Text;
             user.LastName = txtLastName.Text;
-            user.Username = txtUserName.Text;
+            //user.Username = txtUserName.Text;
             user.Key = ConfigurationManager.AppSettings["KeyUser"];
-            user.Password = Security.Encrypt(user.Key, txtPassword.Text);
+            //user.Password = Security.Encrypt(user.Key, txtPassword.Text);
             if (user.Address == null)
                 user.Address = new Address();
             user.Address.Street1 = txtStreet1.Text;
