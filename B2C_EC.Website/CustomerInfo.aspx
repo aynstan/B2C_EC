@@ -10,7 +10,7 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="Content" runat="server">
     <div id="customer">
     <p class="checkoutTitle">Customer INFORMATION</p>
-    <asp:TabContainer ID="tabContainer" runat="server" ActiveTabIndex="1" Width="96%">
+    <asp:TabContainer ID="tabContainer" runat="server" ActiveTabIndex="2" Width="96%">
         <asp:TabPanel runat="server" HeaderText="Login Information" ID="TabPaneLogin">
             <ContentTemplate>                                
                 <table style="width:100%">
@@ -166,7 +166,6 @@
                     <td align="left" valign="top">
                         <asp:TextBox ID="txtZipCode" runat="server" CssClass="TextBox" />
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtZipCode" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="Address"></asp:RequiredFieldValidator>                
-                    </td>
                     </td>
                     </tr>
                     <tr>

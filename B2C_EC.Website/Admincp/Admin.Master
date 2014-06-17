@@ -132,7 +132,7 @@
                         <div class="h_title">› Management Manufacturer</div>
                         <ul>
                             <li class="b1"><a class="icon page" href="Management-Manafacturer.aspx">Show all manufacturers</a></li>
-                            <li class="b2"><a class="icon add_page" href="ManufacturerDetails.aspx?Action=ADD">Add new manufacturer</a></li>
+                            <li class="b2"><a class="icon add_page" href="AddManufacturer.aspx">Add new manufacturer</a></li>
                         </ul>
                     </div>
                     <div class="box">

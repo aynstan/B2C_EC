@@ -14,7 +14,13 @@ namespace B2C_EC.Website
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                if (Session["Customer"] != null)
+                {
+                    Response.Redirect("Index.aspx");
+                }
+            }
         }
 
         protected void btnRegister_Click(object sender, EventArgs e)

@@ -43,7 +43,48 @@ button:hover, .button:hover{
 	color: #333333;
 	text-decoration: none;
 }
-
+.TextBox
+{
+    padding:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    border:1px solid gray;
+}
+.Dropdown
+{
+    height:30px;
+    padding:5px;
+    width:210px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    border:1px solid gray;
+}
+.AreaText
+{
+    padding:5px;
+    width:300px;
+    max-width:700px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    border:1px solid gray;
+}
+.RadioButton
+{
+    font:11px Arial, Helvetica, sans-serif;
+	color:#565656;
+	margin:0px;
+	padding:0px;
+    vertical-align:text-top;
+}
+fieldset
+{
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+}
 .wrap{
 	margin: 0 auto;
 	width: 100%;
