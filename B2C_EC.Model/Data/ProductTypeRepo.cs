@@ -21,5 +21,19 @@ namespace B2C_EC.Model.Data
         {
             return db.ProductTypes.Where(p => p.ID == Id).FirstOrDefault();
         }
+
+        public int DeleteProductType(int Id)
+        {
+            try
+            {
+                ProductType pt = db.ProductTypes.Where(p => p.ID == Id).FirstOrDefault();
+                db.ProductTypes.Remove(pt);
+                return db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

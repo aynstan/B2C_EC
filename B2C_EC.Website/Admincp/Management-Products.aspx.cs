@@ -206,5 +206,23 @@ namespace B2C_EC.Website.Admincp
             (new ProductImageRepo()).DeleteProductImage(ID);
             BindItemsList();
         }
+
+        protected void lnkRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LinkButton lnk = (LinkButton)sender;
+                int Id = ToSQL.SQLToInt(lnk.CommandArgument);
+                if (Id > 0)
+                {
+                    int i = new ProductRepo().DeleteProduct(Id);
+                    BindItemsList();
+                }
+            }
+            catch
+            {
+
+            }
+        }
     }
 }
