@@ -15,7 +15,7 @@
                         </label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtFirstName" CssClass="text err" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtFirstName" CssClass="TextBox" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="(*)" ForeColor="Red" ControlToValidate="txtFirstName" ValidationGroup="createcustomer"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
@@ -26,7 +26,7 @@
                         </label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtLastName" CssClass="text err" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtLastName" CssClass="TextBox" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="(*)" ForeColor="Red" ControlToValidate="txtLastName" ValidationGroup="createcustomer"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
@@ -37,7 +37,7 @@
                         </label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtUserName" CssClass="text err" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtUserName" CssClass="TextBox" runat="server"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="(*)" ForeColor="Red" ControlToValidate="txtUserName" ValidationGroup="createcustomer"></asp:RequiredFieldValidator>
                         <label id="checkReturn"></label>
                     </td>
@@ -49,7 +49,7 @@
                         </label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtPassword" CssClass="text err" runat="server" TextMode="Password"></asp:TextBox>
+                        <asp:TextBox ID="txtPassword" CssClass="TextBox" runat="server" TextMode="Password"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="(*)" ForeColor="Red" ControlToValidate="txtPassword" ValidationGroup="createcustomer"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
@@ -60,7 +60,7 @@
                         </label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtConfirm" CssClass="text err" runat="server" TextMode="Password"></asp:TextBox>
+                        <asp:TextBox ID="txtConfirm" CssClass="TextBox" runat="server" TextMode="Password"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtConfirm" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="createcustomer" Display="Dynamic"></asp:RequiredFieldValidator>
                         <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtPassword" ControlToValidate="txtConfirm" Display="Dynamic" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="createcustomer"></asp:CompareValidator>
                     </td>
@@ -81,7 +81,7 @@
                         </label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtPhone" CssClass="text err" runat="server"></asp:TextBox></td>
+                        <asp:TextBox ID="txtPhone" CssClass="TextBox" runat="server"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td>
@@ -90,7 +90,7 @@
                         </label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtEmail" CssClass="text err" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtEmail" CssClass="TextBox" runat="server"></asp:TextBox>
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail" Display="Dynamic" ErrorMessage="(*)" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="createcustomer"></asp:RegularExpressionValidator>
                     </td>
                 </tr>
@@ -101,7 +101,7 @@
                         </label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtDateOfBirth" CssClass="text err" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtDateOfBirth" CssClass="TextBox" placeholder="mm/dd/yyyy" runat="server"></asp:TextBox>
                         <asp:CalendarExtender ID="txtDateOfBirth_CalendarExtender" runat="server" CssClass="orange" Enabled="True" Format="MM/dd/yyyy" TargetControlID="txtDateOfBirth">
                         </asp:CalendarExtender>
                     </td>
