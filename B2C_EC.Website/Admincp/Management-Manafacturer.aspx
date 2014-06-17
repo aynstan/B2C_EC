@@ -16,10 +16,10 @@
                     <td>Website(url)</td>
                 </tr>
                 <tr>
-                    <td><asp:TextBox ID="txtManufacturerID" runat="server"></asp:TextBox></td>
-                    <td><asp:TextBox ID="txtName" runat="server"></asp:TextBox></td>
-                    <td><asp:TextBox ID="txtPhone" runat="server"></asp:TextBox></td>
-                    <td><asp:TextBox ID="txtWebsite" runat="server"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtManufacturerID" runat="server" CssClass="TextBox"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtName" runat="server" CssClass="TextBox"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtPhone" runat="server" CssClass="TextBox"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtWebsite" runat="server" CssClass="TextBox"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td colspan="6" align="center"><asp:Button ID="btnFilter" runat="server" CssClass="button" Text="Filter" OnClick="btnFilter_Click" /></td>

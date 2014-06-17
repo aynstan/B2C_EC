@@ -16,12 +16,12 @@
                     <td>Phone</td>
                 </tr>
                 <tr>
-                    <td><asp:TextBox ID="txtCustomerID" runat="server"></asp:TextBox></td>
-                    <td><asp:TextBox ID="txtUsername" runat="server"></asp:TextBox></td>
-                    <td><asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox></td>
-                    <td><asp:TextBox ID="txtLastName" runat="server"></asp:TextBox></td>
-                    <td><asp:TextBox ID="txtEmail" runat="server"></asp:TextBox></td>
-                    <td><asp:TextBox ID="txtPhone" runat="server"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtCustomerID" runat="server" CssClass="TextBox"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtUsername" runat="server" CssClass="TextBox"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtFirstName" runat="server" CssClass="TextBox"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtLastName" runat="server" CssClass="TextBox"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtEmail" runat="server" CssClass="TextBox"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtPhone" runat="server" CssClass="TextBox"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td colspan="6" align="center"><asp:Button ID="btnFilter" runat="server" CssClass="button" Text="Filter" OnClick="btnFilter_Click" /></td>
