@@ -1,6 +1,45 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admincp/Admin.Master" AutoEventWireup="true" CodeBehind="Management-Products.aspx.cs" Inherits="B2C_EC.Website.Admincp.Management_Products" %>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="head">
-
+    <script type="text/javascript">
+        $("[src*=plus]").live("click", function () {
+            $(this).closest("tr").after("<tr><td></td><td colspan = '999'>" + $(this).next().html() + "</td></tr>")
+            $(this).attr("src", "../resources/admin/minus.png");
+        });
+        $("[src*=minus]").live("click", function () {
+            $(this).attr("src", "../resources/admin/plus.png");
+            $(this).closest("tr").next().remove();
+        });
+    </script>
+    <style type="text/css">
+        .Grid td
+        {
+            background-color: #A1DCF2;
+            color: black;
+            font-size: 10pt;
+            line-height:200%
+        }
+        .Grid th
+        {
+            background-color: #3AC0F2;
+            color: White;
+            font-size: 10pt;
+            line-height:200%
+        }
+        .ChildGrid td
+        {
+            background-color: #eee !important;
+            color: black;
+            font-size: 10pt;
+            line-height:200%
+        }
+        .ChildGrid th
+        {
+            background-color: #6C6C6C !important;
+            color: White;
+            font-size: 10pt;
+            line-height:200%
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="full_w">        
@@ -10,7 +49,7 @@
             <fieldset style="width:98%; margin:5px;">
                 <legend><h3>Filter user by:</h3></legend>
                 <div>
-                    <table style="width:95%;">
+                    <table class="table" style="width:95%;">
                         <tr>
                             <td>Name:</td>
                             <td><asp:TextBox ID="txtName" runat="server"></asp:TextBox></td>
@@ -46,8 +85,35 @@
         <div>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <asp:GridView ID="gvProducts" runat="server" AutoGenerateColumns="False">
+                    <asp:GridView ID="gvProducts" DataKeyNames="ID" CssClass="table" runat="server" AutoGenerateColumns="False" OnRowDataBound="gvProducts_RowDataBound">
                         <Columns>
+                            <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <img alt = "" style="cursor: pointer; height:20px;" src="../resources/admin/plus.png" />
+                                        <asp:Panel ID="pnlShippingCartDetail" runat="server" Style="text-align:center; display: none">
+                                            <asp:GridView ID="gvImagesProduct" runat="server" AutoGenerateColumns="false" CssClass="ChildGrid">
+                                                <Columns>
+                                                    <asp:BoundField ItemStyle-Width="150px" DataField="Id" HeaderText="Image ID" />
+                                                    <asp:BoundField ItemStyle-Width="150px" DataField="Image" HeaderText="Image" />
+                                                    <asp:CheckBoxField ItemStyle-Width="150px" DataField="IsDefault" HeaderText="Default Image" />
+                                                    <asp:TemplateField>
+                                                        <ItemTemplate>
+                                                            <asp:Image ID="imgProduct" runat="server" ImageUrl='<%# "~/resources/ImagesProduct/"+Eval("Image") %>' Height="100px" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Action">
+                                                        <ItemTemplate>
+                                                            <%--<a href='<%# "EditProduct.aspx?ID="+Eval("ID") %>' class="table-icon edit" title="Edit"></a>--%>
+                                                            <%--<a href="#" class="table-icon archive" title="Archive"></a>--%>
+                                                            <%--<a href="#" class="table-icon delete" title="Delete"></a>--%>
+                                                            <asp:Button ID="btnDeleteImage" CssClass="button table-icon delete" runat="server" ToolTip="Delete" Text="" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                            </asp:GridView>
+                                        </asp:Panel>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                             <asp:BoundField HeaderText="ID" DataField="ID" />
                             <asp:BoundField HeaderText="Name" DataField="Name" />
                             <%--<asp:BoundField HeaderText="PriceOld" DataField="PriceOld" DataFormatString="{0:#,##0}" />--%>
@@ -60,7 +126,7 @@
                             <asp:TemplateField>
                                 <ItemTemplate>
                                     <a href='<%# "EditProduct.aspx?ID="+Eval("ID") %>' class="table-icon edit" title="Edit"></a>
-                                    <a href="#" class="table-icon archive" title="Archive"></a>
+                                    <%--<a href="#" class="table-icon archive" title="Archive"></a>--%>
                                     <a href="#" class="table-icon delete" title="Delete"></a>
                                 </ItemTemplate>
                             </asp:TemplateField>

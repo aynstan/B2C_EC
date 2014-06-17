@@ -10,7 +10,7 @@
         <div>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <asp:GridView ID="gvManufacturers" runat="server" AutoGenerateColumns="False">
+                    <asp:GridView ID="gvManufacturers" CssClass="table" runat="server" AutoGenerateColumns="False">
                         <Columns>
                             <asp:BoundField HeaderText="ID" DataField="ID" />
                             <asp:BoundField HeaderText="Name" DataField="Name" />

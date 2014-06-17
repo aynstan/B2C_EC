@@ -32,7 +32,7 @@
     <div class="entry">
         <div class="h_title">Details Product</div>
         <div class="clear">
-            <table>
+            <table class="table">
                 <tr>
                     <td style="width:20%;">
                         <label for="name">
@@ -130,7 +130,7 @@
                     <td colspan="2">
                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                             <ContentTemplate>
-                                <asp:GridView ID="gvImages" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" OnRowDeleting="gvImages_RowDeleting">
+                                <asp:GridView ID="gvImages" CssClass="table" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" OnRowDeleting="gvImages_RowDeleting">
                                     <Columns>
                                         <asp:ImageField DataImageUrlField="Image" DataImageUrlFormatString="~/Resources/ImagesProduct/{0}" HeaderText="Image">
                                         </asp:ImageField>

@@ -48,7 +48,7 @@
         <div>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <asp:GridView ID="gvUsers" runat="server" AutoGenerateColumns="False" EmptyDataText="Not found users for filter">
+                    <asp:GridView ID="gvUsers" CssClass="table" runat="server" AutoGenerateColumns="False" EmptyDataText="Not found users for filter">
                         <Columns>
                             <asp:BoundField HeaderText="ID" DataField="ID" />
                             <asp:BoundField HeaderText="First Name" DataField="FirstName" />
