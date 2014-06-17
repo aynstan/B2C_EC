@@ -5,24 +5,53 @@
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="full_w">        
-        <h2>Management Manufacturers Page</h2>
+        <h2>Management Manufacturer Page</h2>
         <p>Here, All manufactures of website will display.</p>
+        <div>
+            <table align="center" style="margin:15px">
+                <tr>
+                    <td>Manufacturer ID</td>
+                    <td>Name</td>
+                    <td>Phone</td>
+                    <td>Website(url)</td>
+                </tr>
+                <tr>
+                    <td><asp:TextBox ID="txtManufacturerID" runat="server"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtName" runat="server"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtPhone" runat="server"></asp:TextBox></td>
+                    <td><asp:TextBox ID="txtWebsite" runat="server"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td colspan="6" align="center"><asp:Button ID="btnFilter" runat="server" CssClass="button" Text="Filter" OnClick="btnFilter_Click" /></td>
+                </tr>
+            </table>
+        </div>
         <div>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <asp:GridView ID="gvManufacturers" CssClass="table" runat="server" AutoGenerateColumns="False">
+                    <asp:GridView ID="gvManufacturers" runat="server" CssClass="table" AutoGenerateColumns="False" OnRowDataBound="gvManufacturers_RowDataBound">
                         <Columns>
-                            <asp:BoundField HeaderText="ID" DataField="ID" />
+                            <asp:BoundField HeaderText="ID" DataField="ID" >
+                            <ItemStyle HorizontalAlign="Center" Width="30px" />
+                            </asp:BoundField>
                             <asp:BoundField HeaderText="Name" DataField="Name" />
                             <asp:BoundField HeaderText="Phone" DataField="Phone" />
                             <asp:BoundField HeaderText="Website" DataField="Website" />
-                            <asp:CheckBoxField HeaderText="IsActive" DataField="IsActive" />
+                            <asp:TemplateField HeaderText="Address">
+                                <ItemTemplate>
+                                    <asp:Label ID="lbAddress" runat="server"></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:CheckBoxField HeaderText="IsActive" DataField="IsActive" >
+                            <ItemStyle HorizontalAlign="Center" Width="50px" />
+                            </asp:CheckBoxField>
                             <asp:TemplateField>
                                 <ItemTemplate>
                                     <a href='<%# "EditManufacturer.aspx?ID="+Eval("ID") %>' class="table-icon edit" title="Edit"></a>
-                                    <a href="#" class="table-icon archive" title="Archive"></a>
-                                    <a href="#" class="table-icon delete" title="Delete"></a>
+                                    <%--<a href="#" class="table-icon archive" title="Archive"></a>--%>
+                                    <asp:LinkButton ID="lnkRemove" runat="server" CssClass="table-icon delete" ToolTip="Remove" CommandArgument='<%# Eval("ID") %>' CausesValidation="false" OnClick="btnRemove_Click" OnClientClick="return confirm('Do you really want to remove this manufacturer?');"></asp:LinkButton>
                                 </ItemTemplate>
+                                <ItemStyle Width="80px" />
                             </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
