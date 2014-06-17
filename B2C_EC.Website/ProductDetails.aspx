@@ -10,7 +10,7 @@
             </HeaderTemplate>
             <ItemTemplate>
                 <li><a href="#">
-                    <img style="height: 300px;" src='<%# "resources/ImagesProduct/"+Eval("ImageURL") %>' alt="" /></a></li>
+                    <img style="height: 300px;" src='<%# "resources/ImagesProduct/"+Eval("Image") %>' alt="" /></a></li>
             </ItemTemplate>
             <FooterTemplate>
                 </ul>

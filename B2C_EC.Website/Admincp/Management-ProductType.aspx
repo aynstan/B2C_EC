@@ -7,9 +7,33 @@
         <h2>Management Product Type Page</h2>
         <p>Here, All product type of website will display.</p>
         <div>
+            <table class="table">
+                <tr>
+                            <td>Name:</td>
+                            <td><asp:TextBox ID="txtName" runat="server"></asp:TextBox></td>
+                            <td>Status:</td>
+                            <td><asp:DropDownList ID="ddlStatus" runat="server">
+                                <asp:ListItem Value="0">--All--</asp:ListItem>
+                                <asp:ListItem Value="1">Active</asp:ListItem>
+                                <asp:ListItem Value="2">Best Selling</asp:ListItem>
+                                <asp:ListItem Value="3">Special</asp:ListItem>
+                                <asp:ListItem Value="4">New</asp:ListItem>
+                                </asp:DropDownList></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>
+                                <asp:Button ID="btnFilter" runat="server" CssClass="button" OnClick="btnFilter_Click" Text="Filter" />
+                            </td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+            </table>
+        </div>
+        <div>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <asp:GridView ID="gvProductType" runat="server" AutoGenerateColumns="False">
+                    <asp:GridView ID="gvProductType" CssClass="table" runat="server" AutoGenerateColumns="False">
                         <Columns>
                             <asp:BoundField HeaderText="ID" DataField="ID" />
                             <asp:BoundField HeaderText="Name" DataField="Name" />
@@ -18,7 +42,7 @@
                             <asp:CheckBoxField HeaderText="IsActive" DataField="IsActive" />
                             <asp:TemplateField>
                                 <ItemTemplate>
-                                    <a href='<%# "EditManufacturer.aspx?ID="+Eval("ID") %>' class="table-icon edit" title="Edit"></a>
+                                    <a href='<%# "EditProductType.aspx?ID="+Eval("ID") %>' class="table-icon edit" title="Edit"></a>
                                     <a href="#" class="table-icon archive" title="Archive"></a>
                                     <a href="#" class="table-icon delete" title="Delete"></a>
                                 </ItemTemplate>
@@ -48,6 +72,9 @@
                         &nbsp;
                     </div>
                 </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="btnFilter" EventName="Click" />
+                </Triggers>
             </asp:UpdatePanel>
             
         </div>

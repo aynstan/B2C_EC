@@ -93,7 +93,7 @@ namespace B2C_EC.Website.Admincp
             List<User> users = userRepo.GetManagementUsers(txtFirstName.Text, txtLastName.Text, txtEmail.Text, txtUserName.Text, ddlStatus.SelectedIndex == 0 ? true : false);
             _PageDataSource.DataSource = users;
             _PageDataSource.AllowPaging = true;
-            _PageDataSource.PageSize = 2;
+            _PageDataSource.PageSize = 10;
             _PageDataSource.CurrentPageIndex = CurrentPage;
             ViewState["TotalPages"] = _PageDataSource.PageCount;
 
@@ -190,5 +190,22 @@ namespace B2C_EC.Website.Admincp
             BindItemsList();
         }
         #endregion       
+
+        protected void gvUsers_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            Model.User user = (Model.User)e.Row.DataItem;
+            if (user != null)
+            {
+                if (user.Address != null)
+                {
+                    Label lbAddress = (Label)e.Row.FindControl("lblAddress");
+                    if (lbAddress != null)
+                    {
+                        string address = new AddressRepo().GetToString(user.Address);
+                        lbAddress.Text = address;
+                    }
+                }
+            }
+        }
     }
 }

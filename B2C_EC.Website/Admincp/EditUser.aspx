@@ -1,82 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admincp/Admin.Master" ViewStateMode="Enabled" AutoEventWireup="true" CodeBehind="EditUser.aspx.cs" Inherits="B2C_EC.Website.Admincp.EditUser" %>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <script src="../Scripts/jquery-1.4.1.min.js"></script>
     <script type="text/javascript">
         var $j = jQuery.noConflict();
         $j(document).ready(function () {
-            $j("#<%=txtUserName.ClientID %>").blur(function () {
-                $j.ajax({
-                    type: "POST",
-                    url: "UserDetails.aspx/KiemTraTenDangNhap",
-                    data: "{'TenDangNhap':'" + $j("#<%=txtUserName.ClientID %>").val() + "'}",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (message) {
-                        if (message.d == false) {
-                            $j("#checkReturn").css({
-                                "color": "red",
-                                "font-weight": "bold",
-                                "font-size": "small",
-                                "padding-left": "5px"
-                            });
-                            $j("#checkReturn").text("Username is already exists in system");
-                            // Ẩn Nút Submit nếu UserName không hợp lệ
-                            $j("#btnSave").hide();
-                        }
-                        else {
-                            $j("#checkReturn").css({
-                                "color": "green",
-                                "font-weight": "bold",
-                                "font-size": "small",
-                                "padding-left": "5px"
-                            });
-                            $j("#btnSave").show();
-                            $j("#checkReturn").text("")
-                        }
-                    },
-                    error: function (errormessage) {
-                        //Hiển thị lỗi nếu xảy ra
-                        $j("#checkReturn").text(errormessage.responseText);
-                    }
-                });
-            });
-
-            $j("#<%=txtEmail.ClientID %>").blur(function () {
-                $j.ajax({
-                    type: "POST",
-                    url: "UserDetails.aspx/KiemTraEmail",
-                    data: "{'Email':'" + $j("#<%=txtEmail.ClientID %>").val() + "'}",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (message) {
-                        if (message.d == false) {
-                            $j("#checkReturnEmail").css({
-                                "color": "red",
-                                "font-weight": "bold",
-                                "font-size": "small",
-                                "padding-left": "5px"
-                            });
-                            $j("#checkReturnEmail").text("Email is already exists in system");
-                            // Ẩn Nút Submit nếu UserName không hợp lệ
-                            $j("#btnSave").hide();
-                        }
-                        else {
-                            $j("#checkReturn").css({
-                                "color": "green",
-                                "font-weight": "bold",
-                                "font-size": "small",
-                                "padding-left": "5px"
-                            });
-                            $j("#btnSave").show();
-                            $j("#checkReturnEmail").text("")
-                        }
-                    },
-                    error: function (errormessage) {
-                        //Hiển thị lỗi nếu xảy ra
-                        //$j("#checkReturnEmail").text(errormessage.responseText);
-                    }
-                });
-            });
+            
         });
     </script>
 </asp:Content>
@@ -85,9 +14,9 @@
         <div class="h_title">Details User</div>
         <div class="clear">
             <asp:Literal ID="ltrError" Visible="false" runat="server"></asp:Literal>
-            <table>
+            <table class="table">
                 <tr>
-                    <td style="width:20%;">
+                    <td style="width: 20%;">
                         <label for="name">
                             ID
                         </label>
@@ -125,8 +54,7 @@
                         </label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtUserName" CssClass="text err" runat="server" Enabled="False"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="(*)" ForeColor="Red" ControlToValidate="txtUserName"></asp:RequiredFieldValidator>
+                        <asp:Label ID="lblUserName" runat="server"></asp:Label>
                         <label id="checkReturn"></label>
                     </td>
                 </tr>
@@ -137,19 +65,7 @@
                         </label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtPassword" CssClass="text err" runat="server" TextMode="Password"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="(*)" ForeColor="Red" ControlToValidate="txtPassword"></asp:RequiredFieldValidator>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="name">
-                            Confirm Password
-                        </label>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtConfirm" CssClass="text err" runat="server" TextMode="Password"></asp:TextBox>
-                        <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtPassword" ControlToValidate="txtConfirm" ErrorMessage="Password is not match!" ForeColor="Red"></asp:CompareValidator>
+                        <asp:Label ID="lblPassword" runat="server" Text="********"></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -226,7 +142,7 @@
                     <td>
                         <asp:TextBox ID="txtEmail" CssClass="text err" runat="server"></asp:TextBox>
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email is not correct format!" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
-                        <br /><label id="checkReturnEmail"></label>
+                        <label id="checkReturnEmail"></label>
                     </td>
                 </tr>
                 <tr>
@@ -239,7 +155,7 @@
                         <asp:CheckBox ID="chkActive" runat="server" Text="Active" />
                     </td>
                 </tr>
-                </table>
+            </table>
             <div class="entry">
 
                 <asp:Label ID="lblError" runat="server" Font-Size="Small" ForeColor="Red"></asp:Label>

@@ -194,10 +194,17 @@ namespace B2C_EC.Website.Admincp
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 int Id = ToSQL.SQLToInt(gvProducts.DataKeys[e.Row.RowIndex].Value.ToString());
-                GridView gvImagesProduct = e.Row.FindControl("gvImagesProduct") as GridView;
-                gvImagesProduct.DataSource = (new ProductImageRepo()).GetAllImagesByProductId(Id);
-                gvImagesProduct.DataBind();
+                DataList dtlImagesProduct = e.Row.FindControl("dtlImagesProduct") as DataList;
+                dtlImagesProduct.DataSource = (new ProductImageRepo()).GetAllImagesByProductId(Id);
+                dtlImagesProduct.DataBind();
             }
+        }
+
+        protected void dtlImagesProduct_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            int ID = ToSQL.SQLToInt(e.CommandArgument);
+            (new ProductImageRepo()).DeleteProductImage(ID);
+            BindItemsList();
         }
     }
 }

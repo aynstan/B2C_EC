@@ -9,7 +9,7 @@
             <fieldset style="width:98%; margin:5px;">
                 <legend><h3>Filter user by:</h3></legend>
                 <div>
-                    <table style="width:95%;">
+                    <table class="table" style="width:95%;">
                         <tr>
                             <td>First Name:</td>
                             <td><asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox></td>
@@ -48,12 +48,17 @@
         <div>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <asp:GridView ID="gvUsers" CssClass="table" runat="server" AutoGenerateColumns="False" EmptyDataText="Not found users for filter">
+                    <asp:GridView ID="gvUsers" CssClass="table" runat="server" AutoGenerateColumns="False" EmptyDataText="Not found users for filter" OnRowDataBound="gvUsers_RowDataBound">
                         <Columns>
                             <asp:BoundField HeaderText="ID" DataField="ID" />
                             <asp:BoundField HeaderText="First Name" DataField="FirstName" />
                             <asp:BoundField HeaderText="Last Name" DataField="LastName" />
                             <asp:BoundField DataField="Username" HeaderText="User Name" />
+                            <asp:TemplateField HeaderText="Address">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblAddress" runat="server" Text=""></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:BoundField HeaderText="Phone" DataField="Phone" />
                             <asp:BoundField HeaderText="Email" DataField="Email" />
                             <asp:BoundField DataField="DateCreated" DataFormatString="{0:MM/dd/yyyy}" HeaderText="Date Created" />
