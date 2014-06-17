@@ -16,5 +16,10 @@ namespace B2C_EC.Model.Data
         {
             return db.ProductTypes.ToList();
         }
+
+        public ProductType GetById(int Id)
+        {
+            return db.ProductTypes.Where(p => p.ID == Id).FirstOrDefault();
+        }
     }
 }
