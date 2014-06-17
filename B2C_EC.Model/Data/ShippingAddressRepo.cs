@@ -8,17 +8,13 @@ using B2C_EC.Model.Global;
 
 namespace B2C_EC.Model.Data
 {
-    public class PaymentRepo
+    public class ShippingAddressRepo
     {
         private B2C_ECEntities db = new B2C_ECEntities();
 
-        public Payment GetById(int Id)
+        public ShippingAddress GetById(int Id)
         {
-            return db.Payments.Find(Id);
-        }
-        public List<Payment> GetAllPayment()
-        {
-            return db.Payments.ToList();
+            return db.ShippingAddresses.Find(Id);
         }
     }
 }

@@ -90,6 +90,7 @@ namespace B2C_EC.Website.Admincp
             user.Address.ZipCode = txtZipCode.Text;
             user.Phone = txtPhone.Text;
             user.Email = txtEmail.Text;
+            user.DateCreated = DateTime.Now;
             user.IsActive = chkIsActive.Checked;
             if ((new UserRepo()).CreateUser(user) > 0)
             {

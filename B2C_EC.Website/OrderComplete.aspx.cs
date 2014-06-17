@@ -26,7 +26,7 @@ namespace B2C_EC.Website
                 }
                 lbOrderID.Text = ToSQL.EmptyNull(order.ID);
                 lbDateCreated.Text = ToSQL.EmptyNull(order.DateCreated.ToShortDateString());
-                Model.Payment payment = new PaymentRepo().GetPaymentInfo(order.Payment_ID);
+                Model.Payment payment = new PaymentRepo().GetById(order.Payment_ID);
                 lbPaymentType.Text = ToSQL.EmptyNull(payment.Name);
             }
             if (Session["Subtotal"] != null)

@@ -83,7 +83,7 @@ namespace B2C_EC.Model.Data
         {
             Customer customer = db.Customers.Where(g => g.Username == username).FirstOrDefault();
             return customer;
-        }        
+        }
         public bool DoesEmailExist(string email)
         {
             Customer customer = db.Customers.Where(c => c.Email == email).FirstOrDefault();

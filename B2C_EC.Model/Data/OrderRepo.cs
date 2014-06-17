@@ -11,11 +11,19 @@ namespace B2C_EC.Model.Data
     {
         private B2C_ECEntities db = new B2C_ECEntities();
 
-        public int CreateOrder(Order A)
+        public Order GetById(int Id)
+        {
+            return db.Orders.Find(Id);
+        }
+        public List<Order> GetAllOrder()
+        {
+            return db.Orders.ToList();
+        }
+        public int CreateOrder(Order C)
         {
             try
             {
-                db.Orders.Add(A);
+                this.db.Orders.Add(C);
                 return db.SaveChanges();
             }
             catch (Exception e)
@@ -23,18 +31,52 @@ namespace B2C_EC.Model.Data
                 throw new Exception(e.Message);
             }
         }
-
-        public int UpdateOrder(Order A)
+        public int DeleteOrder(int Id)
+        {
+            Order order = db.Orders.Where(u => u.ID == Id).FirstOrDefault();
+            return DeleteOrder(order);
+        }
+        public int DeleteOrder(Order C)
         {
             try
             {
-                db.Entry(A).State = EntityState.Modified;
+                db.Entry(C).State = EntityState.Deleted;
                 return db.SaveChanges();
             }
             catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
+        }
+        public int UpdateOrder(Order C)
+        {
+            try
+            {
+                var v = GetById(C.ID);
+                if (v == null)
+                {
+                    return CreateOrder(C);
+                }
+                else
+                {
+                    db.Entry(v).CurrentValues.SetValues(C);
+                    //db.Entry(C).State = EntityState.Modified;
+                    return db.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public List<Order> GetManagementOrders(int orderID, DateTime? fromdate,DateTime? todate, int orderStatus, int customerID)
+        {
+            return db.Orders.Where(u => (orderID.Equals(0) || orderID.Equals(null) || u.ID.Equals(orderID))
+                                        && (fromdate.Equals(null) || u.DateCreated >= fromdate)
+                                        && (todate.Equals(null) || u.DateCreated <= todate)
+                                        && (orderStatus.Equals(0) || orderStatus.Equals(null) || u.OrderStatus_ID.Equals(orderStatus))
+                                        && (customerID.Equals(0) || customerID.Equals(null) || u.Customer_ID.Value.Equals(customerID))
+                                      ).ToList();
         }
     }
 }

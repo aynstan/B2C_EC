@@ -4,9 +4,9 @@
 
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="full_w">        
+    <div id="manufacturer">        
         <h2>Management Manufacturer Page</h2>
-        <p>Here, All manufactures of website will display.</p>
+        <p>Here, All manufacturers of website will display.</p>
         <div>
             <table align="center" style="margin:15px">
                 <tr>
