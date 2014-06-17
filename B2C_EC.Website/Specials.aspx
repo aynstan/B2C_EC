@@ -11,7 +11,7 @@
             <ItemTemplate>
                 <div class="product-info last-p">
                     <asp:HiddenField ID="hdfProductId" Value='<%# Eval("ID") %>' runat="server" />
-                    <asp:Image ID="imgProduct" runat="server" ImageUrl="~/Resources/ImagesDesign/ipod-tuch.jpg" alt="ipod-tuch" title='<%# Eval("Name") %>' />
+                    <a href='<%# "ProductDetails.aspx?ProductId="+Eval("ID") %>'><asp:Image ID="imgProduct" runat="server" ImageUrl="~/Resources/ImagesDesign/ipod-tuch.jpg" alt="ipod-tuch" title='<%# Eval("Name") %>' /></a>
                     <h2><%# Eval("Name") %></h2>
                     <div class="add"><span><%# Eval("Price","$ {0:#,##0}") %></span><%--<a href="#">Add To Cart</a>--%><asp:LinkButton ID="lnkAddCart" runat="server" CommandName="Add" Text="Add To Cart"></asp:LinkButton></div>
                     <div class="add-to-list">

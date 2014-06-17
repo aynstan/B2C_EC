@@ -125,10 +125,10 @@
                         </ul>
                         <ul class="search-box">
                             <li>
-                                <input type="text" placeholder="search" class="input" id="user_search" />
+                                <input type="text" placeholder="search" class="input" style="border:0px;" id="user_search" />
                             </li>
                             <li class="sms-last">
-                                <input type="submit" value="" class="input submit" />
+                                <input type="submit" value="" class="input submit" style="border:0px;" />
                                 <a href="#">search</a></li>
                         </ul>
                     </div>
