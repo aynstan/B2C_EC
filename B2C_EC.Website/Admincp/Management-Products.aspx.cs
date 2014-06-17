@@ -1,5 +1,6 @@
 ﻿using B2C_EC.Model;
 using B2C_EC.Model.Data;
+using B2C_EC.Model.Global;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -85,7 +86,7 @@ namespace B2C_EC.Website.Admincp
 
         private void BindItemsList()
         {
-            List<Product> users = productRepo.GetAllProduct();
+            List<Product> users = productRepo.GetProductManagement(txtName.Text, ToSQL.SQLToDecimal(txtPriceFrom.Text), ToSQL.SQLToDecimal(txtPriceTo.Text), ddlStatus.SelectedIndex);
             _PageDataSource.DataSource = users;
             _PageDataSource.AllowPaging = true;
             _PageDataSource.PageSize = 10;
@@ -186,6 +187,17 @@ namespace B2C_EC.Website.Admincp
         protected void btnFilter_Click(object sender, EventArgs e)
         {
             BindItemsList();
+        }
+
+        protected void gvProducts_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                int Id = ToSQL.SQLToInt(gvProducts.DataKeys[e.Row.RowIndex].Value.ToString());
+                GridView gvImagesProduct = e.Row.FindControl("gvImagesProduct") as GridView;
+                gvImagesProduct.DataSource = (new ProductImageRepo()).GetAllImagesByProductId(Id);
+                gvImagesProduct.DataBind();
+            }
         }
     }
 }

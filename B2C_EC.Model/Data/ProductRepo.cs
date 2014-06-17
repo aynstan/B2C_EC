@@ -95,19 +95,19 @@ namespace B2C_EC.Model.Data
             switch (status)
             {
                 case 0:
-                    list = db.Products.Where(p => p.Name.Contains(Name) && (price == 0 || p.Price >= price) && p.Price <= priceto).ToList();
+                    list = db.Products.Where(p => p.Name.Contains(Name) && (price == 0 || p.Price >= price) && (priceto == 0 || p.Price <= priceto)).ToList();
                     break;
                 case 1:
-                    list = db.Products.Where(p => p.Name.Contains(Name) && p.Price >= price).ToList();
+                    list = db.Products.Where(p => p.Name.Contains(Name) && (price == 0 || p.Price >= price) && (priceto == 0 || p.Price <= priceto) && p.IsActive == true).ToList();
                     break;
                 case 2:
-                    list = db.Products.Where(p => p.Name.Contains(Name) && p.Price >= price).ToList();
+                    list = db.Products.Where(p => p.Name.Contains(Name) && (price == 0 || p.Price >= price) && (priceto == 0 || p.Price <= priceto) && p.IsBestSelling == true).ToList();
                     break;
                 case 3:
-                    list = db.Products.Where(p => p.Name.Contains(Name) && p.Price >= price).ToList();
+                    list = db.Products.Where(p => p.Name.Contains(Name) && (price == 0 || p.Price >= price) && (priceto == 0 || p.Price <= priceto) && p.IsSpecial == true).ToList();
                     break;
                 case 4:
-                    list = db.Products.Where(p => p.Name.Contains(Name) && p.Price >= price).ToList();
+                    list = db.Products.Where(p => p.Name.Contains(Name) && (price == 0 || p.Price >= price) && (priceto == 0 || p.Price <= priceto) && p.IsNew == true).ToList();
                     break;
                 default:
                     break;
