@@ -22,11 +22,28 @@ namespace B2C_EC.Website
 
         private void LoadProductDetails()
         {
-            int ProductId = ToSQL.SQLToInt(Request.QueryString["ProductId"]);
-            rptListImages.DataSource = (new ProductImageRepo()).GetAllImagesByProductId(ProductId);
-            rptListImages.DataBind();
-            Product p = (new ProductRepo()).GetById(ProductId);
-            ltrDetails.Text = p.Description;
+            if (Request.QueryString["ProductId"] != null)
+            {
+                int ProductId = ToSQL.SQLToInt(Request.QueryString["ProductId"]);                
+                Product p = (new ProductRepo()).GetById(ProductId);
+                if (p != null)
+                {
+                    rptListImages.DataSource = (new ProductImageRepo()).GetAllImagesByProductId(ProductId);
+                    rptListImages.DataBind();
+                    ltrDetails.Text = p.Description;
+                    lblName.Text = p.Name;
+                    lblPrice.Text = p.Price.ToString("#,###.## $");
+                }
+                else
+                {                   
+                    Response.Redirect("~/Index.aspx");
+                }
+            }
+            else
+            {
+                Response.Write("<script>alert('Not found product!');</script>");
+                Response.Redirect("~/Index.aspx");
+            }
         }
     }
 }

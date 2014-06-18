@@ -755,3 +755,76 @@ text-transform: uppercase;
     border: 1px solid #056BCD;
     padding-left:3px;
 }
+
+.table-detail{ 
+	border-collapse: collapse; 
+	margin: 15px; 
+}
+.table-detail th{ 
+	background: url(../Resources/Admin/bg_box_head.jpg) repeat-x;
+	color: #DACDCD;
+	border-left: 1px solid #ffffff;
+	border-right: 1px solid #ffffff;
+	font-size: 13px; 
+	font-weight: bold; 
+	padding: 7px; 
+	text-shadow: 0px 1px #242424; 
+}
+.table-detail tr{ 
+	border-left: 1px solid #ffffff;
+	border-right: 1px solid #ffffff;
+}
+.table-detail td{ 
+	border-bottom: 1px solid #ffffff; 
+	border-top: 1px solid #ffffff; 
+	color: #565656;
+	padding: 8px; 
+    font-size:14px;
+}
+.table-detail tr:hover td{ 
+	background: #fff8cf;
+	color: #000000; 
+}
+.table-detail .chb{ 
+	width: 20px; 
+}
+
+.TableDescription {
+    font-size:15px;
+	/*color:#fff;*/
+	font-family: 'geoslab703_md_btmedium';
+    margin-top:5px;
+    padding:5px 5px 0px 5px;
+}
+
+.titleh2 {
+    border-radius: 5px 5px 0 0;
+    background: #4E4E4E;
+    text-align: center;
+    background: linear-gradient(#4E4E4E, #060606);
+    -pie-background: linear-gradient(#4E4E4E, #060606);
+    padding: 8px 0;
+    color:#ffffff;
+    float:left;
+    width:100%;
+}
+
+.Description {
+    border:1px solid #4E4E4E;
+    padding:0px 5px 5px 5px;
+    margin:0px 0px 5px 0px;
+    float:left;
+    width:98.8%;
+}
+
+.Detail-Left {
+    width:48%;
+    float:left;
+    padding:5px;
+}
+
+.Detail-Right {
+    width:48%;
+    float:right;
+    padding:5px;
+}

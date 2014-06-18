@@ -5,6 +5,10 @@
 	padding: 40px 0 60px;
     top: 0px;
     left: 0px;
+    border:2px solid #CF2317;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
 }
 
 .cbp-fwslider ul {
@@ -95,4 +99,17 @@
 	-webkit-transition: box-shadow 0.2s ease-in-out;
 	-moz-transition: box-shadow 0.2s ease-in-out;
 	transition: box-shadow 0.2s ease-in-out;
+}
+
+.cbp-fwslider2 {
+	position: relative;
+	margin: 0 0 10px;
+	overflow: hidden;
+	/*padding: 40px 0 60px;*/
+    top: 0px;
+    left: 0px;
+    border:2px solid #CF2317;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
 }

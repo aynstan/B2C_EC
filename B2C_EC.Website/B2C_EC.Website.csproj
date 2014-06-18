@@ -459,6 +459,8 @@
     <Content Include="ProductDetails.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Resources\ImagesDesign\alican.jpg" />
+    <Content Include="Resources\ImagesDesign\arrow-next.png" />
+    <Content Include="Resources\ImagesDesign\arrow-prev.png" />
     <Content Include="Resources\ImagesDesign\banner-rept.jpg" />
     <Content Include="Resources\ImagesDesign\bara.jpg" />
     <Content Include="Resources\ImagesDesign\bg.jpg" />
@@ -554,6 +556,7 @@
     <Content Include="Styles\common.css" />
     <Content Include="Styles\component.css" />
     <Content Include="Styles\Control.css" />
+    <Content Include="Styles\global.css" />
     <Content Include="Styles\ie8.css" />
     <Content Include="Styles\admin_login.css" />
     <Content Include="Styles\metro.css" />
@@ -815,6 +818,13 @@
     <Compile Include="Shops.aspx.designer.cs">
       <DependentUpon>Shops.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
     <Compile Include="Specials.aspx.cs">
       <DependentUpon>Specials.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -868,6 +878,7 @@
     <Content Include="Fonts\geo703xb-webfont.ttf" />
     <Content Include="Fonts\geo703xb-webfont.woff" />
     <Content Include="packages.config" />
+    <Content Include="Site.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
