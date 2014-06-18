@@ -52,7 +52,7 @@
                     <table class="table" style="width:95%;">
                         <tr>
                             <td>Name:</td>
-                            <td><asp:TextBox ID="txtName" runat="server"></asp:TextBox></td>
+                            <td><asp:TextBox ID="txtName" CssClass="TextBox" runat="server"></asp:TextBox></td>
                             <td>Status:</td>
                             <td><asp:DropDownList ID="ddlStatus" runat="server">
                                 <asp:ListItem Value="0">--All--</asp:ListItem>
@@ -64,10 +64,10 @@
                         </tr>
                         <tr>
                             <td>Price from:</td>
-                            <td><asp:TextBox ID="txtPriceFrom" CssClass="text" runat="server"></asp:TextBox>
+                            <td><asp:TextBox ID="txtPriceFrom" CssClass="TextBox" runat="server"></asp:TextBox>
                                 <br /></td>
                             <td>Price to</td>
-                            <td><asp:TextBox ID="txtPriceTo" runat="server"></asp:TextBox>
+                            <td><asp:TextBox ID="txtPriceTo" CssClass="TextBox" runat="server"></asp:TextBox>
                                 <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtPriceTo" ControlToValidate="txtPriceFrom" ErrorMessage="(*)" ForeColor="Red" Operator="LessThanEqual" Type="Integer"></asp:CompareValidator>
                                 </td>
                         </tr>
