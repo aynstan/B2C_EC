@@ -32,7 +32,7 @@
                     <asp:GridView ID="gvManufacturers" runat="server" CssClass="table" AutoGenerateColumns="False" OnRowDataBound="gvManufacturers_RowDataBound">
                         <Columns>
                             <asp:BoundField HeaderText="ID" DataField="ID" >
-                            <ItemStyle HorizontalAlign="Center" Width="30px" />
+                            <ItemStyle HorizontalAlign="Center" />
                             </asp:BoundField>
                             <asp:BoundField HeaderText="Name" DataField="Name" />
                             <asp:BoundField HeaderText="Phone" DataField="Phone" />
@@ -42,8 +42,8 @@
                                     <asp:Label ID="lbAddress" runat="server"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:CheckBoxField HeaderText="IsActive" DataField="IsActive" >
-                            <ItemStyle HorizontalAlign="Center" Width="50px" />
+                            <asp:CheckBoxField HeaderText="Active" DataField="IsActive" >
+                            <ItemStyle HorizontalAlign="Center" />
                             </asp:CheckBoxField>
                             <asp:TemplateField>
                                 <ItemTemplate>
@@ -51,7 +51,7 @@
                                     <%--<a href="#" class="table-icon archive" title="Archive"></a>--%>
                                     <asp:LinkButton ID="lnkRemove" runat="server" CssClass="table-icon delete" ToolTip="Remove" CommandArgument='<%# Eval("ID") %>' CausesValidation="false" OnClick="btnRemove_Click" OnClientClick="return confirm('Do you really want to remove this manufacturer?');"></asp:LinkButton>
                                 </ItemTemplate>
-                                <ItemStyle Width="80px" />
+                                <ItemStyle  HorizontalAlign="Center" />
                             </asp:TemplateField>
                         </Columns>
                     </asp:GridView>

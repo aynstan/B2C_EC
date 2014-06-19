@@ -39,8 +39,9 @@ namespace B2C_EC.Website.Admincp
                     Label lbAddress = (Label)e.Row.FindControl("lbAddress");
                     if (lbAddress != null)
                     {
-                        string address = new AddressRepo().GetToString(manufacturer.Address);
-                        lbAddress.Text = address;
+                        string strAddress = new AddressRepo().GetToString(manufacturer.Address);
+                        lbAddress.Text = strAddress.Length > 23 ? strAddress.Substring(0, 20) + "..." : strAddress;
+                        lbAddress.ToolTip = strAddress;
                     }
                 }
             }
