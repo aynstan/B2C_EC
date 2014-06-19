@@ -34,7 +34,6 @@ namespace B2C_EC.Model
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<OrderStatu> OrderStatus { get; set; }
         public DbSet<Payment> Payments { get; set; }
-        public DbSet<Product> Products { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<ProductPriceHistory> ProductPriceHistories { get; set; }
         public DbSet<ProductType> ProductTypes { get; set; }
@@ -43,5 +42,6 @@ namespace B2C_EC.Model
         public DbSet<ShippingAddress> ShippingAddresses { get; set; }
         public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }

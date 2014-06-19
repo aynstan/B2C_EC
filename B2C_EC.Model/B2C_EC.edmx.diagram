@@ -14,7 +14,6 @@
         <EntityTypeShape EntityType="B2C_ECModel.OrderDetail" Width="1.5" PointX="12" PointY="9.5" />
         <EntityTypeShape EntityType="B2C_ECModel.OrderStatu" Width="1.5" PointX="15" PointY="11" />
         <EntityTypeShape EntityType="B2C_ECModel.Payment" Width="1.5" PointX="18" PointY="12.5" />
-        <EntityTypeShape EntityType="B2C_ECModel.Product" Width="1.5" PointX="0.5" PointY="14" />
         <EntityTypeShape EntityType="B2C_ECModel.ProductImage" Width="1.5" PointX="3" PointY="15.5" />
         <EntityTypeShape EntityType="B2C_ECModel.ProductPriceHistory" Width="1.875" PointX="6" PointY="17" />
         <EntityTypeShape EntityType="B2C_ECModel.ProductType" Width="1.5" PointX="9" PointY="18.5" />
@@ -28,17 +27,18 @@
         <AssociationConnector Association="B2C_ECModel.FK_ShippingAddress_Address" />
         <AssociationConnector Association="B2C_ECModel.FK_Users_Address" />
         <AssociationConnector Association="B2C_ECModel.FK_Orders_Customers" />
-        <AssociationConnector Association="B2C_ECModel.FK_Products_Manufacturer" />
         <AssociationConnector Association="B2C_ECModel.FK_OrderDetails_Orders" />
         <AssociationConnector Association="B2C_ECModel.FK_Orders_OrderStatus" />
         <AssociationConnector Association="B2C_ECModel.FK_Orders_Payment" />
         <AssociationConnector Association="B2C_ECModel.FK_Orders_ShippingAddress" />
+        <AssociationConnector Association="B2C_ECModel.FK_ProductType_ProductType" />
+        <EntityTypeShape EntityType="B2C_ECModel.Product" Width="1.5" PointX="0.30329802646455262" PointY="3.2430605903468379" />
+        <AssociationConnector Association="B2C_ECModel.FK_Products_Manufacturer" />
         <AssociationConnector Association="B2C_ECModel.FK_OrderDetails_Products" />
         <AssociationConnector Association="B2C_ECModel.FK_ImagesProduct_Products" />
         <AssociationConnector Association="B2C_ECModel.FK_ProductPriceHistory_Products" />
         <AssociationConnector Association="B2C_ECModel.FK_Products_ProductType" />
         <AssociationConnector Association="B2C_ECModel.FK_Review_Products" />
-        <AssociationConnector Association="B2C_ECModel.FK_ProductType_ProductType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

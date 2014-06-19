@@ -13,6 +13,15 @@ namespace B2C_EC.Website.Admincp {
     public partial class AddProduct {
         
         /// <summary>
+        /// lbMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbMessage;
+        
+        /// <summary>
         /// txtName control.
         /// </summary>
         /// <remarks>
@@ -29,15 +38,6 @@ namespace B2C_EC.Website.Admincp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-        
-        /// <summary>
-        /// txtPriceOld control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPriceOld;
         
         /// <summary>
         /// txtPriceNew control.
@@ -58,15 +58,6 @@ namespace B2C_EC.Website.Admincp {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
         
         /// <summary>
-        /// ddlManufacturer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlManufacturer;
-        
-        /// <summary>
         /// ddlProductType control.
         /// </summary>
         /// <remarks>
@@ -74,6 +65,15 @@ namespace B2C_EC.Website.Admincp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlProductType;
+        
+        /// <summary>
+        /// ddlManufacturer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlManufacturer;
         
         /// <summary>
         /// CKEditorControlDescription control.
@@ -103,13 +103,13 @@ namespace B2C_EC.Website.Admincp {
         protected global::System.Web.UI.WebControls.FileUpload FileUploadJquery;
         
         /// <summary>
-        /// chkActive control.
+        /// chkNew control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkActive;
+        protected global::System.Web.UI.WebControls.CheckBox chkNew;
         
         /// <summary>
         /// chkBestSelling control.
@@ -121,15 +121,6 @@ namespace B2C_EC.Website.Admincp {
         protected global::System.Web.UI.WebControls.CheckBox chkBestSelling;
         
         /// <summary>
-        /// chkNew control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkNew;
-        
-        /// <summary>
         /// chkSpecial control.
         /// </summary>
         /// <remarks>
@@ -137,15 +128,6 @@ namespace B2C_EC.Website.Admincp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkSpecial;
-        
-        /// <summary>
-        /// lblError control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
         /// btnSave control.

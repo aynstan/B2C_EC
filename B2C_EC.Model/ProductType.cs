@@ -16,8 +16,8 @@ namespace B2C_EC.Model
     {
         public ProductType()
         {
-            this.Products = new HashSet<Product>();
             this.ProductType1 = new HashSet<ProductType>();
+            this.Products = new HashSet<Product>();
         }
     
         public int ID { get; set; }
@@ -29,8 +29,8 @@ namespace B2C_EC.Model
         public string DescriptionTemplate { get; set; }
         public Nullable<int> ParentId { get; set; }
     
-        public virtual ICollection<Product> Products { get; set; }
         public virtual ICollection<ProductType> ProductType1 { get; set; }
         public virtual ProductType ProductType2 { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

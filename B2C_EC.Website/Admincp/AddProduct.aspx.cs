@@ -18,18 +18,19 @@ namespace B2C_EC.Website.Admincp
         {
             if (!IsPostBack)
             {
-                LoadManufacturerAndProductType();
+                LoadDropDownList();
             }
         }
-
-        private void LoadManufacturerAndProductType()
+        private void LoadDropDownList()
         {
             ddlManufacturer.DataSource = (new ManufacturerRepo()).GetAllManufacturer();
             ddlManufacturer.DataBind();
+            ddlManufacturer.Items.Insert(0, new ListItem("", ""));
+
             ddlProductType.DataSource = (new ProductTypeRepo()).GetAllProductType();
             ddlProductType.DataBind();
+            ddlProductType.Items.Insert(0, new ListItem("", ""));
         }
-
         private string UploadImage(HttpPostedFile PostedFile)
         {
             try
@@ -48,13 +49,14 @@ namespace B2C_EC.Website.Admincp
             Product p = new Product();
             p.Name = txtName.Text;
             p.Price = ToSQL.SQLToDecimal(txtPriceNew.Text);
-            p.ProductType_ID = ToSQL.SQLToInt(ddlProductType.SelectedValue);
-            p.Manufacuturer_ID = ToSQL.SQLToInt(ddlManufacturer.SelectedValue);
+            p.ProductType_ID = ToSQL.SQLToIntNull(ddlProductType.SelectedValue);
+            p.Manufacuturer_ID = ToSQL.SQLToIntNull(ddlManufacturer.SelectedValue);
             p.Description = CKEditorControlDescription.Text;
-            p.IsActive = chkActive.Checked;
+            p.IsActive = true;
             p.IsBestSelling = chkBestSelling.Checked;
             p.IsNew = chkNew.Checked;
             p.IsSpecial = chkSpecial.Checked;
+            p.DateCreated = DateTime.Now;
             if (fulImageDefault.HasFile)
             {
                 ProductImage image = new ProductImage();
@@ -85,7 +87,7 @@ namespace B2C_EC.Website.Admincp
             }
             else
             {
-                lblError.Text = "Please check input data! Try again!";
+                lbMessage.Text = "Please check input data! Try again!";
             }
         }
     }

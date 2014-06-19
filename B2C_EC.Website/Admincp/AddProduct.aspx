@@ -30,51 +30,31 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="full_w">
-        <div class="h_title">Details Product</div>
-        <div class="clear">
+    <div id="addproduct">
+        <h2>Add New Product Page</h2>
+        <div class="clear" style="padding:15px">
+            <asp:Label ID="lbMessage" runat="server"></asp:Label>
             <table>
                 <tr>
-                    <td>
+                    <td style="width:150px">
                         <label for="name">
                             Name
                         </label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtName" CssClass="text err" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtName" ErrorMessage="(*)" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:TextBox ID="txtName" CssClass="TextBox" runat="server" Width="200"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtName" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="addproduct"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="name">
-                            Price Old
-                        </label>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtPriceOld" CssClass="decimal text err" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="name">Price New
+                        <label for="name">Price
                             </label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtPriceNew" CssClass="decimal text err" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtPriceNew" CssClass="decimal TextBox" runat="server"></asp:TextBox>
                         <label id="checkReturn"></label>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtName" ErrorMessage="(*)" ForeColor="Red"></asp:RequiredFieldValidator>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="name">
-                            Manufacturer
-                        </label>
-                    </td>
-                    <td>
-                        <asp:DropDownList ID="ddlManufacturer" runat="server" DataTextField="Name" DataValueField="ID">
-                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtName" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="addproduct"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -84,7 +64,18 @@
                         </label>
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlProductType" runat="server" DataTextField="Name" DataValueField="ID">
+                        <asp:DropDownList ID="ddlProductType" runat="server" CssClass="Dropdown" DataTextField="Name" DataValueField="ID">
+                        </asp:DropDownList>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="name">
+                            Manufacturer
+                        </label>
+                    </td>
+                    <td>
+                        <asp:DropDownList ID="ddlManufacturer" runat="server" CssClass="Dropdown" DataTextField="Name" DataValueField="ID">
                         </asp:DropDownList>
                     </td>
                 </tr>
@@ -99,7 +90,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <CKEditor:CKEditorControl ID="CKEditorControlDescription" runat="server"></CKEditor:CKEditorControl>
+                        <CKEditor:CKEditorControl ID="CKEditorControlDescription" runat="server" Height="250px" Width="700px"></CKEditor:CKEditorControl>
                     </td>
                 </tr>
                 <tr>
@@ -120,68 +111,36 @@
                 <tr>
                     <td>
                         <label for="name">
-                            Is Active
+                            New
                         </label>
                     </td>
                     <td>
-                        <asp:CheckBox ID="chkActive" runat="server" Text="Active" Checked="True" />
+                        <asp:CheckBox ID="chkNew" runat="server" />
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label for="name">
-                            Is Best Selling
+                            BestSelling
                         </label>
                     </td>
                     <td>
-                        <asp:CheckBox ID="chkBestSelling" runat="server" Text="Best Selling" />
+                        <asp:CheckBox ID="chkBestSelling" runat="server" />
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label for="name">
-                            Is New
+                            Special
                         </label>
                     </td>
                     <td>
-                        <asp:CheckBox ID="chkNew" runat="server" Checked="True" Text="New" />
+                        <asp:CheckBox ID="chkSpecial" runat="server" />
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <label for="name">
-                            Is Special
-                        </label>
-                    </td>
-                    <td>
-                        <asp:CheckBox ID="chkSpecial" runat="server" Text="Special" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="name">
-                            Emage
-                        </label>
-                    </td>
-                    <td>
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="name">
-                            Is Active
-                        </label>
-                    </td>
-                    <td>
-&nbsp;&nbsp;
-                        </td>
-                </tr>
-                </table>
+            </table>
             <div class="entry">
-                <asp:Label ID="lblError" runat="server" Font-Size="Small" ForeColor="Red"></asp:Label>
-            </div>
-            <div class="entry">
-                <asp:Button ID="btnSave" CssClass="button add" runat="server" Text="Save" OnClick="btnSave_Click" />
+                <asp:Button ID="btnSave" CssClass="button add" runat="server" Text="Save" OnClick="btnSave_Click" ValidationGroup="addproduct" />
                 <asp:Button ID="btnCancel" CssClass="button cancel" runat="server" Text="Cancel" CausesValidation="False" PostBackUrl="~/Admincp/Management-User.aspx" />
             </div>
         </div>

@@ -58,15 +58,6 @@ namespace B2C_EC.Website.Admincp {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
         
         /// <summary>
-        /// ddlManufacturer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlManufacturer;
-        
-        /// <summary>
         /// ddlProductType control.
         /// </summary>
         /// <remarks>
@@ -74,6 +65,15 @@ namespace B2C_EC.Website.Admincp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlProductType;
+        
+        /// <summary>
+        /// ddlManufacturer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlManufacturer;
         
         /// <summary>
         /// CKEditorControlDescription control.
