@@ -89,30 +89,12 @@ namespace B2C_EC.Model.Data
             return db.Products.OrderBy(p => p.DateCreated).ToList();
         }
 
-        public List<Product> GetProductManagement(string Name, decimal price, decimal priceto, int status)
+        public List<Product> GetManagementProducts(string name, int productTypeID, int manufacturerID)
         {
-            List<Product> list = new List<Product>();
-            switch (status)
-            {
-                case 0:
-                    list = db.Products.Where(p => p.Name.Contains(Name) && (price == 0 || p.Price >= price) && (priceto == 0 || p.Price <= priceto)).ToList();
-                    break;
-                case 1:
-                    list = db.Products.Where(p => p.Name.Contains(Name) && (price == 0 || p.Price >= price) && (priceto == 0 || p.Price <= priceto) && p.IsActive == true).ToList();
-                    break;
-                case 2:
-                    list = db.Products.Where(p => p.Name.Contains(Name) && (price == 0 || p.Price >= price) && (priceto == 0 || p.Price <= priceto) && p.IsBestSelling == true).ToList();
-                    break;
-                case 3:
-                    list = db.Products.Where(p => p.Name.Contains(Name) && (price == 0 || p.Price >= price) && (priceto == 0 || p.Price <= priceto) && p.IsSpecial == true).ToList();
-                    break;
-                case 4:
-                    list = db.Products.Where(p => p.Name.Contains(Name) && (price == 0 || p.Price >= price) && (priceto == 0 || p.Price <= priceto) && p.IsNew == true).ToList();
-                    break;
-                default:
-                    break;
-            }
-            return list;
+            return db.Products.Where(u => (name.Equals("") || name.Equals(null) || u.Name.Contains(name))
+                                        && (productTypeID.Equals(0) || productTypeID.Equals(null) || u.ProductType_ID.Value.Equals(productTypeID))
+                                        && (manufacturerID.Equals(0) || manufacturerID.Equals(null) || u.Manufacuturer_ID.Value.Equals(manufacturerID))
+                                      ).ToList();
         }
     }
 }

@@ -123,7 +123,7 @@
           <Property Name="Phone" Type="varchar" MaxLength="20" />
           <Property Name="Email" Type="varchar" MaxLength="100" />
           <Property Name="DateOfBirth" Type="datetime" />
-          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="Username" Type="varchar" MaxLength="50" />
           <Property Name="Password" Type="varchar" MaxLength="250" />
           <Property Name="Address_ID" Type="int" />
@@ -230,9 +230,9 @@
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="200" />
           <Property Name="Note" Type="nvarchar" MaxLength="200" />
-          <Property Name="IsActive" Type="bit" />
-          <Property Name="SortId" Type="int" />
-          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="SortId" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="DescriptionTemplate" Type="ntext" />
           <Property Name="ParentId" Type="int" />
         </EntityType>
@@ -287,11 +287,11 @@
           <Property Name="Username" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Password" Type="varchar" Nullable="false" MaxLength="250" />
           <Property Name="Address_ID" Type="int" />
-          <Property Name="Phone" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="DateCreated" Type="datetime" />
-          <Property Name="IsActive" Type="bit" />
-          <Property Name="Key" Type="varchar" MaxLength="150" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Key" Type="varchar" Nullable="false" MaxLength="150" />
         </EntityType>
         <Association Name="FK_Customers_Address1">
           <End Role="Address" Type="B2C_ECModel.Store.Address" Multiplicity="0..1" />
@@ -611,7 +611,7 @@
           <Property Type="String" Name="Phone" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Email" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="DateOfBirth" Precision="3" />
-          <Property Type="DateTime" Name="DateCreated" Precision="3" />
+          <Property Type="DateTime" Name="DateCreated" Precision="3" Nullable="false" />
           <Property Type="String" Name="Username" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Password" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="Address_ID" />
@@ -739,9 +739,9 @@
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Note" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="Boolean" Name="IsActive" />
-          <Property Type="Int32" Name="SortId" />
-          <Property Type="DateTime" Name="DateCreated" Precision="3" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="Int32" Name="SortId" Nullable="false" />
+          <Property Type="DateTime" Name="DateCreated" Precision="3" Nullable="false" />
           <Property Type="String" Name="DescriptionTemplate" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="ParentId" />
           <NavigationProperty Name="Products" Relationship="B2C_ECModel.FK_Products_ProductType" FromRole="ProductType" ToRole="Product" />
@@ -802,11 +802,11 @@
           <Property Type="String" Name="Username" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Password" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="Address_ID" />
-          <Property Type="String" Name="Phone" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Email" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="DateCreated" Precision="3" />
-          <Property Type="Boolean" Name="IsActive" />
-          <Property Type="String" Name="Key" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Phone" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Email" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DateCreated" Precision="3" Nullable="false" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="String" Name="Key" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Address" Relationship="B2C_ECModel.FK_Users_Address" FromRole="User" ToRole="Address" />
         </EntityType>
         <Association Name="FK_Customers_Address1">

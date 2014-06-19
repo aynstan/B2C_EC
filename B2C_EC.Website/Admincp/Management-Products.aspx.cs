@@ -19,6 +19,59 @@ namespace B2C_EC.Website.Admincp
             if (!IsPostBack)
             {
                 BindItemsList();
+                LoadDropDownList();
+            }
+        }
+        private void LoadDropDownList()
+        {
+            List<ProductType> ProductTypes = new ProductTypeRepo().GetAllProductType();
+            ddlProductType.DataSource = ProductTypes;
+            ddlProductType.DataBind();
+            ddlProductType.Items.Insert(0, new ListItem("(All)", ""));
+
+            List<Manufacturer> Manufacturers = new ManufacturerRepo().GetAllManufacturer();
+            ddlManufacturer.DataSource = Manufacturers;
+            ddlManufacturer.DataBind();
+            ddlManufacturer.Items.Insert(0, new ListItem("(All)", ""));
+        }
+        protected void btnFilter_Click(object sender, EventArgs e)
+        {
+            BindItemsList();
+        }
+
+        protected void gvProducts_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                int Id = ToSQL.SQLToInt(gvProducts.DataKeys[e.Row.RowIndex].Value.ToString());
+                DataList dtlImagesProduct = e.Row.FindControl("dtlImagesProduct") as DataList;
+                dtlImagesProduct.DataSource = (new ProductImageRepo()).GetAllImagesByProductId(Id);
+                dtlImagesProduct.DataBind();
+            }
+        }
+
+        protected void dtlImagesProduct_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            int ID = ToSQL.SQLToInt(e.CommandArgument);
+            (new ProductImageRepo()).DeleteProductImage(ID);
+            BindItemsList();
+        }
+
+        protected void lnkRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LinkButton lnk = (LinkButton)sender;
+                int Id = ToSQL.SQLToInt(lnk.CommandArgument);
+                if (Id > 0)
+                {
+                    int i = new ProductRepo().DeleteProduct(Id);
+                    BindItemsList();
+                }
+            }
+            catch
+            {
+
             }
         }
 
@@ -86,7 +139,7 @@ namespace B2C_EC.Website.Admincp
 
         private void BindItemsList()
         {
-            List<Product> users = productRepo.GetProductManagement(txtName.Text, ToSQL.SQLToDecimal(txtPriceFrom.Text), ToSQL.SQLToDecimal(txtPriceTo.Text), ddlStatus.SelectedIndex);
+            List<Product> users = productRepo.GetManagementProducts(ToSQL.EmptyNull(txtName.Text), ToSQL.SQLToInt(ddlProductType.SelectedValue), ToSQL.SQLToInt(ddlManufacturer.SelectedValue));
             _PageDataSource.DataSource = users;
             _PageDataSource.AllowPaging = true;
             _PageDataSource.PageSize = 10;
@@ -182,47 +235,6 @@ namespace B2C_EC.Website.Admincp
             }
         }
 
-        #endregion
-
-        protected void btnFilter_Click(object sender, EventArgs e)
-        {
-            BindItemsList();
-        }
-
-        protected void gvProducts_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                int Id = ToSQL.SQLToInt(gvProducts.DataKeys[e.Row.RowIndex].Value.ToString());
-                DataList dtlImagesProduct = e.Row.FindControl("dtlImagesProduct") as DataList;
-                dtlImagesProduct.DataSource = (new ProductImageRepo()).GetAllImagesByProductId(Id);
-                dtlImagesProduct.DataBind();
-            }
-        }
-
-        protected void dtlImagesProduct_ItemCommand(object source, DataListCommandEventArgs e)
-        {
-            int ID = ToSQL.SQLToInt(e.CommandArgument);
-            (new ProductImageRepo()).DeleteProductImage(ID);
-            BindItemsList();
-        }
-
-        protected void lnkRemove_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                LinkButton lnk = (LinkButton)sender;
-                int Id = ToSQL.SQLToInt(lnk.CommandArgument);
-                if (Id > 0)
-                {
-                    int i = new ProductRepo().DeleteProduct(Id);
-                    BindItemsList();
-                }
-            }
-            catch
-            {
-
-            }
-        }
+        #endregion       
     }
 }

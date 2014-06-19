@@ -26,7 +26,7 @@ namespace B2C_EC.Model
         public string Phone { get; set; }
         public string Email { get; set; }
         public Nullable<System.DateTime> DateOfBirth { get; set; }
-        public Nullable<System.DateTime> DateCreated { get; set; }
+        public System.DateTime DateCreated { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public Nullable<int> Address_ID { get; set; }

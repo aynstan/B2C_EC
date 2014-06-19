@@ -42,46 +42,27 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="full_w">        
+    <div id="manageproduct">        
         <h2>Management Product Page</h2>
         <p>Here, All product of website will display.</p>
         <div>
-            <fieldset style="width:98%; margin:5px;">
-                <legend><h3>Filter product by:</h3></legend>
-                <div>
-                    <table class="table" style="width:95%;">
-                        <tr>
-                            <td>Name:</td>
-                            <td><asp:TextBox ID="txtName" CssClass="TextBox" runat="server"></asp:TextBox></td>
-                            <td>Status:</td>
-                            <td><asp:DropDownList ID="ddlStatus" runat="server">
-                                <asp:ListItem Value="0">--All--</asp:ListItem>
-                                <asp:ListItem Value="1">Active</asp:ListItem>
-                                <asp:ListItem Value="2">Best Selling</asp:ListItem>
-                                <asp:ListItem Value="3">Special</asp:ListItem>
-                                <asp:ListItem Value="4">New</asp:ListItem>
-                                </asp:DropDownList></td>
-                        </tr>
-                        <tr>
-                            <td>Price from:</td>
-                            <td><asp:TextBox ID="txtPriceFrom" CssClass="TextBox" runat="server"></asp:TextBox>
-                                <br /></td>
-                            <td>Price to</td>
-                            <td><asp:TextBox ID="txtPriceTo" CssClass="TextBox" runat="server"></asp:TextBox>
-                                <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtPriceTo" ControlToValidate="txtPriceFrom" ErrorMessage="(*)" ForeColor="Red" Operator="LessThanEqual" Type="Integer"></asp:CompareValidator>
-                                </td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>
-                                <asp:Button ID="btnFilter" runat="server" CssClass="button" OnClick="btnFilter_Click" Text="Filter" />
-                            </td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                    </table>
-                </div>
-            </fieldset>
+            <table align="center" style="margin:15px">
+                <tr>
+                    <td>Name</td>
+                    <td>Product Type</td>
+                    <td>Manufacturer</td>
+                </tr>
+                <tr>
+                    <td><asp:TextBox ID="txtName" CssClass="TextBox" runat="server"></asp:TextBox></td>
+                    <td><asp:DropDownList ID="ddlProductType" runat="server" CssClass="Dropdown" DataTextField="Name" DataValueField="ID"></asp:DropDownList></td>
+                    <td><asp:DropDownList ID="ddlManufacturer" runat="server" CssClass="Dropdown" DataTextField="Name" DataValueField="ID"></asp:DropDownList></td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="text-align:center">
+                        <asp:Button ID="btnFilter" runat="server" CssClass="button" OnClick="btnFilter_Click" Text="Filter" />
+                    </td>
+                </tr>
+            </table>
         </div>
         <div>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -113,13 +94,23 @@
                                 </asp:TemplateField>
                             <asp:BoundField HeaderText="ID" DataField="ID" ItemStyle-HorizontalAlign="Center" />
                             <asp:BoundField HeaderText="Name" DataField="Name" />
-                            <%--<asp:BoundField HeaderText="PriceOld" DataField="PriceOld" DataFormatString="{0:#,##0}" />--%>
                             <asp:BoundField HeaderText="Price" DataField="Price" DataFormatString="{0:#,###.##}" />
-                            <asp:BoundField DataField="DateCreated" DataFormatString="{0:MM/dd/yyyy}" HeaderText="Date Created" />
-                            <asp:CheckBoxField HeaderText="Best Selling" DataField="IsBestSelling" ItemStyle-HorizontalAlign="Center" />
+                            <asp:TemplateField HeaderText="Product Type">
+                                <ItemTemplate>
+                                    <asp:Label ID="lbProductType" runat="server"></asp:Label>
+                               </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Manufacturer">
+                                <ItemTemplate>
+                                    <asp:Label ID="lbManufacturer" runat="server"></asp:Label>
+                               </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:CheckBoxField DataField="IsBestSelling" HeaderText="BestSelling"  ItemStyle-HorizontalAlign="Center" />
                             <asp:CheckBoxField DataField="IsNew" HeaderText="New" ItemStyle-HorizontalAlign="Center" />
                             <asp:CheckBoxField DataField="IsSpecial" HeaderText="Special" ItemStyle-HorizontalAlign="Center" />
-                            <asp:CheckBoxField DataField="IsActive" HeaderText="IsActive" ItemStyle-HorizontalAlign="Center" />
+                            <asp:CheckBoxField DataField="IsPromo" HeaderText="Promo" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="DateCreated" HeaderText="Date Created" />
+                            <asp:CheckBoxField DataField="IsActive" HeaderText="Active" ItemStyle-HorizontalAlign="Center" />
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
                                     <a href='<%# "EditProduct.aspx?ID="+Eval("ID") %>' class="table-icon edit" title="Edit"></a>

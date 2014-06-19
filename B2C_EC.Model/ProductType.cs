@@ -23,9 +23,9 @@ namespace B2C_EC.Model
         public int ID { get; set; }
         public string Name { get; set; }
         public string Note { get; set; }
-        public Nullable<bool> IsActive { get; set; }
-        public Nullable<int> SortId { get; set; }
-        public Nullable<System.DateTime> DateCreated { get; set; }
+        public bool IsActive { get; set; }
+        public int SortId { get; set; }
+        public System.DateTime DateCreated { get; set; }
         public string DescriptionTemplate { get; set; }
         public Nullable<int> ParentId { get; set; }
     

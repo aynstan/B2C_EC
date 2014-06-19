@@ -22,8 +22,8 @@ namespace B2C_EC.Model
         public Nullable<int> Address_ID { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public Nullable<System.DateTime> DateCreated { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public System.DateTime DateCreated { get; set; }
+        public bool IsActive { get; set; }
         public string Key { get; set; }
     
         public virtual Address Address { get; set; }
