@@ -34,14 +34,14 @@
                     <asp:GridView ID="gvProducts" runat="server" CssClass="table" AutoGenerateColumns="False">
                         <Columns>
                             <asp:BoundField HeaderText="ID" DataField="ID" >
-                            <ItemStyle Width="30px" HorizontalAlign="Center" />
+                            <ItemStyle HorizontalAlign="Center" />
                             </asp:BoundField>
                             <asp:BoundField DataField="Username" HeaderText="Username" />
                             <asp:BoundField DataField="" HeaderText="Password" />
                             <asp:BoundField HeaderText="First Name" DataField="FirstName" />                            
                             <asp:BoundField HeaderText="Last Name" DataField="LastName" />
                             <asp:CheckBoxField HeaderText="Gender" DataField="Gender" >
-                            <ItemStyle Width="50px" HorizontalAlign="Center" />
+                            <ItemStyle HorizontalAlign="Center" />
                             </asp:CheckBoxField>
                             <asp:BoundField DataField="Phone" HeaderText="Phone" />
                             <asp:BoundField DataField="Email" HeaderText="Email" />
@@ -53,7 +53,7 @@
                                     <%--<a href="#" class="table-icon archive" title="Archive"></a>--%>
                                     <asp:LinkButton ID="lnkRemove" runat="server" CssClass="table-icon delete" ToolTip="Remove" CommandArgument='<%# Eval("ID") %>' CausesValidation="false" OnClick="btnRemove_Click" OnClientClick="return confirm('Do you really want to remove this customer?');"></asp:LinkButton>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Center" Width="50px" />
+                                <ItemStyle HorizontalAlign="Center" />
                             </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
