@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/B2C_EC.Master" AutoEventWireup="true" CodeBehind="ViewCart.aspx.cs" Inherits="B2C_EC.Website.ViewCart" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ViewCart.aspx.cs" Inherits="B2C_EC.Website.ViewCart" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -12,11 +12,7 @@
         }
 	</script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Promotion" runat="server">
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="Filter" runat="server">
-</asp:Content>
-<asp:Content ID="Content4" ContentPlaceHolderID="Content" runat="server">
+<asp:Content ID="Content4" ContentPlaceHolderID="ContentMain" runat="server">
     <div id ="viewcart">
         <table align="center" cellpadding="0" cellspacing="0" width="100%">
             <tr>
@@ -29,11 +25,11 @@
             </tr>
             <tr>
                 <td align="center" colspan="2" valign="top">
-                    <asp:GridView ID="grvViewCart" runat="server" AutoGenerateColumns="False" CellPadding="5" ShowHeaderWhenEmpty="True"
-                        ShowFooter="True" Width="100%" OnRowCancelingEdit="grvViewCart_RowCancelingEdit" OnRowCommand="grvViewCart_RowCommand" OnRowEditing="grvViewCart_RowEditing" OnRowUpdating="grvViewCart_RowUpdating">
-                        <FooterStyle BackColor="Silver" Font-Bold="True" HorizontalAlign="Center" />
+                    <asp:GridView ID="grvViewCart" runat="server" CssClass="gridview" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True"
+                        ShowFooter="True" OnRowCancelingEdit="grvViewCart_RowCancelingEdit" OnRowCommand="grvViewCart_RowCommand" OnRowEditing="grvViewCart_RowEditing" OnRowUpdating="grvViewCart_RowUpdating">
+                        <FooterStyle HorizontalAlign="Center" CssClass="footertb" />
                         <Columns>
-                            <asp:TemplateField HeaderText="Product Name">
+                            <asp:TemplateField HeaderText="Product Name" HeaderStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
                                     <a href="#" class="name"><%# Eval("ProductName") %></a>
                                 </ItemTemplate>
@@ -66,7 +62,7 @@
                                     <asp:CheckBox ID="chkSelectAll" runat="server" OnClick="selectAll(this)" /><br />
                                 </HeaderTemplate>
                                 <FooterTemplate>
-                                    <asp:ImageButton ID="imgbtnRemove" runat="server" CommandName="Remove" ImageUrl="~/Resources/ImagesDesign/delete.gif" />
+                                    <asp:ImageButton ID="imgbtnRemove" CssClass="ButtonOrange" runat="server" CommandName="Remove" ImageUrl="~/Resources/ImagesDesign/Editing-Delete-icon.png" />
                                 </FooterTemplate>
                                 <ItemStyle HorizontalAlign="Center" Width="50px" />
                                 <ItemTemplate>
@@ -77,9 +73,8 @@
                         <EmptyDataTemplate>
                             Your shopping cart is empty
                         </EmptyDataTemplate>
-                        <HeaderStyle CssClass="grvHeader" />
-                        <AlternatingRowStyle BackColor="WhiteSmoke" />
-                        <SelectedRowStyle BackColor="ActiveBorder" />
+                        <HeaderStyle Height="30px" />
+                        <RowStyle Height="30px" />
                     </asp:GridView>
                 </td>
             </tr>
