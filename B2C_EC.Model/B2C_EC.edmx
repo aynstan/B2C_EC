@@ -194,9 +194,9 @@
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="Price" Type="decimal" Nullable="false" />
+          <Property Name="Price" Type="decimal" Nullable="false" Scale="2" />
           <Property Name="Description" Type="ntext" />
-          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsBestSelling" Type="bit" />
           <Property Name="IsNew" Type="bit" />
@@ -695,9 +695,9 @@
           </Key>
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="Price" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Price" Nullable="false" Precision="18" Scale="2" />
           <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="DateCreated" Precision="3" />
+          <Property Type="DateTime" Name="DateCreated" Precision="3" Nullable="false" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="Boolean" Name="IsBestSelling" />
           <Property Type="Boolean" Name="IsNew" />

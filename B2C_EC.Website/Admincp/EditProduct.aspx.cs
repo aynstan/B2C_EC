@@ -17,27 +17,27 @@ namespace B2C_EC.Website.Admincp
         {
             if (!IsPostBack)
             {
-                LoadManufacturerAndProductType();
+                LoadDropDownList();
                 LoadProduct();                
             }
         }
 
         private void LoadProduct()
         {
-            if (Request.QueryString["ID"] != null)
+            Product p = productRepo.GetById(ToSQL.SQLToInt(Request.QueryString["ID"]));
+            if (p != null)
             {
-                Product p = productRepo.GetById(ToSQL.SQLToInt(Request.QueryString["ID"]));
-                if (p != null)
-                {
-                    txtID.Text = p.ID.ToString();
-                    txtName.Text = p.Name;
-                    txtPriceNew.Text = p.Price.ToString();
-                    ddlManufacturer.SelectedValue = p.Manufacuturer_ID.ToString();
-                    ddlProductType.SelectedValue = p.ProductType_ID.ToString();
-                    CKEditorControlDescription.Text = p.Description;
-                    gvImages.DataSource = p.ProductImages;
-                    gvImages.DataBind();
-                }
+                txtName.Text = ToSQL.EmptyNull(p.Name);
+                txtPrice.Text = ToSQL.EmptyNull(p.Price.ToString("###.##"));
+                ddlManufacturer.SelectedValue = ToSQL.EmptyNull(p.Manufacuturer_ID);
+                ddlProductType.SelectedValue = ToSQL.EmptyNull(p.ProductType_ID);
+                CKEditorControlDescription.Text = ToSQL.EmptyNull(p.Description);
+                gvImages.DataSource = p.ProductImages;
+                gvImages.DataBind();
+                chkNew.Checked = ToSQL.SQLToBool(p.IsNew);
+                chkBestSelling.Checked = ToSQL.SQLToBool(p.IsBestSelling);
+                chkSpecial.Checked = ToSQL.SQLToBool(p.IsSpecial);
+                chkActive.Checked = ToSQL.SQLToBool(p.IsActive);
             }
             else
             {
@@ -47,23 +47,23 @@ namespace B2C_EC.Website.Admincp
 
         private void ReloadProductImage()
         {
-            if (Request.QueryString["ID"] != null)
+            Product p = productRepo.GetById(ToSQL.SQLToInt(Request.QueryString["ID"]));
+            if (p != null)
             {
-                Product p = productRepo.GetById(ToSQL.SQLToInt(Request.QueryString["ID"]));
-                if (p != null)
-                {
-                    gvImages.DataSource = p.ProductImages;
-                    gvImages.DataBind();
-                }
+                gvImages.DataSource = p.ProductImages;
+                gvImages.DataBind();
             }
         }
 
-        private void LoadManufacturerAndProductType()
+        private void LoadDropDownList()
         {
             ddlManufacturer.DataSource = (new ManufacturerRepo()).GetAllManufacturer();
             ddlManufacturer.DataBind();
+            ddlManufacturer.Items.Insert(0, new ListItem("", ""));
+
             ddlProductType.DataSource = (new ProductTypeRepo()).GetAllProductType();
             ddlProductType.DataBind();
+            ddlProductType.Items.Insert(0, new ListItem("", ""));
         }
 
         private string UploadImage(HttpPostedFile PostedFile)
@@ -81,63 +81,61 @@ namespace B2C_EC.Website.Admincp
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            Product p = new Product();
-            if (Request.QueryString["ID"] != null)
+            Product p = productRepo.GetById(ToSQL.SQLToInt(Request.QueryString["ID"]));
+            if (p != null)
             {
-                p = productRepo.GetById(ToSQL.SQLToInt(Request.QueryString["ID"]));
-            }
-            if (p.ID == 0)
-            {
-                lblError.Text = "Please check input data! Try again!";
-                return;
-            }
-            p.Name = txtName.Text;
-            p.Price = ToSQL.SQLToDecimal(txtPriceNew.Text);
-            p.ProductType_ID = ToSQL.SQLToInt(ddlProductType.SelectedValue);
-            p.Manufacuturer_ID = ToSQL.SQLToInt(ddlManufacturer.SelectedValue);
-            p.Description = CKEditorControlDescription.Text;
-            p.IsActive = chkActive.Checked;
-            p.IsBestSelling = chkBestSelling.Checked;
-            p.IsNew = chkNew.Checked;
-            p.IsSpecial = chkSpecial.Checked;
-            if (fulImageDefault.HasFile)
-            {
-                ProductImage image = new ProductImage();
-                string url = UploadImage(fulImageDefault.PostedFile);                
-                if (url != "")
+                p.Name = ToSQL.EmptyNull(txtName.Text);
+                p.Price = ToSQL.SQLToDecimal(txtPrice.Text);
+                p.ProductType_ID = ToSQL.SQLToIntNull(ddlProductType.SelectedValue);
+                p.Manufacuturer_ID = ToSQL.SQLToIntNull(ddlManufacturer.SelectedValue);
+                p.Description = CKEditorControlDescription.Text;
+                p.IsActive = ToSQL.SQLToBool(chkActive.Checked);
+                p.IsBestSelling = ToSQL.SQLToBool(chkBestSelling.Checked);
+                p.IsNew = ToSQL.SQLToBool(chkNew.Checked);
+                p.IsSpecial = ToSQL.SQLToBool(chkSpecial.Checked);
+                if (fulImageDefault.HasFile)
                 {
-                    image.Image = url;
-                    image.IsDefault = true;
-                    p.ProductImages.Add(image);
+                    ProductImage image = new ProductImage();
+                    string url = UploadImage(fulImageDefault.PostedFile);
+                    if (url != "")
+                    {
+                        image.Image = url;
+                        image.IsDefault = true;
+                        p.ProductImages.Add(image);
+                    }
                 }
-            }
-            //HttpFileCollection uploads = Request.Files;
-            //for (int fileCount = 0; fileCount < uploads.Count; fileCount++)
-            foreach (HttpPostedFile uploadedFile in FileUploadJquery.PostedFiles)
-            {
-                //HttpPostedFile uploadedFile = uploads[i];
-                ProductImage image = new ProductImage();
-                string url = "";//UploadImage(fulImageDefault.PostedFile);
-                try
+                //HttpFileCollection uploads = Request.Files;
+                //for (int fileCount = 0; fileCount < uploads.Count; fileCount++)
+                foreach (HttpPostedFile uploadedFile in FileUploadJquery.PostedFiles)
                 {
-                    uploadedFile.SaveAs(Server.MapPath("~/Resources/ImagesProduct/" + uploadedFile.FileName));
-                    url = uploadedFile.FileName;
+                    //HttpPostedFile uploadedFile = uploads[i];
+                    ProductImage image = new ProductImage();
+                    string url = "";//UploadImage(fulImageDefault.PostedFile);
+                    try
+                    {
+                        uploadedFile.SaveAs(Server.MapPath("~/Resources/ImagesProduct/" + uploadedFile.FileName));
+                        url = uploadedFile.FileName;
+                    }
+                    catch { }
+                    if (url != "")
+                    {
+                        image.Image = url;
+                        image.IsDefault = false;
+                        p.ProductImages.Add(image);
+                    }
                 }
-                catch { }
-                if (url != "")
+                if (productRepo.UpdateProduct(p) > 0)
                 {
-                    image.Image = url;
-                    image.IsDefault = false;
-                    p.ProductImages.Add(image);
+                    Response.Redirect("~/Admincp/Management-Products.aspx");
                 }
-            }
-            if (productRepo.UpdateProduct(p) > 0)
-            {
-                Response.Redirect("~/Admincp/Management-Products.aspx");
+                else
+                {
+                    lbMessage.Text = "Please check input data! Try again!";
+                }
             }
             else
             {
-                lblError.Text = "Please check input data! Try again!";
+                Response.Redirect("Management-Products.aspx");
             }
         }
 

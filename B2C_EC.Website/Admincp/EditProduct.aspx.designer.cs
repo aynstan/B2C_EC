@@ -13,13 +13,13 @@ namespace B2C_EC.Website.Admincp {
     public partial class EditProduct {
         
         /// <summary>
-        /// txtID control.
+        /// lbMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtID;
+        protected global::System.Web.UI.WebControls.Label lbMessage;
         
         /// <summary>
         /// txtName control.
@@ -40,22 +40,13 @@ namespace B2C_EC.Website.Admincp {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
-        /// txtPriceOld control.
+        /// txtPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPriceOld;
-        
-        /// <summary>
-        /// txtPriceNew control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPriceNew;
+        protected global::System.Web.UI.WebControls.TextBox txtPrice;
         
         /// <summary>
         /// RequiredFieldValidator2 control.
@@ -130,13 +121,13 @@ namespace B2C_EC.Website.Admincp {
         protected global::System.Web.UI.WebControls.GridView gvImages;
         
         /// <summary>
-        /// chkActive control.
+        /// chkNew control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkActive;
+        protected global::System.Web.UI.WebControls.CheckBox chkNew;
         
         /// <summary>
         /// chkBestSelling control.
@@ -148,15 +139,6 @@ namespace B2C_EC.Website.Admincp {
         protected global::System.Web.UI.WebControls.CheckBox chkBestSelling;
         
         /// <summary>
-        /// chkNew control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkNew;
-        
-        /// <summary>
         /// chkSpecial control.
         /// </summary>
         /// <remarks>
@@ -166,13 +148,13 @@ namespace B2C_EC.Website.Admincp {
         protected global::System.Web.UI.WebControls.CheckBox chkSpecial;
         
         /// <summary>
-        /// lblError control.
+        /// chkActive control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
+        protected global::System.Web.UI.WebControls.CheckBox chkActive;
         
         /// <summary>
         /// btnSave control.

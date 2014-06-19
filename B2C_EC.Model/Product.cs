@@ -26,7 +26,7 @@ namespace B2C_EC.Model
         public string Name { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }
-        public Nullable<System.DateTime> DateCreated { get; set; }
+        public System.DateTime DateCreated { get; set; }
         public bool IsActive { get; set; }
         public Nullable<bool> IsBestSelling { get; set; }
         public Nullable<bool> IsNew { get; set; }

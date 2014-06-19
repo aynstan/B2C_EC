@@ -26,7 +26,7 @@
                         </label>
                     </td>
                     <td>
-                        <CKEditor:CKEditorControl ID="CKEditorControlDescriptionType" runat="server" Height="300px" Width="700px"></CKEditor:CKEditorControl>
+                        <CKEditor:CKEditorControl ID="CKEditorControlDescriptionType" runat="server" Height="250px" Width="700px"></CKEditor:CKEditorControl>
                     </td>
                 </tr>
                 <tr>

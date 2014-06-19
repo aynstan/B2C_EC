@@ -27,52 +27,39 @@
             });
         });
     </script>
+    <style type="text/css">
+        .auto-style1
+        {
+            height: 33px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="entry">
-        <div class="h_title">Details Product</div>
-        <div class="clear">
-            <table class="table">
+    <div id="editproduct">
+        <h2>Update Product Page</h2>
+        <div class="clear" style="padding:15px">
+            <asp:Label ID="lbMessage" runat="server"></asp:Label>
+            <table>
                 <tr>
-                    <td style="width:20%;">
-                        <label for="name">
-                            ID
-                        </label>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtID" CssClass="text err" runat="server" Enabled="False"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
+                    <td style="width:150px">
                         <label for="name">
                             Name
                         </label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtName" CssClass="text err" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtName" ErrorMessage="(*)" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:TextBox ID="txtName" CssClass="TextBox" runat="server" Width="200"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtName" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="editproduct"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="name">
-                            Price Old
-                        </label>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtPriceOld" CssClass="decimal text err" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="name">Price New
+                        <label for="name">Price
                             </label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtPriceNew" CssClass="decimal text err" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtPrice" CssClass="decimal TextBox" runat="server"></asp:TextBox>
                         <label id="checkReturn"></label>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtName" ErrorMessage="(*)" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtName" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="editproduct"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -82,18 +69,18 @@
                         </label>
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlManufacturer" runat="server" DataTextField="Name" DataValueField="ID">
+                        <asp:DropDownList ID="ddlManufacturer" runat="server" CssClass="Dropdown" DataTextField="Name" DataValueField="ID">
                         </asp:DropDownList>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td class="auto-style1">
                         <label for="name">
                             Product Type
                         </label>
                     </td>
-                    <td>
-                        <asp:DropDownList ID="ddlProductType" runat="server" DataTextField="Name" DataValueField="ID">
+                    <td class="auto-style1">
+                        <asp:DropDownList ID="ddlProductType" runat="server" CssClass="Dropdown" DataTextField="Name" DataValueField="ID">
                         </asp:DropDownList>
                     </td>
                 </tr>
@@ -108,12 +95,12 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <CKEditor:CKEditorControl ID="CKEditorControlDescription" runat="server" Width="700px"></CKEditor:CKEditorControl>
+                        <CKEditor:CKEditorControl ID="CKEditorControlDescription" runat="server" Height="250px" Width="700px"></CKEditor:CKEditorControl>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Image Default</td>
+                         Image Default</td>
                     <td>
                         <asp:FileUpload ID="fulImageDefault" runat="server" />
                     </td>
@@ -133,8 +120,11 @@
                                 <asp:GridView ID="gvImages" CssClass="table" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" OnRowDeleting="gvImages_RowDeleting">
                                     <Columns>
                                         <asp:ImageField DataImageUrlField="Image" DataImageUrlFormatString="~/Resources/ImagesProduct/{0}" HeaderText="Image">
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:ImageField>
-                                        <asp:CheckBoxField DataField="IsDefault" HeaderText="Default" />
+                                        <asp:CheckBoxField DataField="IsDefault" HeaderText="Default">
+                                        <ItemStyle HorizontalAlign="Center" />
+                                        </asp:CheckBoxField>
                                         <asp:TemplateField HeaderText="Action" ShowHeader="False">
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="lbtnDelete" runat="server" CausesValidation="False" CommandArgument='<%# Eval("ID") %>' CommandName="Delete" Text="Delete"></asp:LinkButton>
@@ -149,49 +139,46 @@
                 <tr>
                     <td>
                         <label for="name">
-                            Is Active
+                            New
                         </label>
                     </td>
                     <td>
-                        <asp:CheckBox ID="chkActive" runat="server" Text="Active" Checked="True" />
+                        <asp:CheckBox ID="chkNew" runat="server" />
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label for="name">
-                            Is Best Selling
+                            BestSelling
                         </label>
                     </td>
                     <td>
-                        <asp:CheckBox ID="chkBestSelling" runat="server" Text="Best Selling" />
+                        <asp:CheckBox ID="chkBestSelling" runat="server" />
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label for="name">
-                            Is New
+                            Special
                         </label>
                     </td>
                     <td>
-                        <asp:CheckBox ID="chkNew" runat="server" Checked="True" Text="New" />
+                        <asp:CheckBox ID="chkSpecial" runat="server" />
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label for="name">
-                            Is Special
+                            Active
                         </label>
                     </td>
                     <td>
-                        <asp:CheckBox ID="chkSpecial" runat="server" Text="Special" />
+                        <asp:CheckBox ID="chkActive" runat="server" />
                     </td>
                 </tr>
-                </table>
+            </table>
             <div class="entry">
-                <asp:Label ID="lblError" runat="server" Font-Size="Small" ForeColor="Red"></asp:Label>
-            </div>
-            <div class="entry">
-                <asp:Button ID="btnSave" CssClass="button add" runat="server" Text="Save" OnClick="btnSave_Click" />
+                <asp:Button ID="btnSave" CssClass="button add" runat="server" Text="Save" OnClick="btnSave_Click" ValidationGroup="editproduct" />
                 <asp:Button ID="btnCancel" CssClass="button cancel" runat="server" Text="Cancel" CausesValidation="False" PostBackUrl="~/Admincp/Management-User.aspx" />
             </div>
         </div>
