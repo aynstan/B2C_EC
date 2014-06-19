@@ -71,10 +71,10 @@
                     </tr>
                     <tr>
                         <td align="right">
-                            <asp:Button ID="btnAddToCart" CssClass="ButtonOrange" runat="server" Text="Add to cart" />
+                            <asp:Button ID="btnAddToCart" CssClass="ButtonOrange" runat="server" Text="Add to cart" OnClick="btnAddToCart_Click" />
                         </td>
                         <td>
-                            <asp:Button ID="btnOrder" CssClass="ButtonOrange" runat="server" Text="Order" />
+                            <asp:Button ID="btnOrder" CssClass="ButtonOrange" runat="server" Text="Order" PostBackUrl="~/Payment.aspx" />
                         </td>
                     </tr>
                 </table>

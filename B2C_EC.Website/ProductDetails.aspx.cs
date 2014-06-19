@@ -45,5 +45,19 @@ namespace B2C_EC.Website
                 Response.Redirect("~/Index.aspx");
             }
         }
+
+        protected void btnAddToCart_Click(object sender, EventArgs e)
+        {
+            Product product = new ProductRepo().GetById(ToSQL.SQLToInt(Request.QueryString["ProductId"]));
+            if (product != null)
+            {
+                List<Cart> carts = (List<Cart>)Session["Carts"];
+                Cart cart = new Cart(carts);
+                cart = cart.ConverProductToCart(product);
+                carts = cart.Add(cart);
+                Session["Carts"] = carts;
+                Response.Redirect("ViewCart.aspx");
+            }
+        }
     }
 }

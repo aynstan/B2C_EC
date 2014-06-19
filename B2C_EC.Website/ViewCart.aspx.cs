@@ -111,6 +111,5 @@ namespace B2C_EC.Website
             string url = (string.IsNullOrEmpty(ToSQL.EmptyNull(Session["ReferPage"]))) ? "index.aspx" : ToSQL.EmptyNull(Session["ReferPage"]);
             Response.Redirect(url);
         }
-
     }
 }
