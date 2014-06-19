@@ -148,11 +148,11 @@
                 <tr>
                     <td>
                         <label for="name">
-                            Is Active
+                            Active
                         </label>
                     </td>
                     <td>
-                        <asp:CheckBox ID="chkActive" runat="server" Text="Active" />
+                        <asp:CheckBox ID="chkActive" runat="server" />
                     </td>
                 </tr>
             </table>

@@ -12,7 +12,7 @@ namespace B2C_EC.Website.Admincp
 {
     public partial class EditProductType : System.Web.UI.Page
     {
-        ProductTypeRepo productTypeRepo = new ProductTypeRepo();
+        private ProductTypeRepo productTypeRepo = new ProductTypeRepo();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -23,15 +23,15 @@ namespace B2C_EC.Website.Admincp
 
         private void LoadProductType()
         {
-            if (Request.QueryString["ID"] != null)
+            int Id = ToSQL.SQLToInt(Request.QueryString["Id"]);
+            if (Id > 0)
             {
                 ProductType pt = productTypeRepo.GetById(ToSQL.SQLToInt(Request.QueryString["ID"]));
                 if (pt != null)
                 {
-                    txtID.Text = pt.ID.ToString();
-                    txtName.Text = pt.Name;
-                    txtSortID.Text = ToSQL.EmptyNull(pt.SortId);
-                    txtNote.Text = pt.Note;
+                    txtName.Text = ToSQL.EmptyNull(pt.Name);
+                    txtNote.Text = ToSQL.EmptyNull(pt.Note);
+                    CKEditorControlDescriptionType.Text = ToSQL.EmptyNull(pt.DescriptionTemplate);
                     chkActive.Checked = ToSQL.SQLToBool(pt.IsActive);
                 }
                 else

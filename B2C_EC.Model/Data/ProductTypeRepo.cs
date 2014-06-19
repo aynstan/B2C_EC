@@ -12,28 +12,60 @@ namespace B2C_EC.Model.Data
     {
         private B2C_ECEntities db = new B2C_ECEntities();
 
+        public ProductType GetById(int Id)
+        {
+            return db.ProductTypes.Find(Id);
+        }
         public List<ProductType> GetAllProductType()
         {
             return db.ProductTypes.ToList();
         }
 
-        public ProductType GetById(int Id)
-        {
-            return db.ProductTypes.Where(p => p.ID == Id).FirstOrDefault();
-        }
-
-        public int DeleteProductType(int Id)
+        public int CreateProductType(ProductType U)
         {
             try
             {
-                ProductType pt = db.ProductTypes.Where(p => p.ID == Id).FirstOrDefault();
-                db.ProductTypes.Remove(pt);
+                this.db.ProductTypes.Add(U);
                 return db.SaveChanges();
             }
             catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
+        }
+        public int DeleteProductType(int Id)
+        {
+            ProductType productType = db.ProductTypes.Where(u => u.ID == Id).FirstOrDefault();
+            return DeleteProductType(productType);
+        }
+        public int DeleteProductType(ProductType U)
+        {
+            try
+            {
+                db.Entry(U).State = EntityState.Deleted;
+                return db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public int UpdateProductType(ProductType U)
+        {
+            try
+            {
+                db.Entry(U).State = EntityState.Modified;
+                return db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public List<ProductType> GetManagementProductTypes(string name)
+        {
+            return db.ProductTypes.Where(u => u.Name.Contains(name)).ToList();
         }
     }
 }

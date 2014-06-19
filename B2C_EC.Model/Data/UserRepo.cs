@@ -61,6 +61,11 @@ namespace B2C_EC.Model.Data
                 throw new Exception(e.Message);
             }
         }
+
+        public List<User> GetManagementUsers(string FName, string LName, string Email, string UserName, bool IsActive)
+        {
+            return db.Users.Where(u => u.FirstName.Contains(FName) && u.LastName.Contains(LName) && u.Email.Contains(Email) && u.Username.Contains(UserName) && u.IsActive == IsActive).ToList();
+        }
         public User GetUserByUsername(string username)
         {
             return db.Users.Where(u => u.Username == username).FirstOrDefault();
@@ -76,9 +81,5 @@ namespace B2C_EC.Model.Data
             return (user != null);
         }
 
-        public List<User> GetManagementUsers(string FName, string LName, string Email, string UserName, bool IsActive)
-        {
-            return db.Users.Where(u => u.FirstName.Contains(FName) && u.LastName.Contains(LName) && u.Email.Contains(Email) && u.Username.Contains(UserName) && u.IsActive == IsActive).ToList();
-        }
     }
 }

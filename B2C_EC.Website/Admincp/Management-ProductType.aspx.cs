@@ -13,12 +13,34 @@ namespace B2C_EC.Website.Admincp
 {
     public partial class Management_ProductType : System.Web.UI.Page
     {
-        ProductTypeRepo productTypeRepo = new ProductTypeRepo();
+        private ProductTypeRepo productTypeRepo = new ProductTypeRepo();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 BindItemsList();
+            }
+        }
+        protected void btnFilter_Click(object sender, EventArgs e)
+        {
+            BindItemsList();
+        }
+
+        protected void lnkRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LinkButton lnk = (LinkButton)sender;
+                int Id = ToSQL.SQLToInt(lnk.CommandArgument);
+                if (Id > 0)
+                {
+                    int i = new ProductTypeRepo().DeleteProductType(Id);
+                    BindItemsList();
+                }
+            }
+            catch
+            {
+
             }
         }
 
@@ -86,7 +108,7 @@ namespace B2C_EC.Website.Admincp
 
         private void BindItemsList()
         {
-            List<ProductType> users = productTypeRepo.GetAllProductType();
+            List<ProductType> users = productTypeRepo.GetManagementProductTypes(ToSQL.EmptyNull(txtName.Text));
             _PageDataSource.DataSource = users;
             _PageDataSource.AllowPaging = true;
             _PageDataSource.PageSize = 10;
@@ -183,28 +205,5 @@ namespace B2C_EC.Website.Admincp
         }
 
         #endregion
-
-        protected void btnFilter_Click(object sender, EventArgs e)
-        {
-            BindItemsList();
-        }
-
-        protected void lnkRemove_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                LinkButton lnk = (LinkButton)sender;
-                int Id = ToSQL.SQLToInt(lnk.CommandArgument);
-                if (Id > 0)
-                {
-                    int i = new ProductTypeRepo().DeleteProductType(Id);
-                    BindItemsList();
-                }
-            }
-            catch
-            {
-
-            }
-        }
     }
 }

@@ -7,27 +7,11 @@
         <h2>Management Product Type Page</h2>
         <p>Here, All product type of website will display.</p>
         <div>
-            <table class="table">
+            <table style="margin:15px">
                 <tr>
-                            <td>Name:</td>
-                            <td><asp:TextBox ID="txtName" runat="server"></asp:TextBox></td>
-                            <td>Status:</td>
-                            <td><asp:DropDownList ID="ddlStatus" runat="server">
-                                <asp:ListItem Value="0">--All--</asp:ListItem>
-                                <asp:ListItem Value="1">Active</asp:ListItem>
-                                <asp:ListItem Value="2">Best Selling</asp:ListItem>
-                                <asp:ListItem Value="3">Special</asp:ListItem>
-                                <asp:ListItem Value="4">New</asp:ListItem>
-                                </asp:DropDownList></td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>
-                                <asp:Button ID="btnFilter" runat="server" CssClass="button" OnClick="btnFilter_Click" Text="Filter" />
-                            </td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
+                    <td><asp:TextBox ID="txtName" CssClass="TextBox" runat="server" placeholder="Enter Name" ></asp:TextBox></td>
+                    <td><asp:Button ID="btnFilter" runat="server" CssClass="button" OnClick="btnFilter_Click" Text="Filter" /></td>
+                </tr>
             </table>
         </div>
         <div>
@@ -37,14 +21,14 @@
                         <Columns>
                             <asp:BoundField HeaderText="ID" DataField="ID" ItemStyle-HorizontalAlign="Center" />
                             <asp:BoundField HeaderText="Name" DataField="Name" />
-                            <asp:BoundField HeaderText="Sort ID" DataField="SortId" />
                             <asp:BoundField HeaderText="Note" DataField="Note" />
-                            <asp:CheckBoxField HeaderText="IsActive" DataField="IsActive" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField DataField="DateCreated" HeaderText="Date Created" />
+                            <asp:CheckBoxField HeaderText="Active" DataField="IsActive" ItemStyle-HorizontalAlign="Center" />
+                            <asp:BoundField HeaderText="Parent ID" DataField="ParentID" ItemStyle-HorizontalAlign="Center" />
                             <asp:TemplateField>
                                 <ItemTemplate>
                                     <a href='<%# "EditProductType.aspx?ID="+Eval("ID") %>' class="table-icon edit" title="Edit"></a>
-                                    <%--<a href="#" class="table-icon archive" title="Archive"></a>--%>
-                                    <asp:LinkButton ID="lnkRemove" runat="server" CssClass="table-icon delete" ToolTip="Remove" CommandArgument='<%# Eval("ID") %>' CausesValidation="false" OnClick="lnkRemove_Click" OnClientClick="return confirm('Do you really want to remove this product?');"></asp:LinkButton>
+                                    <asp:LinkButton ID="lnkRemove" runat="server" CssClass="table-icon delete" ToolTip="Remove" CommandArgument='<%# Eval("ID") %>' CausesValidation="false" OnClick="lnkRemove_Click" OnClientClick="return confirm('Do you really want to remove this product type?');"></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
