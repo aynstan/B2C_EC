@@ -41,6 +41,23 @@ namespace B2C_EC.Website.Admincp
 
         protected void gvProducts_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            Product product = (Product)e.Row.DataItem;
+            Label lbProductType = (Label)e.Row.FindControl("lbProductType");
+            Label lbManufacturer = (Label)e.Row.FindControl("lbManufacturer");
+            if (lbProductType != null)
+            {
+                if (product.ProductType != null)
+                {
+                    lbProductType.Text = product.ProductType.Name;
+                }
+            }
+            if (lbManufacturer != null)
+            {
+                if (product.Manufacturer != null)
+                {
+                    lbManufacturer.Text = product.Manufacturer.Name;
+                }
+            }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 int Id = ToSQL.SQLToInt(gvProducts.DataKeys[e.Row.RowIndex].Value.ToString());
