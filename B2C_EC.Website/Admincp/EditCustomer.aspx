@@ -101,7 +101,7 @@
                 </tr>
                 </table>
             <div class="entry">
-                <asp:Button ID="btnSave" CssClass="button add" runat="server" Text="Update" OnClick="btnSave_Click" ValidationGroup="createcustomer" />
+                <asp:Button ID="btnSave" CssClass="button add" runat="server" Text="Save" OnClick="btnSave_Click" ValidationGroup="createcustomer" />
                 <asp:Button ID="btnCancel" CssClass="button cancel" runat="server" Text="Cancel" CausesValidation="False" PostBackUrl="~/Admincp/Management-Customer.aspx" />
             </div>
         </div>
