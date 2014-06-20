@@ -64,8 +64,8 @@
                             <b>Quantity:</b>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtQuantity" runat="server" Width="100px" Enabled="False"></asp:TextBox>
-                            <asp:NumericUpDownExtender ID="txtQuantity_NumericUpDownExtender" runat="server" Enabled="True" Maximum="100" Minimum="1" Step="1" TargetControlID="txtQuantity" Width="100">
+                            <asp:TextBox ID="txtQuantity" runat="server" Width="100px"></asp:TextBox>
+                            <asp:NumericUpDownExtender ID="txtQuantity_NumericUpDownExtender" runat="server" Enabled="True" Maximum="10" Minimum="1" Step="1" TargetControlID="txtQuantity" Width="100">
                             </asp:NumericUpDownExtender>
                         </td>
                     </tr>
@@ -74,7 +74,7 @@
                             <asp:Button ID="btnAddToCart" CssClass="ButtonOrange" runat="server" Text="Add to cart" OnClick="btnAddToCart_Click" />
                         </td>
                         <td>
-                            <asp:Button ID="btnOrder" CssClass="ButtonOrange" runat="server" Text="Order" PostBackUrl="~/Payment.aspx" />
+                            <asp:Button ID="btnOrder" CssClass="ButtonOrange" runat="server" Text="Order" OnClick="btnOrder_Click" />
                         </td>
                     </tr>
                 </table>
