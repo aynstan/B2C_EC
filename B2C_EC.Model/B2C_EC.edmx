@@ -290,7 +290,7 @@
           <Property Name="Email" Type="nvarchar" MaxLength="200" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="IsAdmin" Type="bit" />
+          <Property Name="IsAdmin" Type="bit" Nullable="false" />
           <Property Name="Key" Type="varchar" Nullable="false" MaxLength="150" />
           <Property Name="Address_ID" Type="int" />
         </EntityType>
@@ -786,7 +786,7 @@
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <Property Type="String" Name="Key" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Address" Relationship="B2C_ECModel.FK_Users_Address" FromRole="User" ToRole="Address" />
-          <Property Type="Boolean" Name="IsAdmin" />
+          <Property Type="Boolean" Name="IsAdmin" Nullable="false" />
         </EntityType>
         <Association Name="FK_Customers_Address1">
           <End Type="B2C_ECModel.Address" Role="Address" Multiplicity="0..1" />

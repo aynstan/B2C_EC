@@ -411,7 +411,10 @@ fieldset
     top: 0px;
     left: 0px;
 }
-.cancel{ background: #F3F3F3 url(../Resources/Admin/i_delete.png) no-repeat 4px center;	padding-left: 25px;}
+.cancel{ background: #F3F3F3 url(../Resources/Admin/i_delete.png) no-repeat 4px center;	padding-left: 25px;
+    top: 0px;
+    left: 0px;
+}
 .sep{ border-bottom: 1px dashed #DDDDDD; margin: 10px 0;}
 
 .clear{ clear: both; }
