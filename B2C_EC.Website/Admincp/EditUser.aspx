@@ -10,30 +10,20 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="full_w">
-        <div class="h_title">Details User</div>
-        <div class="clear">
-            <asp:Literal ID="ltrError" Visible="false" runat="server"></asp:Literal>
-            <table class="table">
+    <div id="edituser">
+        <h2>Update User Page</h2>
+        <div class="clear" style="padding:15px">
+            <asp:Label ID="lbMessage" runat="server"></asp:Label>
+            <table>
                 <tr>
-                    <td style="width: 20%;">
-                        <label for="name">
-                            ID
-                        </label>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtID" CssClass="text err" runat="server" Enabled="False"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
+                    <td style="width:150px">
                         <label for="name">
                             First Name
                         </label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtFirstName" CssClass="text err" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="(*)" ForeColor="Red" ControlToValidate="txtFirstName"></asp:RequiredFieldValidator>
+                        <asp:TextBox ID="txtFirstName" CssClass="TextBox" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="(*)" ForeColor="Red" ControlToValidate="txtFirstName" ValidationGroup="edituser"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -43,14 +33,14 @@
                         </label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtLastName" CssClass="text err" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="(*)" ForeColor="Red" ControlToValidate="txtLastName"></asp:RequiredFieldValidator>
+                        <asp:TextBox ID="txtLastName" CssClass="TextBox" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="(*)" ForeColor="Red" ControlToValidate="txtLastName" ValidationGroup="edituser"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label for="name">
-                            User Name
+                            Username
                         </label>
                     </td>
                     <td>
@@ -66,61 +56,9 @@
                     </td>
                     <td>
                         <asp:Label ID="lblPassword" runat="server" Text="********"></asp:Label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a id="spanChangePassword" runat="server" href="javascript:void(0)">Reset Password</a>
                     </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="name">
-                            Street 1
-                        </label>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtStreet1" CssClass="text err" runat="server"></asp:TextBox></td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="name">
-                            Street 2
-                        </label>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtStreet2" CssClass="text err" runat="server"></asp:TextBox></td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="name">
-                            City
-                        </label>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtCity" CssClass="text err" runat="server"></asp:TextBox></td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="name">
-                            State
-                        </label>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtState" CssClass="text err" runat="server"></asp:TextBox></td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="name">
-                            Country
-                        </label>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtCountry" CssClass="text err" runat="server"></asp:TextBox></td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="name">
-                            ZipCode
-                        </label>
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtZipCode" CssClass="text err" runat="server"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td>
@@ -129,8 +67,8 @@
                         </label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtPhone" CssClass="text err" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="(*)" ForeColor="Red" ControlToValidate="txtPhone"></asp:RequiredFieldValidator>
+                        <asp:TextBox ID="txtPhone" CssClass="TextBox" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="(*)" ForeColor="Red" ControlToValidate="txtPhone" ValidationGroup="edituser"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -140,29 +78,56 @@
                         </label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtEmail" CssClass="text err" runat="server"></asp:TextBox>
-                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email is not correct format!" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                        <asp:TextBox ID="txtEmail" CssClass="TextBox" runat="server"></asp:TextBox>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail" ErrorMessage="(*)" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="edituser"></asp:RegularExpressionValidator>
                         <label id="checkReturnEmail"></label>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="name">
-                            Active
-                        </label>
-                    </td>
-                    <td>
-                        <asp:CheckBox ID="chkActive" runat="server" />
+                        Street1:</td>
+                    <td><asp:TextBox ID="txtStreet1" runat="server" CssClass="TextBox" MaxLength="50" />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtStreet1" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="edituser"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
+                    <tr>
+                    <td>
+                        Street2:</td>
+                    <td><asp:TextBox ID="txtStreet2" runat="server" CssClass="TextBox" MaxLength="50" />
+                    </td>
+                    </tr>
+                    <tr>
+                    <td>
+                        City:</td>
+                    <td><asp:TextBox ID="txtCity" runat="server" CssClass="TextBox" />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtCity" ErrorMessage="(*)" ForeColor="Red" Display="Dynamic" ValidationGroup="edituser"></asp:RequiredFieldValidator>
+                    </td>
+                    </tr>                        
+                    <tr>
+                    <td>
+                        State:</td>
+                    <td><asp:TextBox ID="txtState" runat="server" CssClass="TextBox" MaxLength="20" />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtState" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="edituser"></asp:RequiredFieldValidator>
+                    </td>
+                    </tr>                       
+                    <tr>
+                    <td>
+                        Country:</td>
+                    <td><asp:TextBox ID="txtCountry" runat="server" CssClass="TextBox" />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtCountry" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="edituser"></asp:RequiredFieldValidator>                
+                    </td>
+                    </tr>
+                    <tr>
+                    <td>
+                        Zip Code:</td>
+                    <td>
+                        <asp:TextBox ID="txtZipCode" runat="server" CssClass="TextBox" />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtZipCode" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="edituser"></asp:RequiredFieldValidator>                
+                    </td>
+                    </tr>
             </table>
             <div class="entry">
-
-                <asp:Label ID="lblError" runat="server" Font-Size="Small" ForeColor="Red"></asp:Label>
-
-            </div>
-            <div class="entry">
-                <asp:Button ID="btnSave" CssClass="button add" runat="server" Text="Save" OnClick="btnSave_Click" />
+                <asp:Button ID="btnSave" CssClass="button add" runat="server" Text="Save" OnClick="btnSave_Click" ValidationGroup="edituser" />
                 <asp:Button ID="btnCancel" CssClass="button cancel" runat="server" Text="Cancel" CausesValidation="False" PostBackUrl="~/Admincp/Management-User.aspx" />
             </div>
         </div>
