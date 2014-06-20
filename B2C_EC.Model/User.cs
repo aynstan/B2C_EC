@@ -25,6 +25,7 @@ namespace B2C_EC.Model
         public System.DateTime DateCreated { get; set; }
         public bool IsActive { get; set; }
         public string Key { get; set; }
+        public Nullable<bool> IsAdmin { get; set; }
     
         public virtual Address Address { get; set; }
     }

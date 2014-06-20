@@ -13,18 +13,73 @@ namespace B2C_EC.Website.Admincp
 {
     public partial class Management_User : System.Web.UI.Page
     {
-        UserRepo userRepo = new UserRepo();
+        private UserRepo userRepo = new UserRepo();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                LoadAllUsers();
+                BindItemsList();
             }
         }
 
-        private void LoadAllUsers()
+        protected void btnFilter_Click(object sender, EventArgs e)
         {
             BindItemsList();
+        }
+        protected void gvUsers_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            Model.User user = (Model.User)e.Row.DataItem;
+            if (user != null)
+            {
+                if (user.Address != null)
+                {
+                    Label lbAddress = (Label)e.Row.FindControl("lblAddress");
+                    if (lbAddress != null)
+                    {
+                        string strAddress = new AddressRepo().GetToString(user.Address);
+                        lbAddress.Text = strAddress.Length > 23 ? strAddress.Substring(0, 20) + "..." : strAddress;
+                        lbAddress.ToolTip = strAddress;
+                    }
+                }
+            }
+        }
+
+        protected void lnkRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LinkButton lnk = (LinkButton)sender;
+                int Id = ToSQL.SQLToInt(lnk.CommandArgument);
+                if (Id > 0)
+                {
+                    int i = userRepo.DeleteUser(Id);
+                    BindItemsList();
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        protected void lnkLock_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LinkButton lnk = (LinkButton)sender;
+                int Id = ToSQL.SQLToInt(lnk.CommandArgument);
+                Model.User user = userRepo.GetById(Id);
+                if (user != null)
+                {
+                    user.IsActive = false;
+                    int i = userRepo.UpdateUser(user);
+                    BindItemsList();
+                }
+            }
+            catch
+            {
+
+            }
         }
 
         #region Paging
@@ -91,7 +146,7 @@ namespace B2C_EC.Website.Admincp
 
         private void BindItemsList()
         {
-            List<User> users = userRepo.GetManagementUsers(txtFirstName.Text, txtLastName.Text, txtEmail.Text, txtUserName.Text, ddlStatus.SelectedIndex == 0 ? true : false);
+            List<User> users = userRepo.GetManagementUsers(txtFirstName.Text, txtLastName.Text, txtUserName.Text, txtEmail.Text);
             _PageDataSource.DataSource = users;
             _PageDataSource.AllowPaging = true;
             _PageDataSource.PageSize = 10;
@@ -107,8 +162,8 @@ namespace B2C_EC.Website.Admincp
 
             this.gvUsers.DataSource = _PageDataSource;
             this.gvUsers.DataBind();
-            this.gvUsers.UseAccessibleHeader = true;
-            this.gvUsers.HeaderRow.TableSection = TableRowSection.TableHeader;
+            //this.gvUsers.UseAccessibleHeader = true;
+            //this.gvUsers.HeaderRow.TableSection = TableRowSection.TableHeader;
             this.doPaging();
         }
         private void doPaging()
@@ -186,45 +241,7 @@ namespace B2C_EC.Website.Admincp
                 lnkbtnPage.ForeColor = System.Drawing.ColorTranslator.FromHtml("#000");
             }
         }
-        protected void btnFilter_Click(object sender, EventArgs e)
-        {
-            BindItemsList();
-        }
         #endregion       
 
-        protected void gvUsers_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            Model.User user = (Model.User)e.Row.DataItem;
-            if (user != null)
-            {
-                if (user.Address != null)
-                {
-                    Label lbAddress = (Label)e.Row.FindControl("lblAddress");
-                    if (lbAddress != null)
-                    {
-                        string address = new AddressRepo().GetToString(user.Address);
-                        lbAddress.Text = address;
-                    }
-                }
-            }
-        }
-
-        protected void lnkRemove_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                LinkButton lnk = (LinkButton)sender;
-                int Id = ToSQL.SQLToInt(lnk.CommandArgument);
-                if (Id > 0)
-                {
-                    int i = new UserRepo().DeleteUser(Id);
-                    BindItemsList();
-                }
-            }
-            catch
-            {
-
-            }
-        }
     }
 }

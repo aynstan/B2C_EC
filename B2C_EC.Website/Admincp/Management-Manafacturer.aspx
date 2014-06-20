@@ -8,7 +8,7 @@
         <h2>Management Manufacturer Page</h2>
         <p>Here, All manufacturers of website will display.</p>
         <div>
-            <table align="center" style="margin:15px">
+            <table align="center" style="margin:15px auto 15px auto">
                 <tr>
                     <td>Manufacturer ID</td>
                     <td>Name</td>
