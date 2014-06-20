@@ -32,6 +32,11 @@
         {
             height: 33px;
         }
+        #ContentPlaceHolder1_gvImages td img
+        {
+            height:182px;
+        }
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -119,8 +124,8 @@
                             <ContentTemplate>
                                 <asp:GridView ID="gvImages" CssClass="table" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" OnRowDeleting="gvImages_RowDeleting">
                                     <Columns>
-                                        <asp:ImageField DataImageUrlField="Image" DataImageUrlFormatString="~/Resources/ImagesProduct/{0}" HeaderText="Image">
-                                            <ItemStyle HorizontalAlign="Center" />
+                                        <asp:ImageField DataImageUrlField="Image" DataImageUrlFormatString="~/Resources/ImagesProduct/{0}" HeaderText="Image" ItemStyle-Height="182px">
+                                            <ItemStyle HorizontalAlign="Center" Height="182px" />
                                         </asp:ImageField>
                                         <asp:CheckBoxField DataField="IsDefault" HeaderText="Default">
                                         <ItemStyle HorizontalAlign="Center" />
