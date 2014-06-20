@@ -5,7 +5,7 @@
         <h2>Management Order Page</h2>
         <p>Here, All orders of website will display.</p>
         <div>
-            <table align="center" style="margin:15px">
+            <table align="center" style="margin:15px auto 15px auto">
                 <tr>
                     <td>Order ID</td>
                     <td>From Date</td>

@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admincp/Admin.Master" AutoEventWireup="true" CodeBehind="Management-User.aspx.cs" Inherits="B2C_EC.Website.Admincp.Management_User" %>
-<%--<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>--%>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admincp/Admin.Master" AutoEventWireup="true" CodeBehind="Management-UserLock.aspx.cs" Inherits="B2C_EC.Website.Admincp.Management_UserLock" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="manageuser">        
-        <h2>Management Users Page</h2>
-        <p>Here, All users of website will display.</p>
+        <h2>Management Users Lock Page</h2>
+        <p>Here, All users lock of website will display.</p>
         <div>
             <table align="center" style="margin:15px auto 15px auto">
                 <tr>
@@ -29,7 +29,7 @@
         <div>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <asp:GridView ID="gvUsers" CssClass="table" runat="server" AutoGenerateColumns="False" EmptyDataText="Not found users for filter" OnRowDataBound="gvUsers_RowDataBound">
+                    <asp:GridView ID="gvUsers" CssClass="table" runat="server" AutoGenerateColumns="False" EmptyDataText="Not found users lock for filter" OnRowDataBound="gvUsers_RowDataBound">
                         <Columns>
                             <asp:BoundField HeaderText="ID" DataField="ID" ItemStyle-HorizontalAlign="Center" >
                             <ItemStyle HorizontalAlign="Center" />
@@ -50,8 +50,8 @@
                             </asp:CheckBoxField>
                             <asp:TemplateField>
                                 <ItemTemplate>
-                                    <a href='<%# "EditUser.aspx?ID="+Eval("ID") %>' class="table-icon edit" title="Edit"></a>
-                                    <asp:LinkButton ID="lnkLock" runat="server" CssClass="table-icon lock" ToolTip="Lock" CommandArgument='<%# Eval("ID") %>' CausesValidation="false" OnClick="lnkLock_Click" OnClientClick="return confirm('Do you really want to lock this user?');"></asp:LinkButton>
+                                    <%--<a href='<%# "EditUser.aspx?ID="+Eval("ID") %>' class="table-icon edit" title="Edit"></a>--%>
+                                    <asp:LinkButton ID="lnkUnLock" runat="server" CssClass="table-icon unlock" ToolTip="UnLock" CommandArgument='<%# Eval("ID") %>' CausesValidation="false" OnClick="lnkUnLock_Click" OnClientClick="return confirm('Do you really want to unlock this user?');"></asp:LinkButton>
                                     <asp:LinkButton ID="lnkRemove" runat="server" CssClass="table-icon delete" ToolTip="Remove" Visible='<%# !Convert.ToBoolean(Eval("IsAdmin")) %>' CommandArgument='<%# Eval("ID") %>' CausesValidation="false" OnClick="lnkRemove_Click" OnClientClick="return confirm('Do you really want to remove this user?');"></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>

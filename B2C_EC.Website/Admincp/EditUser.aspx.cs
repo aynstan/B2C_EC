@@ -13,7 +13,7 @@ namespace B2C_EC.Website.Admincp
 {
     public partial class EditUser : System.Web.UI.Page
     {
-        UserRepo userRepo = new UserRepo();
+        private UserRepo userRepo = new UserRepo();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -24,33 +24,22 @@ namespace B2C_EC.Website.Admincp
 
         private void LoadUser()
         {
-            if (Request.QueryString["ID"] != null)
+            Model.User u = userRepo.GetById(ToSQL.SQLToInt(Request.QueryString["ID"]));
+            if (u != null)
             {
-                int id = ToSQL.SQLToInt(Request.QueryString["ID"]);
-                Model.User u = userRepo.GetById(id);
-                if (u != null)
+                txtFirstName.Text = u.FirstName;
+                txtLastName.Text = u.LastName;
+                lblUserName.Text = u.Username;
+                txtEmail.Text = u.Email;
+                txtPhone.Text = u.Phone;
+                if (u.Address != null)
                 {
-                    //ViewState["UserEdit"] = u;
-                    txtID.Text = u.ID.ToString();
-                    txtFirstName.Text = u.FirstName;
-                    txtLastName.Text = u.LastName;
-                    lblUserName.Text = u.Username;
-                    //txtUserName.Enabled = false;
-                    //string pass = "";
-                    //txtPassword.Attributes["value"] = Security.Decrypt(u.Key, u.Password);
-                    //txtConfirm.Attributes["value"] = Security.Decrypt(u.Key, u.Password);
-                    if (u.Address != null)
-                    {
-                        txtStreet1.Text = u.Address.Street1;
-                        txtStreet2.Text = u.Address.Street2;
-                        txtCity.Text = u.Address.City;
-                        txtState.Text = u.Address.State;
-                        txtCountry.Text = u.Address.Country;
-                        txtZipCode.Text = u.Address.ZipCode;
-                    }
-                    txtEmail.Text = u.Email;
-                    txtPhone.Text = u.Phone;
-                    chkActive.Checked = ToSQL.SQLToBool(u.IsActive);
+                    txtStreet1.Text = u.Address.Street1;
+                    txtStreet2.Text = u.Address.Street2;
+                    txtCity.Text = u.Address.City;
+                    txtState.Text = u.Address.State;
+                    txtCountry.Text = u.Address.Country;
+                    txtZipCode.Text = u.Address.ZipCode;
                 }
             }
             else
@@ -74,26 +63,21 @@ namespace B2C_EC.Website.Admincp
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            //if (ViewState["UserEdit"] == null)
-            //{
-            //    Response.Redirect("~/Admincp/Management-User.aspx");
-            //}
             Model.User user = userRepo.GetById(ToSQL.SQLToInt(Request.QueryString["ID"]));
             if (user != null)
             {
-                lblError.Text = "";
+                lbMessage.Text = "";
                 if (userRepo.DoesEmailExist(txtEmail.Text) && !user.Email.ToLower().Equals(txtEmail.Text.ToLower()) && ToSQL.EmptyNull(txtEmail.Text) != "")
                 {
-                    lblError.Text = "<ul><li>Email already exists!<l></ul>";
-                    lblError.Visible = true;
+                    lbMessage.Text = "Email already exists!";
+                    lbMessage.Visible = true;
                     return;
                 }
             }
             user.FirstName = txtFirstName.Text;
             user.LastName = txtLastName.Text;
-            //user.Username = txtUserName.Text;
-            user.Key = ConfigurationManager.AppSettings["KeyUser"];
-            //user.Password = Security.Encrypt(user.Key, txtPassword.Text);
+            user.Phone = txtPhone.Text;
+            user.Email = txtEmail.Text;
             if (user.Address == null)
                 user.Address = new Address();
             user.Address.Street1 = txtStreet1.Text;
@@ -102,13 +86,10 @@ namespace B2C_EC.Website.Admincp
             user.Address.State = txtState.Text;
             user.Address.Country = txtCountry.Text;
             user.Address.ZipCode = txtZipCode.Text;
-            user.Phone = txtPhone.Text;
-            user.Email = txtEmail.Text;
-            user.IsActive = chkActive.Checked;
             if (userRepo.UpdateUser(user) > 0)
                 Response.Redirect("~/Admincp/Management-User.aspx");
             else
-                lblError.Text = "Please check input data! Try again!";
+                lbMessage.Text = "Please check input data! Try again!";
         }
     }
 }

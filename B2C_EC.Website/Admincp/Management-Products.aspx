@@ -46,7 +46,7 @@
         <h2>Management Product Page</h2>
         <p>Here, All product of website will display.</p>
         <div>
-            <table align="center" style="margin:15px">
+            <table align="center" style="margin:15px auto 15px auto">
                 <tr>
                     <td>Name</td>
                     <td>Product Type</td>

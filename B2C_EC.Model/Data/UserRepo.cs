@@ -31,7 +31,6 @@ namespace B2C_EC.Model.Data
                 throw new Exception(e.Message);
             }
         }
-
         public int DeleteUser(int Id)
         {
             User user = db.Users.Where(u => u.ID == Id).FirstOrDefault();
@@ -62,9 +61,13 @@ namespace B2C_EC.Model.Data
             }
         }
 
-        public List<User> GetManagementUsers(string FName, string LName, string Email, string UserName, bool IsActive)
+        public List<User> GetManagementUsers(string firstname, string lastname, string username, string email)
         {
-            return db.Users.Where(u => u.FirstName.Contains(FName) && u.LastName.Contains(LName) && u.Email.Contains(Email) && u.Username.Contains(UserName) && u.IsActive == IsActive).ToList();
+            return db.Users.Where(u => u.FirstName.Contains(firstname) && u.LastName.Contains(lastname) && u.Email.Contains(email) && u.Username.Contains(username) && u.IsActive == true).ToList();
+        }
+        public List<User> GetManagementUsersLock(string firstname, string lastname, string username, string email)
+        {
+            return db.Users.Where(u => u.FirstName.Contains(firstname) && u.LastName.Contains(lastname) && u.Email.Contains(email) && u.Username.Contains(username) && u.IsActive == false).ToList();
         }
         public User GetUserByUsername(string username)
         {

@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +11,8 @@ using B2C_EC.Model.Global;
 
 namespace B2C_EC.Website.Admincp
 {
-    public partial class Management_User : System.Web.UI.Page
+
+    public partial class Management_UserLock : System.Web.UI.Page
     {
         private UserRepo userRepo = new UserRepo();
         protected void Page_Load(object sender, EventArgs e)
@@ -62,7 +63,7 @@ namespace B2C_EC.Website.Admincp
             }
         }
 
-        protected void lnkLock_Click(object sender, EventArgs e)
+        protected void lnkUnLock_Click(object sender, EventArgs e)
         {
             try
             {
@@ -71,7 +72,7 @@ namespace B2C_EC.Website.Admincp
                 Model.User user = userRepo.GetById(Id);
                 if (user != null)
                 {
-                    user.IsActive = false;
+                    user.IsActive = true;
                     int i = userRepo.UpdateUser(user);
                     BindItemsList();
                 }
@@ -146,7 +147,7 @@ namespace B2C_EC.Website.Admincp
 
         private void BindItemsList()
         {
-            List<User> users = userRepo.GetManagementUsers(txtFirstName.Text, txtLastName.Text, txtUserName.Text, txtEmail.Text);
+            List<User> users = userRepo.GetManagementUsersLock(txtFirstName.Text, txtLastName.Text, txtUserName.Text, txtEmail.Text);
             _PageDataSource.DataSource = users;
             _PageDataSource.AllowPaging = true;
             _PageDataSource.PageSize = 10;

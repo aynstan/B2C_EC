@@ -6,7 +6,7 @@
         <h2>Management Customer Page</h2>
         <p>Here, All customer of website will display.</p>
         <div>
-            <table align="center" style="margin:15px">
+            <table align="center" style="margin:15px auto 15px auto">
                 <tr>
                     <td>Customer ID</td>
                     <td>Username</td>

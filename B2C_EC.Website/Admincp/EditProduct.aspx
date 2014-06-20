@@ -32,6 +32,11 @@
         {
             height: 33px;
         }
+        #ContentPlaceHolder1_gvImages td img
+        {
+            height:182px;
+        }
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -63,17 +68,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style1">
-                        <label for="name">
-                            Product Type
-                        </label>
-                    </td>
-                    <td class="auto-style1">
-                        <asp:DropDownList ID="ddlProductType" runat="server" CssClass="Dropdown" DataTextField="Name" DataValueField="ID">
-                        </asp:DropDownList>
-                    </td>
-                </tr>
-                <tr>
                     <td>
                         <label for="name">
                             Manufacturer
@@ -81,6 +75,17 @@
                     </td>
                     <td>
                         <asp:DropDownList ID="ddlManufacturer" runat="server" CssClass="Dropdown" DataTextField="Name" DataValueField="ID">
+                        </asp:DropDownList>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style1">
+                        <label for="name">
+                            Product Type
+                        </label>
+                    </td>
+                    <td class="auto-style1">
+                        <asp:DropDownList ID="ddlProductType" runat="server" CssClass="Dropdown" DataTextField="Name" DataValueField="ID">
                         </asp:DropDownList>
                     </td>
                 </tr>
@@ -119,8 +124,8 @@
                             <ContentTemplate>
                                 <asp:GridView ID="gvImages" CssClass="table" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" OnRowDeleting="gvImages_RowDeleting">
                                     <Columns>
-                                        <asp:ImageField DataImageUrlField="Image" DataImageUrlFormatString="~/Resources/ImagesProduct/{0}" HeaderText="Image">
-                                            <ItemStyle HorizontalAlign="Center" />
+                                        <asp:ImageField DataImageUrlField="Image" DataImageUrlFormatString="~/Resources/ImagesProduct/{0}" HeaderText="Image" ItemStyle-Height="182px">
+                                            <ItemStyle HorizontalAlign="Center" Height="182px" />
                                         </asp:ImageField>
                                         <asp:CheckBoxField DataField="IsDefault" HeaderText="Default">
                                         <ItemStyle HorizontalAlign="Center" />
@@ -179,7 +184,7 @@
             </table>
             <div class="entry">
                 <asp:Button ID="btnSave" CssClass="button add" runat="server" Text="Save" OnClick="btnSave_Click" ValidationGroup="editproduct" />
-                <asp:Button ID="btnCancel" CssClass="button cancel" runat="server" Text="Cancel" CausesValidation="False" PostBackUrl="~/Admincp/Management-User.aspx" />
+                <asp:Button ID="btnCancel" CssClass="button cancel" runat="server" Text="Cancel" CausesValidation="False" PostBackUrl="~/Admincp/Management-Products.aspx" />
             </div>
         </div>
     </div>

@@ -10,7 +10,7 @@
 namespace B2C_EC.Website.Admincp {
     
     
-    public partial class Management_User {
+    public partial class Management_UserLock {
         
         /// <summary>
         /// txtFirstName control.

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="HoangQuanMobile.Website.Account.Login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="B2C_EC.Website.Admincp.Login" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl">
@@ -19,7 +19,7 @@
 					<label for="pass">Password:</label>
                     <asp:TextBox ID="txtPass" runat="server" TextMode="Password" CssClass="text"></asp:TextBox>
                     <div><asp:CheckBox ID="cbRemember" Text="Remember me?" runat="server" /></div>
-					<div class="sep"><asp:Label ID="lbErrorUser" Text="" runat="server" /></div>
+					<div class="sep"><asp:Label ID="lbErrorUser" Text="" runat="server" ForeColor="Red" /></div>
                     <asp:Button ID="btnLogin" CssClass="button ok" runat="server" Text="Login" OnClick="btnLogin_Click" />
                     <%--<asp:Button ID="btnForgot" CssClass="button " runat="server" Text="Forgotten password?" />--%>
 				</form>

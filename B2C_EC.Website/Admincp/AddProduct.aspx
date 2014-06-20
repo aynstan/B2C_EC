@@ -60,22 +60,22 @@
                 <tr>
                     <td>
                         <label for="name">
-                            Product Type
+                            Manufacturer
                         </label>
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlProductType" runat="server" CssClass="Dropdown" DataTextField="Name" DataValueField="ID">
+                        <asp:DropDownList ID="ddlManufacturer" runat="server" CssClass="Dropdown" DataTextField="Name" DataValueField="ID">
                         </asp:DropDownList>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label for="name">
-                            Manufacturer
+                            Product Type
                         </label>
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlManufacturer" runat="server" CssClass="Dropdown" DataTextField="Name" DataValueField="ID">
+                        <asp:DropDownList ID="ddlProductType" runat="server" CssClass="Dropdown" DataTextField="Name" DataValueField="ID" AutoPostBack="True" OnSelectedIndexChanged="ddlProductType_SelectedIndexChanged">
                         </asp:DropDownList>
                     </td>
                 </tr>
@@ -141,7 +141,7 @@
             </table>
             <div class="entry">
                 <asp:Button ID="btnSave" CssClass="button add" runat="server" Text="Save" OnClick="btnSave_Click" ValidationGroup="addproduct" />
-                <asp:Button ID="btnCancel" CssClass="button cancel" runat="server" Text="Cancel" CausesValidation="False" PostBackUrl="~/Admincp/Management-User.aspx" />
+                <asp:Button ID="btnCancel" CssClass="button cancel" runat="server" Text="Cancel" CausesValidation="False" PostBackUrl="~/Admincp/Management-Products.aspx" />
             </div>
         </div>
     </div>

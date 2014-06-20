@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HoangQuanMobile.Website.Account {
+namespace B2C_EC.Website.Admincp {
     
     
     public partial class Login {

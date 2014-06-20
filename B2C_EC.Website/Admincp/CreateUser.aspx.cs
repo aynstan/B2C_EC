@@ -17,38 +17,6 @@ namespace B2C_EC.Website.Admincp
 
         }
 
-        private bool CheckUser()
-        {
-            bool result = true;
-            if ((new UserRepo().DoesUsernameExist(txtUserName.Text)))
-            {
-                ltrError.Text += "<li>Username is already exists</li>";
-                result = false;
-            }
-            return result;
-        }
-
-        private bool CheckEmail()
-        {
-            bool result = true;
-            if ((new UserRepo().DoesEmailExist(txtEmail.Text)))
-            {
-                ltrError.Text += "<li>Email is already exists</li>";
-                result = false;
-            }
-            return result;
-        }
-
-        private bool ValidationUser()
-        {
-            bool result = true;
-            ltrError.Text = "<ul style='color:red; font-size:13pt;'>";
-            if (!CheckUser() || !CheckEmail())
-                result = false;
-            ltrError.Text += "</ul>";
-            return result;
-        }
-
         [System.Web.Services.WebMethod]
         public static bool KiemTraTenDangNhap(string TenDangNhap)
         {
@@ -64,14 +32,20 @@ namespace B2C_EC.Website.Admincp
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            if (ViewState["UserEdit"] == null && !ValidationUser())
+            UserRepo userrepo =new UserRepo();
+            lbMessage.Text = "";
+            if (userrepo.DoesUsernameExist(txtUserName.Text))
             {
-                ltrError.Visible = true;
+                lbMessage.Text = "Username already exists!";
+                lbMessage.ForeColor = System.Drawing.Color.Red;
+                txtUserName.Text = "";
                 return;
             }
-            if (ViewState["UserEdit"] != null && !CheckEmail())
+            if (userrepo.DoesEmailExist(txtEmail.Text))
             {
-                ltrError.Visible = true;
+                lbMessage.Text = "Email already exists!";
+                lbMessage.ForeColor = System.Drawing.Color.Red;
+                txtEmail.Text = "";
                 return;
             }
             User user = new User();
@@ -80,18 +54,18 @@ namespace B2C_EC.Website.Admincp
             user.Username = txtUserName.Text;
             user.Key = ConfigurationManager.AppSettings["KeyUser"];
             user.Password = Security.Encrypt(user.Key, txtPassword.Text);
-            if (user.Address == null)
-                user.Address = new Address();
+            user.Phone = txtPhone.Text;
+            user.Email = txtEmail.Text;
+            user.Address = new Address();
             user.Address.Street1 = txtStreet1.Text;
             user.Address.Street2 = txtStreet2.Text;
             user.Address.City = txtCity.Text;
             user.Address.State = txtState.Text;
             user.Address.Country = txtCountry.Text;
             user.Address.ZipCode = txtZipCode.Text;
-            user.Phone = txtPhone.Text;
-            user.Email = txtEmail.Text;
             user.DateCreated = DateTime.Now;
-            user.IsActive = chkIsActive.Checked;
+            user.IsActive = true;
+            user.IsAdmin = false;
             if ((new UserRepo()).CreateUser(user) > 0)
             {
                 Response.Redirect("~/Admincp/Management-User.aspx");
