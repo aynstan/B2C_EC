@@ -65,9 +65,9 @@ namespace B2C_EC.Model.Data
         {
             return db.Users.Where(u => u.FirstName.Contains(firstname) && u.LastName.Contains(lastname) && u.Email.Contains(email) && u.Username.Contains(username) && u.IsActive == true).ToList();
         }
-        public List<User> GetManagementUsersLock()
+        public List<User> GetManagementUsersLock(string firstname, string lastname, string username, string email)
         {
-            return db.Users.Where(u => u.IsActive == false).ToList();
+            return db.Users.Where(u => u.FirstName.Contains(firstname) && u.LastName.Contains(lastname) && u.Email.Contains(email) && u.Username.Contains(username) && u.IsActive == false).ToList();
         }
         public User GetUserByUsername(string username)
         {

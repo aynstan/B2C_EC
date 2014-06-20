@@ -355,7 +355,7 @@ fieldset
 .delete.table-icon { background: url(../Resources/Admin/i_delete.png) no-repeat; }
 .archive.table-icon { background: url(../Resources/Admin/i_archive.png) no-repeat; }
 .lock.table-icon { background: url(../Resources/Admin/i_block_users.png) no-repeat; }
-
+.unlock.table-icon { background: url(../Resources/Admin/i_unblock_users.png) no-repeat; }
 .pagination{
 	margin: 5px auto;
 	padding: 12px 0;

@@ -57,7 +57,7 @@
                             <ul>
                                 <li>&#8250; <a href="Management-User.aspx">Show all users</a></li>
                                 <li>&#8250; <a href="CreateUser.aspx">Add new user</a></li>
-                                <li>&#8250; <a href="#">Lock users</a></li>
+                                <li>&#8250; <a href="Management-UserLock.aspx">Lock users</a></li>
                             </ul>
                         </li>
                         <li class="upp"><a href="#">Management Order</a>
@@ -104,7 +104,7 @@
                         <ul>
                             <li class="b1"><a class="icon users" href="Management-User.aspx">Show all users</a></li>
                             <li class="b2"><a class="icon add_user" href="CreateUser.aspx">Add new user</a></li>
-                            <li class="b1"><a class="icon block_users" href="">Lock users</a></li>
+                            <li class="b1"><a class="icon block_users" href="Management-UserLock.aspx">Lock users</a></li>
                         </ul>
                     </div>
                     <div class="box">
