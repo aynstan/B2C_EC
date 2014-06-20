@@ -60,22 +60,22 @@
                 <tr>
                     <td>
                         <label for="name">
-                            Product Type
+                            Manufacturer
                         </label>
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlProductType" runat="server" CssClass="Dropdown" DataTextField="Name" DataValueField="ID">
+                        <asp:DropDownList ID="ddlManufacturer" runat="server" CssClass="Dropdown" DataTextField="Name" DataValueField="ID">
                         </asp:DropDownList>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label for="name">
-                            Manufacturer
+                            Product Type
                         </label>
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlManufacturer" runat="server" CssClass="Dropdown" DataTextField="Name" DataValueField="ID">
+                        <asp:DropDownList ID="ddlProductType" runat="server" CssClass="Dropdown" DataTextField="Name" DataValueField="ID" AutoPostBack="True" OnSelectedIndexChanged="ddlProductType_SelectedIndexChanged">
                         </asp:DropDownList>
                     </td>
                 </tr>

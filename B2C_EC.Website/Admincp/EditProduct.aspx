@@ -63,17 +63,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style1">
-                        <label for="name">
-                            Product Type
-                        </label>
-                    </td>
-                    <td class="auto-style1">
-                        <asp:DropDownList ID="ddlProductType" runat="server" CssClass="Dropdown" DataTextField="Name" DataValueField="ID">
-                        </asp:DropDownList>
-                    </td>
-                </tr>
-                <tr>
                     <td>
                         <label for="name">
                             Manufacturer
@@ -81,6 +70,17 @@
                     </td>
                     <td>
                         <asp:DropDownList ID="ddlManufacturer" runat="server" CssClass="Dropdown" DataTextField="Name" DataValueField="ID">
+                        </asp:DropDownList>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style1">
+                        <label for="name">
+                            Product Type
+                        </label>
+                    </td>
+                    <td class="auto-style1">
+                        <asp:DropDownList ID="ddlProductType" runat="server" CssClass="Dropdown" DataTextField="Name" DataValueField="ID">
                         </asp:DropDownList>
                     </td>
                 </tr>

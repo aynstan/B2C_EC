@@ -44,6 +44,19 @@ namespace B2C_EC.Website.Admincp
             }
         }
 
+        protected void ddlProductType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ProductType productType = new ProductTypeRepo().GetById(ToSQL.SQLToInt(ddlProductType.SelectedValue));
+            if (productType != null)
+            {
+                CKEditorControlDescription.Text = productType.DescriptionTemplate;
+            }
+            else
+            {
+                CKEditorControlDescription.Text = "";
+            }
+        }
+
         protected void btnSave_Click(object sender, EventArgs e)
         {
             Product p = new Product();
