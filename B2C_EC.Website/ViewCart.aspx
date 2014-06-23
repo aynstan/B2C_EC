@@ -25,7 +25,7 @@
             </tr>
             <tr>
                 <td align="center" colspan="2" valign="top">
-                    <asp:GridView ID="grvViewCart" runat="server" CssClass="gridview" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True"
+                    <asp:GridView ID="grvViewCart" runat="server" CssClass="gridview-viewcart" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True"
                         ShowFooter="True" OnRowCancelingEdit="grvViewCart_RowCancelingEdit" OnRowCommand="grvViewCart_RowCommand" OnRowEditing="grvViewCart_RowEditing" OnRowUpdating="grvViewCart_RowUpdating">
                         <FooterStyle HorizontalAlign="Center" CssClass="footertb" />
                         <Columns>

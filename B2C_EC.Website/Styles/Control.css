@@ -345,3 +345,77 @@ fieldset
     .datalist-compare .footertb {
         border:1px solid transparent;
     }
+
+.table-clean tr:hover {
+    color:#000;
+   border:1px solid transparent;
+   background:transparent;
+   padding:2px;
+   cursor:pointer;
+   text-align:center;
+}
+
+/*Gridview view cart*/
+.gridview-viewcart
+{
+    width:99%;
+    padding-left:20px;
+}
+.gridview-viewcart table
+{
+    width:100%;
+    border-collapse:collapse;
+    color:#fff;
+   border:1px solid #0977AC;
+}
+.gridview-viewcart th
+{
+   color:#fff;
+   /*background: linear-gradient(#4E4E4E, #060606);
+   -pie-background: linear-gradient(#4E4E4E, #060606);*/
+   background: #CF2317;
+	background: linear-gradient(#CF2317, #d8493f);
+	-pie-background: linear-gradient(#CF2317, #d8493f);
+   border:1px solid #4E4E4E;
+   padding: 10px;
+   padding-right:10px;
+   text-shadow: 0px 1px #242424;
+}
+.gridview-viewcart td
+{
+   color:#000;
+   border:1px solid #4E4E4E;/*#0977AC;*/
+   padding:2px;
+   text-align:center;
+}
+.gridview-viewcart a img
+{
+    border:none;
+}
+
+.gridview-viewcart th a
+{
+  color:#fff;
+}
+
+.gridview-viewcart table tr:nth-child(2n+1)
+{
+   color:#000;
+   border:1px solid #0977AC;
+   background:#CDEEF6;
+   padding:2px;
+   text-align:center;
+}
+.gridview-viewcart table tr:hover
+{
+   color:#000;
+   border:1px solid #0977AC;
+   /*background:#FFFFBF;*/
+   padding:2px;
+   cursor:pointer;
+   text-align:center;
+}
+
+    .gridview-viewcart .footertb {
+        border:1px solid transparent;
+    }

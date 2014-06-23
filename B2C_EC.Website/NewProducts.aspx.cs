@@ -55,6 +55,21 @@ namespace B2C_EC.Website
                     Response.Redirect("ViewCart.aspx");
                 }
             }
+            else if (e.CommandName == "AddCompare")
+            {
+                List<Product> list = (List<Product>)Session["Compare"];
+                if (list == null)
+                    list = new List<Product>();
+                Product p = (new ProductRepo()).GetById(ToSQL.SQLToInt(e.CommandArgument));
+                if (p != null)
+                {
+                    if (list.Contains(p))
+                        Response.Write("<script type='text/javascript'>alert('Product is exist in list compare');</script>");
+                    else
+                        list.Add(p);
+                }
+                Session["Compare"] = list;
+            }
         }
     }
 }
