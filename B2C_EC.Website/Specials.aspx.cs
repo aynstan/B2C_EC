@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using B2C_EC.Model.Global;
+using B2C_EC.Website.App_Code;
 namespace B2C_EC.Website
 {
     public partial class Specials : System.Web.UI.Page
@@ -56,16 +57,16 @@ namespace B2C_EC.Website
             }
             else if (e.CommandName == "AddCompare")
             {
-                List<Product> list = (List<Product>)Session["Compare"];
+                CompareAndWish list = (CompareAndWish)Session["Compare"];
                 if (list == null)
-                    list = new List<Product>();
+                    list = new CompareAndWish();
                 Product p = (new ProductRepo()).GetById(ToSQL.SQLToInt(e.CommandArgument));
                 if (p != null)
                 {
-                    if (list.Contains(p))
-                        Response.Write("<script type='text/javascript'>alert('Product is exist in list compare');</script>");
+                    if (list.Add(p))
+                        Response.Write("<script type='text/javascript'>alert('Added!s');</script>");
                     else
-                        list.Add(p);
+                        Response.Write("<script type='text/javascript'>alert('Product is exist in list compare');</script>");
                 }
                 Session["Compare"] = list;
             }

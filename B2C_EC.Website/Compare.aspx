@@ -7,7 +7,7 @@
             Compare products
         </div>
         <div class="Description">
-            <asp:DataList ID="dtlCompare" CssClass="datalist-compare" runat="server" RepeatColumns="2" Width="100%" OnItemDataBound="dtlCompare_ItemDataBound">
+            <asp:DataList ID="dtlCompare" CssClass="datalist-compare" runat="server" RepeatColumns="2" Width="100%" OnItemDataBound="dtlCompare_ItemDataBound" OnItemCommand="dtlCompare_ItemCommand">
                 <ItemTemplate>
                     <table style="width:100%;">
                         <tr>
@@ -30,7 +30,12 @@
                         </tr>
                         <tr>
                             <td><%# Eval("Description") %></td>
-                        </tr>                        
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Button ID="btnRemove" CommandArgument='<%# Eval("ID") %>' CommandName="Remove" CssClass="Button" runat="server" Text="Remove" />
+                            </td>
+                        </tr>
                     </table>
                 </ItemTemplate>
             </asp:DataList>

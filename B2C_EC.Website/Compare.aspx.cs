@@ -1,5 +1,7 @@
 ﻿using B2C_EC.Model;
 using B2C_EC.Model.Data;
+using B2C_EC.Model.Global;
+using B2C_EC.Website.App_Code;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,8 +25,8 @@ namespace B2C_EC.Website
         {
             if (Session["Compare"] != null)
             {
-                List<Product> list = (List<Product>)Session["Compare"];
-                dtlCompare.DataSource = list;
+                CompareAndWish list = (CompareAndWish)Session["Compare"];
+                dtlCompare.DataSource = list.DanhSach;
                 dtlCompare.DataBind();
             }
         }
@@ -40,6 +42,18 @@ namespace B2C_EC.Website
             catch (Exception ex)
             {
                 throw;
+            }
+        }
+
+        protected void dtlCompare_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            if (e.CommandName == "Remove" && (Session["Compare"] != null))
+            {
+                CompareAndWish list = (CompareAndWish)Session["Compare"];
+                if (list != null)
+                {
+                    list.Remove(ToSQL.SQLToInt(e.CommandArgument));
+                }
             }
         }
     }
