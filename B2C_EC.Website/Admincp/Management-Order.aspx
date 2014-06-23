@@ -41,7 +41,7 @@
                             <asp:BoundField HeaderText="ID" DataField="ID" >
                             <ItemStyle HorizontalAlign="Center" Width="30px" />
                             </asp:BoundField>
-                            <asp:BoundField HeaderText="DateCreated" DataField="DateCreated" />
+                            <asp:BoundField HeaderText="Date Created" DataField="DateCreated" />
                             <asp:BoundField HeaderText="Order Status" />
                             <asp:BoundField HeaderText="Customer Name" />
                             <asp:BoundField HeaderText="Payment" />

@@ -57,36 +57,36 @@ namespace B2C_EC.Website.Admincp
 
         protected void gvOrders_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-                Order order = (Order)e.Row.DataItem;
-                if (order != null)
+            Order order = (Order)e.Row.DataItem;
+            if (order != null)
+            {
+                OrderStatu orderStatus = new OrderStatusRepo().GetById(ToSQL.SQLToInt(order.OrderStatus_ID));
+                if (orderStatus != null)
                 {
-
-                    OrderStatu orderStatus = new OrderStatusRepo().GetById(ToSQL.SQLToInt(order.OrderStatus_ID));
-                    if (orderStatus != null)
-                    {
-                        e.Row.Cells[2].Text = orderStatus.Name;//order stat
-                    }
-                    Customer customer = new CustomerRepo().GetById(ToSQL.SQLToInt(order.Customer_ID));
-                    if (customer != null)
-                    {
-                        e.Row.Cells[3].Text = customer.FirstName;//customer nam
-                    }
-                    Model.Payment payment = new PaymentRepo().GetById(ToSQL.SQLToInt(order.Payment_ID));
-                    if (payment != null)
-                    {
-                        e.Row.Cells[4].Text = payment.Name;//payment method
-                    }
-                    ShippingAddress shippingAddress = new ShippingAddressRepo().GetById(ToSQL.SQLToInt(order.ShippingAddress_ID));
-                    if (shippingAddress != null)
-                    {
-                        e.Row.Cells[5].Text = shippingAddress.Name;//Recipient's Name
-                        e.Row.Cells[6].Text = shippingAddress.Phone;
-                        string strAddress = new AddressRepo().GetToString(shippingAddress.Address);
-                        e.Row.Cells[7].Text = strAddress.Length > 23 ? strAddress.Substring(0, 20) + "..." : strAddress;
-                        e.Row.Cells[7].ToolTip = strAddress;
-                    }
+                    e.Row.Cells[2].Text = orderStatus.Name;//order stat
                 }
+                Customer customer = new CustomerRepo().GetById(ToSQL.SQLToInt(order.Customer_ID));
+                if (customer != null)
+                {
+                    e.Row.Cells[3].Text = customer.FirstName;//customer nam
+                }
+                Model.Payment payment = new PaymentRepo().GetById(ToSQL.SQLToInt(order.Payment_ID));
+                if (payment != null)
+                {
+                    e.Row.Cells[4].Text = payment.Name;//payment method
+                }
+                ShippingAddress shippingAddress = new ShippingAddressRepo().GetById(ToSQL.SQLToInt(order.ShippingAddress_ID));
+                if (shippingAddress != null)
+                {
+                    e.Row.Cells[5].Text = shippingAddress.Name;//Recipient's Name
+                    e.Row.Cells[6].Text = shippingAddress.Phone;
+                    string strAddress = new AddressRepo().GetToString(shippingAddress.Address);
+                    e.Row.Cells[7].Text = strAddress.Length > 23 ? strAddress.Substring(0, 20) + "..." : strAddress;
+                    e.Row.Cells[7].ToolTip = strAddress;
+                }
+            }
         }
+
         #region Paging
         #region Private Properties
         private int CurrentPage
