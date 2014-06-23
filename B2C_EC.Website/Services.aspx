@@ -25,7 +25,7 @@
                                 <div class="add-to-list">
                                     <ul>
                                         <li><a href="#">Add To Wish List</a></li>
-                                        <li><a href="#">+ Add To Compare</a></li>
+                                        <li><asp:LinkButton ID="lbtnAddCompare" runat="server" CommandArgument='<%# Eval("ID") %>' CommandName="AddCompare" Text="+ Add To Compare"></asp:LinkButton></li>
                                     </ul>
                                 </div>
                             </div>
