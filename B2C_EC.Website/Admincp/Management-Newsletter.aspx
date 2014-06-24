@@ -1,20 +1,19 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admincp/Admin.Master" AutoEventWireup="true" CodeBehind="Management-Order.aspx.cs" Inherits="B2C_EC.Website.Admincp.Management_Order" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admincp/Admin.Master" AutoEventWireup="true" CodeBehind="Management-Newsletter.aspx.cs" Inherits="B2C_EC.Website.Admincp.Management_Newsletter" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div id="manufacturer">        
-        <h2>Management Order Page</h2>
-        <p>Here, All orders of website will display.</p>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div id="contact">        
+        <h2>Management Newsletter Page</h2>
+        <p>Here, All newsletters of website will display.</p>
         <div>
             <table align="center" style="margin:15px auto 15px auto">
                 <tr>
-                    <td>Order ID</td>
                     <td>From Date</td>
                     <td>To Date</td>
-                    <td>Order Status</td>
-                    <td>Customer</td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td><asp:TextBox ID="txtOrderID" runat="server" CssClass="TextBox"></asp:TextBox></td>
                     <td>
                         <asp:TextBox ID="txtFromDate" runat="server" placeholder="mm/dd/yyyy" CssClass="TextBox"></asp:TextBox>
                         <asp:CalendarExtender ID="txtFromDate_CalendarExtender" runat="server" CssClass="orange" Enabled="True" Format="MM/dd/yyyy" TargetControlID="txtFromDate">
@@ -25,10 +24,6 @@
                         <asp:CalendarExtender ID="txtToDate_CalendarExtender" runat="server" CssClass="orange" Enabled="True" Format="MM/dd/yyyy" TargetControlID="txtToDate">
                         </asp:CalendarExtender>
                     </td>
-                    <td><asp:DropDownList ID="ddlOrderStatus" runat="server" CssClass="Dropdown" DataValueField="ID" DataTextField="Name" ></asp:DropDownList></td>
-                    <td><asp:DropDownList ID="ddlCustomer" runat="server" CssClass="Dropdown" DataValueField="ID" DataTextField="FirstName" ></asp:DropDownList></td>
-                </tr>
-                <tr>
                     <td colspan="6" align="center"><asp:Button ID="btnFilter" runat="server" CssClass="button" Text="Filter" OnClick="btnFilter_Click" /></td>
                 </tr>
             </table>
@@ -36,27 +31,29 @@
         <div>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <asp:GridView ID="gvOrders" runat="server" CssClass="table" AutoGenerateColumns="False" OnRowDataBound="gvOrders_RowDataBound">
+                    <asp:GridView ID="gvNewsletters" runat="server" CssClass="table" AutoGenerateColumns="False" ShowFooter="True">
                         <Columns>
                             <asp:BoundField HeaderText="ID" DataField="ID" >
                             <ItemStyle HorizontalAlign="Center" Width="30px" />
                             </asp:BoundField>
+                            <asp:BoundField HeaderText="Email" DataField="Email" />
+                            <asp:CheckBoxField DataField="IsActive" HeaderText="Active" />
                             <asp:BoundField HeaderText="Date Created" DataField="DateCreated" />
-                            <asp:BoundField HeaderText="Order Status" />
-                            <asp:BoundField HeaderText="Customer Name" />
-                            <asp:BoundField HeaderText="Payment" />
-                            <asp:BoundField HeaderText="Recipient's Name" />
-                            <asp:BoundField HeaderText="Recipient's Phone" />
-                            <asp:BoundField HeaderText="Recipient's Address" />                            
-                            <%--<asp:BoundField HeaderText="Note" DataField="Note" />--%>
                             <asp:TemplateField>
                                 <ItemTemplate>
-                                    <a <%--href='<%# "OrderDetails.aspx?ID="+Eval("ID") %>'--%> class="table-icon edit" title="Edit"></a>
-                                    <%--<asp:LinkButton ID="lnkRemove" runat="server" CssClass="table-icon delete" ToolTip="Remove" CommandArgument='<%# Eval("ID") %>' CausesValidation="false" OnClick="btnRemove_Click" OnClientClick="return confirm('Do you really want to remove this order?');"></asp:LinkButton>--%>
+                                    <asp:LinkButton ID="lnkRemove" runat="server" CssClass="table-icon delete" ToolTip="Remove" CommandArgument='<%# Eval("ID") %>' CausesValidation="false" OnClick="btnRemove_Click" OnClientClick="return confirm('Do you really want to remove this newsletter?');"></asp:LinkButton>
                                 </ItemTemplate>
-                                <ItemStyle />
+                            </asp:TemplateField>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lnkSentMail" runat="server" Text="Sent Email" ToolTip="Email" CommandArgument='<%# Eval("ID") %>' CausesValidation="false" OnClientClick="return confirm('Do you really want to sent newsletter this email?');"></asp:LinkButton>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    <asp:LinkButton ID="lnkAllSentMail" runat="server" Text="Sent All Email" ToolTip="Email" CommandArgument='<%# Eval("ID") %>' CausesValidation="false" OnClientClick="return confirm('Do you really want to sent newsletter this all email?');"></asp:LinkButton>
+                                </FooterTemplate>
                             </asp:TemplateField>
                         </Columns>
+                        <FooterStyle BackColor="#CCCCCC" />
                     </asp:GridView>
                     <div class="entry">
                         <div class="pagination">

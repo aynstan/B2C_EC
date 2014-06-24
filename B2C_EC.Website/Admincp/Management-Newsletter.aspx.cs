@@ -11,28 +11,16 @@ using B2C_EC.Model.Global;
 
 namespace B2C_EC.Website.Admincp
 {
-    public partial class Management_Order : System.Web.UI.Page
+    public partial class Management_Newsletter : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                LoadDropDownList();
                 BindItemsList();
             }
         }
-        private void LoadDropDownList()
-        {
-            List<OrderStatu> orderStatus = new OrderStatusRepo().GetAllOrderStatu();
-            ddlOrderStatus.DataSource = orderStatus;
-            ddlOrderStatus.DataBind();
-            ddlOrderStatus.Items.Insert(0, new ListItem("(All)", ""));
 
-            List<Customer> customers = new CustomerRepo().GetAllCustomer();
-            ddlCustomer.DataSource = customers;
-            ddlCustomer.DataBind();
-            ddlCustomer.Items.Insert(0, new ListItem("(All)", ""));
-        }
         protected void btnFilter_Click(object sender, EventArgs e)
         {
             BindItemsList();
@@ -45,45 +33,13 @@ namespace B2C_EC.Website.Admincp
                 int Id = ToSQL.SQLToInt(lnk.CommandArgument);
                 if (Id > 0)
                 {
-                    int i = new OrderRepo().DeleteOrder(Id);
+                    int i = new NewsletterRepo().DeleteNewsLetter(Id);
                     BindItemsList();
                 }
             }
             catch
             {
 
-            }
-        }
-
-        protected void gvOrders_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            Order order = (Order)e.Row.DataItem;
-            if (order != null)
-            {
-                OrderStatu orderStatus = new OrderStatusRepo().GetById(ToSQL.SQLToInt(order.OrderStatus_ID));
-                if (orderStatus != null)
-                {
-                    e.Row.Cells[2].Text = orderStatus.Name;//order stat
-                }
-                Customer customer = new CustomerRepo().GetById(ToSQL.SQLToInt(order.Customer_ID));
-                if (customer != null)
-                {
-                    e.Row.Cells[3].Text = customer.FirstName;//customer nam
-                }
-                Model.Payment payment = new PaymentRepo().GetById(ToSQL.SQLToInt(order.Payment_ID));
-                if (payment != null)
-                {
-                    e.Row.Cells[4].Text = payment.Name;//payment method
-                }
-                ShippingAddress shippingAddress = new ShippingAddressRepo().GetById(ToSQL.SQLToInt(order.ShippingAddress_ID));
-                if (shippingAddress != null)
-                {
-                    e.Row.Cells[5].Text = shippingAddress.Name;//Recipient's Name
-                    e.Row.Cells[6].Text = shippingAddress.Phone;
-                    string strAddress = new AddressRepo().GetToString(shippingAddress.Address);
-                    e.Row.Cells[7].Text = strAddress.Length > 23 ? strAddress.Substring(0, 20) + "..." : strAddress;
-                    e.Row.Cells[7].ToolTip = strAddress;
-                }
             }
         }
 
@@ -151,8 +107,7 @@ namespace B2C_EC.Website.Admincp
 
         private void BindItemsList()
         {
-            List<Order> users = new OrderRepo().GetManagementOrders(ToSQL.SQLToInt(txtOrderID.Text), ToSQL.SQLToDateTimeNull(txtFromDate.Text), ToSQL.SQLToDateTimeNull(txtToDate.Text),
-                                                                       ToSQL.SQLToInt(ddlOrderStatus.SelectedValue), ToSQL.SQLToInt(ddlCustomer.SelectedValue));
+            List<Model.NewsLetter> users = new NewsletterRepo().GetManagementNewsLetters(ToSQL.SQLToDateTimeNull(txtFromDate.Text), ToSQL.SQLToDateTimeNull(txtToDate.Text));
             _PageDataSource.DataSource = users;
             _PageDataSource.AllowPaging = true;
             _PageDataSource.PageSize = 10;
@@ -166,8 +121,8 @@ namespace B2C_EC.Website.Admincp
             //this.lbtnFirst.Visible = !_PageDataSource.IsFirstPage;
             //this.lbtnLast.Visible = !_PageDataSource.IsLastPage;
 
-            this.gvOrders.DataSource = _PageDataSource;
-            this.gvOrders.DataBind();
+            this.gvNewsletters.DataSource = _PageDataSource;
+            this.gvNewsletters.DataBind();
             //this.gvProducts.UseAccessibleHeader = true;
             //this.gvProducts.HeaderRow.TableSection = TableRowSection.TableHeader;
             this.doPaging();
@@ -249,6 +204,5 @@ namespace B2C_EC.Website.Admincp
         }
 
         #endregion
-
     }
 }
