@@ -19,7 +19,7 @@
                         </ItemTemplate>
                     </asp:Repeater>
                 </ul>
-                <a href="#">View More  <span>&raquo; </span></a>
+                <a href="BestSelling.aspx">View More  <span>&raquo; </span></a>
             </div>
             <div class="latest-product ">
                 <h2>Our Services</h2>
