@@ -1,13 +1,13 @@
-﻿using B2C_EC.Model;
-using B2C_EC.Model.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using B2C_EC.Model.Global;
-using B2C_EC.Website.App_Code;
+using B2C_EC.Model;
+using B2C_EC.Model.Data;
+
 namespace B2C_EC.Website
 {
     public partial class Specials : System.Web.UI.Page

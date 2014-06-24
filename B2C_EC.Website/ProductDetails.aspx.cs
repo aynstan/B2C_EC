@@ -48,27 +48,15 @@ namespace B2C_EC.Website
 
         protected void btnAddToCart_Click(object sender, EventArgs e)
         {
-            Product product = new ProductRepo().GetById(ToSQL.SQLToInt(Request.QueryString["ProductId"]));
-            if (product != null)
-            {
-                List<Cart> carts = (List<Cart>)Session["Carts"];
-                Cart cart = new Cart(carts);
-                cart = cart.ConverProductToCart(product);
-                carts = cart.Add(cart);
-
-                int Quantity = ToSQL.SQLToInt(txtQuantity.Text) - 1;
-                if (Quantity > 0)
-                {
-                    var obj = carts.FirstOrDefault(x => x.ProductID == cart.ProductID);
-                    if (obj != null) obj.Quantity = obj.Quantity + Quantity;
-                }
-
-                Session["Carts"] = carts;
-                Response.Redirect("ViewCart.aspx");
-            }
+            AddCart();
         }
 
         protected void btnOrder_Click(object sender, EventArgs e)
+        {
+            AddCart();
+        }
+
+        private void AddCart()
         {
             Product product = new ProductRepo().GetById(ToSQL.SQLToInt(Request.QueryString["ProductId"]));
             if (product != null)
@@ -76,14 +64,15 @@ namespace B2C_EC.Website
                 List<Cart> carts = (List<Cart>)Session["Carts"];
                 Cart cart = new Cart(carts);
                 cart = cart.ConverProductToCart(product);
+                cart.Quantity = ToSQL.SQLToInt(txtQuantity.Text);
                 carts = cart.Add(cart);
 
-                int Quantity = ToSQL.SQLToInt(txtQuantity.Text) - 1;
-                if (Quantity > 0)
-                {
-                    var obj = carts.FirstOrDefault(x => x.ProductID == cart.ProductID);
-                    if (obj != null) obj.Quantity = obj.Quantity + Quantity;
-                }
+                //int Quantity = ToSQL.SQLToInt(txtQuantity.Text) - 1;
+                //if (Quantity > 0)
+                //{
+                //    var obj = carts.FirstOrDefault(x => x.ProductID == cart.ProductID);
+                //    if (obj != null) obj.Quantity = obj.Quantity + Quantity;
+                //}
 
                 Session["Carts"] = carts;
                 Response.Redirect("Payment.aspx");

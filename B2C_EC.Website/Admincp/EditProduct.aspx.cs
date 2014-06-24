@@ -108,15 +108,8 @@ namespace B2C_EC.Website.Admincp
                 //for (int fileCount = 0; fileCount < uploads.Count; fileCount++)
                 foreach (HttpPostedFile uploadedFile in FileUploadJquery.PostedFiles)
                 {
-                    //HttpPostedFile uploadedFile = uploads[i];
                     ProductImage image = new ProductImage();
-                    string url = "";//UploadImage(fulImageDefault.PostedFile);
-                    try
-                    {
-                        uploadedFile.SaveAs(Server.MapPath("~/Resources/ImagesProduct/" + uploadedFile.FileName));
-                        url = uploadedFile.FileName;
-                    }
-                    catch { }
+                    string url = UploadImage(uploadedFile);
                     if (url != "")
                     {
                         image.Image = url;

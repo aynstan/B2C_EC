@@ -4,31 +4,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace B2C_EC.Website.App_Code
+namespace B2C_EC.Website
 {
     public class CompareAndWish
     {
-        List<Product> danhsach;
+        List<Product> products;
 
-        public List<Product> DanhSach
+        public List<Product> Products
         {
-            get { return danhsach; }
-            set { danhsach = value; }
+            get { return products; }
+            set { products = value; }
         }
 
         public CompareAndWish()
         {
-            DanhSach = new List<Product>();
+            Products = new List<Product>();
         }
 
         public int Search(int ID)
         {
-            for (int i = 0; i < DanhSach.Count; i++)
-            {
-                if (DanhSach[i].ID == ID)
-                    return i;
-            }
-            return -1;
+            //for (int i = 0; i < Products.Count; i++)
+            //{
+            //    if (Products[i].ID == ID) 
+            //        return i;
+            //}
+            //return -1;
+            return Products.FindIndex(x => x.ID == ID);
         }
 
         public bool Add(Product p)
@@ -36,7 +37,7 @@ namespace B2C_EC.Website.App_Code
             int index = Search(p.ID);
             if (index == -1)
             {
-                DanhSach.Add(p);
+                Products.Add(p);
                 return true;
             }
             return false;
@@ -47,7 +48,7 @@ namespace B2C_EC.Website.App_Code
             int index = Search(p.ID);
             if (index != -1)
             {
-                DanhSach.RemoveAt(index);
+                Products.RemoveAt(index);
             }
         }
 
@@ -56,7 +57,7 @@ namespace B2C_EC.Website.App_Code
             int index = Search(id);
             if (index != -1)
             {
-                DanhSach.RemoveAt(index);
+                Products.RemoveAt(index);
             }
         }
     }

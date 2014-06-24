@@ -1,13 +1,12 @@
-﻿using B2C_EC.Model;
-using B2C_EC.Model.Data;
-using B2C_EC.Model.Global;
-using B2C_EC.Website.App_Code;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using B2C_EC.Model;
+using B2C_EC.Model.Data;
+using B2C_EC.Model.Global;
 
 namespace B2C_EC.Website
 {
@@ -26,7 +25,7 @@ namespace B2C_EC.Website
             if (Session["Compare"] != null)
             {
                 CompareAndWish list = (CompareAndWish)Session["Compare"];
-                dtlCompare.DataSource = list.DanhSach;
+                dtlCompare.DataSource = list.Products;
                 dtlCompare.DataBind();
             }
         }

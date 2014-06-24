@@ -54,7 +54,7 @@ namespace B2C_EC.Website
         public List<Cart> Add(Cart cart)
         {
             var obj = Carts.FirstOrDefault(x => x.ProductID == cart.ProductID);
-            if (obj != null) obj.Quantity++;
+            if (obj != null) obj.Quantity = obj.Quantity + cart.Quantity;
             else Carts.Add(cart);
             return Carts;
         }

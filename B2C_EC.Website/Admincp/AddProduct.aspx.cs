@@ -86,7 +86,7 @@ namespace B2C_EC.Website.Admincp
             foreach (HttpPostedFile uploadedFile in FileUploadJquery.PostedFiles)
             {
                 ProductImage image = new ProductImage();
-                string url = UploadImage(fulImageDefault.PostedFile);
+                string url = UploadImage(uploadedFile);
                 if (url != "")
                 {
                     image.Image = url;
