@@ -99,6 +99,7 @@ namespace B2C_EC.Website.Admincp
                     string url = UploadImage(fulImageDefault.PostedFile);
                     if (url != "")
                     {
+                        var pi = p.ProductImages.FirstOrDefault(u => u.IsDefault.Value == true); if (pi != null) pi.IsDefault = false;
                         image.Image = url;
                         image.IsDefault = true;
                         p.ProductImages.Add(image);

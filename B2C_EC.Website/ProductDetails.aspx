@@ -56,7 +56,7 @@
                         <td><b>Price:</b>
                         </td>
                         <td>
-                            <asp:Label ID="lblPrice" runat="server" Text=""></asp:Label>
+                            <asp:Label ID="lblPrice" runat="server" Text="" ForeColor="#B12704"></asp:Label>
                         </td>
                     </tr>
                     <tr style="height: 50px;">

@@ -32,7 +32,7 @@ namespace B2C_EC.Website
                     rptListImages.DataBind();
                     ltrDetails.Text = p.Description;
                     lblName.Text = p.Name;
-                    lblPrice.Text = p.Price.ToString("#,###.## $");
+                    lblPrice.Text = p.Price.ToString("$#,###.##");
                 }
                 else
                 {                   
