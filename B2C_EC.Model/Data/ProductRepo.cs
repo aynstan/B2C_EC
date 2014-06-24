@@ -96,5 +96,10 @@ namespace B2C_EC.Model.Data
                                         && (manufacturerID.Equals(0) || manufacturerID.Equals(null) || u.Manufacuturer_ID.Value.Equals(manufacturerID))
                                       ).ToList();
         }
+
+        public List<Product> GetListBestSelling()
+        {
+            return db.Products.Where(p => p.IsBestSelling == true && p.IsActive == true).ToList();
+        }
     }
 }
