@@ -20,7 +20,8 @@
                     </HeaderTemplate>
                     <ItemTemplate>
                         <li><a href="#">
-                            <img style="height: 300px;" src='<%# "Resources/ImagesProduct/"+Eval("Image") %>' alt="" /></a></li>
+                            <asp:Image ID="Image1" Height="300px" AlternateText='<%# Eval("Image") %>' runat="server" ImageUrl='<%# SetImage(Eval("Image")) %>' />
+                        </a></li>
                     </ItemTemplate>
                     <FooterTemplate>
                         </ul>

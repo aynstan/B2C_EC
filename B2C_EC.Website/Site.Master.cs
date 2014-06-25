@@ -87,5 +87,10 @@ namespace B2C_EC.Website
                 Response.Redirect("Newsletter.aspx");
             }
         }
+
+        protected void btnSearch_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("~/SearchResult.aspx?key=" + txtSearch.Text);
+        }
     }
 }

@@ -34,11 +34,11 @@ namespace B2C_EC.Website
             HiddenField hdf = (HiddenField)e.Item.FindControl("hdfProductId");
             if (img != null && hdf != null)
             {
-                ProductImage imageProduct = (new ProductImageRepo()).GetImageDefaultByProductId(ToSQL.SQLToInt(hdf.Value));
-                if (imageProduct != null)
-                {
-                    img.ImageUrl = "~/Resources/ImagesProduct/" + imageProduct.Image;
-                }
+                string image = (new ProductImageRepo()).GetImageDefaultAllByProductId(ToSQL.SQLToInt(hdf.Value));
+                if (CheckFileShared.CheckImageExist(image))
+                    img.ImageUrl = "~/Resources/ImagesProduct/" + image;
+                else
+                    img.ImageUrl = "~/Resources/ImagesProduct/no-image.png";
             }
         }
 
@@ -73,6 +73,15 @@ namespace B2C_EC.Website
                 }
                 Session["Compare"] = list;
             }
+        }
+
+        public string ShortString(object o)
+        {
+            string s = o.ToString();
+            if (s.Length <= 20)
+                return s;
+            else
+                return s.Substring(0, 18) + "...";
         }
     }
 }

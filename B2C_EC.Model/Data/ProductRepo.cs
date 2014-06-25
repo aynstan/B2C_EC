@@ -101,5 +101,10 @@ namespace B2C_EC.Model.Data
         {
             return db.Products.Where(p => p.IsBestSelling == true && p.IsActive == true).ToList();
         }
+
+        public List<Product> GetListBySearch(string key)
+        {
+            return db.Products.Where(p => p.Manufacturer.Name.Contains(key) || p.ProductType.Name.Contains(key) || p.Name.Contains(key) || p.Description.Contains(key)).ToList();
+        }
     }
 }

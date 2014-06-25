@@ -167,12 +167,25 @@ body {
 	text-indent: -9999px;
 	top: 6px;
 	width: 16px;
+    right: 16px;
 }
 .submit {
 	width:30px !important;
 	height:26px;
 	border-radius:5px;
 	cursor:pointer;
+}
+
+.icon-glass {
+    background:url(../Resources/ImagesDesign/search.png) no-repeat;
+	display:block;
+	height: 16px;
+	left: 8px;
+	position: absolute;
+	text-indent: -9999px;
+	top: 6px;
+	width: 16px;
+    right: -37px;
 }
 .sidebar {
 	float:left;

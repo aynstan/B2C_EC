@@ -78,5 +78,13 @@ namespace B2C_EC.Website
                 Response.Redirect("Payment.aspx");
             }
         }
+
+        public string SetImage(object O)
+        {            
+            if (CheckFileShared.CheckImageExist(ToSQL.EmptyNull(O)))
+                return "~/Resources/ImagesProduct/" + ToSQL.EmptyNull(O);
+            else
+                return "~/Resources/ImagesProduct/no-image.png";
+        }
     }
 }
