@@ -31,6 +31,7 @@
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>
+                    <div style="padding-right:30px;text-align:right;clear:both"><a href='<%# "FilterByService.aspx?ServiceID="+Eval("ID") %>'>View More  <span>&raquo; </span></a></div>
                 </div>
             </div>
         </ItemTemplate>

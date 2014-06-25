@@ -90,7 +90,14 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <CKEditor:CKEditorControl ID="CKEditorControlDescription" runat="server" Height="250px" Width="700px"></CKEditor:CKEditorControl>
+                        <asp:UpdatePanel ID="uppnCKE" runat="server">
+                            <ContentTemplate>
+                                <CKEditor:CKEditorControl ID="CKEditorControlDescription" runat="server" Height="250px" Width="700px"></CKEditor:CKEditorControl>
+                            </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="ddlProductType" />
+                            </Triggers>
+                        </asp:UpdatePanel>                        
                     </td>
                 </tr>
                 <tr>
