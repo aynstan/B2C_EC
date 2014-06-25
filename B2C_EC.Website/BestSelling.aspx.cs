@@ -1,7 +1,7 @@
 ﻿using B2C_EC.Model;
 using B2C_EC.Model.Data;
 using B2C_EC.Model.Global;
-using B2C_EC.Website.App_Code;
+using B2C_EC.Website;
 using System;
 using System.Collections.Generic;
 using System.Linq;

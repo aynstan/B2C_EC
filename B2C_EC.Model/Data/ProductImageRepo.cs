@@ -23,11 +23,11 @@ namespace B2C_EC.Model.Data
                 return ProductImage.Image;
             }
             ProductImage = new B2C_ECEntities().ProductImages.Where(p => p.Product_ID == ProductId).FirstOrDefault();
-            if (ProductImage != null)
+            if (ProductImage != null && !string.IsNullOrEmpty(ProductImage.Image))
             {
                 return ProductImage.Image;
             }
-            return "";
+            return "no-image.png";
         }
 
         public List<ProductImage> GetAllImagesByProductId(int ProductId)
