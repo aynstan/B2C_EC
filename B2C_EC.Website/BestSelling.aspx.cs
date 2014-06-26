@@ -73,6 +73,21 @@ namespace B2C_EC.Website
                 }
                 Session["Compare"] = list;
             }
+            else if (e.CommandName == "AddWishList")
+            {
+                CompareAndWish list = (CompareAndWish)Session["WishList"];
+                if (list == null)
+                    list = new CompareAndWish();
+                Product p = (new ProductRepo()).GetById(ToSQL.SQLToInt(e.CommandArgument));
+                if (p != null)
+                {
+                    if (list.Add(p))
+                        Response.Write("<script type='text/javascript'>alert('Added!s');</script>");
+                    else
+                        Response.Write("<script type='text/javascript'>alert('Product is exist in list compare');</script>");
+                }
+                Session["WishList"] = list;
+            }
         }
 
         public string ShortString(object o)
