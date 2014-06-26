@@ -36,7 +36,7 @@ namespace B2C_EC.Website
             {
                 Product p = (Product)e.Item.DataItem;
                 Image img = (Image)e.Item.FindControl("imgProduct");
-                img.ImageUrl = "~/Resources/ImagesProduct/" + (new ProductImageRepo()).GetImageDefaultAllByProductId(p.ID);                
+                img.ImageUrl = "~/Resources/ImagesProduct/" + (new ProductImageRepo()).GetImageDefaultAllByProductId(p.ID);
             }
             catch (Exception ex)
             {
