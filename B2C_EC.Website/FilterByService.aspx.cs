@@ -23,7 +23,7 @@ namespace B2C_EC.Website
 
         private void LoadProductsByProductTypeID()
         {
-            int productTypeID = ToSQL.SQLToInt(Request.QueryString["ServiceID"].ToString());
+            int productTypeID = ToSQL.SQLToInt(Request.QueryString["ServiceID"]);
             rptProducts.DataSource = (new ProductRepo()).GetListProductByProductTypeID(productTypeID);
             rptProducts.DataBind();
         }
@@ -76,7 +76,7 @@ namespace B2C_EC.Website
 
         public string ShortString(object o)
         {
-            string s = o.ToString();
+            string s = ToSQL.EmptyNull(o);
             if (s.Length <= 20)
                 return s;
             else
