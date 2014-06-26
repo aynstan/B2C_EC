@@ -17,14 +17,14 @@ namespace B2C_EC.Website
         {
             if (!IsPostBack)
             {
-                LoadProductsByService();
+                LoadProductsByProductTypeID();
             }
         }
 
-        private void LoadProductsByService()
+        private void LoadProductsByProductTypeID()
         {
-            int ServiceID = ToSQL.SQLToInt(Request.QueryString["ServiceID"].ToString());
-            rptProducts.DataSource = (new ProductRepo()).GetListProductByService(ServiceID);
+            int productTypeID = ToSQL.SQLToInt(Request.QueryString["ServiceID"].ToString());
+            rptProducts.DataSource = (new ProductRepo()).GetListProductByProductTypeID(productTypeID);
             rptProducts.DataBind();
         }
 

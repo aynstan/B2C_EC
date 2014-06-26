@@ -81,7 +81,7 @@ namespace B2C_EC.Website.Admincp
                     e.Row.Cells[5].Text = shippingAddress.Name;//Recipient's Name
                     e.Row.Cells[6].Text = shippingAddress.Phone;
                     string strAddress = new AddressRepo().GetToString(shippingAddress.Address);
-                    e.Row.Cells[7].Text = strAddress.Length > 23 ? strAddress.Substring(0, 20) + "..." : strAddress;
+                    e.Row.Cells[7].Text = new AddressRepo().ShortString(strAddress);
                     e.Row.Cells[7].ToolTip = strAddress;
                 }
             }

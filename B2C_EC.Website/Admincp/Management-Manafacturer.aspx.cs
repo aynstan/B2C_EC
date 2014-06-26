@@ -40,7 +40,7 @@ namespace B2C_EC.Website.Admincp
                     if (lbAddress != null)
                     {
                         string strAddress = new AddressRepo().GetToString(manufacturer.Address);
-                        lbAddress.Text = strAddress.Length > 23 ? strAddress.Substring(0, 20) + "..." : strAddress;
+                        lbAddress.Text = new AddressRepo().ShortString(strAddress);
                         lbAddress.ToolTip = strAddress;
                     }
                 }
