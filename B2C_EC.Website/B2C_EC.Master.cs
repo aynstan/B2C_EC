@@ -16,7 +16,6 @@ namespace B2C_EC.Website
         {
             if (!IsPostBack)
             {
-                //WelcomeCustomer();
                 LoadServices();
                 LoadProductBestSelling();
             }

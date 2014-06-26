@@ -60,10 +60,6 @@ namespace B2C_EC.Model.Data
                 throw new Exception(e.Message);
             }
         }
-        public List<Product> GetListProductByService(int ServiceID)
-        {
-            return db.Products.Where(p => p.ProductType_ID == ServiceID).ToList();
-        }
         public List<Product> GetProductBestSelling()
         {
             return db.Products.Where(p => p.IsBestSelling == true).ToList();

@@ -16,13 +16,13 @@ namespace B2C_EC.Website
         {
             if (!IsPostBack)
             {
-                LoadProductsByService();
+                LoadProductsIndex();
             }
         }
 
-        private void LoadProductsByService()
+        private void LoadProductsIndex()
         {
-            rptProducts.DataSource = (new ProductRepo()).GetListProductPageIndex().Take(15);
+            rptProducts.DataSource = (new ProductRepo()).GetListProductPageIndex().Take(12);
             rptProducts.DataBind();
         }
 

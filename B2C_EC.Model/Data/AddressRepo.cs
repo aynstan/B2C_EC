@@ -99,5 +99,14 @@ namespace B2C_EC.Model.Data
             }
             return s;
         }
+        public string ShortString(object o)
+        {
+            string strAddress = ToSQL.EmptyNull(o);
+            return ShortString(strAddress);
+        }
+        public string ShortString(string strAddress)
+        {
+            return strAddress.Length > 23 ? strAddress.Substring(0, 20) + "..." : strAddress;
+        }
     }
 }
