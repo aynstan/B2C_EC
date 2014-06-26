@@ -2,6 +2,7 @@
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+
 </asp:Content>
 <asp:Content ID="ContentRL" ContentPlaceHolderID="ContentMain" runat="server">
     <div id="content">
@@ -29,7 +30,6 @@
                             <li><a href='<%# "FilterByService.aspx?ServiceID="+Eval("ID") %>'><%# Eval("Name") %></a></li>
                         </ItemTemplate>
                     </asp:Repeater>
-                    <%# Eval("Name") %>
                 </ul>
                 <a href="Services.aspx" class="auct">View More <span>&raquo;</span></a>
             </div>
