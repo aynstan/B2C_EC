@@ -16,7 +16,7 @@
                     <div class="add"><span><%# Eval("Price","$ {0:#,###.##}") %></span><%--<a href="#">Add To Cart</a>--%><asp:LinkButton ID="lnkAddCart" runat="server" CommandName="Add" Text="Add To Cart"></asp:LinkButton> </div>
                     <div class="add-to-list">
                         <ul>
-                            <li><a href="#">+ Add To Wish List</a></li>
+                            <li><asp:LinkButton ID="lbtnAddWish" runat="server" CommandArgument='<%# Eval("ID") %>' CommandName="AddWishList" Text="Add To Wish List"></asp:LinkButton></li>
                             <li><asp:LinkButton ID="lbtnAddCompare" runat="server" CommandArgument='<%# Eval("ID") %>' CommandName="AddCompare" Text="+ Add To Compare"></asp:LinkButton></li>
                         </ul>
                     </div>
