@@ -28,6 +28,8 @@ namespace B2C_EC.Website
                 Product p = (new ProductRepo()).GetById(ProductId);
                 if (p != null)
                 {
+                    rptImage.DataSource = (new ProductImageRepo()).ImageProductDefaultToList(ProductId);
+                    rptImage.DataBind();
                     rptListImages.DataSource = (new ProductImageRepo()).GetAllImagesByProductId(ProductId);
                     rptListImages.DataBind();
                     ltrDetails.Text = p.Description;
@@ -85,6 +87,14 @@ namespace B2C_EC.Website
                 return "~/Resources/ImagesProduct/" + ToSQL.EmptyNull(O);
             else
                 return "~/Resources/ImagesProduct/no-image.png";
+        }
+
+        public string SetImage(string s)
+        {
+            if (CheckFileShared.CheckImageExist(ToSQL.EmptyNull(s)))
+                return "Resources/ImagesProduct/" + ToSQL.EmptyNull(s);
+            else
+                return "Resources/ImagesProduct/no-image.png";
         }
     }
 }

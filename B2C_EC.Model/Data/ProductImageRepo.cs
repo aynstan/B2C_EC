@@ -62,5 +62,10 @@ namespace B2C_EC.Model.Data
             }
             
         }
+
+        public List<ProductImage> ImageProductDefaultToList(int ProductId)
+        {
+            return db.ProductImages.Where(p => p.Product_ID == ProductId && p.IsDefault == true).Take(1).ToList();
+        }
     }
 }

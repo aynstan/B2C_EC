@@ -2,13 +2,14 @@
 	position: relative;
 	margin: 0 0 10px;
 	overflow: hidden;
-	padding: 40px 0 60px;
+	padding: 5px 0 5px;
     top: 0px;
     left: 0px;
     border:2px solid #CF2317;
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
+    height:auto;
 }
 
 .cbp-fwslider ul {
