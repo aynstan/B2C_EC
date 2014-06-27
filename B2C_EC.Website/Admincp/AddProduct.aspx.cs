@@ -73,7 +73,7 @@ namespace B2C_EC.Website.Admincp
             if (fulImageDefault.HasFile)
             {
                 ProductImage image = new ProductImage();
-                string url = UploadImage(fulImageDefault.PostedFile);
+                string url = CheckFileShared.UploadAndRsizeImage(fulImageDefault.PostedFile);
                 if (url != "")
                 {
                     image.Image = url;
@@ -86,7 +86,7 @@ namespace B2C_EC.Website.Admincp
             foreach (HttpPostedFile uploadedFile in FileUploadJquery.PostedFiles)
             {
                 ProductImage image = new ProductImage();
-                string url = UploadImage(uploadedFile);
+                string url = CheckFileShared.UploadAndRsizeImage(uploadedFile);
                 if (url != "")
                 {
                     image.Image = url;
