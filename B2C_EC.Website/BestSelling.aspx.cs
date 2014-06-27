@@ -24,7 +24,7 @@ namespace B2C_EC.Website
 
         private void LoadProduct()
         {
-            rptProducts.DataSource = productRepo.GetListBestSelling();
+            rptProducts.DataSource = productRepo.GetProductBestSelling();
             rptProducts.DataBind();
         }
 

@@ -62,45 +62,39 @@ namespace B2C_EC.Model.Data
         }
         public List<Product> GetProductBestSelling()
         {
-            return db.Products.Where(p => p.IsBestSelling == true).ToList();
-        }
-
-        public List<Product> GetListProductByProductTypeID(int ProductTypeId)
-        {
-            return db.Products.Where(p => p.ProductType_ID == ProductTypeId).ToList();
+            return db.Products.Where(p => p.IsBestSelling == true && p.IsActive == true).ToList();
         }
 
         public List<Product> GetProductNew()
         {
-            return db.Products.Where(p => p.IsNew == true).ToList();
+            return db.Products.Where(p => p.IsNew == true && p.IsActive == true).ToList();
         }
 
         public List<Product> GetProductSpecial()
         {
-            return db.Products.Where(p => p.IsSpecial == true).ToList();
+            return db.Products.Where(p => p.IsSpecial == true && p.IsActive == true).ToList();
+        }
+
+        public List<Product> GetListProductByProductTypeID(int ProductTypeId)
+        {
+            return db.Products.Where(p => p.ProductType_ID == ProductTypeId && p.IsActive == true).ToList();
         }
 
         public List<Product> GetListProductPageIndex()
         {
-            return db.Products.OrderBy(p => p.DateCreated).ToList();
+            return db.Products.Where(p=> p.IsActive == true).OrderBy(p => p.DateCreated).ToList();
         }
 
+        public List<Product> GetListBySearch(string key)
+        {
+            return db.Products.Where(p => p.Manufacturer.Name.Contains(key) || p.ProductType.Name.Contains(key) || p.Name.Contains(key) || p.Description.Contains(key)).ToList();
+        }
         public List<Product> GetManagementProducts(string name, int productTypeID, int manufacturerID)
         {
             return db.Products.Where(u => (name.Equals("") || name.Equals(null) || u.Name.Contains(name))
                                         && (productTypeID.Equals(0) || productTypeID.Equals(null) || u.ProductType_ID.Value.Equals(productTypeID))
                                         && (manufacturerID.Equals(0) || manufacturerID.Equals(null) || u.Manufacuturer_ID.Value.Equals(manufacturerID))
                                       ).ToList();
-        }
-
-        public List<Product> GetListBestSelling()
-        {
-            return db.Products.Where(p => p.IsBestSelling == true && p.IsActive == true).ToList();
-        }
-
-        public List<Product> GetListBySearch(string key)
-        {
-            return db.Products.Where(p => p.Manufacturer.Name.Contains(key) || p.ProductType.Name.Contains(key) || p.Name.Contains(key) || p.Description.Contains(key)).ToList();
         }
     }
 }
