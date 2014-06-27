@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/B2C_EC.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="B2C_EC.Website.Index" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             size_li = $("#myList .li").size();

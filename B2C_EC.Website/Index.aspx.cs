@@ -23,7 +23,8 @@ namespace B2C_EC.Website
         private void LoadProductsIndex()
         {
             //rptProducts.DataSource = (new ProductRepo()).GetListProductPageIndex().Take(12);
-            rptProducts.DataSource = (new ProductRepo()).GetListProductPageIndex();
+            List<Product> products = (new ProductRepo()).GetListProductPageIndex();
+            rptProducts.DataSource = products;
             rptProducts.DataBind();
         }
 
