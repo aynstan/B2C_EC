@@ -31,7 +31,7 @@
                         </ItemTemplate>
                     </asp:Repeater>
                 </ul>
-                <a href="Services.aspx" class="auct">View More <span>&raquo;</span></a>
+                <%--<a href="Services.aspx" class="auct">View More <span>&raquo;</span></a>--%>
             </div>
             <div class="latest-product">
                 <h2>Find us on Facebook</h2>
