@@ -43,7 +43,7 @@ namespace B2C_EC.Website
 
         private void LoadServices()
         {
-            rptServices.DataSource = (new ProductTypeRepo()).GetAllProductType();
+            rptServices.DataSource = (new ProductTypeRepo()).GetAllProductTypeActived();
             rptServices.DataBind();
         }
     }

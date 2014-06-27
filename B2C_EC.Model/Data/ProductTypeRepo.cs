@@ -20,7 +20,10 @@ namespace B2C_EC.Model.Data
         {
             return db.ProductTypes.ToList();
         }
-
+        public List<ProductType> GetAllProductTypeActived()
+        {
+            return db.ProductTypes.Where(p => p.IsActive).ToList();
+        }
         public int CreateProductType(ProductType U)
         {
             try

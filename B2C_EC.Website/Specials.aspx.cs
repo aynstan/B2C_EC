@@ -22,7 +22,7 @@ namespace B2C_EC.Website
 
         private void LoadProductsBySpecials()
         {
-            rptProducts.DataSource = (new ProductRepo()).GetProductNew();
+            rptProducts.DataSource = (new ProductRepo()).GetProductSpecial();
             rptProducts.DataBind();
         }
 

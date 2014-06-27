@@ -10,41 +10,7 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="Content" runat="server">
     <div id="customer">
     <p class="checkoutTitle">Customer INFORMATION</p>
-    <asp:TabContainer ID="tabContainer" runat="server" ActiveTabIndex="2" Width="96%">
-        <asp:TabPanel runat="server" HeaderText="Login Information" ID="TabPaneLogin">
-            <ContentTemplate>                                
-                <table style="width:100%">
-                    <tr>
-                        <td valign="top" colspan="3">
-                            <b style="font-size: 13px">Login Information</b>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="width: 150px;" align="right">
-                            Username:
-                        </td>
-                        <td style="text-align: left;width: 200px;">
-                            <asp:Label ID="lbUsername" runat="server"></asp:Label>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td style="width: 150px;" align="right">
-                            Password: 
-                        </td>
-                        <td align="left">
-                            <asp:Label ID="lbPassword" runat="server" Text="********"></asp:Label>
-                        </td>
-                        <td><a id="spanChangePassword" runat="server" href="javascript:void(0)">Change Password</a> </td>
-                    </tr>
-                </table>
-                <asp:ModalPopupExtender ID="ModalPopupChangePassword" runat="server" X="250"
-                    CancelControlID="btnCloseChangePassword" PopupDragHandleControlID="pnChangePasswordDrag"
-                    PopupControlID="pnChangePassword"
-                    TargetControlID="spanChangePassword" DynamicServicePath="" Enabled="True">
-                </asp:ModalPopupExtender>
-            </ContentTemplate>
-        </asp:TabPanel>
+    <asp:TabContainer ID="tabContainer" runat="server" ActiveTabIndex="0" Width="96%">        
         <asp:TabPanel runat="server" HeaderText="General Information" ID="TabPanelGeneral">
             <ContentTemplate>
                 <table width="100%">
@@ -116,6 +82,40 @@
                             <asp:Label ID="lbMessageGenaral" runat="server" Font-Bold="True" ForeColor="#0000CC"></asp:Label></td>
                     </tr>
                 </table>
+            </ContentTemplate>
+        </asp:TabPanel>
+        <asp:TabPanel runat="server" HeaderText="Login Information" ID="TabPaneLogin">
+            <ContentTemplate>                                
+                <table style="width:100%">
+                    <tr>
+                        <td valign="top" colspan="3">
+                            <b style="font-size: 13px">Login Information</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px;" align="right">
+                            Username:
+                        </td>
+                        <td style="text-align: left;width: 200px;">
+                            <asp:Label ID="lbUsername" runat="server"></asp:Label>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px;" align="right">
+                            Password: 
+                        </td>
+                        <td align="left">
+                            <asp:Label ID="lbPassword" runat="server" Text="********"></asp:Label>
+                        </td>
+                        <td><a id="spanChangePassword" runat="server" href="javascript:void(0)">Change Password</a> </td>
+                    </tr>
+                </table>
+                <asp:ModalPopupExtender ID="ModalPopupChangePassword" runat="server" X="250"
+                    CancelControlID="btnCloseChangePassword" PopupDragHandleControlID="pnChangePasswordDrag"
+                    PopupControlID="pnChangePassword"
+                    TargetControlID="spanChangePassword" DynamicServicePath="" Enabled="True">
+                </asp:ModalPopupExtender>
             </ContentTemplate>
         </asp:TabPanel>
         <asp:TabPanel runat="server" HeaderText="Address information" ID="TabPanelAddress">

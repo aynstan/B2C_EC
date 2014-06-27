@@ -47,7 +47,7 @@
                 <div id="header">
                     <div class="primary-section">
                         <div class="logo"><a href="Index.aspx">
-                            <img src="Resources/ImagesDesign/Logo1.png" alt="logo" title="E-Commerce" /></a></div>
+                            <img src="Resources/ImagesDesign/PS logo_S.png" alt="logo" width="100" title="Perfect Squares" /></a></div>
                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                             <ContentTemplate>
                                 <div class="header-aside">

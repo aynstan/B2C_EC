@@ -13,6 +13,7 @@ namespace B2C_EC.Website.Admincp
 {
     public partial class EditCustomer : System.Web.UI.Page
     {
+        private CustomerRepo customerRepo = new CustomerRepo();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -22,7 +23,7 @@ namespace B2C_EC.Website.Admincp
         }
         private void LoadCustomer()
         {
-            Customer customer = new CustomerRepo().GetById(ToSQL.SQLToInt(Request.QueryString["Id"]));
+            Customer customer = customerRepo.GetById(ToSQL.SQLToInt(Request.QueryString["Id"]));
             if (customer != null)
             {
                 lbUsername.Text = ToSQL.EmptyNull(customer.Username);
@@ -41,11 +42,11 @@ namespace B2C_EC.Website.Admincp
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            Customer customer = new CustomerRepo().GetById(ToSQL.SQLToInt(Request.QueryString["Id"]));
+            Customer customer = customerRepo.GetById(ToSQL.SQLToInt(Request.QueryString["Id"]));
             if (customer != null)
             {
                 lbMessage.Text = "";
-                if (new CustomerRepo().DoesEmailExist(txtEmail.Text) && !customer.Email.ToLower().Equals(txtEmail.Text.ToLower()) && ToSQL.EmptyNull(txtEmail.Text) != "")
+                if (customerRepo.DoesEmailExist(txtEmail.Text) && !customer.Email.ToLower().Equals(txtEmail.Text.ToLower()) && ToSQL.EmptyNull(txtEmail.Text) != "")
                 {
                     lbMessage.Text = "Email already exists!";
                     lbMessage.ForeColor = System.Drawing.Color.Red;
@@ -59,7 +60,7 @@ namespace B2C_EC.Website.Admincp
                 customer.Phone = txtPhone.Text;
                 customer.DateOfBirth = ToSQL.SQLToDateTimeNull(txtDateOfBirth.Text);
                 customer.Gender = rdbtnGender.SelectedIndex == 0 ? true : false;
-                int i = new CustomerRepo().UpdateCustomer(customer);
+                int i = customerRepo.UpdateCustomer(customer);
                 Response.Redirect("Management-Customer.aspx");
             }
             else
