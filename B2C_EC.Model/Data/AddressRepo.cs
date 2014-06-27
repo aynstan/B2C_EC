@@ -33,17 +33,8 @@ namespace B2C_EC.Model.Data
         {
             try
             {
-                var v = GetById(A.ID);
-                if (v == null)
-                {
-                    return CreateAddress(A);
-                }
-                else
-                {
-                    db.Entry(v).CurrentValues.SetValues(A);
-                    //db.Entry(A).State = EntityState.Modified;
-                    return db.SaveChanges();
-                }
+                db.Entry(A).State = EntityState.Modified;
+                return db.SaveChanges();
             }
             catch (Exception e)
             {

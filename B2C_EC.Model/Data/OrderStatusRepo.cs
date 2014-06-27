@@ -52,17 +52,8 @@ namespace B2C_EC.Model.Data
         {
             try
             {
-                var v = GetById(C.ID);
-                if (v == null)
-                {
-                    return CreateOrderStatu(C);
-                }
-                else
-                {
-                    db.Entry(v).CurrentValues.SetValues(C);
-                    //db.Entry(C).State = EntityState.Modified;
-                    return db.SaveChanges();
-                }
+                db.Entry(C).State = EntityState.Modified;
+                return db.SaveChanges();
             }
             catch (Exception e)
             {

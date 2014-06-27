@@ -12,6 +12,7 @@ namespace B2C_EC.Website.Admincp
 {
     public partial class EditManufacturer : System.Web.UI.Page
     {
+        private ManufacturerRepo manufacturerRepo = new ManufacturerRepo();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -24,7 +25,7 @@ namespace B2C_EC.Website.Admincp
             int Id = ToSQL.SQLToInt(Request.QueryString["Id"]);
             if (Id > 0)
             {
-                Manufacturer manufacturer = new ManufacturerRepo().GetById(Id);
+                Manufacturer manufacturer = manufacturerRepo.GetById(Id);
                 if (manufacturer != null)
                 {
                     txtName.Text = ToSQL.EmptyNull(manufacturer.Name);
@@ -58,7 +59,7 @@ namespace B2C_EC.Website.Admincp
             int Id = ToSQL.SQLToInt(Request.QueryString["Id"]);
             if (Id > 0)
             {
-                Manufacturer manufacturer = new ManufacturerRepo().GetById(Id);
+                Manufacturer manufacturer = manufacturerRepo.GetById(Id);
                 if (manufacturer != null)
                 {
                     manufacturer.Name = ToSQL.EmptyNull(txtName.Text);
@@ -76,9 +77,7 @@ namespace B2C_EC.Website.Admincp
                     manufacturer.Address.Country = ToSQL.EmptyNull(txtCountry.Text);
                     manufacturer.Address.ZipCode = ToSQL.EmptyNull(txtZipCode.Text);
 
-                    int i = new AddressRepo().UpdateAddress(manufacturer.Address);
-                    manufacturer.Address_ID = manufacturer.Address.ID;
-                    i = new ManufacturerRepo().UpdateManufacturer(manufacturer);
+                    int i = manufacturerRepo.UpdateManufacturer(manufacturer);
 
                     Response.Redirect("Management-Manafacturer.aspx");
                 }

@@ -14,6 +14,7 @@ namespace B2C_EC.Website
 {
     public partial class CustomerInfo : System.Web.UI.Page
     {
+        private CustomerRepo customerRepo = new CustomerRepo();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Customer"] == null)
@@ -49,16 +50,37 @@ namespace B2C_EC.Website
                 }
             }
         }
+        protected void btnGenaral_Click(object sender, EventArgs e)
+        {
+            Customer customer = (Customer)Session["Customer"];
+            customer = customerRepo.GetById(customer.ID);
+            customer.FirstName = ToSQL.EmptyNull(txtFirstName.Text);
+            customer.LastName = ToSQL.EmptyNull(txtLastName.Text);
+            customer.Email = ToSQL.EmptyNull(txtEmail.Text);
+            customer.Phone = ToSQL.EmptyNull(txtPhone.Text);
+            customer.DateOfBirth = ToSQL.SQLToDateTime(txtDateOfBirth.Text);
+            customer.Gender = rdbtnGender.SelectedIndex == 0 ? true : false;
+
+            int i = customerRepo.UpdateCustomer(customer);
+            Session["Customer"] = customerRepo.GetById(customer.ID);
+            Response.Redirect(Request.Url.PathAndQuery);
+            //using (var context = new B2C_ECEntities())
+            //{
+            //    context.Customers.Find(customer.ID).LastName = "Phong 1989";
+            //    context.SaveChanges();
+            //}            
+        }
         protected void UpdatePassword(object sender, EventArgs e)
         {
             Customer customer = (Customer)Session["Customer"];
+            customer = customerRepo.GetById(customer.ID);
             string CurrentPassword = Security.Encrypt(customer.Key, txtCurrentPassword.Text);
-            if (customer.Password == CurrentPassword)
+            if (customer.Password.Equals(CurrentPassword))
             {
                 customer.Password = Security.Encrypt(ConfigurationManager.AppSettings["KeyCustomer"], txtNewPassword.Text);
                 customer.Key = ConfigurationManager.AppSettings["KeyCustomer"];
-                int i = new CustomerRepo().UpdateCustomer(customer);
-                Session["Customer"] = new CustomerRepo().GetById(customer.ID);
+                int i = customerRepo.UpdateCustomer(customer);
+                Session["Customer"] = customerRepo.GetById(customer.ID);
                 CloseChangePasswordForm(null, null);
             }
             else
@@ -71,29 +93,10 @@ namespace B2C_EC.Website
         {
             ModalPopupChangePassword.Hide();
         }
-        protected void btnGenaral_Click(object sender, EventArgs e)
-        {
-            Customer customer = (Customer)Session["Customer"];
-            customer.FirstName = ToSQL.EmptyNull(txtFirstName.Text);
-            customer.LastName = ToSQL.EmptyNull(txtLastName.Text);
-            customer.Email = ToSQL.EmptyNull(txtEmail.Text);
-            customer.Phone = ToSQL.EmptyNull(txtPhone.Text);
-            customer.DateOfBirth = ToSQL.SQLToDateTime(txtDateOfBirth.Text);
-            customer.Gender = rdbtnGender.SelectedIndex == 0 ? true : false;
-
-            int i = new CustomerRepo().UpdateCustomer(customer);
-            Session["Customer"] = new CustomerRepo().GetById(customer.ID);
-
-            //using (var context = new B2C_ECEntities())
-            //{
-            //    context.Customers.Find(customer.ID).LastName = "Phong 1989";
-            //    context.SaveChanges();
-            //}            
-        }
-
         protected void btnAddress_Click(object sender, EventArgs e)
         {
             Customer customer = (Customer)Session["Customer"];
+            customer = customerRepo.GetById(customer.ID);
             if (customer.Address == null)
                 customer.Address = new Address();
             customer.Address.Street1 = ToSQL.EmptyNull(txtStreet1.Text);
@@ -103,22 +106,10 @@ namespace B2C_EC.Website
             customer.Address.Country = ToSQL.EmptyNull(txtCountry.Text);
             customer.Address.ZipCode = ToSQL.EmptyNull(txtZipCode.Text);
 
-            int i = new AddressRepo().UpdateAddress(customer.Address);
-            customer.Address_ID = customer.Address.ID;
-            i = new CustomerRepo().UpdateCustomer(customer);
-
-            //if (ToSQL.SQLToInt(customer.Address_ID) > 0)
-            //{
-            //    int a = new AddressRepo().UpdateAddress(customer.Address);
-            //}
-            //else
-            //{
-            //    int j = new AddressRepo().CreateAddress(customer.Address);
-            //    customer.Address_ID = customer.Address.ID;
-            //    int i = new CustomerRepo().UpdateCustomer(customer);
-            //}
-
-            Session["Customer"] = new CustomerRepo().GetById(customer.ID);
+            //int i = new AddressRepo().UpdateAddress(customer.Address);
+            //customer.Address_ID = customer.Address.ID;
+            int i = customerRepo.UpdateCustomer(customer);
+            Session["Customer"] = customerRepo.GetById(customer.ID);
         }
     }
 }
