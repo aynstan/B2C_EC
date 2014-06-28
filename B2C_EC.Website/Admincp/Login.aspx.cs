@@ -1,7 +1,4 @@
-﻿using B2C_EC.Model;
-using B2C_EC.Model.Data;
-using B2C_EC.Website;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -11,11 +8,15 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using B2C_EC.Model;
+using B2C_EC.Model.Data;
+using B2C_EC.Website;
 
 namespace B2C_EC.Website.Admincp
 {
     public partial class Login : System.Web.UI.Page
-    {        
+    {
+        private UserRepo userRepo = new UserRepo();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -32,7 +33,7 @@ namespace B2C_EC.Website.Admincp
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            User user = (new UserRepo()).GetUserByUsername(txtUserName.Text);
+            User user = userRepo.GetUserByUsername(txtUserName.Text);
            
             if (user != null)
             {
@@ -41,6 +42,8 @@ namespace B2C_EC.Website.Admincp
                 {
                     if (user.IsActive)
                     {
+                        user.LastLogin = DateTime.Now;
+                        userRepo.UpdateUser(user);
                         FormsAuthentication.SetAuthCookie(txtUserName.Text, cbRemember.Checked);
                         Response.Redirect("~/Admincp/Index.aspx");
                     }

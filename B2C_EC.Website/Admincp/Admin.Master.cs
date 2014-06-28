@@ -4,6 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using B2C_EC.Model;
+using B2C_EC.Model.Data;
+using B2C_EC.Website;
+using B2C_EC.Model.Global;
 
 namespace B2C_EC.Website.Admincp
 {
@@ -15,6 +19,12 @@ namespace B2C_EC.Website.Admincp
             {
                 if (Page.User.Identity.IsAuthenticated == false)
                     Response.Redirect("~/Admincp/Login.aspx");
+
+                User user = new UserRepo().GetUserByUsername(ToSQL.EmptyNull(Page.User.Identity.Name));
+                if (user != null && user.LastLogin !=null)
+                {
+                    lbLastlogin.Text = user.LastLogin.Value.ToString("MM-dd-yyyy hh:mm");
+                }
             }
         }
     }

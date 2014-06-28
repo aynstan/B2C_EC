@@ -19,6 +19,6 @@ namespace B2C_EC.Model
         public string LastName { get; set; }
         public string Comment { get; set; }
         public string Email { get; set; }
-        public Nullable<System.DateTime> DateCreated { get; set; }
+        public System.DateTime DateCreated { get; set; }
     }
 }

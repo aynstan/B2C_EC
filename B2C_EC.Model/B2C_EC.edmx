@@ -110,7 +110,7 @@
           <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Comment" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -286,6 +286,7 @@
           <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Username" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Password" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="LastLogin" Type="datetime" />
           <Property Name="Phone" Type="varchar" MaxLength="20" />
           <Property Name="Email" Type="nvarchar" MaxLength="200" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
@@ -599,7 +600,7 @@
           <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Comment" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Email" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="DateCreated" Precision="3" />
+          <Property Type="DateTime" Name="DateCreated" Precision="3" Nullable="false" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -787,6 +788,7 @@
           <Property Type="String" Name="Key" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Address" Relationship="B2C_ECModel.FK_Users_Address" FromRole="User" ToRole="Address" />
           <Property Type="Boolean" Name="IsAdmin" Nullable="false" />
+          <Property Type="DateTime" Name="LastLogin" Precision="3" />
         </EntityType>
         <Association Name="FK_Customers_Address1">
           <End Type="B2C_ECModel.Address" Role="Address" Multiplicity="0..1" />
@@ -1199,6 +1201,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="B2C_ECModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
                 <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
                 <ScalarProperty Name="Key" ColumnName="Key" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />

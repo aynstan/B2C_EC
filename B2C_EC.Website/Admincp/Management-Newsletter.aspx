@@ -37,7 +37,9 @@
                             <ItemStyle HorizontalAlign="Center" Width="30px" />
                             </asp:BoundField>
                             <asp:BoundField HeaderText="Email" DataField="Email" />
-                            <asp:CheckBoxField DataField="IsActive" HeaderText="Active" />
+                            <asp:CheckBoxField DataField="IsActive" HeaderText="Active" >
+                            <ItemStyle HorizontalAlign="Center" />
+                            </asp:CheckBoxField>
                             <asp:BoundField HeaderText="Date Created" DataField="DateCreated" />
                             <asp:TemplateField>
                                 <ItemTemplate>

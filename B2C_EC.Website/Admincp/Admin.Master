@@ -31,7 +31,7 @@
                     </div>
                     <div class="right">
                         <div class="align-right">
-                            <p>Last login: 14<strong>-06-2014 23:12</strong></p>
+                            <p>Last login: <strong><%--14-06-2014 23:12--%><asp:Label ID ="lbLastlogin" runat="server"></asp:Label></strong></p>
                         </div>
                     </div>
                 </div>
