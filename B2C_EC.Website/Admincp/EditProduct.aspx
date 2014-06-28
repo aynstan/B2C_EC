@@ -52,7 +52,7 @@
                         </label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtName" CssClass="TextBox" runat="server" Width="200"></asp:TextBox>
+                        <asp:TextBox ID="txtName" CssClass="TextBox" runat="server" Width="400"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtName" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="editproduct"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
