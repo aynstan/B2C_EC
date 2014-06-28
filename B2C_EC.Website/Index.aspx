@@ -5,7 +5,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             size_li = $("#myList .li").size();
-            x = 3;
+            x = 9;
             $('#myList .li:lt(' + x + ')').show();
             $('#loadMore').click(function () {
                 x = (x + 6 <= size_li) ? x + 6 : size_li;
@@ -16,11 +16,11 @@
                 }
             });
             $('#showLess').click(function () {
-                x = (x - 6 < 0) ? 3 : x - 6;
+                x = (x - 6 < 0) ? 9 : x - 6;
                 $('#myList .li').not(':lt(' + x + ')').hide();
                 $('#loadMore').show();
                 $('#showLess').show();
-                if (x == 3) {
+                if (x == 9) {
                     $('#showLess').hide();
                 }
             });
