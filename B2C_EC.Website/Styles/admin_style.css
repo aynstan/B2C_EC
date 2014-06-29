@@ -356,6 +356,8 @@ fieldset
 .archive.table-icon { background: url(../Resources/Admin/i_archive.png) no-repeat; }
 .lock.table-icon { background: url(../Resources/Admin/i_block_users.png) no-repeat; }
 .unlock.table-icon { background: url(../Resources/Admin/i_unblock_users.png) no-repeat; }
+.up.table-icon { background: url(../Resources/Admin/up.png) no-repeat; }
+.down.table-icon { background: url(../Resources/Admin/down.png) no-repeat; }
 .pagination{
 	margin: 5px auto;
 	padding: 12px 0;

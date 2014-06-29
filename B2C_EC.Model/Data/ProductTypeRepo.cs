@@ -22,7 +22,7 @@ namespace B2C_EC.Model.Data
         }
         public List<ProductType> GetAllProductTypeActived()
         {
-            return db.ProductTypes.Where(p => p.IsActive).ToList();
+            return db.ProductTypes.Where(p => p.IsActive).OrderByDescending(p => p.SortId).ToList();
         }
         public int CreateProductType(ProductType U)
         {
@@ -68,7 +68,7 @@ namespace B2C_EC.Model.Data
 
         public List<ProductType> GetManagementProductTypes(string name)
         {
-            return db.ProductTypes.Where(u => u.Name.Contains(name)).ToList();
+            return db.ProductTypes.Where(u => u.Name.Contains(name)).OrderByDescending(u => u.SortId).ToList();
         }
     }
 }

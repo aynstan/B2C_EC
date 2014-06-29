@@ -487,6 +487,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="SortRow" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TableName" Type="varchar" Mode="In" />
+          <Parameter Name="ColumnName" Type="varchar" Mode="In" />
+          <Parameter Name="SortName" Type="varchar" Mode="In" />
+          <Parameter Name="RowId" Type="int" Mode="In" />
+          <Parameter Name="Direction" Type="int" Mode="In" />
+        </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -574,6 +581,13 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="Review" EntitySet="Reviews" />
           </AssociationSet>
+          <FunctionImport Name="SortRow" ReturnType="Collection(B2C_ECModel.SortRow_Result)">
+            <Parameter Name="TableName" Mode="In" Type="String" />
+            <Parameter Name="ColumnName" Mode="In" Type="String" />
+            <Parameter Name="SortName" Mode="In" Type="String" />
+            <Parameter Name="RowId" Mode="In" Type="Int32" />
+            <Parameter Name="Direction" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Address">
           <Key>
@@ -1005,6 +1019,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="SortRow_Result">
+          <Property Type="Int32" Name="CurSortId" Nullable="true" />
+          <Property Type="Int32" Name="NewSortId" Nullable="true" />
+          <Property Type="Int32" Name="CmpSortId" Nullable="true" />
+          <Property Type="Int32" Name="Direction" Nullable="true" />
+          <Property Type="Int32" Name="MinSortId" Nullable="true" />
+          <Property Type="Int32" Name="MaxSortId" Nullable="true" />
+          <Property Type="Int32" Name="SwitchId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SortRow_Result1">
+          <Property Type="Int32" Name="CurSortId" Nullable="true" />
+          <Property Type="Int32" Name="NewSortId" Nullable="true" />
+          <Property Type="Int32" Name="CmpSortId" Nullable="true" />
+          <Property Type="Int32" Name="Direction" Nullable="true" />
+          <Property Type="Int32" Name="MinSortId" Nullable="true" />
+          <Property Type="Int32" Name="MaxSortId" Nullable="true" />
+          <Property Type="Int32" Name="SwitchId" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1235,6 +1267,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SortRow" FunctionName="B2C_ECModel.Store.SortRow">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="B2C_ECModel.SortRow_Result">
+                <ScalarProperty Name="CurSortId" ColumnName="CurSortId" />
+                <ScalarProperty Name="NewSortId" ColumnName="NewSortId" />
+                <ScalarProperty Name="CmpSortId" ColumnName="CmpSortId" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+                <ScalarProperty Name="MinSortId" ColumnName="MinSortId" />
+                <ScalarProperty Name="MaxSortId" ColumnName="MaxSortId" />
+                <ScalarProperty Name="SwitchId" ColumnName="SwitchId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -44,6 +44,42 @@ namespace B2C_EC.Website.Admincp
             }
         }
 
+        protected void lnkDown_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LinkButton lnk = (LinkButton)sender;
+                int Id = ToSQL.SQLToInt(lnk.CommandArgument);
+                if (Id > 0)
+                {
+                    new SortRow().Down("ProductType", "ID", "", Id);
+                    BindItemsList();
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        protected void lnkUp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LinkButton lnk = (LinkButton)sender;
+                int Id = ToSQL.SQLToInt(lnk.CommandArgument);
+                if (Id > 0)
+                {
+                    new SortRow().Up("ProductType", "ID", "", Id);
+                    BindItemsList();
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
         #region Paging
         #region Private Properties
         private int CurrentPage
@@ -205,5 +241,6 @@ namespace B2C_EC.Website.Admincp
         }
 
         #endregion
+
     }
 }

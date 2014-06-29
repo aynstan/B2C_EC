@@ -11,7 +11,11 @@ namespace B2C_EC.Model
 {
     using System;
     using System.Data.Entity;
+    using System.Data.Entity.Core.Objects;
     using System.Data.Entity.Infrastructure;
+    //using System.Data.Objects;
+    //using System.Data.Objects.DataClasses;
+    using System.Linq;
     
     public partial class B2C_ECEntities : DbContext
     {
@@ -43,5 +47,30 @@ namespace B2C_EC.Model
         public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
+    
+        public virtual ObjectResult<SortRow_Result> SortRow(string tableName, string columnName, string sortName, Nullable<int> rowId, Nullable<int> direction)
+        {
+            var tableNameParameter = tableName != null ?
+                new ObjectParameter("TableName", tableName) :
+                new ObjectParameter("TableName", typeof(string));
+    
+            var columnNameParameter = columnName != null ?
+                new ObjectParameter("ColumnName", columnName) :
+                new ObjectParameter("ColumnName", typeof(string));
+    
+            var sortNameParameter = sortName != null ?
+                new ObjectParameter("SortName", sortName) :
+                new ObjectParameter("SortName", typeof(string));
+    
+            var rowIdParameter = rowId.HasValue ?
+                new ObjectParameter("RowId", rowId) :
+                new ObjectParameter("RowId", typeof(int));
+    
+            var directionParameter = direction.HasValue ?
+                new ObjectParameter("Direction", direction) :
+                new ObjectParameter("Direction", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SortRow_Result>("SortRow", tableNameParameter, columnNameParameter, sortNameParameter, rowIdParameter, directionParameter);
+        }
     }
 }

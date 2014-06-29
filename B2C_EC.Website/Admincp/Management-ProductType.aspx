@@ -27,6 +27,12 @@
                             <asp:BoundField HeaderText="Parent ID" DataField="ParentID" ItemStyle-HorizontalAlign="Center" />
                             <asp:TemplateField>
                                 <ItemTemplate>
+                                    <asp:LinkButton ID="lnkUp" runat="server" CssClass="table-icon up" ToolTip="Up" CommandArgument='<%# Eval("ID") %>' CausesValidation="false" OnClick="lnkUp_Click"></asp:LinkButton>
+                                    <asp:LinkButton ID="lnkDown" runat="server" CssClass="table-icon down" ToolTip="Down" CommandArgument='<%# Eval("ID") %>' CausesValidation="false" OnClick="lnkDown_Click"></asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField>
+                                <ItemTemplate>
                                     <a href='<%# "EditProductType.aspx?ID="+Eval("ID") %>' class="table-icon edit" title="Edit"></a>
                                     <asp:LinkButton ID="lnkRemove" runat="server" CssClass="table-icon delete" ToolTip="Remove" CommandArgument='<%# Eval("ID") %>' CausesValidation="false" OnClick="lnkRemove_Click" OnClientClick="return confirm('Do you really want to remove this product type?');"></asp:LinkButton>
                                 </ItemTemplate>
