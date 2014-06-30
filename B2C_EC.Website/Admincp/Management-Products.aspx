@@ -61,7 +61,7 @@
             .tablesorterPager({ container: $("#pager") });
     	});
 	</script>
-    
+
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="manageproduct">        
@@ -133,22 +133,42 @@
                                     <asp:Label ID="lbManufacturer" runat="server"></asp:Label>
                                </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:CheckBoxField DataField="IsBestSelling" HeaderText="BestSelling"  ItemStyle-HorizontalAlign="Center" >
-                            <ItemStyle HorizontalAlign="Center" />
-                            </asp:CheckBoxField>
-                            <asp:CheckBoxField DataField="IsNew" HeaderText="New" ItemStyle-HorizontalAlign="Center" >
-                            <ItemStyle HorizontalAlign="Center" />
-                            </asp:CheckBoxField>
-                            <asp:CheckBoxField DataField="IsSpecial" HeaderText="Special" ItemStyle-HorizontalAlign="Center" >
-                            <ItemStyle HorizontalAlign="Center" />
-                            </asp:CheckBoxField>
-                            <asp:CheckBoxField DataField="IsPromo" HeaderText="Promo" ItemStyle-HorizontalAlign="Center" >
-                            <ItemStyle HorizontalAlign="Center" />
-                            </asp:CheckBoxField>
+                            <asp:TemplateField HeaderText="BestSelling">
+                                <ItemTemplate>
+                                    <span class="hidden"><%# Eval("IsBestSelling") %></span>
+                                    <asp:CheckBox ID="CheckBox1" runat="server" Checked='<%# Convert.ToBoolean(Eval("IsBestSelling")) %>' Enabled="false" />
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Center" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="New">
+                                <ItemTemplate>
+                                    <span class="hidden"><%# Eval("IsNew") %></span>
+                                    <asp:CheckBox ID="CheckBox2" runat="server" Checked='<%# Convert.ToBoolean(Eval("IsNew")) %>' Enabled="false" />
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Center" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Special">
+                                <ItemTemplate>
+                                    <span class="hidden"><%# Eval("IsSpecial") %></span>
+                                    <asp:CheckBox ID="CheckBox3" runat="server" Checked='<%# Convert.ToBoolean(Eval("IsSpecial")) %>' Enabled="false" />
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Center" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Promo">
+                                <ItemTemplate>
+                                    <span class="hidden"><%# Eval("IsPromo") %></span>
+                                    <asp:CheckBox ID="CheckBox4" runat="server" Checked='<%# Convert.ToBoolean(Eval("IsPromo")) %>' Enabled="false" />
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Center" />
+                            </asp:TemplateField>
                             <asp:BoundField DataField="DateCreated" HeaderText="Date Created" />
-                            <asp:CheckBoxField DataField="IsActive" HeaderText="Active" ItemStyle-HorizontalAlign="Center" >
-                            <ItemStyle HorizontalAlign="Center" />
-                            </asp:CheckBoxField>
+                            <asp:TemplateField HeaderText="Active">
+                                <ItemTemplate>
+                                    <span class="hidden"><%# Eval("IsActive") %></span>
+                                    <asp:CheckBox ID="CheckBox5" runat="server" Checked='<%# Convert.ToBoolean(Eval("IsActive")) %>' Enabled="false" />
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Center" />
+                            </asp:TemplateField>
                             <asp:TemplateField ItemStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
                                     <a href='<%# "EditProduct.aspx?ID="+Eval("ID") %>' class="table-icon edit" title="Edit"></a>
