@@ -287,6 +287,14 @@ namespace B2C_EC.Model.Global
             }
             return " NULL ";
         }
-
+        public static string ShortString(object o, int i)
+        {
+            string s = ToSQL.EmptyNull(o);
+            return ShortString(s, i);
+        }
+        public static string ShortString(string s, int i)
+        {
+            return s.Length > i ? s.Substring(0, i-3) + "..." : s;
+        }
     }
 }

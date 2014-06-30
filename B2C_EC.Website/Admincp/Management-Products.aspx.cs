@@ -44,6 +44,7 @@ namespace B2C_EC.Website.Admincp
             Product product = (Product)e.Row.DataItem;
             Label lbProductType = (Label)e.Row.FindControl("lbProductType");
             Label lbManufacturer = (Label)e.Row.FindControl("lbManufacturer");
+            Label lbName = (Label)e.Row.FindControl("lbName");
             if (lbProductType != null)
             {
                 if (product.ProductType != null)
@@ -57,6 +58,11 @@ namespace B2C_EC.Website.Admincp
                 {
                     lbManufacturer.Text = product.Manufacturer.Name;
                 }
+            }
+            if (lbName != null)
+            {
+                lbName.Text = ToSQL.ShortString(product.Name, 32);
+                lbName.ToolTip = product.Name;
             }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -157,58 +163,58 @@ namespace B2C_EC.Website.Admincp
         private void BindItemsList()
         {
             List<Product> users = productRepo.GetManagementProducts(ToSQL.EmptyNull(txtName.Text), ToSQL.SQLToInt(ddlProductType.SelectedValue), ToSQL.SQLToInt(ddlManufacturer.SelectedValue));
-            _PageDataSource.DataSource = users;
-            _PageDataSource.AllowPaging = true;
-            _PageDataSource.PageSize = 10;
-            _PageDataSource.CurrentPageIndex = CurrentPage;
-            ViewState["TotalPages"] = _PageDataSource.PageCount;
+            //_PageDataSource.DataSource = users;
+            //_PageDataSource.AllowPaging = true;
+            //_PageDataSource.PageSize = 20;
+            //_PageDataSource.CurrentPageIndex = CurrentPage;
+            //ViewState["TotalPages"] = _PageDataSource.PageCount;
 
-            //this.lblPageInfo.Text = "Results: " + ProductList.Count.ToString() + "&nbsp;&nbsp;&nbsp;&nbsp;Page " + (CurrentPage + 1) + " of " + _PageDataSource.PageCount + "&nbsp;&nbsp;";
+            ////////this.lblPageInfo.Text = "Results: " + ProductList.Count.ToString() + "&nbsp;&nbsp;&nbsp;&nbsp;Page " + (CurrentPage + 1) + " of " + _PageDataSource.PageCount + "&nbsp;&nbsp;";
 
-            this.btnPre.Visible = !_PageDataSource.IsFirstPage;
-            this.btnNext.Visible = !_PageDataSource.IsLastPage;
-            //this.lbtnFirst.Visible = !_PageDataSource.IsFirstPage;
-            //this.lbtnLast.Visible = !_PageDataSource.IsLastPage;
+            //this.btnPre.Visible = !_PageDataSource.IsFirstPage;
+            //this.btnNext.Visible = !_PageDataSource.IsLastPage;
+            //////////this.lbtnFirst.Visible = !_PageDataSource.IsFirstPage;
+            //////////this.lbtnLast.Visible = !_PageDataSource.IsLastPage;
 
-            this.gvProducts.DataSource = _PageDataSource;
+            this.gvProducts.DataSource = users;
             this.gvProducts.DataBind();
             this.gvProducts.UseAccessibleHeader = true;
             this.gvProducts.HeaderRow.TableSection = TableRowSection.TableHeader;
-            this.doPaging();
+            //this.doPaging();
         }
-        private void doPaging()
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("PageIndex");
-            dt.Columns.Add("PageText");
-            fistIndex = CurrentPage - 5;
-            if (CurrentPage > 5)
-            {
-                lastIndex = CurrentPage + 5;
-            }
-            else
-            {
-                lastIndex = 10;
-            }
-            if (lastIndex > Convert.ToInt32(ViewState["TotalPages"]))
-            {
-                lastIndex = Convert.ToInt32(ViewState["TotalPages"]);
-                fistIndex = lastIndex - 10;
-            }
-            if (fistIndex < 0)
-            {
-                fistIndex = 0;
-            }
-            for (int i = fistIndex; i < lastIndex; i++)
-            {
-                DataRow dr = dt.NewRow();
-                dr[0] = i;
-                dr[1] = i + 1;
-                dt.Rows.Add(dr);
-            }
-            this.rptPaging.DataSource = dt;
-            this.rptPaging.DataBind();
-        }
+        //private void doPaging()
+        //{
+        //    DataTable dt = new DataTable();
+        //    dt.Columns.Add("PageIndex");
+        //    dt.Columns.Add("PageText");
+        //    fistIndex = CurrentPage - 5;
+        //    if (CurrentPage > 5)
+        //    {
+        //        lastIndex = CurrentPage + 5;
+        //    }
+        //    else
+        //    {
+        //        lastIndex = 10;
+        //    }
+        //    if (lastIndex > Convert.ToInt32(ViewState["TotalPages"]))
+        //    {
+        //        lastIndex = Convert.ToInt32(ViewState["TotalPages"]);
+        //        fistIndex = lastIndex - 10;
+        //    }
+        //    if (fistIndex < 0)
+        //    {
+        //        fistIndex = 0;
+        //    }
+        //    for (int i = fistIndex; i < lastIndex; i++)
+        //    {
+        //        DataRow dr = dt.NewRow();
+        //        dr[0] = i;
+        //        dr[1] = i + 1;
+        //        dt.Rows.Add(dr);
+        //    }
+        //    this.rptPaging.DataSource = dt;
+        //    this.rptPaging.DataBind();
+        //}
         protected void btnNext_Click(object sender, EventArgs e)
         {
             CurrentPage += 1;
