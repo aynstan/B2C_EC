@@ -66,9 +66,7 @@ namespace B2C_EC.Website
                 Product p = (new ProductRepo()).GetById(ToSQL.SQLToInt(e.CommandArgument));
                 if (p != null && list.Products.Count <= 3)
                 {
-                    if (list.Add(p)){}
-                        //Response.Write("<script type='text/javascript'>alert('Added!');</script>");
-                    else
+                    if (!list.Add(p))
                         Response.Write("<script type='text/javascript'>alert('Product is exist in list compare');</script>");
                 }
                 else
@@ -86,11 +84,10 @@ namespace B2C_EC.Website
                 Product p = (new ProductRepo()).GetById(ToSQL.SQLToInt(e.CommandArgument));
                 if (p != null)
                 {
-                    if (list.Add(p))
-                        Response.Write("<script type='text/javascript'>alert('Added!s');</script>");
-                    else
+                    if (!list.Add(p))
                         Response.Write("<script type='text/javascript'>alert('Product is exist in list compare');</script>");
                 }
+                UpdateWishList(list.Products);
                 Session["WishList"] = list;
             }
         }
@@ -108,6 +105,17 @@ namespace B2C_EC.Website
         {
             ContentPlaceHolder ct = (ContentPlaceHolder)this.Master.Master.FindControl("ContentMain");
             Repeater rpt = (Repeater)ct.FindControl("rptCompareList");
+            if (rpt != null)
+            {
+                rpt.DataSource = list;
+                rpt.DataBind();
+            }
+        }
+
+        private void UpdateWishList(List<Product> list)
+        {
+            ContentPlaceHolder ct = (ContentPlaceHolder)this.Master.Master.FindControl("ContentMain");
+            Repeater rpt = (Repeater)ct.FindControl("rptWishList");
             if (rpt != null)
             {
                 rpt.DataSource = list;

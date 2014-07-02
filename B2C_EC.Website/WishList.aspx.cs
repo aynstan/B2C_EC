@@ -25,6 +25,8 @@ namespace B2C_EC.Website
             if (Session["WishList"] != null)
             {
                 CompareAndWish list = (CompareAndWish)Session["WishList"];
+                if (list == null || list.Products.Count <= 0)
+                    Response.Redirect("~/Index.aspx");
                 rptProducts.DataSource = list.Products;
                 rptProducts.DataBind();
             }
@@ -46,49 +48,15 @@ namespace B2C_EC.Website
 
         protected void rptProducts_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            if (e.CommandName == "Add")
-            {
-                HiddenField hdf = (HiddenField)e.Item.FindControl("hdfProductId");
-                Product product = new ProductRepo().GetById(ToSQL.SQLToInt(hdf.Value));
-                if (product != null)
-                {
-                    List<Cart> carts = (List<Cart>)Session["Carts"];
-                    Cart cart = new Cart(carts);
-                    cart = cart.ConverProductToCart(product);
-                    carts = cart.Add(cart);
-                    Session["Carts"] = carts;
-                    Response.Redirect("ViewCart.aspx");
-                }
-            }
-            else if (e.CommandName == "AddCompare")
-            {
-                CompareAndWish list = (CompareAndWish)Session["Compare"];
-                if (list == null)
-                    list = new CompareAndWish();
-                Product p = (new ProductRepo()).GetById(ToSQL.SQLToInt(e.CommandArgument));
-                if (p != null)
-                {
-                    if (list.Add(p))
-                        Response.Write("<script type='text/javascript'>alert('Added!s');</script>");
-                    else
-                        Response.Write("<script type='text/javascript'>alert('Product is exist in list compare');</script>");
-                }
-                Session["Compare"] = list;
-            }
-            else if (e.CommandName == "AddWishList")
+            if (Session["WishList"] != null && e.CommandName == "Remove")
             {
                 CompareAndWish list = (CompareAndWish)Session["WishList"];
-                if (list == null)
-                    list = new CompareAndWish();
-                Product p = (new ProductRepo()).GetById(ToSQL.SQLToInt(e.CommandArgument));
-                if (p != null)
+                HiddenField hdf = (HiddenField)e.Item.FindControl("hdfProductId");
+                if (list != null)
                 {
-                    if (list.Add(p))
-                        Response.Write("<script type='text/javascript'>alert('Added!s');</script>");
-                    else
-                        Response.Write("<script type='text/javascript'>alert('Product is exist in list compare');</script>");
+                    list.Remove(ToSQL.SQLToInt(hdf.Value));
+                    LoadWishList();
                 }
-                Session["WishList"] = list;
             }
         }
 

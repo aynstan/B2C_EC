@@ -57,13 +57,18 @@ namespace B2C_EC.Website
                 if (list == null)
                     list = new CompareAndWish();
                 Product p = (new ProductRepo()).GetById(ToSQL.SQLToInt(e.CommandArgument));
-                if (p != null)
+                if (p != null && list.Products.Count <= 3)
                 {
                     if (list.Add(p))
                         Response.Write("<script type='text/javascript'>alert('Added!s');</script>");
                     else
                         Response.Write("<script type='text/javascript'>alert('Product is exist in list compare');</script>");
                 }
+                else
+                {
+                    Response.Write("<script type='text/javascript'>alert('You should select between 1 and 4 item!');</script>");
+                }
+                UpdateCompareList(list.Products);
                 Session["Compare"] = list;
             }
             else if (e.CommandName == "AddWishList")
@@ -74,11 +79,10 @@ namespace B2C_EC.Website
                 Product p = (new ProductRepo()).GetById(ToSQL.SQLToInt(e.CommandArgument));
                 if (p != null)
                 {
-                    if (list.Add(p))
-                        Response.Write("<script type='text/javascript'>alert('Added!s');</script>");
-                    else
+                    if (!list.Add(p))
                         Response.Write("<script type='text/javascript'>alert('Product is exist in list compare');</script>");
                 }
+                UpdateWishList(list.Products);
                 Session["WishList"] = list;
             }
         }
@@ -94,6 +98,28 @@ namespace B2C_EC.Website
                     img.ImageUrl = "~/Resources/ImagesProduct/" + image;
                 else
                     img.ImageUrl = "~/Resources/ImagesProduct/no-image.png";
+            }
+        }
+
+        private void UpdateCompareList(List<Product> list)
+        {
+            ContentPlaceHolder ct = (ContentPlaceHolder)this.Master.Master.FindControl("ContentMain");
+            Repeater rpt = (Repeater)ct.FindControl("rptCompareList");
+            if (rpt != null)
+            {
+                rpt.DataSource = list;
+                rpt.DataBind();
+            }
+        }
+
+        private void UpdateWishList(List<Product> list)
+        {
+            ContentPlaceHolder ct = (ContentPlaceHolder)this.Master.Master.FindControl("ContentMain");
+            Repeater rpt = (Repeater)ct.FindControl("rptWishList");
+            if (rpt != null)
+            {
+                rpt.DataSource = list;
+                rpt.DataBind();
             }
         }
     }

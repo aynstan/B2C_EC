@@ -18,6 +18,8 @@ namespace B2C_EC.Website
             {
                 LoadServices();
                 LoadProductBestSelling();
+                LoadCompareList();
+                LoadWishList();
             }
         }
 
@@ -29,10 +31,34 @@ namespace B2C_EC.Website
                 if (list != null)
                 {
                     if (list.Products.Count > 0)
+                    {
                         rptCompareList.DataSource = list.Products;
+                    }
                     else
+                    {
                         rptCompareList.DataSource = null;
+                    }
                     rptCompareList.DataBind();
+                }
+            }
+        }
+
+        public void LoadWishList()
+        {
+            if (Session["WishList"] != null)
+            {
+                CompareAndWish list = (CompareAndWish)Session["WishList"];
+                if (list != null)
+                {
+                    if (list.Products.Count > 0)
+                    {
+                        rptWishList.DataSource = list.Products;
+                    }
+                    else
+                    {
+                        rptWishList.DataSource = null;
+                    }
+                    rptWishList.DataBind();
                 }
             }
         }
@@ -118,10 +144,49 @@ namespace B2C_EC.Website
                     if (list != null)
                     {
                         list.Remove(ToSQL.SQLToInt(e.CommandArgument));
+                        Session["Compare"] = list;
                         LoadCompareList();
                     }
                 }
             }
+        }
+
+        protected void rptWishList_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            Image img = (Image)e.Item.FindControl("imgProduct");
+            HiddenField hdf = (HiddenField)e.Item.FindControl("hdfProductId");
+            if (img != null && hdf != null)
+            {
+                string image = (new ProductImageRepo()).GetImageDefaultAllByProductId(ToSQL.SQLToInt(hdf.Value));
+                if (CheckFileShared.CheckImageExist(image))
+                    img.ImageUrl = "~/Resources/ImagesProduct/" + image;
+                else
+                    img.ImageUrl = "~/Resources/ImagesProduct/no-image.png";
+            }
+        }
+
+        protected void rptWishList_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "RemoveWish")
+            {
+                if (Session["Compare"] != null)
+                {
+                    CompareAndWish list = (CompareAndWish)Session["WishList"];
+                    if (list != null)
+                    {
+                        list.Remove(ToSQL.SQLToInt(e.CommandArgument));
+                        Session["WishList"] = list;
+                        LoadWishList();
+                    }
+                }
+            }
+        }
+
+        protected void btnCancelWishList_Click(object sender, EventArgs e)
+        {
+            Session["WishList"] = null;
+            rptWishList.DataSource = null;
+            rptWishList.DataBind();
         }
     }
 }

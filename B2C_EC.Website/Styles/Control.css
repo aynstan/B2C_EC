@@ -272,10 +272,11 @@ fieldset
 }
 .datalist-compare table
 {
-    width:50%;
+    float:left;
+    width:100%;
     border-collapse:collapse;
     color:#fff;
-   border:1px solid #0977AC;
+    border:1px solid #0977AC;
 }
 .datalist-compare th
 {
@@ -342,7 +343,80 @@ fieldset
    text-align:center;
 }
 
-    .datalist-compare .footertb {
+.table-compare
+{
+    float:left;
+    width:50%;
+    border-collapse:collapse;
+    color:#fff;
+    border:1px solid #0977AC;
+}
+.table-compare th
+{
+   color:#fff;
+   /*background: linear-gradient(#4E4E4E, #060606);
+   -pie-background: linear-gradient(#4E4E4E, #060606);*/
+   background: #CF2317;
+	background: linear-gradient(#CF2317, #d8493f);
+	-pie-background: linear-gradient(#CF2317, #d8493f);
+   border:1px solid #4E4E4E;
+   padding: 10px;
+   padding-right:10px;
+   text-shadow: 0px 1px #242424;
+}
+.table-compare td
+{
+   width:50%;
+   color:#000;
+   border:1px solid #4E4E4E;/*#0977AC;*/
+   padding:2px;
+   text-align:center;
+}
+.table-compare a img
+{
+    border:none;
+}
+
+.table-compare th a
+{
+  color:#fff;
+}
+
+    .table-compare tr .first {
+        color: #000;
+        border: 1px solid #0977AC;
+        background: #CDEEF6;
+        padding: 2px;
+        text-align: center;
+        /*border-radius: 5px 5px 0 0;
+        background: #4E4E4E;
+        text-align: center;
+        background: linear-gradient(#4E4E4E, #060606);
+        -pie-background: linear-gradient(#4E4E4E, #060606);
+        padding: 8px 0;
+        color: White;
+        float: left;
+        width: 100%;*/
+    }
+/*.datalist-compare table tr:nth-child(2n+1)
+{
+   color:#000;
+   border:1px solid #0977AC;
+   background:#CDEEF6;
+   padding:2px;
+   text-align:center;
+}*/
+.table-compare tr:hover
+{
+   color:#000;
+   border:1px solid #0977AC;
+   background:#FFFFBF;
+   padding:2px;
+   cursor:pointer;
+   text-align:center;
+}
+
+    .table-compare .footertb {
         border:1px solid transparent;
     }
 

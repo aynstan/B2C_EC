@@ -25,8 +25,16 @@ namespace B2C_EC.Website
             if (Session["Compare"] != null)
             {
                 CompareAndWish list = (CompareAndWish)Session["Compare"];
+                if (list == null || list.Products.Count == 0)
+                    Response.Redirect("~/Index.aspx");
                 dtlCompare.DataSource = list.Products;
                 dtlCompare.DataBind();
+                rptComapre.DataSource = list.Products;
+                rptComapre.DataBind();
+            }
+            else
+            {
+                Response.Redirect("~/Index.aspx");
             }
         }
 
@@ -46,12 +54,42 @@ namespace B2C_EC.Website
 
         protected void dtlCompare_ItemCommand(object source, DataListCommandEventArgs e)
         {
-            if (e.CommandName == "Remove" && (Session["Compare"] != null))
+            if (e.CommandName == "Remove" && Session["Compare"] != null)
             {
                 CompareAndWish list = (CompareAndWish)Session["Compare"];
                 if (list != null)
                 {
                     list.Remove(ToSQL.SQLToInt(e.CommandArgument));
+                    Session["Compare"] = list;
+                    LoadCompareList();
+                }
+            }
+        }
+
+        protected void rptComapre_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            try
+            {
+                Product p = (Product)e.Item.DataItem;
+                Image img = (Image)e.Item.FindControl("imgProduct");
+                img.ImageUrl = "~/Resources/ImagesProduct/" + (new ProductImageRepo()).GetImageDefaultAllByProductId(p.ID);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        protected void rptComapre_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "Remove" && Session["Compare"] != null)
+            {
+                CompareAndWish list = (CompareAndWish)Session["Compare"];
+                if (list != null)
+                {
+                    list.Remove(ToSQL.SQLToInt(e.CommandArgument));
+                    Session["Compare"] = list;
+                    LoadCompareList();
                 }
             }
         }
