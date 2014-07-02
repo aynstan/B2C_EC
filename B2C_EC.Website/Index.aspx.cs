@@ -31,7 +31,7 @@ namespace B2C_EC.Website
         protected void rptProducts_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             Image img = (Image)e.Item.FindControl("imgProduct");
-            HiddenField hdf = (HiddenField)e.Item.FindControl("hdfProductId");            
+            HiddenField hdf = (HiddenField)e.Item.FindControl("hdfProductId");
             if (img != null && hdf != null)
             {
                 string image = (new ProductImageRepo()).GetImageDefaultAllByProductId(ToSQL.SQLToInt(hdf.Value));
@@ -46,7 +46,7 @@ namespace B2C_EC.Website
         {
             if (e.CommandName == "Add")
             {
-                HiddenField hdf = (HiddenField)e.Item.FindControl("HiddenFieldProductId");
+                HiddenField hdf = (HiddenField)e.Item.FindControl("hdfProductId");
                 Product product = new ProductRepo().GetById(ToSQL.SQLToInt(hdf.Value));
                 if (product != null)
                 {
