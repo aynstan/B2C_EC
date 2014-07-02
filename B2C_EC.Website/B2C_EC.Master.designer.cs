@@ -58,6 +58,24 @@ namespace B2C_EC.Website {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder Filter;
         
         /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
+        /// rptCompareList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptCompareList;
+        
+        /// <summary>
         /// Content control.
         /// </summary>
         /// <remarks>

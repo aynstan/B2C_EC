@@ -21,6 +21,22 @@ namespace B2C_EC.Website
             }
         }
 
+        public void LoadCompareList()
+        {
+            if (Session["Compare"] != null)
+            {
+                CompareAndWish list = (CompareAndWish)Session["Compare"];
+                if (list != null)
+                {
+                    if (list.Products.Count > 0)
+                        rptCompareList.DataSource = list.Products;
+                    else
+                        rptCompareList.DataSource = null;
+                    rptCompareList.DataBind();
+                }
+            }
+        }
+
         private void LoadProductBestSelling()
         {
             rptProductBestSelling.DataSource = new ProductRepo().GetProductBestSelling().Take(5);
@@ -45,6 +61,67 @@ namespace B2C_EC.Website
         {
             rptServices.DataSource = (new ProductTypeRepo()).GetAllProductTypeActived();
             rptServices.DataBind();
+        }
+
+        public string ShortString(object o)
+        {
+            string s = o.ToString();
+            if (s.Length <= 20)
+                return s;
+            else
+                return s.Substring(0, 18) + "...";
+        }
+
+        protected void lbtnAddCart_Click(object sender, EventArgs e)
+        {
+            LinkButton lbtn = (LinkButton)sender;
+            Product product = new ProductRepo().GetById(ToSQL.SQLToInt(lbtn.CommandArgument));
+            if (product != null)
+            {
+                List<Cart> carts = (List<Cart>)Session["Carts"];
+                Cart cart = new Cart(carts);
+                cart = cart.ConverProductToCart(product);
+                carts = cart.Add(cart);
+                Session["Carts"] = carts;
+                Response.Redirect("ViewCart.aspx");
+            }
+        }
+
+        protected void rptCompareList_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            Image img = (Image)e.Item.FindControl("imgProduct");
+            HiddenField hdf = (HiddenField)e.Item.FindControl("hdfProductId");
+            if (img != null && hdf != null)
+            {
+                string image = (new ProductImageRepo()).GetImageDefaultAllByProductId(ToSQL.SQLToInt(hdf.Value));
+                if (CheckFileShared.CheckImageExist(image))
+                    img.ImageUrl = "~/Resources/ImagesProduct/" + image;
+                else
+                    img.ImageUrl = "~/Resources/ImagesProduct/no-image.png";
+            }
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Session["Compare"] = null;
+            rptCompareList.DataSource = null;
+            rptCompareList.DataBind();
+        }
+
+        protected void rptCompareList_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "RemoveCompare")
+            {
+                if (Session["Compare"] != null)
+                {
+                    CompareAndWish list = (CompareAndWish)Session["Compare"];
+                    if (list != null)
+                    {
+                        list.Remove(ToSQL.SQLToInt(e.CommandArgument));
+                        LoadCompareList();
+                    }
+                }
+            }
         }
     }
 }

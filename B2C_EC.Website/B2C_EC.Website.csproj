@@ -44,6 +44,10 @@
     <Reference Include="AjaxControlToolkit">
       <HintPath>C:\Users\User\Downloads\AjaxControlToolkit.Binary.NET45\AjaxControlToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="AjaxMin, Version=5.10.5260.16954, Culture=neutral, PublicKeyToken=21ef50ce11b5d80f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AjaxMin.5.10.5260.16959\lib\net40\AjaxMin.dll</HintPath>
+    </Reference>
     <Reference Include="CKEditor.NET, Version=3.6.4.0, Culture=neutral, PublicKeyToken=e379cdf2f8354999, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\CKEditor.NET.dll</HintPath>
@@ -90,12 +94,17 @@
     <Content Include="Admincp\Index.aspx" />
     <Content Include="Admincp\Login.aspx" />
     <Content Include="Admincp\Default.aspx" />
+    <Content Include="Admincp\Management-Contact.aspx" />
     <Content Include="Admincp\Management-Customer.aspx" />
     <Content Include="Admincp\Management-Manafacturer.aspx" />
+    <Content Include="Admincp\Management-Newsletter.aspx" />
     <Content Include="Admincp\Management-Order.aspx" />
+    <Content Include="Admincp\Management-OrderDetails.aspx" />
     <Content Include="Admincp\Management-Products.aspx" />
     <Content Include="Admincp\Management-ProductType.aspx" />
     <Content Include="Admincp\Management-User.aspx" />
+    <Content Include="Admincp\Management-UserLock.aspx" />
+    <Content Include="BestSelling.aspx" />
     <Content Include="ckeditor\adapters\jquery.js" />
     <Content Include="ckeditor\build-config.js" />
     <Content Include="ckeditor\ckeditor.js" />
@@ -436,6 +445,7 @@
     <Content Include="ckeditor\skins\moono\images\lock.png" />
     <Content Include="ckeditor\skins\moono\images\refresh.png" />
     <Content Include="ckeditor\styles.js" />
+    <Content Include="Compare.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="CustomerInfo.aspx" />
     <Content Include="FilterByService.aspx" />
@@ -528,6 +538,16 @@
     <Content Include="ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
     <Content Include="ckeditor\samples\sample_posteddata.php" />
     <Content Include="ckeditor\skins\moono\readme.md" />
+    <Content Include="Scripts\Event.js" />
+    <Content Include="Scripts\jquery-1.6.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\Magnifier.js" />
+    <Content Include="SearchResult.aspx" />
+    <Content Include="Styles\jqzoom.css" />
+    <Content Include="Styles\magnifier.css" />
+    <Content Include="Test.aspx" />
+    <Content Include="WishList.aspx" />
     <None Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\highcharts.js" />
     <Content Include="Scripts\highcharts_init.js" />
@@ -682,6 +702,13 @@
     <Compile Include="Admincp\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admincp\Management-Contact.aspx.cs">
+      <DependentUpon>Management-Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admincp\Management-Contact.aspx.designer.cs">
+      <DependentUpon>Management-Contact.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admincp\Management-Customer.aspx.cs">
       <DependentUpon>Management-Customer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -696,12 +723,26 @@
     <Compile Include="Admincp\Management-Manafacturer.aspx.designer.cs">
       <DependentUpon>Management-Manafacturer.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admincp\Management-Newsletter.aspx.cs">
+      <DependentUpon>Management-Newsletter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admincp\Management-Newsletter.aspx.designer.cs">
+      <DependentUpon>Management-Newsletter.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admincp\Management-Order.aspx.cs">
       <DependentUpon>Management-Order.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admincp\Management-Order.aspx.designer.cs">
       <DependentUpon>Management-Order.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admincp\Management-OrderDetails.aspx.cs">
+      <DependentUpon>Management-OrderDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admincp\Management-OrderDetails.aspx.designer.cs">
+      <DependentUpon>Management-OrderDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admincp\Management-Products.aspx.cs">
       <DependentUpon>Management-Products.aspx</DependentUpon>
@@ -724,7 +765,16 @@
     <Compile Include="Admincp\Management-User.aspx.designer.cs">
       <DependentUpon>Management-User.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admincp\Management-UserLock.aspx.cs">
+      <DependentUpon>Management-UserLock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admincp\Management-UserLock.aspx.designer.cs">
+      <DependentUpon>Management-UserLock.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Code\Cart.cs" />
+    <Compile Include="App_Code\CheckFileShared.cs" />
+    <Compile Include="App_Code\CompareAndWish.cs" />
     <Compile Include="App_Code\Security.cs" />
     <Compile Include="B2C_EC.Master.cs">
       <DependentUpon>B2C_EC.Master</DependentUpon>
@@ -732,6 +782,20 @@
     </Compile>
     <Compile Include="B2C_EC.Master.designer.cs">
       <DependentUpon>B2C_EC.Master</DependentUpon>
+    </Compile>
+    <Compile Include="BestSelling.aspx.cs">
+      <DependentUpon>BestSelling.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BestSelling.aspx.designer.cs">
+      <DependentUpon>BestSelling.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Compare.aspx.cs">
+      <DependentUpon>Compare.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Compare.aspx.designer.cs">
+      <DependentUpon>Compare.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -804,6 +868,13 @@
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SearchResult.aspx.cs">
+      <DependentUpon>SearchResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SearchResult.aspx.designer.cs">
+      <DependentUpon>SearchResult.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Services.aspx.cs">
       <DependentUpon>Services.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -832,12 +903,26 @@
     <Compile Include="Specials.aspx.designer.cs">
       <DependentUpon>Specials.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewCart.aspx.cs">
       <DependentUpon>ViewCart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewCart.aspx.designer.cs">
       <DependentUpon>ViewCart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WishList.aspx.cs">
+      <DependentUpon>WishList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WishList.aspx.designer.cs">
+      <DependentUpon>WishList.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -879,6 +964,8 @@
     <Content Include="Fonts\geo703xb-webfont.woff" />
     <Content Include="packages.config" />
     <Content Include="Site.Master" />
+    <Content Include="Scripts\jquery.jqzoom-core.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.map.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

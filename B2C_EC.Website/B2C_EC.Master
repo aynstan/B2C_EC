@@ -2,7 +2,6 @@
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
-
 </asp:Content>
 <asp:Content ID="ContentRL" ContentPlaceHolderID="ContentMain" runat="server">
     <div id="content">
@@ -14,7 +13,7 @@
                         <ItemTemplate>
                             <li>
                                 <asp:Image ID="imgProduct" runat="server" Width="30" />
-                                <div class="p-info"><span>Latest <%# Eval("Name") %></span><small><%# Eval("Price", "$ {0:#,##0}") %></small></div>
+                                <div class="p-info"><span title='<%# Eval("Name") %>'>Latest <%# ShortString(Eval("Name")) %></span><asp:LinkButton ID="lbtnAddCart" CommandArgument='<%# Eval("ID") %>' CssClass="small" OnClick="lbtnAddCart_Click" runat="server"><%# Eval("Price", "$ {0:#,##0}") %></asp:LinkButton></div>
                                 <asp:HiddenField ID="HiddenFieldProductId" runat="server" Value='<%# Eval("ID") %>' />
                             </li>
                         </ItemTemplate>
@@ -46,7 +45,54 @@
                 <asp:ContentPlaceHolder ID="Filter" runat="server"></asp:ContentPlaceHolder>
             </div>
             <div>
-                <asp:ContentPlaceHolder ID="Content" runat="server"></asp:ContentPlaceHolder>
+                <div style="width:100%; max-height:100px; padding-top:5px;">
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>
+                            <div class="compare">
+                                <asp:Repeater ID="rptCompareList" runat="server" OnItemDataBound="rptCompareList_ItemDataBound" OnItemCommand="rptCompareList_ItemCommand">
+                                    <ItemTemplate>
+                                        <table style="float:left;">
+                                            <tr>
+                                                <td style="text-align:right">
+                                                    <asp:Button ID="btnRemove" CssClass="ButtonOrange" CommandName="RemoveCompare" CommandArgument='<%# Eval("ID") %>' runat="server" Text="Remove" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align:center;">
+                                                    <asp:Image ID="imgProduct" ImageUrl="~/Resources/ImagesProduct/1.jpg" Height="50" runat="server" />
+                                                    <asp:HiddenField ID="hdfProductId" Value='<%# Eval("ID") %>' runat="server" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        <table style="float: left;">
+                                            <tr>
+                                                <td style="text-align: right">
+                                                    <asp:Button ID="btnCompare" CssClass="ButtonOrange" runat="server" Text="Compare" PostBackUrl="~/Compare.aspx" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center;">
+                                                    <asp:Button ID="btnCancel" CssClass="ButtonOrange" OnClick="btnCancel_Click" runat="server" Text="Cancel" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </FooterTemplate>
+                                </asp:Repeater>
+                            </div>
+                            <div class="wishlist">
+                            </div>
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:PostBackTrigger ControlID="Content" />
+                            <asp:PostBackTrigger ControlID="rptCompareList" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+                </div>
+                <div style="float:left;">
+                    <asp:ContentPlaceHolder ID="Content" runat="server"></asp:ContentPlaceHolder>
+                </div>
             </div>
 
         </div>

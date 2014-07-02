@@ -46,7 +46,7 @@ namespace B2C_EC.Website
         {
             if (e.CommandName == "Add")
             {
-                HiddenField hdf = (HiddenField)e.Item.FindControl("hdfProductId");
+                HiddenField hdf = (HiddenField)e.Item.FindControl("HiddenFieldProductId");
                 Product product = new ProductRepo().GetById(ToSQL.SQLToInt(hdf.Value));
                 if (product != null)
                 {
@@ -64,13 +64,18 @@ namespace B2C_EC.Website
                 if (list == null)
                     list = new CompareAndWish();
                 Product p = (new ProductRepo()).GetById(ToSQL.SQLToInt(e.CommandArgument));
-                if (p != null)
+                if (p != null && list.Products.Count <= 3)
                 {
-                    if (list.Add(p))
-                        Response.Write("<script type='text/javascript'>alert('Added!s');</script>");
+                    if (list.Add(p)){}
+                        //Response.Write("<script type='text/javascript'>alert('Added!');</script>");
                     else
                         Response.Write("<script type='text/javascript'>alert('Product is exist in list compare');</script>");
                 }
+                else
+                {
+                    Response.Write("<script type='text/javascript'>alert('You should select between 1 and 4 item!');</script>");
+                }
+                UpdateCompareList(list.Products);
                 Session["Compare"] = list;
             }
             else if (e.CommandName == "AddWishList")
@@ -97,6 +102,17 @@ namespace B2C_EC.Website
                 return s;
             else
                 return s.Substring(0, 18) + "...";
+        }
+
+        private void UpdateCompareList(List<Product> list)
+        {
+            ContentPlaceHolder ct = (ContentPlaceHolder)this.Master.Master.FindControl("ContentMain");
+            Repeater rpt = (Repeater)ct.FindControl("rptCompareList");
+            if (rpt != null)
+            {
+                rpt.DataSource = list;
+                rpt.DataBind();
+            }
         }
     }
 }

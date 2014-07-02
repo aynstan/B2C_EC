@@ -50,12 +50,12 @@ del {
 	margin:0;
 	padding:0;
 }*/
- .shadow, .header-aside ul li+li+li, .nav-section, .latest-product h2, .fc-platform, .product-info,.fb_iframe_widget,.plugin {
-behavior: url(PIE.htc);
- position:relative;
-z-index:55;
-margin-top:5px;
-margin-bottom:5px;
+.shadow, .header-aside ul li + li + li, .nav-section, .latest-product h2, .fc-platform, .product-info, .fb_iframe_widget, .plugin {
+    behavior: url(PIE.htc);
+    position: relative;
+    z-index: 55;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 @font-face {
 	font-family: 'geoslab703_xbdcn_btextra_bold';

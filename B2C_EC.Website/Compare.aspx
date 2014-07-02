@@ -9,7 +9,7 @@
         <div class="Description">
             <asp:DataList ID="dtlCompare" CssClass="datalist-compare" runat="server" RepeatColumns="2" Width="100%" OnItemDataBound="dtlCompare_ItemDataBound" OnItemCommand="dtlCompare_ItemCommand">
                 <ItemTemplate>
-                    <table style="width:100%;">
+                    <table>
                         <tr>
                             <td class="first"><%# Eval("Name") %></td>
                         </tr>

@@ -239,6 +239,20 @@ body {
 	display:block;
 	margin-right:11px;
 }
+
+.p-info .small {
+	font-size:18px;
+	color:#d93030;
+	background: url(../Resources/ImagesDesign/cell-icon.jpg) right center no-repeat;
+	display:block;
+	margin-right:11px;
+    float:none;
+}
+
+.p-info a {
+	float:none;
+}
+
 .latest-product a {
 	font-size:15px;
 	float:right;
@@ -473,6 +487,7 @@ body {
 }
 .last-p {
 	margin-right:10px;
+    float:left;
 }
 .lapy {
 	margin: 55px auto 3px !important;
@@ -841,4 +856,14 @@ text-transform: uppercase;
     width:48%;
     float:right;
     padding:5px;
+}
+
+.compare {
+    float:left;
+    width:48%;
+}
+
+.wishlist {
+    float:right;
+    width:48%;
 }

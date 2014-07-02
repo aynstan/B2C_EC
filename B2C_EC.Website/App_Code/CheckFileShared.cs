@@ -82,5 +82,22 @@ namespace B2C_EC.Website
             }
             return "";
         }
+
+        public static HttpCookie GetAndCreateCookies(string Name)
+        {
+            HttpCookie cookie = HttpContext.Current.Request.Cookies[Name];
+            if (cookie == null)
+                cookie = new HttpCookie(Name);
+            return cookie;
+        }
+
+        public string[] GetValuesCookie(string Name)
+        {
+            HttpCookie cookie = HttpContext.Current.Request.Cookies[Name];
+            if (cookie != null)
+                return cookie.Values.AllKeys;
+            else
+                return null;
+        }
     }
 }
