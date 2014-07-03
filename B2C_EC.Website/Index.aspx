@@ -145,7 +145,7 @@
     <button id="loadMore" class="btnmorelist" type="button">View More</button>
     
     <div id="Reviews" class="TableTitle" style="clear:both;width:702px;">
-        <h2>Reviews</h2>
+        <h2 class="h2">Reviews</h2>
     </div>
     <div style="clear:both;width:700px;border: 1px solid #d5d5d5;">
         <div class="cdInlineAskBoxTitle">

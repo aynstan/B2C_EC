@@ -17,14 +17,35 @@ namespace B2C_EC.Website
             if (!IsPostBack)
             {
                 LoadProductDetails();
+                LoadCustomer();
+            }
+        }
+
+        private void LoadCustomer()
+        {
+            if (Session["Customer"] != null)
+            {
+                Customer c = (Customer)Session["Customer"];
+                if (c != null)
+                {
+                    lblCustomer.Text = c.FirstName + " " + c.LastName;
+                    lblCustomer.Visible = true;
+                    txtName.Visible = false;
+                }
+                else
+                {
+                    lblCustomer.Visible = false;
+                    txtName.Visible = true;
+                }
             }
         }
 
         private void LoadProductDetails()
         {
+            //Response.Write(Request.Url.ToString());
             if (Request.QueryString["ProductId"] != null)
             {
-                int ProductId = ToSQL.SQLToInt(Request.QueryString["ProductId"]);                
+                int ProductId = ToSQL.SQLToInt(Request.QueryString["ProductId"]);
                 Product p = (new ProductRepo()).GetById(ProductId);
                 if (p != null)
                 {
@@ -35,9 +56,11 @@ namespace B2C_EC.Website
                     ltrDetails.Text = p.Description;
                     lblName.Text = p.Name;
                     lblPrice.Text = p.Price.ToString("$#,###.##");
+                    dtlReview.DataSource = p.Reviews.OrderByDescending(r => r.DateCreated);
+                    dtlReview.DataBind();
                 }
                 else
-                {                   
+                {
                     Response.Redirect("~/Index.aspx");
                 }
             }
@@ -45,6 +68,20 @@ namespace B2C_EC.Website
             {
                 Response.Write("<script>alert('Not found product!');</script>");
                 Response.Redirect("~/Index.aspx");
+            }
+        }
+
+        private void LoadReview()
+        {
+            if (Request.QueryString["ProductId"] != null)
+            {
+                int ProductId = ToSQL.SQLToInt(Request.QueryString["ProductId"]);
+                Product p = (new ProductRepo()).GetById(ProductId);
+                if (p != null)
+                {
+                    dtlReview.DataSource = p.Reviews.OrderByDescending(r => r.DateCreated);
+                    dtlReview.DataBind();
+                }
             }
         }
 
@@ -95,6 +132,27 @@ namespace B2C_EC.Website
                 return "Resources/ImagesProduct/" + ToSQL.EmptyNull(s);
             else
                 return "Resources/ImagesProduct/no-image.png";
+        }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            string FullName = "";
+            if (Session["Customer"] != null)
+            {
+                Customer c = (Customer)Session["Customer"];
+                FullName = c.FirstName + " " + c.LastName;
+            }
+            else
+            {
+                FullName = txtName.Text;
+            }
+            try
+            {
+                (new ReviewRepo()).WriteComment(FullName, txtComment.Text, ToSQL.SQLToInt(Request.QueryString["ProductId"]));
+                LoadReview();
+            }
+            catch{
+            }
         }
     }
 }

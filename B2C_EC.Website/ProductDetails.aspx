@@ -146,17 +146,9 @@
                 </div>
                 
 
-				<%--<ul>
-				    <li><a href="#"><img src="resources/images/1.jpg" alt="img01"/></a></li>
-
-				    <li><a href="#"><img src="resources/images/2.jpg" alt="img02"/></a></li>
-	
-				    <li><a href="#"><img src="resources/images/3.jpg" alt="img03"/></a></li>
-	
-				    <li><a href="#"><img src="resources/images/4.jpg" alt="img04"/></a></li>			
-
-				    <li><a href="#"><img src="resources/images/5.jpg" alt="img05"/></a></li>
-				</ul>			--%>
+				<%--<li><a href='<%# SetImage(Eval("Image").ToString()) %>' rel="{gallery: 'gal1', smallimage: '<%# SetImage(Eval("Image").ToString()) %>',largeimage: '<%# SetImage(Eval("Image").ToString()) %>'}" class="jqzoom">
+                                    <asp:Image ID="thumb" Height="300px" AlternateText='<%# Eval("Image") %>' runat="server" ImageUrl='<%# SetImage(Eval("Image")) %>' />
+                                </a></li>--%>
             </div>
         </div>
         <div class="Detail-Right">
@@ -207,6 +199,67 @@
         </div>
         <div class="Description">
             <asp:Literal ID="ltrDetails" runat="server"></asp:Literal>
+        </div>
+    </div>
+    <div class="TableDescription">
+        <div class="titleh2">Review Product</div>
+        <div class="Description">
+            <div>
+                <table style="width: 100%; padding-bottom:10px;">
+                    <tr>
+                        <td style="width: 20%; text-align: right; padding-right: 10px;">
+                            <asp:Label ID="Label1" Font-Bold="True" runat="server" Text="Name/Email/Phone:"></asp:Label>
+                        </td>
+                        <td style="text-align: left; padding:4px;">
+                            <asp:TextBox ID="txtName" CssClass="TextBox" runat="server"></asp:TextBox>
+                            <asp:Label ID="lblCustomer" runat="server" Text="" Visible="false"></asp:Label>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtName" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="Comment"></asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr style="margin:4px;">
+                        <td style="width: 20%; text-align: right; padding-right: 10px;">
+                            <asp:Label ID="Label3" Font-Bold="True" runat="server" Text="Comment:"></asp:Label>
+                        </td>
+                        <td style="text-align: left; padding:4px;">
+                            <asp:TextBox ID="txtComment" CssClass="AreaText" runat="server" Width="100%" TextMode="MultiLine" Height="50px"></asp:TextBox>
+                            <br />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtComment" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="Comment"></asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr style="margin:4px;">
+                        <td style="width: 20%; text-align: right; padding-right: 10px;">
+                            &nbsp;</td>
+                        <td style="text-align: left; padding:4px;">
+                            <asp:Button ID="btnSubmit" runat="server" CssClass="Button" OnClick="btnSubmit_Click" Text="Submit" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <asp:DataList ID="dtlReview" CellSpacing="10" runat="server" BackColor="White" BorderColor="#3366CC" BorderStyle="Groove" BorderWidth="1px" CellPadding="5" GridLines="Both" Width="100%">
+                    <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
+                    <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />
+                    <ItemStyle BackColor="White" ForeColor="#003399" />
+                    <SelectedItemStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
+                    <ItemTemplate>
+                        <table style="width:100%;">
+                            <tr>
+                                <td style="width: 20%; text-align: right; padding-right:10px;">
+                                    <asp:Label ID="Label1" Font-Bold="true" runat="server" Text='<%# Eval("FullName") %>'></asp:Label>
+                                    <br />
+                                    <asp:Label ID="Label2" Font-Size="7pt" runat="server" Text='<%# Eval("DateCreated","{0:dd/MM/yyyy}") %>'></asp:Label>
+                                </td>
+                                <td style="text-align:left;">
+                                    <asp:Literal ID="Literal1" runat="server" Text='<%# Eval("Comment") %>'></asp:Literal>
+                                </td>
+                            </tr>
+                        </table>
+                    </ItemTemplate>
+                    <FooterTemplate>
+                        <asp:Label ID="Label4" Font-Size="X-Large" runat="server" Visible='<%# (dtlReview.Items.Count==0).ToString()=="True"?true:false %>' Text="No review for this product."></asp:Label>
+                    </FooterTemplate>
+                </asp:DataList>
+            </div>
         </div>
     </div>
 </asp:Content>

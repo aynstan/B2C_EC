@@ -51,8 +51,8 @@
                             <div class="compare">
                                 <asp:Repeater ID="rptCompareList" runat="server" OnItemDataBound="rptCompareList_ItemDataBound" OnItemCommand="rptCompareList_ItemCommand">
                                     <HeaderTemplate>
-                                        <div class="titleh2">
-                                            <h2 class="h2">Compare List</h2>
+                                        <div class="titleh2-10">
+                                            <h3>Compare List</h3>
                                         </div>
                                     </HeaderTemplate>
                                     <ItemTemplate>
