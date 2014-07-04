@@ -19,6 +19,10 @@ namespace B2C_EC.Model.Data
         {
             return db.Manufacturers.ToList();
         }
+        public List<Manufacturer> GetAllManufacturerActived()
+        {
+            return db.Manufacturers.Where(p => p.IsActive.Value).ToList();
+        }
         public int CreateManufacturer(Manufacturer C)
         {
             try
