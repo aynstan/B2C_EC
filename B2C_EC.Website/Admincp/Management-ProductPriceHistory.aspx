@@ -37,7 +37,7 @@
                     <td><asp:DropDownList ID="ddlManufacturer" runat="server" CssClass="Dropdown" DataTextField="Name" DataValueField="ID"></asp:DropDownList></td>
                 </tr>
                 <tr>
-                    <td colspan="3" style="text-align:center">
+                    <td colspan="4" style="text-align:center">
                         <asp:Button ID="btnFilter" runat="server" CssClass="button" OnClick="btnFilter_Click" Text="Filter" />
                     </td>
                 </tr>
@@ -46,7 +46,7 @@
         <div style="padding-bottom:20px">
             <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>--%>
-                    <asp:GridView ID="gvProductPriceHistorys" DataKeyNames="ID" CssClass="table tablesorter" runat="server" AutoGenerateColumns="False" OnRowDataBound="gvProductPriceHistorys_RowDataBound">
+                    <asp:GridView ID="gvProductPriceHistorys" DataKeyNames="ID" CssClass="table tablesorter" runat="server" AutoGenerateColumns="False" OnRowDataBound="gvProductPriceHistorys_RowDataBound" ShowHeaderWhenEmpty="True">
                         <Columns>
                             <asp:BoundField HeaderText="ID" DataField="ID" ItemStyle-HorizontalAlign="Center" >
                             <ItemStyle HorizontalAlign="Center" />

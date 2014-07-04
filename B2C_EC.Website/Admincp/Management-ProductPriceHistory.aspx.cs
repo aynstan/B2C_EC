@@ -40,30 +40,33 @@ namespace B2C_EC.Website.Admincp
 
         protected void gvProductPriceHistorys_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            ProductPriceHistory productPriceHistory = (ProductPriceHistory)e.Row.DataItem;
-            Label lbProductType = (Label)e.Row.FindControl("lbProductType");
-            Label lbManufacturer = (Label)e.Row.FindControl("lbManufacturer");
-            Label lbProductName = (Label)e.Row.FindControl("lbProductName");
-            if (productPriceHistory.Product != null)
+            if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                if (lbProductType != null)
+                ProductPriceHistory productPriceHistory = (ProductPriceHistory)e.Row.DataItem;
+                Label lbProductType = (Label)e.Row.FindControl("lbProductType");
+                Label lbManufacturer = (Label)e.Row.FindControl("lbManufacturer");
+                Label lbProductName = (Label)e.Row.FindControl("lbProductName");
+                if (productPriceHistory.Product != null)
                 {
-                    if (productPriceHistory.Product.ProductType != null)
+                    if (lbProductType != null)
                     {
-                        lbProductType.Text = productPriceHistory.Product.ProductType.Name;
+                        if (productPriceHistory.Product.ProductType != null)
+                        {
+                            lbProductType.Text = productPriceHistory.Product.ProductType.Name;
+                        }
                     }
-                }
-                if (lbManufacturer != null)
-                {
-                    if (productPriceHistory.Product.Manufacturer != null)
+                    if (lbManufacturer != null)
                     {
-                        lbManufacturer.Text = productPriceHistory.Product.Manufacturer.Name;
+                        if (productPriceHistory.Product.Manufacturer != null)
+                        {
+                            lbManufacturer.Text = productPriceHistory.Product.Manufacturer.Name;
+                        }
                     }
-                }
-                if (lbProductName != null)
-                {
-                    lbProductName.Text = ToSQL.ShortString(productPriceHistory.Product.Name, 32);
-                    lbProductName.ToolTip = productPriceHistory.Product.Name;
+                    if (lbProductName != null)
+                    {
+                        lbProductName.Text = ToSQL.ShortString(productPriceHistory.Product.Name, 32);
+                        lbProductName.ToolTip = productPriceHistory.Product.Name;
+                    }
                 }
             }
         }
@@ -90,8 +93,8 @@ namespace B2C_EC.Website.Admincp
 
             this.gvProductPriceHistorys.DataSource = productPriceHistories;
             this.gvProductPriceHistorys.DataBind();
-            //this.gvProductPriceHistorys.UseAccessibleHeader = true;
-            //this.gvProductPriceHistorys.HeaderRow.TableSection = TableRowSection.TableHeader;
+            this.gvProductPriceHistorys.UseAccessibleHeader = true;
+            this.gvProductPriceHistorys.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
     }
 }

@@ -96,6 +96,11 @@ namespace B2C_EC.Website.Admincp
             }
             if (productRepo.CreateProduct(p) > 0)
             {
+                ProductPriceHistory productPriceHistory = new ProductPriceHistory();
+                productPriceHistory.Product_ID = p.ID;
+                productPriceHistory.Price = p.Price;
+                productPriceHistory.DateCreated = DateTime.Now;
+                new ProductPriceHistoryRepo().CreateProductPriceHistory(productPriceHistory);
                 Response.Redirect("~/Admincp/Management-Products.aspx");
             }
             else
