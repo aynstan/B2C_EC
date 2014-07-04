@@ -56,8 +56,10 @@ namespace B2C_EC.Website
                     ltrDetails.Text = p.Description;
                     lblName.Text = p.Name;
                     lblPrice.Text = p.Price.ToString("$#,###.##");
-                    dtlReview.DataSource = p.Reviews.OrderByDescending(r => r.DateCreated);
-                    dtlReview.DataBind();
+                    //dtlReview.DataSource = p.Reviews.OrderByDescending(r => r.DateCreated);
+                    //dtlReview.DataBind();
+                    rptReview.DataSource = p.Reviews.OrderByDescending(r => r.DateCreated);
+                    rptReview.DataBind();
                 }
                 else
                 {
@@ -79,8 +81,10 @@ namespace B2C_EC.Website
                 Product p = (new ProductRepo()).GetById(ProductId);
                 if (p != null)
                 {
-                    dtlReview.DataSource = p.Reviews.OrderByDescending(r => r.DateCreated);
-                    dtlReview.DataBind();
+                    //dtlReview.DataSource = p.Reviews.OrderByDescending(r => r.DateCreated);
+                    //dtlReview.DataBind();
+                    rptReview.DataSource = p.Reviews.OrderByDescending(r => r.DateCreated);
+                    rptReview.DataBind();
                 }
             }
         }
@@ -148,7 +152,7 @@ namespace B2C_EC.Website
             }
             try
             {
-                (new ReviewRepo()).WriteComment(FullName, txtComment.Text, ToSQL.SQLToInt(Request.QueryString["ProductId"]));
+                (new ReviewRepo()).CreateReview(FullName, txtComment.Text, ToSQL.SQLToInt(Request.QueryString["ProductId"]));
                 LoadReview();
             }
             catch{
