@@ -91,10 +91,10 @@ namespace B2C_EC.Website.Admincp
         {
             List<ProductPriceHistory> productPriceHistories = productPriceHistoryRepo.GetManagementProductPriceHistories(ToSQL.SQLToInt(txtProductID.Text),ToSQL.EmptyNull(txtProductName.Text), ToSQL.SQLToInt(ddlProductType.SelectedValue), ToSQL.SQLToInt(ddlManufacturer.SelectedValue));
 
-            this.gvProductPriceHistorys.DataSource = productPriceHistories;
-            this.gvProductPriceHistorys.DataBind();
-            this.gvProductPriceHistorys.UseAccessibleHeader = true;
-            this.gvProductPriceHistorys.HeaderRow.TableSection = TableRowSection.TableHeader;
+            this.gvProductPriceHistories.DataSource = productPriceHistories;
+            this.gvProductPriceHistories.DataBind();
+            this.gvProductPriceHistories.UseAccessibleHeader = true;
+            this.gvProductPriceHistories.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
     }
 }

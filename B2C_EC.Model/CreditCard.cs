@@ -12,18 +12,16 @@ namespace B2C_EC.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderStatu
+    public partial class CreditCard
     {
-        public OrderStatu()
-        {
-            this.Orders = new HashSet<Order>();
-            this.OrderHistories = new HashSet<OrderHistory>();
-        }
-    
         public int ID { get; set; }
+        public string CardNumber { get; set; }
+        public System.DateTime ExpirationDate { get; set; }
+        public string SecurityCode { get; set; }
         public string Name { get; set; }
+        public Nullable<int> CreditCardType_ID { get; set; }
+        public Nullable<System.DateTime> DateCreated { get; set; }
     
-        public virtual ICollection<Order> Orders { get; set; }
-        public virtual ICollection<OrderHistory> OrderHistories { get; set; }
+        public virtual CreditCardType CreditCardType { get; set; }
     }
 }

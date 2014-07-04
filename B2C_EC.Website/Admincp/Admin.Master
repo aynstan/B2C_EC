@@ -63,7 +63,8 @@
                         <li class="upp"><a href="#">Management Order</a>
                             <ul>
                                 <li>&#8250; <a href="Management-Order.aspx">Show all orders</a></li>
-                                <li>&#8250; <a href="">Status orders</a></li>
+                                <li>&#8250; <a href="Management-OrderStatus.aspx">Status orders</a></li>
+                                <li>&#8250; <a href="Management-OrderHistory.aspx">Order histories</a></li>
                             </ul>
                         </li>
                         <li class="upp"><a href="#">Management Product</a>
@@ -113,7 +114,8 @@
                         <div class="h_title">› Management Order</div>
                         <ul>
                             <li class="b1"><a class="icon page" href="Management-Order.aspx">Show all orders</a></li>
-                            <li class="b2"><a class="icon photo" href="">Status orders</a></li>
+                            <li class="b2"><a class="icon photo" href="Management-OrderStatus.aspx">Status orders</a></li>
+                            <li class="b1"><a class="icon page" href="Management-OrderHistory.aspx">Order histories</a></li>
                         </ul>
                     </div>
                     <div class="box">

@@ -39,6 +39,14 @@
         <AssociationConnector Association="B2C_ECModel.FK_ProductPriceHistory_Products" />
         <AssociationConnector Association="B2C_ECModel.FK_Products_ProductType" />
         <AssociationConnector Association="B2C_ECModel.FK_Review_Products" />
+        <EntityTypeShape EntityType="B2C_ECModel.CreditCard" Width="1.5" PointX="3.411589652025881" PointY="28.539291171608163" />
+        <EntityTypeShape EntityType="B2C_ECModel.CreditCardTransaction" Width="1.5" PointX="5.646357220432888" PointY="1.4510897851786995" />
+        <EntityTypeShape EntityType="B2C_ECModel.CreditCardType" Width="1.5" PointX="2.8765548071249176" PointY="2.1664278666332493" />
+        <EntityTypeShape EntityType="B2C_ECModel.OrderHistory" Width="1.5" PointX="7.6558972949422417" PointY="28.319883747175282" />
+        <AssociationConnector Association="B2C_ECModel.FK_CreditCard_CreditCardType" />
+        <AssociationConnector Association="B2C_ECModel.FK_CreditCardTransaction_Order" />
+        <AssociationConnector Association="B2C_ECModel.FK_OrderHistory_Order" />
+        <AssociationConnector Association="B2C_ECModel.FK_OrderHistory_OrderStatus" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

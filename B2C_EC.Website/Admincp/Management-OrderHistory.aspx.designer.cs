@@ -10,43 +10,25 @@
 namespace B2C_EC.Website.Admincp {
     
     
-    public partial class Management_ProductPriceHistory {
+    public partial class Management_OrderHistory {
         
         /// <summary>
-        /// txtProductID control.
+        /// txtOrderID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProductID;
+        protected global::System.Web.UI.WebControls.TextBox txtOrderID;
         
         /// <summary>
-        /// txtProductName control.
+        /// ddlOrderStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProductName;
-        
-        /// <summary>
-        /// ddlProductType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlProductType;
-        
-        /// <summary>
-        /// ddlManufacturer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlManufacturer;
+        protected global::System.Web.UI.WebControls.DropDownList ddlOrderStatus;
         
         /// <summary>
         /// btnFilter control.
@@ -58,12 +40,12 @@ namespace B2C_EC.Website.Admincp {
         protected global::System.Web.UI.WebControls.Button btnFilter;
         
         /// <summary>
-        /// gvProductPriceHistories control.
+        /// gvOrderHistories control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvProductPriceHistories;
+        protected global::System.Web.UI.WebControls.GridView gvOrderHistories;
     }
 }

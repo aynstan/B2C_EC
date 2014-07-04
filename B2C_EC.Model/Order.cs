@@ -17,6 +17,8 @@ namespace B2C_EC.Model
         public Order()
         {
             this.OrderDetails = new HashSet<OrderDetail>();
+            this.CreditCardTransactions = new HashSet<CreditCardTransaction>();
+            this.OrderHistories = new HashSet<OrderHistory>();
         }
     
         public int ID { get; set; }
@@ -33,5 +35,7 @@ namespace B2C_EC.Model
         public virtual OrderStatu OrderStatu { get; set; }
         public virtual Payment Payment { get; set; }
         public virtual ShippingAddress ShippingAddress { get; set; }
+        public virtual ICollection<CreditCardTransaction> CreditCardTransactions { get; set; }
+        public virtual ICollection<OrderHistory> OrderHistories { get; set; }
     }
 }

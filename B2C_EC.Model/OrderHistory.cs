@@ -12,18 +12,14 @@ namespace B2C_EC.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderStatu
+    public partial class OrderHistory
     {
-        public OrderStatu()
-        {
-            this.Orders = new HashSet<Order>();
-            this.OrderHistories = new HashSet<OrderHistory>();
-        }
-    
         public int ID { get; set; }
-        public string Name { get; set; }
+        public int Order_ID { get; set; }
+        public int OrderStatus_ID { get; set; }
+        public System.DateTime DateCreated { get; set; }
     
-        public virtual ICollection<Order> Orders { get; set; }
-        public virtual ICollection<OrderHistory> OrderHistories { get; set; }
+        public virtual Order Order { get; set; }
+        public virtual OrderStatu OrderStatu { get; set; }
     }
 }

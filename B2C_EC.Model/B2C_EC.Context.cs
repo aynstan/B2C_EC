@@ -13,8 +13,6 @@ namespace B2C_EC.Model
     using System.Data.Entity;
     using System.Data.Entity.Core.Objects;
     using System.Data.Entity.Infrastructure;
-    //using System.Data.Objects;
-    //using System.Data.Objects.DataClasses;
     using System.Linq;
     
     public partial class B2C_ECEntities : DbContext
@@ -47,6 +45,10 @@ namespace B2C_EC.Model
         public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<CreditCard> CreditCards { get; set; }
+        public DbSet<CreditCardTransaction> CreditCardTransactions { get; set; }
+        public DbSet<CreditCardType> CreditCardTypes { get; set; }
+        public DbSet<OrderHistory> OrderHistories { get; set; }
     
         public virtual ObjectResult<SortRow_Result> SortRow(string tableName, string columnName, string sortName, Nullable<int> rowId, Nullable<int> direction)
         {

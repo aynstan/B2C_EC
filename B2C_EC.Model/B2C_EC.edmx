@@ -8,11 +8,15 @@
         <EntityContainer Name="B2C_ECModelStoreContainer">
           <EntitySet Name="Address" EntityType="B2C_ECModel.Store.Address" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Contact" EntityType="B2C_ECModel.Store.Contact" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CreditCard" EntityType="B2C_ECModel.Store.CreditCard" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CreditCardTransaction" EntityType="B2C_ECModel.Store.CreditCardTransaction" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CreditCardType" EntityType="B2C_ECModel.Store.CreditCardType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Customer" EntityType="B2C_ECModel.Store.Customer" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Manufacturer" EntityType="B2C_ECModel.Store.Manufacturer" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="NewsLetter" EntityType="B2C_ECModel.Store.NewsLetter" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Order" EntityType="B2C_ECModel.Store.Order" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OrderDetail" EntityType="B2C_ECModel.Store.OrderDetail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrderHistory" EntityType="B2C_ECModel.Store.OrderHistory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OrderStatus" EntityType="B2C_ECModel.Store.OrderStatus" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Payment" EntityType="B2C_ECModel.Store.Payment" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Product" EntityType="B2C_ECModel.Store.Product" store:Type="Tables" Schema="dbo" />
@@ -24,6 +28,14 @@
           <EntitySet Name="ShippingAddress" EntityType="B2C_ECModel.Store.ShippingAddress" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="sysdiagrams" EntityType="B2C_ECModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="B2C_ECModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_CreditCard_CreditCardType" Association="B2C_ECModel.Store.FK_CreditCard_CreditCardType">
+            <End Role="CreditCardType" EntitySet="CreditCardType" />
+            <End Role="CreditCard" EntitySet="CreditCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreditCardTransaction_Order" Association="B2C_ECModel.Store.FK_CreditCardTransaction_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="CreditCardTransaction" EntitySet="CreditCardTransaction" />
+          </AssociationSet>
           <AssociationSet Name="FK_Customers_Address1" Association="B2C_ECModel.Store.FK_Customers_Address1">
             <End Role="Address" EntitySet="Address" />
             <End Role="Customer" EntitySet="Customer" />
@@ -43,6 +55,14 @@
           <AssociationSet Name="FK_OrderDetails_Products" Association="B2C_ECModel.Store.FK_OrderDetails_Products">
             <End Role="Product" EntitySet="Product" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderHistory_Order" Association="B2C_ECModel.Store.FK_OrderHistory_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderHistory" EntitySet="OrderHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderHistory_OrderStatus" Association="B2C_ECModel.Store.FK_OrderHistory_OrderStatus">
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+            <End Role="OrderHistory" EntitySet="OrderHistory" />
           </AssociationSet>
           <AssociationSet Name="FK_Orders_Customers" Association="B2C_ECModel.Store.FK_Orders_Customers">
             <End Role="Customer" EntitySet="Customer" />
@@ -112,6 +132,45 @@
           <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="200" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="CreditCard">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CardNumber" Type="nvarchar" Nullable="false" MaxLength="80" />
+          <Property Name="ExpirationDate" Type="datetime" Nullable="false" />
+          <Property Name="SecurityCode" Type="nvarchar" Nullable="false" MaxLength="80" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="CreditCardType_ID" Type="int" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CreditCardTransaction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsDemo" Type="bit" />
+          <Property Name="TransactionDate" Type="datetime" />
+          <Property Name="CreditCardNumber" Type="nvarchar" MaxLength="80" />
+          <Property Name="ExpirationDate" Type="datetime" />
+          <Property Name="Amount" Type="decimal" Scale="2" />
+          <Property Name="OriginalReferenceKey" Type="nvarchar" MaxLength="250" />
+          <Property Name="Result" Type="int" />
+          <Property Name="ReferenceKey" Type="nvarchar" MaxLength="250" />
+          <Property Name="ResponseMessage" Type="nvarchar" MaxLength="250" />
+          <Property Name="AuthorizationCode" Type="nvarchar" MaxLength="250" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="250" />
+          <Property Name="Order_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="CreditCardType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="ID" />
@@ -171,7 +230,16 @@
           <Property Name="Order_ID" Type="int" Nullable="false" />
           <Property Name="Product_ID" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="Price" Type="decimal" Nullable="false" />
+          <Property Name="Price" Type="decimal" Nullable="false" Scale="2" />
+        </EntityType>
+        <EntityType Name="OrderHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Order_ID" Type="int" Nullable="false" />
+          <Property Name="OrderStatus_ID" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderStatus">
           <Key>
@@ -220,7 +288,7 @@
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Product_ID" Type="int" Nullable="false" />
-          <Property Name="Price" Type="decimal" Nullable="false" />
+          <Property Name="Price" Type="decimal" Nullable="false" Scale="2" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductType">
@@ -295,6 +363,30 @@
           <Property Name="Key" Type="varchar" Nullable="false" MaxLength="150" />
           <Property Name="Address_ID" Type="int" />
         </EntityType>
+        <Association Name="FK_CreditCard_CreditCardType">
+          <End Role="CreditCardType" Type="B2C_ECModel.Store.CreditCardType" Multiplicity="0..1" />
+          <End Role="CreditCard" Type="B2C_ECModel.Store.CreditCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CreditCardType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CreditCard">
+              <PropertyRef Name="CreditCardType_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreditCardTransaction_Order">
+          <End Role="Order" Type="B2C_ECModel.Store.Order" Multiplicity="0..1" />
+          <End Role="CreditCardTransaction" Type="B2C_ECModel.Store.CreditCardTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CreditCardTransaction">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Customers_Address1">
           <End Role="Address" Type="B2C_ECModel.Store.Address" Multiplicity="0..1" />
           <End Role="Customer" Type="B2C_ECModel.Store.Customer" Multiplicity="*" />
@@ -308,7 +400,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ImagesProduct_Products">
-          <End Role="Product" Type="B2C_ECModel.Store.Product" Multiplicity="1" />
+          <End Role="Product" Type="B2C_ECModel.Store.Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ProductImage" Type="B2C_ECModel.Store.ProductImage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
@@ -352,6 +446,30 @@
             </Principal>
             <Dependent Role="OrderDetail">
               <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderHistory_Order">
+          <End Role="Order" Type="B2C_ECModel.Store.Order" Multiplicity="1" />
+          <End Role="OrderHistory" Type="B2C_ECModel.Store.OrderHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderHistory">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderHistory_OrderStatus">
+          <End Role="OrderStatus" Type="B2C_ECModel.Store.OrderStatus" Multiplicity="1" />
+          <End Role="OrderHistory" Type="B2C_ECModel.Store.OrderHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderHistory">
+              <PropertyRef Name="OrderStatus_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -404,7 +522,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductPriceHistory_Products">
-          <End Role="Product" Type="B2C_ECModel.Store.Product" Multiplicity="1" />
+          <End Role="Product" Type="B2C_ECModel.Store.Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ProductPriceHistory" Type="B2C_ECModel.Store.ProductPriceHistory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
@@ -588,6 +708,26 @@
             <Parameter Name="RowId" Mode="In" Type="Int32" />
             <Parameter Name="Direction" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="CreditCards" EntityType="B2C_ECModel.CreditCard" />
+          <EntitySet Name="CreditCardTransactions" EntityType="B2C_ECModel.CreditCardTransaction" />
+          <EntitySet Name="CreditCardTypes" EntityType="B2C_ECModel.CreditCardType" />
+          <EntitySet Name="OrderHistories" EntityType="B2C_ECModel.OrderHistory" />
+          <AssociationSet Name="FK_CreditCard_CreditCardType" Association="B2C_ECModel.FK_CreditCard_CreditCardType">
+            <End Role="CreditCardType" EntitySet="CreditCardTypes" />
+            <End Role="CreditCard" EntitySet="CreditCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreditCardTransaction_Order" Association="B2C_ECModel.FK_CreditCardTransaction_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="CreditCardTransaction" EntitySet="CreditCardTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderHistory_Order" Association="B2C_ECModel.FK_OrderHistory_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderHistory" EntitySet="OrderHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderHistory_OrderStatus" Association="B2C_ECModel.FK_OrderHistory_OrderStatus">
+            <End Role="OrderStatu" EntitySet="OrderStatus" />
+            <End Role="OrderHistory" EntitySet="OrderHistories" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Address">
           <Key>
@@ -675,6 +815,8 @@
           <NavigationProperty Name="OrderStatu" Relationship="B2C_ECModel.FK_Orders_OrderStatus" FromRole="Order" ToRole="OrderStatu" />
           <NavigationProperty Name="Payment" Relationship="B2C_ECModel.FK_Orders_Payment" FromRole="Order" ToRole="Payment" />
           <NavigationProperty Name="ShippingAddress" Relationship="B2C_ECModel.FK_Orders_ShippingAddress" FromRole="Order" ToRole="ShippingAddress" />
+          <NavigationProperty Name="CreditCardTransactions" Relationship="B2C_ECModel.FK_CreditCardTransaction_Order" FromRole="Order" ToRole="CreditCardTransaction" />
+          <NavigationProperty Name="OrderHistories" Relationship="B2C_ECModel.FK_OrderHistory_Order" FromRole="Order" ToRole="OrderHistory" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -684,7 +826,7 @@
           <Property Type="Int32" Name="Order_ID" Nullable="false" />
           <Property Type="Int32" Name="Product_ID" Nullable="false" />
           <Property Type="Int32" Name="Quantity" Nullable="false" />
-          <Property Type="Decimal" Name="Price" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Price" Nullable="false" Precision="18" Scale="2" />
           <NavigationProperty Name="Order" Relationship="B2C_ECModel.FK_OrderDetails_Orders" FromRole="OrderDetail" ToRole="Order" />
           <NavigationProperty Name="Product" Relationship="B2C_ECModel.FK_OrderDetails_Products" FromRole="OrderDetail" ToRole="Product" />
         </EntityType>
@@ -695,6 +837,7 @@
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Orders" Relationship="B2C_ECModel.FK_Orders_OrderStatus" FromRole="OrderStatu" ToRole="Order" />
+          <NavigationProperty Name="OrderHistories" Relationship="B2C_ECModel.FK_OrderHistory_OrderStatus" FromRole="OrderStatu" ToRole="OrderHistory" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -721,7 +864,7 @@
           </Key>
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="Product_ID" Nullable="false" />
-          <Property Type="Decimal" Name="Price" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Price" Nullable="false" Precision="18" Scale="2" />
           <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
           <NavigationProperty Name="Product" Relationship="B2C_ECModel.FK_ProductPriceHistory_Products" FromRole="ProductPriceHistory" ToRole="Product" />
         </EntityType>
@@ -1037,6 +1180,107 @@
           <Property Type="Int32" Name="MaxSortId" Nullable="true" />
           <Property Type="Int32" Name="SwitchId" Nullable="true" />
         </ComplexType>
+        <EntityType Name="CreditCard">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CardNumber" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ExpirationDate" Nullable="false" Precision="3" />
+          <Property Type="String" Name="SecurityCode" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CreditCardType_ID" />
+          <Property Type="DateTime" Name="DateCreated" Precision="3" />
+          <NavigationProperty Name="CreditCardType" Relationship="B2C_ECModel.FK_CreditCard_CreditCardType" FromRole="CreditCard" ToRole="CreditCardType" />
+        </EntityType>
+        <EntityType Name="CreditCardTransaction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="IsDemo" />
+          <Property Type="DateTime" Name="TransactionDate" Precision="3" />
+          <Property Type="String" Name="CreditCardNumber" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ExpirationDate" Precision="3" />
+          <Property Type="Decimal" Name="Amount" Precision="18" Scale="2" />
+          <Property Type="String" Name="OriginalReferenceKey" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Result" />
+          <Property Type="String" Name="ReferenceKey" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ResponseMessage" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AuthorizationCode" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Comment" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Order_ID" />
+          <NavigationProperty Name="Order" Relationship="B2C_ECModel.FK_CreditCardTransaction_Order" FromRole="CreditCardTransaction" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="CreditCardType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DateCreated" Precision="3" />
+          <Property Type="Boolean" Name="IsActive" />
+          <NavigationProperty Name="CreditCards" Relationship="B2C_ECModel.FK_CreditCard_CreditCardType" FromRole="CreditCardType" ToRole="CreditCard" />
+        </EntityType>
+        <EntityType Name="OrderHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Order_ID" Nullable="false" />
+          <Property Type="Int32" Name="OrderStatus_ID" Nullable="false" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Order" Relationship="B2C_ECModel.FK_OrderHistory_Order" FromRole="OrderHistory" ToRole="Order" />
+          <NavigationProperty Name="OrderStatu" Relationship="B2C_ECModel.FK_OrderHistory_OrderStatus" FromRole="OrderHistory" ToRole="OrderStatu" />
+        </EntityType>
+        <Association Name="FK_CreditCard_CreditCardType">
+          <End Type="B2C_ECModel.CreditCardType" Role="CreditCardType" Multiplicity="0..1" />
+          <End Type="B2C_ECModel.CreditCard" Role="CreditCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CreditCardType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CreditCard">
+              <PropertyRef Name="CreditCardType_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreditCardTransaction_Order">
+          <End Type="B2C_ECModel.Order" Role="Order" Multiplicity="0..1" />
+          <End Type="B2C_ECModel.CreditCardTransaction" Role="CreditCardTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CreditCardTransaction">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderHistory_Order">
+          <End Type="B2C_ECModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="B2C_ECModel.OrderHistory" Role="OrderHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderHistory">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderHistory_OrderStatus">
+          <End Type="B2C_ECModel.OrderStatu" Role="OrderStatu" Multiplicity="1" />
+          <End Type="B2C_ECModel.OrderHistory" Role="OrderHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStatu">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderHistory">
+              <PropertyRef Name="OrderStatus_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1280,6 +1524,58 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="CreditCards">
+            <EntityTypeMapping TypeName="B2C_ECModel.CreditCard">
+              <MappingFragment StoreEntitySet="CreditCard">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CreditCardType_ID" ColumnName="CreditCardType_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SecurityCode" ColumnName="SecurityCode" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CreditCardTransactions">
+            <EntityTypeMapping TypeName="B2C_ECModel.CreditCardTransaction">
+              <MappingFragment StoreEntitySet="CreditCardTransaction">
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="AuthorizationCode" ColumnName="AuthorizationCode" />
+                <ScalarProperty Name="ResponseMessage" ColumnName="ResponseMessage" />
+                <ScalarProperty Name="ReferenceKey" ColumnName="ReferenceKey" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="OriginalReferenceKey" ColumnName="OriginalReferenceKey" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+                <ScalarProperty Name="CreditCardNumber" ColumnName="CreditCardNumber" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="IsDemo" ColumnName="IsDemo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CreditCardTypes">
+            <EntityTypeMapping TypeName="B2C_ECModel.CreditCardType">
+              <MappingFragment StoreEntitySet="CreditCardType">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderHistories">
+            <EntityTypeMapping TypeName="B2C_ECModel.OrderHistory">
+              <MappingFragment StoreEntitySet="OrderHistory">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="OrderStatus_ID" ColumnName="OrderStatus_ID" />
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

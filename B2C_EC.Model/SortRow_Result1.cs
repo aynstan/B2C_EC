@@ -10,20 +10,15 @@
 namespace B2C_EC.Model
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class OrderStatu
+    public partial class SortRow_Result1
     {
-        public OrderStatu()
-        {
-            this.Orders = new HashSet<Order>();
-            this.OrderHistories = new HashSet<OrderHistory>();
-        }
-    
-        public int ID { get; set; }
-        public string Name { get; set; }
-    
-        public virtual ICollection<Order> Orders { get; set; }
-        public virtual ICollection<OrderHistory> OrderHistories { get; set; }
+        public Nullable<int> CurSortId { get; set; }
+        public Nullable<int> NewSortId { get; set; }
+        public Nullable<int> CmpSortId { get; set; }
+        public Nullable<int> Direction { get; set; }
+        public Nullable<int> MinSortId { get; set; }
+        public Nullable<int> MaxSortId { get; set; }
+        public Nullable<int> SwitchId { get; set; }
     }
 }
