@@ -10,7 +10,7 @@ namespace B2C_EC.Model.Data
     {
         B2C_ECEntities db = new B2C_ECEntities();
 
-        public int WriteComment(string FullName, string Comment, int ProductId)
+        public int CreateReview(string FullName, string Comment, int ProductId)
         {
             try
             {

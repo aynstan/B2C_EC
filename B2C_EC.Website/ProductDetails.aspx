@@ -236,10 +236,36 @@
                 </table>
             </div>
             <div>
-                <asp:DataList ID="dtlReview" CellSpacing="10" runat="server" BackColor="White" BorderColor="#3366CC" BorderStyle="Groove" BorderWidth="1px" CellPadding="5" GridLines="Both" Width="100%">
+                <div class="boxCommentData">
+                    <asp:Repeater ID="rptReview" runat="server">
+                        <HeaderTemplate>
+                            <ul class="lstDataChat rs" id="lstDataChat">
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <li>
+                                <section class="aChat">
+                                    <figure class="avatar">
+                                        <asp:Image ID="Image1" runat="server" Height="50" Width="50" />
+                                    </figure>
+                                    <div class="aChatContent">
+                                        <div class="chatData">
+                                            <span class="profileName"><%# Eval("FullName") %></span>
+                                            <p class="chatText"><%# Eval("Comment") %></p>
+                                            <div class="infoChat">Post: <%# Eval("DateCreated","{0:dd/MM/yyyy}") %></div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </li>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            </ul>
+                        </FooterTemplate>
+                    </asp:Repeater>
+                </div>
+                <%--<asp:DataList ID="dtlReview" CellSpacing="10" runat="server" BackColor="White" BorderColor="#3366CC" BorderStyle="Groove" BorderWidth="1px" CellPadding="5" GridLines="Both" Width="100%">
                     <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
                     <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />
-                    <ItemStyle BackColor="White" ForeColor="#003399" />
+                    <ItemStyle BackColor="White" ForeColor="#003399" BorderColor="White" BorderStyle="Groove" />
                     <SelectedItemStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
                     <ItemTemplate>
                         <table style="width:100%;">
@@ -258,7 +284,7 @@
                     <FooterTemplate>
                         <asp:Label ID="Label4" Font-Size="X-Large" runat="server" Visible='<%# (dtlReview.Items.Count==0).ToString()=="True"?true:false %>' Text="No review for this product."></asp:Label>
                     </FooterTemplate>
-                </asp:DataList>
+                </asp:DataList>--%>
             </div>
         </div>
     </div>
