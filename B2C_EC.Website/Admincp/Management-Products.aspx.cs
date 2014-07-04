@@ -41,31 +41,31 @@ namespace B2C_EC.Website.Admincp
 
         protected void gvProducts_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            Product product = (Product)e.Row.DataItem;
-            Label lbProductType = (Label)e.Row.FindControl("lbProductType");
-            Label lbManufacturer = (Label)e.Row.FindControl("lbManufacturer");
-            Label lbName = (Label)e.Row.FindControl("lbName");
-            if (lbProductType != null)
-            {
-                if (product.ProductType != null)
-                {
-                    lbProductType.Text = product.ProductType.Name;
-                }
-            }
-            if (lbManufacturer != null)
-            {
-                if (product.Manufacturer != null)
-                {
-                    lbManufacturer.Text = product.Manufacturer.Name;
-                }
-            }
-            if (lbName != null)
-            {
-                lbName.Text = ToSQL.ShortString(product.Name, 32);
-                lbName.ToolTip = product.Name;
-            }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                Product product = (Product)e.Row.DataItem;
+                Label lbProductType = (Label)e.Row.FindControl("lbProductType");
+                Label lbManufacturer = (Label)e.Row.FindControl("lbManufacturer");
+                Label lbName = (Label)e.Row.FindControl("lbName");
+                if (lbProductType != null)
+                {
+                    if (product.ProductType != null)
+                    {
+                        lbProductType.Text = product.ProductType.Name;
+                    }
+                }
+                if (lbManufacturer != null)
+                {
+                    if (product.Manufacturer != null)
+                    {
+                        lbManufacturer.Text = product.Manufacturer.Name;
+                    }
+                }
+                if (lbName != null)
+                {
+                    lbName.Text = ToSQL.ShortString(product.Name, 32);
+                    lbName.ToolTip = product.Name;
+                }
                 int Id = ToSQL.SQLToInt(gvProducts.DataKeys[e.Row.RowIndex].Value.ToString());
                 DataList dtlImagesProduct = e.Row.FindControl("dtlImagesProduct") as DataList;
                 dtlImagesProduct.DataSource = (new ProductImageRepo()).GetAllImagesByProductId(Id);
@@ -162,7 +162,7 @@ namespace B2C_EC.Website.Admincp
 
         private void BindItemsList()
         {
-            List<Product> users = productRepo.GetManagementProducts(ToSQL.EmptyNull(txtName.Text), ToSQL.SQLToInt(ddlProductType.SelectedValue), ToSQL.SQLToInt(ddlManufacturer.SelectedValue));
+            List<Product> products = productRepo.GetManagementProducts(ToSQL.EmptyNull(txtName.Text), ToSQL.SQLToInt(ddlProductType.SelectedValue), ToSQL.SQLToInt(ddlManufacturer.SelectedValue));
             //_PageDataSource.DataSource = users;
             //_PageDataSource.AllowPaging = true;
             //_PageDataSource.PageSize = 20;
@@ -176,7 +176,7 @@ namespace B2C_EC.Website.Admincp
             //////////this.lbtnFirst.Visible = !_PageDataSource.IsFirstPage;
             //////////this.lbtnLast.Visible = !_PageDataSource.IsLastPage;
 
-            this.gvProducts.DataSource = users;
+            this.gvProducts.DataSource = products;
             this.gvProducts.DataBind();
             this.gvProducts.UseAccessibleHeader = true;
             this.gvProducts.HeaderRow.TableSection = TableRowSection.TableHeader;

@@ -85,6 +85,7 @@ namespace B2C_EC.Website.Admincp
             if (p != null)
             {
                 p.Name = ToSQL.EmptyNull(txtName.Text);
+                decimal priceOld = p.Price;
                 p.Price = ToSQL.SQLToDecimal(txtPrice.Text);
                 p.ProductType_ID = ToSQL.SQLToIntNull(ddlProductType.SelectedValue);
                 p.Manufacuturer_ID = ToSQL.SQLToIntNull(ddlManufacturer.SelectedValue);
@@ -105,8 +106,7 @@ namespace B2C_EC.Website.Admincp
                         p.ProductImages.Add(image);
                     }
                 }
-                //HttpFileCollection uploads = Request.Files;
-                //for (int fileCount = 0; fileCount < uploads.Count; fileCount++)
+
                 foreach (HttpPostedFile uploadedFile in FileUploadJquery.PostedFiles)
                 {
                     ProductImage image = new ProductImage();
@@ -120,6 +120,14 @@ namespace B2C_EC.Website.Admincp
                 }
                 if (productRepo.UpdateProduct(p) > 0)
                 {
+                    if (priceOld != p.Price)
+                    {
+                        ProductPriceHistory productPriceHistory = new ProductPriceHistory();
+                        productPriceHistory.Product_ID = p.ID;
+                        productPriceHistory.Price = p.Price;
+                        productPriceHistory.DateCreated = DateTime.Now;
+                        new ProductPriceHistoryRepo().CreateProductPriceHistory(productPriceHistory);
+                    }
                     Response.Redirect("~/Admincp/Management-Products.aspx");
                 }
                 else

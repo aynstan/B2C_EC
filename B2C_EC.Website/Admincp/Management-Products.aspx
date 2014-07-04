@@ -89,7 +89,7 @@
         <div style="padding-bottom:20px">
             <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>--%>
-                    <asp:GridView ID="gvProducts" DataKeyNames="ID" CssClass="table tablesorter" runat="server" AutoGenerateColumns="False" OnRowDataBound="gvProducts_RowDataBound">
+                    <asp:GridView ID="gvProducts" DataKeyNames="ID" CssClass="table tablesorter" runat="server" AutoGenerateColumns="False" OnRowDataBound="gvProducts_RowDataBound" ShowHeaderWhenEmpty="True">
                         <Columns>
                             <asp:TemplateField>
                                     <ItemTemplate>
