@@ -14,6 +14,11 @@ namespace B2C_EC.Model
     
     public partial class CreditCard
     {
+        public CreditCard()
+        {
+            this.Customers = new HashSet<Customer>();
+        }
+    
         public int ID { get; set; }
         public string CardNumber { get; set; }
         public System.DateTime ExpirationDate { get; set; }
@@ -23,5 +28,6 @@ namespace B2C_EC.Model
         public Nullable<System.DateTime> DateCreated { get; set; }
     
         public virtual CreditCardType CreditCardType { get; set; }
+        public virtual ICollection<Customer> Customers { get; set; }
     }
 }

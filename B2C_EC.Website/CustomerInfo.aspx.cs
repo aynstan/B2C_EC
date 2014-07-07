@@ -23,8 +23,16 @@ namespace B2C_EC.Website
             }
             if (!IsPostBack)
             {
-                LoadCustomer(); 
+                LoadDropDownList();
+                LoadCustomer();
             }
+        }
+        private void LoadDropDownList()
+        {
+            List<CreditCardType> CreditCardTypes = new CreditCardTypeRepo().GetAllCreditCardType();
+            ddlTypeCard.DataSource = CreditCardTypes;
+            ddlTypeCard.DataBind();
+            ddlTypeCard.Items.Insert(0, new ListItem("", ""));
         }
         private void LoadCustomer()
         {
@@ -47,6 +55,14 @@ namespace B2C_EC.Website
                     txtState.Text = ToSQL.EmptyNull(customer.Address.State);
                     txtCountry.Text = ToSQL.EmptyNull(customer.Address.Country);
                     txtZipCode.Text = ToSQL.EmptyNull(customer.Address.ZipCode);
+                }
+                if (customer.CreditCard != null)
+                {
+                    txtCardNum.Text = ToSQL.EmptyNull(customer.CreditCard.CardNumber);
+                    txtCVCCode.Text = ToSQL.EmptyNull(customer.CreditCard.SecurityCode);
+                    ddlMonth.SelectedValue = ToSQL.EmptyNull(ToSQL.SQLToInt(customer.CreditCard.ExpirationDate.Month));
+                    drdYear.SelectedValue = ToSQL.EmptyNull(ToSQL.SQLToInt(customer.CreditCard.ExpirationDate.Year));
+                    ddlTypeCard.SelectedValue = ToSQL.EmptyNull(customer.CreditCard.CreditCardType_ID);
                 }
             }
         }
@@ -108,6 +124,24 @@ namespace B2C_EC.Website
 
             //int i = new AddressRepo().UpdateAddress(customer.Address);
             //customer.Address_ID = customer.Address.ID;
+            int i = customerRepo.UpdateCustomer(customer);
+            Session["Customer"] = customerRepo.GetById(customer.ID);
+        }
+        protected void btnCreditCard_Click(object sender, EventArgs e)
+        {
+            Customer customer = (Customer)Session["Customer"];
+            customer = customerRepo.GetById(customer.ID);
+            if (customer.CreditCard == null)
+            {
+                customer.CreditCard = new CreditCard();
+                customer.DateCreated = DateTime.Now;
+            }
+            customer.CreditCard.CardNumber = ToSQL.EmptyNull(txtCardNum.Text);
+            customer.CreditCard.SecurityCode = ToSQL.EmptyNull(txtCVCCode.Text);
+            customer.CreditCard.ExpirationDate = ToSQL.SQLToDateTime(drdYear.SelectedValue + "/" + ddlMonth.SelectedValue + "/" + "1");
+            customer.CreditCard.CreditCardType_ID = ToSQL.SQLToIntNull(ddlTypeCard.SelectedValue);
+            customer.CreditCard.Name = ToSQL.EmptyNull(txtFullName.Text);
+
             int i = customerRepo.UpdateCustomer(customer);
             Session["Customer"] = customerRepo.GetById(customer.ID);
         }

@@ -36,6 +36,10 @@
             <End Role="Order" EntitySet="Order" />
             <End Role="CreditCardTransaction" EntitySet="CreditCardTransaction" />
           </AssociationSet>
+          <AssociationSet Name="FK_Customer_CreditCard" Association="B2C_ECModel.Store.FK_Customer_CreditCard">
+            <End Role="CreditCard" EntitySet="CreditCard" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
           <AssociationSet Name="FK_Customers_Address1" Association="B2C_ECModel.Store.FK_Customers_Address1">
             <End Role="Address" EntitySet="Address" />
             <End Role="Customer" EntitySet="Customer" />
@@ -186,6 +190,7 @@
           <Property Name="Username" Type="varchar" MaxLength="50" />
           <Property Name="Password" Type="varchar" MaxLength="250" />
           <Property Name="Address_ID" Type="int" />
+          <Property Name="CreditCard_ID" Type="int" />
           <Property Name="Key" Type="varchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="Manufacturer">
@@ -384,6 +389,18 @@
             </Principal>
             <Dependent Role="CreditCardTransaction">
               <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_CreditCard">
+          <End Role="CreditCard" Type="B2C_ECModel.Store.CreditCard" Multiplicity="0..1" />
+          <End Role="Customer" Type="B2C_ECModel.Store.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CreditCard">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="CreditCard_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -728,6 +745,10 @@
             <End Role="OrderStatu" EntitySet="OrderStatus" />
             <End Role="OrderHistory" EntitySet="OrderHistories" />
           </AssociationSet>
+          <AssociationSet Name="FK_Customer_CreditCard" Association="B2C_ECModel.FK_Customer_CreditCard">
+            <End Role="CreditCard" EntitySet="CreditCards" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Address">
           <Key>
@@ -774,6 +795,8 @@
           <Property Type="String" Name="Key" MaxLength="150" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Address" Relationship="B2C_ECModel.FK_Customers_Address1" FromRole="Customer" ToRole="Address" />
           <NavigationProperty Name="Orders" Relationship="B2C_ECModel.FK_Orders_Customers" FromRole="Customer" ToRole="Order" />
+          <Property Type="Int32" Name="CreditCard_ID" />
+          <NavigationProperty Name="CreditCard" Relationship="B2C_ECModel.FK_Customer_CreditCard" FromRole="Customer" ToRole="CreditCard" />
         </EntityType>
         <EntityType Name="Manufacturer">
           <Key>
@@ -1192,6 +1215,7 @@
           <Property Type="Int32" Name="CreditCardType_ID" />
           <Property Type="DateTime" Name="DateCreated" Precision="3" />
           <NavigationProperty Name="CreditCardType" Relationship="B2C_ECModel.FK_CreditCard_CreditCardType" FromRole="CreditCard" ToRole="CreditCardType" />
+          <NavigationProperty Name="Customers" Relationship="B2C_ECModel.FK_Customer_CreditCard" FromRole="CreditCard" ToRole="Customer" />
         </EntityType>
         <EntityType Name="CreditCardTransaction">
           <Key>
@@ -1281,6 +1305,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Customer_CreditCard">
+          <End Type="B2C_ECModel.CreditCard" Role="CreditCard" Multiplicity="0..1" />
+          <End Type="B2C_ECModel.Customer" Role="Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CreditCard">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="CreditCard_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1315,6 +1351,7 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="B2C_ECModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CreditCard_ID" ColumnName="CreditCard_ID" />
                 <ScalarProperty Name="Key" ColumnName="Key" />
                 <ScalarProperty Name="Address_ID" ColumnName="Address_ID" />
                 <ScalarProperty Name="Password" ColumnName="Password" />

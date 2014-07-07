@@ -47,6 +47,7 @@
         <AssociationConnector Association="B2C_ECModel.FK_CreditCardTransaction_Order" />
         <AssociationConnector Association="B2C_ECModel.FK_OrderHistory_Order" />
         <AssociationConnector Association="B2C_ECModel.FK_OrderHistory_OrderStatus" />
+        <AssociationConnector Association="B2C_ECModel.FK_Customer_CreditCard" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

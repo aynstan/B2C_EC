@@ -2,13 +2,23 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript" lang="javascript">
+        function DdlCustomValidator_ClientValidate(source, args) {
+            if (document.getElementById("<%= ddlMonth.ClientID %>").value == "0" || document.getElementById("<%= drdYear.ClientID %>").value == "0") {
+                args.IsValid = false;
+            }
+            else {
+                args.IsValid = true;
+            }
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Promotion" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Filter" runat="server">
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="Content" runat="server">
-    <div id="customer">
+    <div id="customer" style="width:700px">
     <p class="checkoutTitle">Customer INFORMATION</p>
     <asp:TabContainer ID="tabContainer" runat="server" ActiveTabIndex="0" Width="96%">        
         <asp:TabPanel runat="server" HeaderText="General Information" ID="TabPanelGeneral">
@@ -180,9 +190,128 @@
                 </table>                
             </ContentTemplate>
         </asp:TabPanel>
+        <asp:TabPanel runat="server" HeaderText="Credit Card Information" ID="TabPanelCreditCard">
+            <ContentTemplate>
+                <table width="100%">
+                    <tr>
+                        <td valign="top" colspan="2">
+                            <b style="font-size: 13px">Credit Card Information</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px;" align="right">Full Name:<span style="color: Red">*</span>
+                        </td>
+                        <td align="left">
+                            <asp:TextBox ID="txtFullName" runat="server" Text="" CssClass="TextBox"></asp:TextBox>
+                            <br />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator14" Display="Dynamic" ControlToValidate="txtFullName"
+                                runat="server" ForeColor="Red" Text="Please enter your full name" ErrorMessage="*" Font-Size="Smaller" ValidationGroup="payment"></asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px;" align="right">Type Of Card:<span style="color: Red">*</span>
+                        </td>
+                        <td style="text-align: left">
+                            <asp:DropDownList ID="ddlTypeCard" runat="server" CssClass="Dropdown" DataTextField="Name" DataValueField="ID">
+                            </asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px;" align="right"></td>
+                        <td align="left">
+                            <asp:RequiredFieldValidator ID="rfvdrdTypeCard" Display="Dynamic" ControlToValidate="ddlTypeCard"
+                                runat="server" ForeColor="Red" Text="Please select your card" ErrorMessage="Please select your card" Font-Size="Smaller" ValidationGroup="payment"></asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px;" align="right">Credit Card Number:<span style="color: Red">*</span>
+                        </td>
+                        <td align="left">
+                            <asp:TextBox ID="txtCardNum" runat="server" Text="" CssClass="TextBox"></asp:TextBox>
+                            <br />
+                            <asp:RequiredFieldValidator ID="rfvtxtCardNum" Display="Dynamic" ControlToValidate="txtCardNum"
+                                runat="server" ForeColor="Red" Text="Please enter your credit card number" ErrorMessage="*" Font-Size="Smaller" ValidationGroup="payment"></asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px;" align="right">CVC Code:<span style="color: Red">*</span>
+                        </td>
+                        <td align="left">
+                            <asp:TextBox ID="txtCVCCode" runat="server" Text="" Width="60px" CssClass="TextBox"></asp:TextBox>
+                            <br />
+                            <asp:RequiredFieldValidator ID="rfvtxtCVCCode" Display="Dynamic" ControlToValidate="txtCVCCode"
+                                runat="server" ForeColor="Red" Text="Please enter your 3-digit CVC code" ErrorMessage="*" ValidationGroup="payment" Font-Size="Smaller"></asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px;" align="right">Expiration Date:<span style="color: Red">*</span>
+                        </td>
+                        <td style="text-align: left">
+                            <asp:DropDownList ID="ddlMonth" runat="server" Width="70px" CssClass="Dropdown">
+                                <asp:ListItem Value="0">-</asp:ListItem>
+                                <asp:ListItem Value="01">Jan</asp:ListItem>
+                                <asp:ListItem Value="02">Feb</asp:ListItem>
+                                <asp:ListItem Value="03">Mar</asp:ListItem>
+                                <asp:ListItem Value="04">Apr</asp:ListItem>
+                                <asp:ListItem Value="05">May</asp:ListItem>
+                                <asp:ListItem Value="06">Jun</asp:ListItem>
+                                <asp:ListItem Value="07">Jul</asp:ListItem>
+                                <asp:ListItem Value="08">Aug</asp:ListItem>
+                                <asp:ListItem Value="09">Sep</asp:ListItem>
+                                <asp:ListItem Value="10">Oct</asp:ListItem>
+                                <asp:ListItem Value="11">Nov</asp:ListItem>
+                                <asp:ListItem Value="12">Dec</asp:ListItem>
+                            </asp:DropDownList>
+                            &nbsp;
+                    <asp:DropDownList ID="drdYear" runat="server" Width="70px" CssClass="Dropdown">
+                        <asp:ListItem Value="0">-</asp:ListItem>
+                        <asp:ListItem Value="2014">2014</asp:ListItem>
+                        <asp:ListItem Value="2015">2015</asp:ListItem>
+                        <asp:ListItem Value="2016">2016</asp:ListItem>
+                        <asp:ListItem Value="2017">2017</asp:ListItem>
+                        <asp:ListItem Value="2018">2018</asp:ListItem>
+                        <asp:ListItem Value="2019">2019</asp:ListItem>
+                        <asp:ListItem Value="2020">2020</asp:ListItem>
+                        <asp:ListItem Value="2021">2021</asp:ListItem>
+                    </asp:DropDownList>
+                            <br />
+                            <asp:CustomValidator ID="DdlCustomValidator" runat="server" ForeColor="Red" ErrorMessage="Please select your expiration date" Display="Dynamic" ClientValidationFunction="DdlCustomValidator_ClientValidate" Font-Size="Smaller" ValidationGroup="payment" />
+                        </td>
+                    </tr>
+                    <tr>
+                    <td></td>
+                    <td><asp:Button ID="btnCreditCard" runat="server" class="Button" Text="Update" OnClick="btnCreditCard_Click" ValidationGroup="payment" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <asp:Label ID="lbMessageCreditCard" runat="server" Font-Bold="True" ForeColor="#0000CC"></asp:Label></td>
+                    </tr>
+                </table>                
+            </ContentTemplate>
+        </asp:TabPanel>
+        <asp:TabPanel runat="server" HeaderText="My List Order" ID="TabPanelListOrder">
+            <ContentTemplate>
+                <table width="100%">
+                    <tr>
+                        <td valign="top" colspan="2">
+                            <b style="font-size: 13px">My List Order</b>
+                        </td>
+                    </tr>
+                    <tr>
+                    <td></td>
+                    <td><asp:Button ID="Button2" runat="server" class="Button" Text="Update" ValidationGroup="Address" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <asp:Label ID="Label2" runat="server" Font-Bold="True" ForeColor="#0000CC"></asp:Label></td>
+                    </tr>
+                </table>                
+            </ContentTemplate>
+        </asp:TabPanel>
     </asp:TabContainer>
-    </div>
-   
+    </div>   
     <asp:Panel ID="pnChangePassword" CssClass="Popup" runat="server" Width="500px" Style="display: none;">
         <asp:Panel ID="pnChangePasswordDrag" CssClass="PopupTitle" runat="server">Change Password Form</asp:Panel>
         <div class="PopupTable">                                
