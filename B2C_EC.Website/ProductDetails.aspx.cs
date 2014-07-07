@@ -17,7 +17,8 @@ namespace B2C_EC.Website
             if (!IsPostBack)
             {
                 LoadProductDetails();
-                LoadCustomer();
+                LoadCustomer(); 
+                LoadReview();
             }
         }
 
@@ -42,7 +43,6 @@ namespace B2C_EC.Website
 
         private void LoadProductDetails()
         {
-            //Response.Write(Request.Url.ToString());
             if (Request.QueryString["ProductId"] != null)
             {
                 int ProductId = ToSQL.SQLToInt(Request.QueryString["ProductId"]);
@@ -56,10 +56,6 @@ namespace B2C_EC.Website
                     ltrDetails.Text = p.Description;
                     lblName.Text = p.Name;
                     lblPrice.Text = p.Price.ToString("$#,###.##");
-                    //dtlReview.DataSource = p.Reviews.OrderByDescending(r => r.DateCreated);
-                    //dtlReview.DataBind();
-                    rptReview.DataSource = p.Reviews.OrderByDescending(r => r.DateCreated);
-                    rptReview.DataBind();
                 }
                 else
                 {
@@ -75,18 +71,10 @@ namespace B2C_EC.Website
 
         private void LoadReview()
         {
-            if (Request.QueryString["ProductId"] != null)
-            {
-                int ProductId = ToSQL.SQLToInt(Request.QueryString["ProductId"]);
-                Product p = (new ProductRepo()).GetById(ProductId);
-                if (p != null)
-                {
-                    //dtlReview.DataSource = p.Reviews.OrderByDescending(r => r.DateCreated);
-                    //dtlReview.DataBind();
-                    rptReview.DataSource = p.Reviews.OrderByDescending(r => r.DateCreated);
-                    rptReview.DataBind();
-                }
-            }
+            int ProductId = ToSQL.SQLToInt(Request.QueryString["ProductId"]);
+            List<Review> Reviews = new ReviewRepo().GetByProductId(ProductId);
+            rptReview.DataSource = Reviews;
+            rptReview.DataBind();
         }
 
         protected void btnAddToCart_Click(object sender, EventArgs e)
@@ -152,11 +140,16 @@ namespace B2C_EC.Website
             }
             try
             {
-                (new ReviewRepo()).CreateReview(FullName, txtComment.Text, ToSQL.SQLToInt(Request.QueryString["ProductId"]));
-                //LoadReview();
+                Review r = new Review();
+                r.FullName = FullName;
+                r.Comment = txtComment.Text;
+                r.DateCreated = DateTime.Now;
+                r.Product_ID = ToSQL.SQLToInt(Request.QueryString["ProductId"]);
+                int i = new ReviewRepo().CreateReview(r);
                 Response.Redirect(Request.Url.PathAndQuery + "#divreview");
             }
-            catch{
+            catch
+            {
             }
         }
     }

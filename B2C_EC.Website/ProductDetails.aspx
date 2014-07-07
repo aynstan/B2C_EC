@@ -252,7 +252,7 @@
                                                 <div class="chatData">
                                                     <span class="profileName"><%# Eval("FullName") %></span>
                                                     <p class="chatText"><%# Eval("Comment") %></p>
-                                                    <div class="infoChat">Post: <%# Eval("DateCreated","{0:dd/MM/yyyy}") %></div>
+                                                    <div class="infoChat">Post: <%# Eval("DateCreated","{0:MM/dd/yyyy HH:mm:ss}") %></div>
                                                 </div>
                                             </div>
                                         </section>
