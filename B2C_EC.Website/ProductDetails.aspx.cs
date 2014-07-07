@@ -154,6 +154,8 @@ namespace B2C_EC.Website
             {
                 (new ReviewRepo()).CreateReview(FullName, txtComment.Text, ToSQL.SQLToInt(Request.QueryString["ProductId"]));
                 LoadReview();
+                txtName.Text = "";
+                txtComment.Text = "";
             }
             catch{
             }
