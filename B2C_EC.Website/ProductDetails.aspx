@@ -207,30 +207,29 @@
             <div>
                 <table style="width: 100%; padding-bottom:10px;">
                     <tr>
-                        <td style="width: 20%; text-align: right; padding-right: 10px;">
+                        <%--<td style="width: 20%; text-align: right; padding-right: 10px;">
                             <asp:Label ID="Label1" Font-Bold="True" runat="server" Text="Name/Email/Phone:"></asp:Label>
-                        </td>
+                        </td>--%>
                         <td style="text-align: left; padding:4px;">
-                            <asp:TextBox ID="txtName" CssClass="TextBox" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtName" CssClass="TextBox" runat="server" placeholder="Name/Email/Phone"></asp:TextBox>
                             <asp:Label ID="lblCustomer" runat="server" Text="" Visible="false"></asp:Label>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtName" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="Comment"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtName" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="Comment" Display="Dynamic"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr style="margin:4px;">
-                        <td style="width: 20%; text-align: right; padding-right: 10px;">
+                        <%--<td style="width: 20%; text-align: right; padding-right: 10px;">
                             <asp:Label ID="Label3" Font-Bold="True" runat="server" Text="Comment:"></asp:Label>
-                        </td>
+                        </td>--%>
                         <td style="text-align: left; padding:4px;">
-                            <asp:TextBox ID="txtComment" CssClass="AreaText" runat="server" Width="100%" TextMode="MultiLine" Height="50px"></asp:TextBox>
-                            <br />
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtComment" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="Comment"></asp:RequiredFieldValidator>
+                            <asp:TextBox ID="txtComment" CssClass="TextBox" runat="server" Width="900px" TextMode="MultiLine" Height="50px" placeholder="Write comment..."></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtComment" ErrorMessage="(*)" ForeColor="Red" ValidationGroup="Comment" Display="Dynamic"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr style="margin:4px;">
-                        <td style="width: 20%; text-align: right; padding-right: 10px;">
-                            &nbsp;</td>
-                        <td style="text-align: left; padding:4px;">
-                            <asp:Button ID="btnSubmit" runat="server" CssClass="Button" OnClick="btnSubmit_Click" Text="Submit" />
+                        <%--<td style="width: 20%; text-align: right; padding-right: 10px;">
+                            &nbsp;</td>--%>
+                        <td style="text-align: right; padding-right:40px;">
+                            <asp:Button ID="btnSubmit" runat="server" CssClass="Button" ValidationGroup="Comment" OnClick="btnSubmit_Click" Text="Submit" />
                         </td>
                     </tr>
                 </table>

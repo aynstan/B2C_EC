@@ -300,12 +300,7 @@
                     </tr>
                     <tr>
                     <td></td>
-                    <td><asp:Button ID="Button2" runat="server" class="Button" Text="Update" ValidationGroup="Address" /></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <asp:Label ID="Label2" runat="server" Font-Bold="True" ForeColor="#0000CC"></asp:Label></td>
+                    <td></td>
                     </tr>
                 </table>                
             </ContentTemplate>
