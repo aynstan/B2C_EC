@@ -202,7 +202,7 @@
         </div>
     </div>
     <div class="TableDescription">
-        <div class="titleh2">Review Product</div>
+        <div id="divreview" class="titleh2">Review Product</div>
         <div class="Description">
             <div>
                 <table style="width: 100%; padding-bottom:10px;">
@@ -235,8 +235,8 @@
                 </table>
             </div>
             <div>
-                <asp:UpdatePanel ID="UpdatePanelReview" runat="server">
-                    <ContentTemplate>
+                <%--<asp:UpdatePanel ID="UpdatePanelReview" runat="server">
+                    <ContentTemplate>--%>
                         <div class="boxCommentData">
                             <asp:Repeater ID="rptReview" runat="server">
                                 <HeaderTemplate>
@@ -263,11 +263,11 @@
                                 </FooterTemplate>
                             </asp:Repeater>
                         </div>
-                    </ContentTemplate>
+                    <%--</ContentTemplate>
                     <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="btnSubmit" EventName="Click" />
                     </Triggers>
-                </asp:UpdatePanel>
+                </asp:UpdatePanel>--%>
                 
                 <%--<asp:DataList ID="dtlReview" CellSpacing="10" runat="server" BackColor="White" BorderColor="#3366CC" BorderStyle="Groove" BorderWidth="1px" CellPadding="5" GridLines="Both" Width="100%">
                     <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />

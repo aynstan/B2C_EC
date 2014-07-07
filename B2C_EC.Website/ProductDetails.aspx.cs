@@ -153,9 +153,8 @@ namespace B2C_EC.Website
             try
             {
                 (new ReviewRepo()).CreateReview(FullName, txtComment.Text, ToSQL.SQLToInt(Request.QueryString["ProductId"]));
-                LoadReview();
-                txtName.Text = "";
-                txtComment.Text = "";
+                //LoadReview();
+                Response.Redirect(Request.Url.PathAndQuery + "#divreview");
             }
             catch{
             }
