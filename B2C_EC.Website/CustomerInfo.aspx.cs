@@ -60,9 +60,10 @@ namespace B2C_EC.Website
                 {
                     txtCardNum.Text = ToSQL.EmptyNull(customer.CreditCard.CardNumber);
                     txtCVCCode.Text = ToSQL.EmptyNull(customer.CreditCard.SecurityCode);
-                    ddlMonth.SelectedValue = ToSQL.EmptyNull(ToSQL.SQLToInt(customer.CreditCard.ExpirationDate.Month));
+                    ddlMonth.SelectedIndex = ToSQL.SQLToInt(customer.CreditCard.ExpirationDate.Month);
                     drdYear.SelectedValue = ToSQL.EmptyNull(ToSQL.SQLToInt(customer.CreditCard.ExpirationDate.Year));
                     ddlTypeCard.SelectedValue = ToSQL.EmptyNull(customer.CreditCard.CreditCardType_ID);
+                    txtFullName.Text = ToSQL.EmptyNull(customer.CreditCard.Name);
                 }
             }
         }
@@ -134,7 +135,7 @@ namespace B2C_EC.Website
             if (customer.CreditCard == null)
             {
                 customer.CreditCard = new CreditCard();
-                customer.DateCreated = DateTime.Now;
+                customer.CreditCard.DateCreated = DateTime.Now;
             }
             customer.CreditCard.CardNumber = ToSQL.EmptyNull(txtCardNum.Text);
             customer.CreditCard.SecurityCode = ToSQL.EmptyNull(txtCVCCode.Text);
