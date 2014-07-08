@@ -12,6 +12,158 @@
             }
         }
     </script>
+
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+    <script type="text/javascript" src="Scripts/ddaccordion.js">
+        /***********************************************
+        * Accordion Content script- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
+        * Visit http://www.dynamicDrive.com for hundreds of DHTML scripts
+        * This notice must stay intact for legal use
+        ***********************************************/
+    </script>
+
+    <script type="text/javascript">
+        ddaccordion.init({
+            headerclass: "submenuheader", //Shared CSS class name of headers group
+            contentclass: "submenu", //Shared CSS class name of contents group
+            revealtype: "click", //Reveal content when user clicks or onmouseover the header? Valid value: "click", "clickgo", or "mouseover"
+            mouseoverdelay: 200, //if revealtype="mouseover", set delay in milliseconds before header expands onMouseover
+            collapseprev: true, //Collapse previous content (so only one open at any time)? true/false 
+            defaultexpanded: [], //index of content(s) open by default [index1, index2, etc] [] denotes no content
+            onemustopen: false, //Specify whether at least one header should be open always (so never all headers closed)
+            animatedefault: false, //Should contents open by default be animated into view?
+            persiststate: true, //persist state of opened contents within browser session?
+            toggleclass: ["", ""], //Two CSS classes to be applied to the header when it's collapsed and expanded, respectively ["class1", "class2"]
+            togglehtml: ["suffix", "<img src='Resources/ImagesDesign/plus.gif' class='statusicon' />", "<img src='Resources/ImagesDesign/minus.gif' class='statusicon' />"], //Additional HTML added to the header when it's collapsed and expanded, respectively  ["position", "html1", "html2"] (see docs)
+            animatespeed: "fast", //speed of animation: integer in milliseconds (ie: 200), or keywords "fast", "normal", or "slow"
+            oninit: function (headers, expandedindices) { //custom code to run when headers have initalized
+                //do nothing
+            },
+            onopenclose: function (header, index, state, isuseractivated) { //custom code to run whenever a header is opened or closed
+                //do nothing
+            }
+        })
+
+
+    </script>
+
+
+    <style type="text/css">
+
+    .glossymenu{
+    margin: 5px 0;
+    padding: 0;
+    width: 100%; /*width of menu*/
+    border: 0px solid #9A9A9A;
+    border-bottom-width: 0;
+    }
+
+    .glossymenu a.menuitem{
+    /*background: black url(javascript/glossyback.gif) repeat-x bottom left;*/
+    font: bold 14px "Lucida Grande", "Trebuchet MS", Verdana, Helvetica, sans-serif;
+    color: #44A1D5;
+    display: block;
+    position: relative; /*To help in the anchoring of the ".statusicon" icon image*/
+    width: auto;
+    padding: 5px;
+    margin-top:1px;
+    text-decoration: none;
+    line-height:20px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    }
+
+
+    .glossymenu a.menuitem:visited, .glossymenu .menuitem:active{
+    color: #44A1D5;
+    }
+
+    .glossymenu a.menuitem .statusicon{ /*CSS for icon image that gets dynamically added to headers*/
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border: none;
+    }
+
+    .glossymenu a.menuitem:hover{
+    /*background-image: url(javascript/glossyback2.gif);*/
+    }
+
+    .glossymenu div.submenu{ /*DIV that contains each sub menu*/
+    /*background: white;*/
+    }
+
+    .glossymenu div.submenu ul{ /*UL of each sub menu*/
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    }
+
+    .glossymenu div.submenu ul li{
+    border-bottom: 1px solid blue;
+    }
+
+    .glossymenu div.submenu ul li a{
+    display: block;
+    font: normal 13px "Lucida Grande", "Trebuchet MS", Verdana, Helvetica, sans-serif;
+    color: #6A757B;
+    text-decoration: none;
+    padding: 2px 0;
+    padding-left: 10px;
+    }
+
+    .glossymenu div.submenu ul li a:hover{
+    /*background: #DFDCCB;
+    colorz: white;*/
+    }
+    .media {
+        color: #6A757B;
+        font-family: Arial,Helvetica,sans-serif;
+        font-size: 12px;
+        font-weight: normal;
+        line-height: 20px;
+        text-align: justify;
+    }
+    .accordion 
+    {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        border-top: none;
+        width: 100%;
+        float: left;
+    }
+    .accordion li {
+        font: bold 15px Arial, Helvetica, sans-serif;
+        color: #fff;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        float: left;
+        display: block;
+        width: 99%;
+        margin-bottom: 30px;
+        background-color: #e2f1fa;
+        -webkit-border-radius: 7px;
+        -moz-border-radius: 7px;
+        border-radius: 7px;
+        border: 1px solid #cce6f6;
+        position: relative;
+    }
+    .faq-bottom {
+        bottom: -28px;
+        position: absolute;
+        left: 40px;
+        float: left;
+        right: 1804px;
+        display: inline;
+        }
+    </style>
+
+
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Promotion" runat="server">
 </asp:Content>
@@ -21,7 +173,8 @@
     <div id="customer" style="width:700px">
     <p class="checkoutTitle">Customer INFORMATION</p>
     <asp:TabContainer ID="tabContainer" runat="server" ActiveTabIndex="0" Width="96%">        
-        <asp:TabPanel runat="server" HeaderText="General Information" ID="TabPanelGeneral">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TabPanel runat="server" HeaderText="General Information" ID="TabPanelGeneral">
             <ContentTemplate>
                 <table width="100%">
                     <tr>
@@ -94,7 +247,7 @@
                 </table>
             </ContentTemplate>
         </asp:TabPanel>
-        <asp:TabPanel runat="server" HeaderText="Login Information" ID="TabPaneLogin">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TabPanel runat="server" HeaderText="Login Information" ID="TabPaneLogin">
             <ContentTemplate>                                
                 <table style="width:100%">
                     <tr>
@@ -273,7 +426,7 @@
                         <asp:ListItem Value="2019">2019</asp:ListItem>
                         <asp:ListItem Value="2020">2020</asp:ListItem>
                         <asp:ListItem Value="2021">2021</asp:ListItem>
-                    </asp:DropDownList>
+                            </asp:DropDownList>
                             <br />
                             <asp:CustomValidator ID="DdlCustomValidator" runat="server" ForeColor="Red" ErrorMessage="Please select your expiration date" Display="Dynamic" ClientValidationFunction="DdlCustomValidator_ClientValidate" Font-Size="Smaller" ValidationGroup="payment" />
                         </td>
@@ -294,18 +447,57 @@
             <ContentTemplate>
                 <table width="100%">
                     <tr>
-                        <td valign="top" colspan="2">
+                        <td>
                             <b style="font-size: 13px">My List Order</b>
                         </td>
                     </tr>
                     <tr>
-                    <td></td>
-                    <td></td>
+                        <td>
+                            <div class="glossymenu">
+                                <ul class="accordion">
+                                <asp:Repeater ID="rptOrder" runat="server" OnItemDataBound="rptOrder_ItemDataBound">
+                                    <ItemTemplate>
+                                    <li>
+                                    <a class="menuitem submenuheader" href="#name" >
+                                        <table style="width:100%">
+                                            <tr>
+                                                <td style="width:30%">Order#: <%# Eval("ID") %></td>
+                                                <td style="width:40%"><%# Eval("DateCreated") %></td>
+                                                <td>Subtotal: <asp:Label ID="lbTotalPrice" runat="server"></asp:Label></td>
+                                            </tr>
+                                        </table>
+                                    </a>
+                                    <div class="submenu">
+	                                    <div class="media" style="padding:3px 9px 3px 9px;">
+                                          <div class="media-body">                    
+                                              <div style="padding:0px 10px;">
+                                                <table style="width:100%">
+                                                  <asp:Repeater ID="rptOrderDetail" runat="server" OnItemDataBound="rptOrderDetail_ItemDataBound">
+                                                    <ItemTemplate>
+                                                        <tr>
+                                                            <td style="vertical-align:middle;width:60px"><asp:Image ID="imgProduct" runat="server" Height="52px" ImageUrl="~/Resources/ImagesProduct/no-image.png" alt="" title="" /></td>
+                                                            <td style="vertical-align:middle;width:60%"><asp:Label ID="lbProductName" runat="server"></asp:Label></td>
+                                                            <td style="vertical-align:middle"><%# Eval("Quantity") %> x <%# Eval("Price") %></td>
+                                                        </tr>
+                                                      </ItemTemplate>
+                                                    </asp:Repeater>
+                                                </table>
+                                              </div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                    <span class="faq-bottom"><img src="Resources/ImagesDesign/faq-bottom.png" alt=""></span>
+                                    </li>
+                                    </ItemTemplate>
+                                    </asp:Repeater>
+                                </ul>
+                            </div>
+                        </td>
                     </tr>
                 </table>                
             </ContentTemplate>
         </asp:TabPanel>
-    </asp:TabContainer>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </asp:TabContainer>
     </div>   
     <asp:Panel ID="pnChangePassword" CssClass="Popup" runat="server" Width="500px" Style="display: none;">
         <asp:Panel ID="pnChangePasswordDrag" CssClass="PopupTitle" runat="server">Change Password Form</asp:Panel>

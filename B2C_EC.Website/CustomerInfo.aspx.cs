@@ -39,6 +39,7 @@ namespace B2C_EC.Website
             if (Session["Customer"] != null)
             {
                 Customer customer = (Customer)Session["Customer"];
+                customer = customerRepo.GetById(customer.ID);
                 lbUsername.Text = ToSQL.EmptyNull(customer.Username);
                 txtFirstName.Text = ToSQL.EmptyNull(customer.FirstName);
                 txtLastName.Text = ToSQL.EmptyNull(customer.LastName);
@@ -64,6 +65,11 @@ namespace B2C_EC.Website
                     drdYear.SelectedValue = ToSQL.EmptyNull(ToSQL.SQLToInt(customer.CreditCard.ExpirationDate.Year));
                     ddlTypeCard.SelectedValue = ToSQL.EmptyNull(customer.CreditCard.CreditCardType_ID);
                     txtFullName.Text = ToSQL.EmptyNull(customer.CreditCard.Name);
+                }
+                if (customer.Orders != null)
+                {
+                    rptOrder.DataSource = customer.Orders.OrderByDescending(o => o.ID);
+                    rptOrder.DataBind();
                 }
             }
         }
@@ -123,8 +129,6 @@ namespace B2C_EC.Website
             customer.Address.Country = ToSQL.EmptyNull(txtCountry.Text);
             customer.Address.ZipCode = ToSQL.EmptyNull(txtZipCode.Text);
 
-            //int i = new AddressRepo().UpdateAddress(customer.Address);
-            //customer.Address_ID = customer.Address.ID;
             int i = customerRepo.UpdateCustomer(customer);
             Session["Customer"] = customerRepo.GetById(customer.ID);
         }
@@ -145,6 +149,47 @@ namespace B2C_EC.Website
 
             int i = customerRepo.UpdateCustomer(customer);
             Session["Customer"] = customerRepo.GetById(customer.ID);
+        }
+
+        protected void rptOrder_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            Order order = (Order)e.Item.DataItem;
+            if (order != null)
+            {
+                Label lbTotalPrice = (Label)e.Item.FindControl("lbTotalPrice");
+                if (lbTotalPrice != null)
+                {
+                    lbTotalPrice.Text = ToSQL.EmptyNull(order.OrderDetails.Sum(o => o.Price * o.Quantity).ToString("$#,###.00"));
+                }
+                Repeater rptOrderDetail = (Repeater)e.Item.FindControl("rptOrderDetail");
+                if (rptOrderDetail != null)
+                {
+                    rptOrderDetail.DataSource = order.OrderDetails;
+                    rptOrderDetail.DataBind();
+                }
+            }
+        }
+
+        protected void rptOrderDetail_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            OrderDetail orderDetail = (OrderDetail)e.Item.DataItem;
+            if (orderDetail != null)
+            {
+                Label lbProductName = (Label)e.Item.FindControl("lbProductName");
+                if (lbProductName != null && orderDetail.Product != null)
+                {
+                    lbProductName.Text = ToSQL.EmptyNull(orderDetail.Product.Name);
+                }
+                Image imgProduct = (Image)e.Item.FindControl("imgProduct");
+                if (imgProduct != null)
+                {
+                    string image = (new ProductImageRepo()).GetImageDefaultAllByProductId(ToSQL.SQLToInt(orderDetail.Product_ID));
+                    if (CheckFileShared.CheckImageExist(image))
+                        imgProduct.ImageUrl = "~/Resources/ImagesProduct/" + image;
+                    else
+                        imgProduct.ImageUrl = "~/Resources/ImagesProduct/no-image.png";
+                }
+            }
         }
     }
 }

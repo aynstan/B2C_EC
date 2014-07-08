@@ -58,7 +58,7 @@ namespace B2C_EC.Website
             cart = new Cart(carts);
             lbTotalProduct.Text = ToSQL.EmptyNull(cart.TotalProduct);
             lbTotalQuantity.Text = ToSQL.EmptyNull(cart.TotalQuantity);
-            lbTotalPrice.Text = ToSQL.EmptyNull(cart.TotalPrice.ToString("$#,###.##"));
+            lbTotalPrice.Text = ToSQL.EmptyNull(cart.TotalPrice.ToString("$#,###.00"));
         }
 
         protected void grvViewCart_RowEditing(object sender, GridViewEditEventArgs e)

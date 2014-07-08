@@ -481,6 +481,15 @@ namespace B2C_EC.Website {
         protected global::AjaxControlToolkit.TabPanel TabPanelListOrder;
         
         /// <summary>
+        /// rptOrder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptOrder;
+        
+        /// <summary>
         /// pnChangePassword control.
         /// </summary>
         /// <remarks>
