@@ -246,7 +246,7 @@
                                     <li>
                                         <section class="aChat">
                                             <figure class="avatar">
-                                                <asp:Image ID="Image1" runat="server" Height="50" Width="50" />
+                                                <asp:Image ID="Image1" runat="server" ImageUrl="~/Resources/ImagesDesign/human-icon.jpg" Height="50" Width="50" />
                                             </figure>
                                             <div class="aChatContent">
                                                 <div class="chatData">

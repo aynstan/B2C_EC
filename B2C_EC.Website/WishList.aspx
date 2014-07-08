@@ -12,6 +12,6 @@
                     <div class="add"><span><%# Eval("Price","$ {0:#,###.##}") %></span><%--<a href="#">Add To Cart</a>--%><asp:LinkButton ID="lnkRemove" runat="server" CommandName="Remove" Text="Remove"></asp:LinkButton> </div>
                 </div>
             </ItemTemplate>
-        </asp:Repeater>        
+        </asp:Repeater>
     </div>
 </asp:Content>

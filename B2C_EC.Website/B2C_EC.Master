@@ -78,11 +78,6 @@
                                                     <asp:Button ID="btnCompare" CssClass="Button" runat="server" Text="Compare" PostBackUrl="~/Compare.aspx" />
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td style="text-align: center;">
-                                                    <asp:Button ID="btnCancel" CssClass="Button" OnClick="btnCancel_Click" runat="server" Text="Cancel" />
-                                                </td>
-                                            </tr>
                                         </table>
                                     </FooterTemplate>
                                 </asp:Repeater>
@@ -113,11 +108,6 @@
                                             <tr>
                                                 <td style="text-align: right">
                                                     <asp:Button ID="btnCompare" CssClass="Button" runat="server" Text="View" PostBackUrl="~/WishList.aspx" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="text-align: center;">
-                                                    <asp:Button ID="btnCancelWishList" CssClass="Button" OnClick="btnCancelWishList_Click" runat="server" Text="Cancel" />
                                                 </td>
                                             </tr>
                                         </table>
