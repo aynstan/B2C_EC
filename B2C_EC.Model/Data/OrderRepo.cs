@@ -60,6 +60,21 @@ namespace B2C_EC.Model.Data
                 throw new Exception(e.Message);
             }
         }
+        public int UpdateStatus(int orderID, int statusID)
+        {
+            try
+            {
+                using (var context = new B2C_ECEntities())
+                {
+                    context.Orders.Find(orderID).OrderStatus_ID = statusID;
+                    return context.SaveChanges();
+                } 
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
         public List<Order> GetManagementOrders(int orderID, DateTime? fromdate,DateTime? todate, int orderStatus, int customerID)
         {
             return db.Orders.Where(u => (orderID.Equals(0) || orderID.Equals(null) || u.ID.Equals(orderID))

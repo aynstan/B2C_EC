@@ -60,7 +60,7 @@ namespace B2C_EC.Model.Data
         {
             return db.OrderHistories.Where(u => (orderID.Equals(0) || orderID.Equals(null) || u.Order_ID.Equals(orderID))
                                         && (orderStatus.Equals(0) || orderStatus.Equals(null) || u.OrderStatus_ID.Equals(orderStatus))
-                                        ).ToList();
+                                        ).OrderByDescending(o => o.ID).ToList();
         }
     }
 }

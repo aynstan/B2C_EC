@@ -98,6 +98,12 @@ namespace B2C_EC.Website
             }
             order.OrderDetails = orderDetails;
             int i = new OrderRepo().CreateOrder(order);
+            OrderHistory orderHis = new OrderHistory();
+            orderHis.Order_ID = order.ID;
+            orderHis.OrderStatus_ID = Const.Pendding;
+            orderHis.DateCreated = DateTime.Now;
+            int x = new OrderHistoryRepo().CreateOrderHistory(orderHis);
+
             Session["Order"] = order;
             Session["Subtotal"] = lbTotalPrice.Text;
             Session["Carts"] = null;
