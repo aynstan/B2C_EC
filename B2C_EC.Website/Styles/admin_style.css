@@ -2,6 +2,7 @@
 	margin: 0;
 	padding: 0;
 }
+
 body{
 	background: #f3f3f3 url(../Resources/Admin/bg_top.jpg) repeat-x;
 	color: #333333;
@@ -9,7 +10,6 @@ body{
 	font-size: 11px;
 	margin: 0;
 }
-
 .hidden {
     display:none;
 }

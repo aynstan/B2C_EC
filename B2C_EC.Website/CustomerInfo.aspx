@@ -173,8 +173,7 @@
     <div id="customer" style="width:700px">
     <p class="checkoutTitle">Customer INFORMATION</p>
     <asp:TabContainer ID="tabContainer" runat="server" ActiveTabIndex="0" Width="96%">        
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TabPanel runat="server" HeaderText="General Information" ID="TabPanelGeneral">
+        <asp:TabPanel runat="server" HeaderText="General Information" ID="TabPanelGeneral">
             <ContentTemplate>
                 <table width="100%">
                     <tr>
@@ -247,7 +246,7 @@
                 </table>
             </ContentTemplate>
         </asp:TabPanel>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TabPanel runat="server" HeaderText="Login Information" ID="TabPaneLogin">
+        <asp:TabPanel runat="server" HeaderText="Login Information" ID="TabPaneLogin">
             <ContentTemplate>                                
                 <table style="width:100%">
                     <tr>
@@ -497,7 +496,7 @@
                 </table>                
             </ContentTemplate>
         </asp:TabPanel>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </asp:TabContainer>
+    </asp:TabContainer>
     </div>   
     <asp:Panel ID="pnChangePassword" CssClass="Popup" runat="server" Width="500px" Style="display: none;">
         <asp:Panel ID="pnChangePasswordDrag" CssClass="PopupTitle" runat="server">Change Password Form</asp:Panel>
