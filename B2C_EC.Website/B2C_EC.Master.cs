@@ -33,10 +33,12 @@ namespace B2C_EC.Website
                     if (list.Products.Count > 0)
                     {
                         rptCompareList.DataSource = list.Products;
+                        rptCompareList.Visible = true;
                     }
                     else
                     {
                         rptCompareList.DataSource = null;
+                        rptCompareList.Visible = false;
                     }
                     rptCompareList.DataBind();
                 }
@@ -53,10 +55,12 @@ namespace B2C_EC.Website
                     if (list.Products.Count > 0)
                     {
                         rptWishList.DataSource = list.Products;
+                        rptWishList.Visible = true;
                     }
                     else
                     {
                         rptWishList.DataSource = null;
+                        rptWishList.Visible = false;
                     }
                     rptWishList.DataBind();
                 }

@@ -49,22 +49,23 @@
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
                             <div class="compare">
-                                <asp:Repeater ID="rptCompareList" runat="server" OnItemDataBound="rptCompareList_ItemDataBound" OnItemCommand="rptCompareList_ItemCommand">
+                                <asp:Repeater ID="rptCompareList" runat="server" OnItemDataBound="rptCompareList_ItemDataBound" OnItemCommand="rptCompareList_ItemCommand" Visible="False">
                                     <HeaderTemplate>
-                                        <div class="titleh2-10">
+                                        <%--<div class="titleh2-10">
                                             <h3>Compare List</h3>
-                                        </div>
+                                        </div>--%>
+                                        
                                     </HeaderTemplate>
                                     <ItemTemplate>
-                                        <table style="float:left;">
+                                        <table style="float: left;">
                                             <tr>
-                                                <td style="text-align:right">
+                                                <td style="text-align: right">
                                                     <asp:ImageButton ID="imgRemove" Height="10px" ImageUrl="~/Resources/ImagesDesign/remove-md.png" runat="server" CommandName="RemoveCompare" CommandArgument='<%# Eval("ID") %>' />
-<%--                                                    <asp:Button ID="btnRemove" CssClass="ButtonOrange" CommandName="RemoveCompare" CommandArgument='<%# Eval("ID") %>' runat="server" Text="Remove" />--%>
+                                                    <%--<asp:Button ID="btnRemove" CssClass="ButtonOrange" CommandName="RemoveCompare" CommandArgument='<%# Eval("ID") %>' runat="server" Text="Remove" />--%>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="text-align:center;">
+                                                <td style="text-align: center;">
                                                     <asp:Image ID="imgProduct" ImageUrl="~/Resources/ImagesProduct/1.jpg" Height="50" runat="server" />
                                                     <asp:HiddenField ID="hdfProductId" Value='<%# Eval("ID") %>' runat="server" />
                                                 </td>
@@ -72,21 +73,22 @@
                                         </table>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <table style="float: left; height:100%;">
+                                        <table style="float: left; height:80px;">
                                             <tr>
-                                                <td style="text-align: right">
-                                                    <asp:Button ID="btnCompare" CssClass="Button" runat="server" Text="Compare" PostBackUrl="~/Compare.aspx" />
+                                                <td rowspan="2" style="text-align: center; vertical-align:middle;">
+                                                    <asp:LinkButton ID="lnkCompare" runat="server" PostBackUrl="~/Compare.aspx" >Compare</asp:LinkButton>
+                                                    <%--<asp:Button ID="btnCompare" CssClass="Button" runat="server" Text="Compare" PostBackUrl="~/Compare.aspx" />--%>
                                                 </td>
                                             </tr>
                                         </table>
                                     </FooterTemplate>
                                 </asp:Repeater>
                             </div>
-                            <div class="wishlist">                                
-                                <asp:Repeater ID="rptWishList" runat="server" OnItemDataBound="rptWishList_ItemDataBound" OnItemCommand="rptWishList_ItemCommand">
-                                    <HeaderTemplate>
+                            <div class="wishlist">
+                                <asp:Repeater ID="rptWishList" runat="server" OnItemDataBound="rptWishList_ItemDataBound" OnItemCommand="rptWishList_ItemCommand" Visible="False">
+                                    <%--<HeaderTemplate>
                                         <div class="titleh2"><h2 class="h2">Wish List</h2></div>
-                                    </HeaderTemplate>
+                                    </HeaderTemplate>--%>
                                     <ItemTemplate>
                                         <table style="float:left;">
                                             <tr>
@@ -104,10 +106,11 @@
                                         </table>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <table style="float: left;">
+                                        <table style="float: left; height:80px;">
                                             <tr>
-                                                <td style="text-align: right">
-                                                    <asp:Button ID="btnCompare" CssClass="Button" runat="server" Text="View" PostBackUrl="~/WishList.aspx" />
+                                                <td style="text-align: center; vertical-align:middle;">
+                                                    <asp:LinkButton ID="lbtnWishList" runat="server" PostBackUrl="~/WishList.aspx" >View</asp:LinkButton>
+                                                    <%--<asp:Button ID="btnCompare" CssClass="Button" runat="server" Text="View" PostBackUrl="~/WishList.aspx" />--%>
                                                 </td>
                                             </tr>
                                         </table>

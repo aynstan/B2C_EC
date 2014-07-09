@@ -13,7 +13,22 @@ namespace B2C_EC.Website
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            VisibleCompareAndWish();
+        }
 
+        private void VisibleCompareAndWish()
+        {
+            ContentPlaceHolder ct = (ContentPlaceHolder)this.Master.Master.FindControl("ContentMain");
+            UpdatePanel UpdatePanel1 = (UpdatePanel)ct.FindControl("UpdatePanel1");
+            if (UpdatePanel1 != null)
+            {
+                UpdatePanel1.Visible = false;
+            }
+            //Repeater rpt1 = (Repeater)ct.FindControl("rptWishList");
+            //if (rpt1 != null)
+            //{
+            //    rpt1.Visible = false;
+            //}
         }
 
         protected void btnContact_Click(object sender, EventArgs e)

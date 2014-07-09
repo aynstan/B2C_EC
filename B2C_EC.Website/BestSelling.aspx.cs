@@ -107,6 +107,7 @@ namespace B2C_EC.Website
             {
                 rpt.DataSource = list;
                 rpt.DataBind();
+                rpt.Visible = true;
             }
         }
 
@@ -118,6 +119,7 @@ namespace B2C_EC.Website
             {
                 rpt.DataSource = list;
                 rpt.DataBind();
+                rpt.Visible = true;
             }
         }
     }
