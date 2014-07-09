@@ -32,7 +32,7 @@ namespace B2C_EC.Website
             HiddenField hdf = (HiddenField)e.Item.FindControl("hdfProductTypeId");
             if (rptListProduct != null && hdf != null)
             {
-                rptListProduct.DataSource = (new ProductRepo()).GetListProductByProductTypeID(ToSQL.SQLToInt(hdf.Value)).Take(3);
+                rptListProduct.DataSource = (new ProductRepo()).GetListProductByProductTypeID(ToSQL.SQLToInt(hdf.Value)).Take(9);
                 rptListProduct.DataBind();
             }
         }
