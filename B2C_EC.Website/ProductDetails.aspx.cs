@@ -79,15 +79,17 @@ namespace B2C_EC.Website
 
         protected void btnAddToCart_Click(object sender, EventArgs e)
         {
-            AddCart();
+            if(AddCart())
+                Response.Redirect("ViewCart.aspx");
         }
 
         protected void btnOrder_Click(object sender, EventArgs e)
         {
-            AddCart();
+            if(AddCart())
+                Response.Redirect("Payment.aspx");
         }
 
-        private void AddCart()
+        private bool AddCart()
         {
             Product product = new ProductRepo().GetById(ToSQL.SQLToInt(Request.QueryString["ProductId"]));
             if (product != null)
@@ -106,8 +108,9 @@ namespace B2C_EC.Website
                 //}
 
                 Session["Carts"] = carts;
-                Response.Redirect("Payment.aspx");
+                return true;
             }
+            return false;
         }
 
         public string SetImage(object O)

@@ -31,7 +31,7 @@
                         <Columns>
                             <asp:TemplateField HeaderText="Product Name" HeaderStyle-HorizontalAlign="Center">
                                 <ItemTemplate>
-                                    <a href="#" class="name"><%# Eval("ProductName") %></a>
+                                    <a href='<%# "ProductDetails.aspx?ProductId=" + Eval("ProductID")%>' class="name"><%# Eval("ProductName") %></a>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" />
                                 <ItemStyle HorizontalAlign="Left" />

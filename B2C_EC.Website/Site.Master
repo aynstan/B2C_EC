@@ -67,7 +67,7 @@
                                             PopupControlID="Panel1"
                                             TargetControlID="lnkSignIn">
                                         </asp:ModalPopupExtender>
-                                        <li class="carts"><a href="ViewCart.aspx" class="cart">Shopping Cart</a></li>
+                                        <li class="carts"><a href="ViewCart.aspx" class="cart">Shopping Cart (<asp:Label ID="lblShoppingCart" runat="server" Text="0"></asp:Label>)</a></li>
                                     </ul>
                                 </div>
                             </ContentTemplate>

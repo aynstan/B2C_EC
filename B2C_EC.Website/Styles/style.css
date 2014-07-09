@@ -80,10 +80,10 @@ body {
 	padding-right: 8px;
 }
 .header-aside ul li.carts {
-	width: 165px;
+	width: 170px;
 	display:block;
 	padding:10px;
-	padding:5px 0 0 10px;
+	padding:5px 0 0 5px;
 	position:relative;
 	border-radius:5px;
 	height:32px;
