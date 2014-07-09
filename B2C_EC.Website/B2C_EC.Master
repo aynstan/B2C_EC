@@ -72,7 +72,7 @@
                                         </table>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <table style="float: left;">
+                                        <table style="float: left; height:100%;">
                                             <tr>
                                                 <td style="text-align: right">
                                                     <asp:Button ID="btnCompare" CssClass="Button" runat="server" Text="Compare" PostBackUrl="~/Compare.aspx" />

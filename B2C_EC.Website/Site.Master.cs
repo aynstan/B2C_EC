@@ -17,6 +17,16 @@ namespace B2C_EC.Website
             if (!IsPostBack)
             {
                 WelcomeCustomer();
+                LoadShoppingCartCount();
+            }
+        }
+
+        private void LoadShoppingCartCount()
+        {
+            List<Cart> carts = (List<Cart>)Session["Carts"];
+            if (carts != null)
+            {
+                lblShoppingCart.Text = carts.Count.ToString();
             }
         }
 

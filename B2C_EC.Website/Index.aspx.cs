@@ -54,6 +54,7 @@ namespace B2C_EC.Website
                     Cart cart = new Cart(carts);
                     cart = cart.ConverProductToCart(product);
                     carts = cart.Add(cart);
+                    UpdateLabelShipping(carts);
                     Session["Carts"] = carts;
                     Response.Redirect("ViewCart.aspx");
                 }
@@ -120,6 +121,15 @@ namespace B2C_EC.Website
             {
                 rpt.DataSource = list;
                 rpt.DataBind();
+            }
+        }
+
+        private void UpdateLabelShipping(List<Cart> list)
+        {
+            Label lbl = (Label)this.Master.Master.FindControl("lblShoppingCart");
+            if (lbl != null)
+            {
+                lbl.Text = list.Count.ToString();
             }
         }
     }
