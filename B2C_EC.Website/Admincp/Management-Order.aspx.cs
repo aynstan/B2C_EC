@@ -151,60 +151,60 @@ namespace B2C_EC.Website.Admincp
 
         private void BindItemsList()
         {
-            List<Order> users = new OrderRepo().GetManagementOrders(ToSQL.SQLToInt(txtOrderID.Text), ToSQL.SQLToDateTimeNull(txtFromDate.Text), ToSQL.SQLToDateTimeNull(txtToDate.Text),
+            List<Order> orders = new OrderRepo().GetManagementOrders(ToSQL.SQLToInt(txtOrderID.Text), ToSQL.SQLToDateTimeNull(txtFromDate.Text), ToSQL.SQLToDateTimeNull(txtToDate.Text),
                                                                        ToSQL.SQLToInt(ddlOrderStatus.SelectedValue), ToSQL.SQLToInt(ddlCustomer.SelectedValue));
-            _PageDataSource.DataSource = users;
-            _PageDataSource.AllowPaging = true;
-            _PageDataSource.PageSize = 10;
-            _PageDataSource.CurrentPageIndex = CurrentPage;
-            ViewState["TotalPages"] = _PageDataSource.PageCount;
+            //_PageDataSource.DataSource = users;
+            //_PageDataSource.AllowPaging = true;
+            //_PageDataSource.PageSize = 10;
+            //_PageDataSource.CurrentPageIndex = CurrentPage;
+            //ViewState["TotalPages"] = _PageDataSource.PageCount;
 
             //this.lblPageInfo.Text = "Results: " + ProductList.Count.ToString() + "&nbsp;&nbsp;&nbsp;&nbsp;Page " + (CurrentPage + 1) + " of " + _PageDataSource.PageCount + "&nbsp;&nbsp;";
 
-            this.btnPre.Visible = !_PageDataSource.IsFirstPage;
-            this.btnNext.Visible = !_PageDataSource.IsLastPage;
+            //this.btnPre.Visible = !_PageDataSource.IsFirstPage;
+            //this.btnNext.Visible = !_PageDataSource.IsLastPage;
             //this.lbtnFirst.Visible = !_PageDataSource.IsFirstPage;
             //this.lbtnLast.Visible = !_PageDataSource.IsLastPage;
 
-            this.gvOrders.DataSource = _PageDataSource;
+            this.gvOrders.DataSource = orders;
             this.gvOrders.DataBind();
-            //this.gvProducts.UseAccessibleHeader = true;
-            //this.gvProducts.HeaderRow.TableSection = TableRowSection.TableHeader;
-            this.doPaging();
+            this.gvOrders.UseAccessibleHeader = true;
+            this.gvOrders.HeaderRow.TableSection = TableRowSection.TableHeader;
+            //this.doPaging();
         }
-        private void doPaging()
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("PageIndex");
-            dt.Columns.Add("PageText");
-            fistIndex = CurrentPage - 5;
-            if (CurrentPage > 5)
-            {
-                lastIndex = CurrentPage + 5;
-            }
-            else
-            {
-                lastIndex = 10;
-            }
-            if (lastIndex > Convert.ToInt32(ViewState["TotalPages"]))
-            {
-                lastIndex = Convert.ToInt32(ViewState["TotalPages"]);
-                fistIndex = lastIndex - 10;
-            }
-            if (fistIndex < 0)
-            {
-                fistIndex = 0;
-            }
-            for (int i = fistIndex; i < lastIndex; i++)
-            {
-                DataRow dr = dt.NewRow();
-                dr[0] = i;
-                dr[1] = i + 1;
-                dt.Rows.Add(dr);
-            }
-            this.rptPaging.DataSource = dt;
-            this.rptPaging.DataBind();
-        }
+        //private void doPaging()
+        //{
+        //    DataTable dt = new DataTable();
+        //    dt.Columns.Add("PageIndex");
+        //    dt.Columns.Add("PageText");
+        //    fistIndex = CurrentPage - 5;
+        //    if (CurrentPage > 5)
+        //    {
+        //        lastIndex = CurrentPage + 5;
+        //    }
+        //    else
+        //    {
+        //        lastIndex = 10;
+        //    }
+        //    if (lastIndex > Convert.ToInt32(ViewState["TotalPages"]))
+        //    {
+        //        lastIndex = Convert.ToInt32(ViewState["TotalPages"]);
+        //        fistIndex = lastIndex - 10;
+        //    }
+        //    if (fistIndex < 0)
+        //    {
+        //        fistIndex = 0;
+        //    }
+        //    for (int i = fistIndex; i < lastIndex; i++)
+        //    {
+        //        DataRow dr = dt.NewRow();
+        //        dr[0] = i;
+        //        dr[1] = i + 1;
+        //        dt.Rows.Add(dr);
+        //    }
+        //    this.rptPaging.DataSource = dt;
+        //    this.rptPaging.DataBind();
+        //}
         protected void btnNext_Click(object sender, EventArgs e)
         {
             CurrentPage += 1;

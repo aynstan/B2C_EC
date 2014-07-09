@@ -67,7 +67,7 @@ namespace B2C_EC.Model.Data
                                         && (todate.Equals(null) || u.DateCreated <= todate)
                                         && (orderStatus.Equals(0) || orderStatus.Equals(null) || u.OrderStatus_ID.Equals(orderStatus))
                                         && (customerID.Equals(0) || customerID.Equals(null) || u.Customer_ID.Value.Equals(customerID))
-                                      ).ToList();
+                                      ).OrderByDescending(u => u.ID).ToList();
         }
     }
 }
