@@ -42,6 +42,27 @@ namespace B2C_EC.Website.Admincp
 
             }
         }
+        protected void gvProducts_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Model.Customer customer = (Model.Customer)e.Row.DataItem;
+                if (customer != null)
+                {
+                    if (customer.Address != null)
+                    {
+                        Label lbAddress = (Label)e.Row.FindControl("lblAddress");
+                        if (lbAddress != null)
+                        {
+                            string strAddress = new AddressRepo().GetToString(customer.Address);
+                            lbAddress.Text = new AddressRepo().ShortString(strAddress);
+                            lbAddress.ToolTip = strAddress;
+                        }
+                    }
+                }
+            }
+        }
+
         #region Paging
         #region Private Properties
         private int CurrentPage
@@ -204,6 +225,7 @@ namespace B2C_EC.Website.Admincp
         }
 
         #endregion
+
 
     }
 }

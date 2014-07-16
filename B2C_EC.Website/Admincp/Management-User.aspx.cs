@@ -28,17 +28,20 @@ namespace B2C_EC.Website.Admincp
         }
         protected void gvUsers_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            Model.User user = (Model.User)e.Row.DataItem;
-            if (user != null)
+            if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                if (user.Address != null)
+                Model.User user = (Model.User)e.Row.DataItem;
+                if (user != null)
                 {
-                    Label lbAddress = (Label)e.Row.FindControl("lblAddress");
-                    if (lbAddress != null)
+                    if (user.Address != null)
                     {
-                        string strAddress = new AddressRepo().GetToString(user.Address);
-                        lbAddress.Text = new AddressRepo().ShortString(strAddress);
-                        lbAddress.ToolTip = strAddress;
+                        Label lbAddress = (Label)e.Row.FindControl("lblAddress");
+                        if (lbAddress != null)
+                        {
+                            string strAddress = new AddressRepo().GetToString(user.Address);
+                            lbAddress.Text = new AddressRepo().ShortString(strAddress);
+                            lbAddress.ToolTip = strAddress;
+                        }
                     }
                 }
             }

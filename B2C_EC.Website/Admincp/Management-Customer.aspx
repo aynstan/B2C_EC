@@ -31,7 +31,7 @@
         <div>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <asp:GridView ID="gvProducts" runat="server" CssClass="table" AutoGenerateColumns="False">
+                    <asp:GridView ID="gvProducts" runat="server" CssClass="table" AutoGenerateColumns="False" OnRowDataBound="gvProducts_RowDataBound">
                         <Columns>
                             <asp:BoundField HeaderText="ID" DataField="ID" >
                             <ItemStyle HorizontalAlign="Center" />
@@ -45,7 +45,12 @@
                             </asp:CheckBoxField>
                             <asp:BoundField DataField="Phone" HeaderText="Phone" />
                             <asp:BoundField DataField="Email" HeaderText="Email" />
-                            <asp:BoundField DataField="DateOfBirth" HeaderText="Date Of Birth" DataFormatString="{0:dd/MM/yyyy}" />
+                            <asp:BoundField DataField="DateOfBirth" HeaderText="Date Of Birth" DataFormatString="{0:MM/dd/yyyy}" />
+                            <asp:TemplateField HeaderText="Address">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblAddress" runat="server" Text=""></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:BoundField DataField="DateCreated" HeaderText="Date Created" />
                             <asp:TemplateField>
                                 <ItemTemplate>
